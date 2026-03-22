@@ -13,9 +13,9 @@ const client = new MongoClient(uri, {
 try {
     await client.connect();
     await client.db("admin").command({ ping: 1 });
-    console.log("Successfully connected to MongoDB!");
+    console.log("yay you connected");
 } catch (err) {
-    console.error("Error connecting to MongoDB:", err);
+    console.error("oh hell nah", err);
 }
 
 let db = client.db("umsa"); 
