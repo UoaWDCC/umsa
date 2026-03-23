@@ -17,5 +17,5 @@ app.use(express.json());
 app.use('/api/developers', developerRoutes);
 
 app.listen(PORT, () => {
-  console.log(`runnninnnggg on port ${PORT}`);
+  console.log(`server is runnninnnggg on port ${PORT}`);
 });

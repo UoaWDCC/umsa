@@ -1,4 +1,12 @@
 {
+  "name": "umsa",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npm run dev --prefix server & npm run dev --prefix client",
+    "build": "npm run build --prefix client",
+    "install:all": "npm install --prefix server && npm install --prefix client"
+  },
+
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
@@ -8,4 +16,5 @@
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
+  
 }
