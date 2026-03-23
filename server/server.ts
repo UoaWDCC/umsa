@@ -1,15 +1,21 @@
-import express from "express";
-import cors from "cors";
-import records from "./routes/members.js";
+import dotenv from 'dotenv';
 
-const PORT = process.env.PORT || 5050;
+dotenv.config({ path: './.env' });
+
+import express from 'express';
+import cors from 'cors';
+import connectDB from './db/connection.ts';
+import developerRoutes from './src/routes/developers.ts';
+
 const app = express();
+const PORT = process.env.PORT || 5000;
+
+connectDB();
 
 app.use(cors());
 app.use(express.json());
-app.use("/record", records);
+app.use('/api/developers', developerRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`runnninnnggg on port ${PORT}`);
 });
-

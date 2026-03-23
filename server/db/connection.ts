@@ -1,23 +1,15 @@
-import 'dotenv/config';
-import { MongoClient, ServerApiVersion } from "mongodb";
+import mongoose from 'mongoose';
 
-const uri = process.env.ATLAS_URI || "";
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-});
+const connectDB = async (): Promise<void> => {
+  const uri = process.env.ATLAS_URI || '';
 
-try {
-    await client.connect();
-    await client.db("admin").command({ ping: 1 });
-    console.log("yay you connected");
-} catch (err) {
-    console.error("oh hell nah", err);
-}
+  try {
+    await mongoose.connect(uri);
+    console.log('oh HELLLL nah (jk it worked lol)');
+  } catch (err) {
+    console.error('YIPPPEEEEE (jk it didnt work take the L)', err);
+    process.exit(1);
+  }
+};
 
-let db = client.db("umsa"); 
-
-export default db
+export default connectDB;
