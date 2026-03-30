@@ -1,0 +1,20 @@
+# fly.toml app configuration file generated for umsa-prod on 2026-03-30T22:03:23+13:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'umsa-prod'
+primary_region = 'syd'
+
+[http_service]
+  internal_port = 5050
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '256mb'
+  cpus = 1
+  memory_mb = 256
