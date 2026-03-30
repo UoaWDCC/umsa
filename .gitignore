@@ -13,3 +13,6 @@ node_modules/.pnpm/
 # Keep package manifests and lockfile tracked
 # package.json
 # pnpm-lock.yaml
+
+# Build outputs
+**/dist/
