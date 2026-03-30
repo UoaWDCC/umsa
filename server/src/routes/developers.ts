@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import Developer, { IDeveloperDocument } from '../models/Developer';
+import Developer, { IDeveloperDocument } from '../models/Developer.js';
 
 const router = Router();
 
