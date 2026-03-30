@@ -1,1 +1,15 @@
+# Environment files
 .env
+
+# Node modules
+**/node_modules/
+node_modules/
+
+# pnpm store and virtual modules
+.pnpm-store/
+node_modules/.pnpm/
+.pnpm/
+
+# Keep package manifests and lockfile tracked
+# package.json
+# pnpm-lock.yaml
