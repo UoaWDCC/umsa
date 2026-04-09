@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "tsx watch server.ts",
     "build": "tsc",
     "start": "node dist/server.js"
@@ -25,6 +26,7 @@
     "@types/node": "^25.5.0",
     "dotenv": "^17.3.1",
     "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }
