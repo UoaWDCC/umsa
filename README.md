@@ -12,8 +12,10 @@ this is a full-stack react, node, express & mongodb, written in typescript with 
 
 
 ## team members
-| name | role | quote |
-|---|---|---|
-| hannah santiago | project manager |  |
-| alanna santoso | tech lead | *"hi!"*|
+| name | role | quote | fuel |
+|---|---|---|---|
+| hannah santiago | project manager |  | |
+| alanna santoso | tech lead | *"hi!"*| jasmine milk tea 70 sugar less ice |
+| amy yan | designer | *"meow"*| |
+| andrew qiu | designer | *"i am just a designer~"*| charlies tea osmanthus oolong 30 sugar no ice |
 
