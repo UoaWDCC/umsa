@@ -4,13 +4,22 @@
   "private": true,
   "scripts": {
     "preinstall": "pnpm exec only-allow pnpm",
-    "dev": "concurrently --names \"SERVER,CLIENT\" -c \"blue,yellow\" \"pnpm --filter server dev\" \"pnpm --filter client dev\"",
+    "dev": "concurrently --names \"SERVER,CLIENT\" -c \"blue,red\" \"pnpm --filter server dev\" \"pnpm --filter client dev\"",
     "build": "pnpm --filter server build && pnpm --filter client build",
-    "start": "node server/dist/server.js"
-},
-
+    "start": "node server/dist/server.js",
+    "lint": "eslint client/src server/src"
+  },
   "devDependencies": {
     "concurrently": "^9.2.1",
-    "only-allow": "^1.2.2"
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
+    "only-allow": "^1.2.2",
+    "prettier": "^3.8.1"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.39.4",
+    "globals": "^17.4.0",
+    "typescript-eslint": "^8.58.1"
   }
 }
