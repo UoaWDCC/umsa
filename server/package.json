@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "tsx watch server.ts",
     "build": "tsc",
     "start": "node dist/server.js"
