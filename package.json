@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "preinstall": "pnpm exec only-allow pnpm"
-  },
+    "preinstall": "pnpm exec only-allow pnpm",
+    "dev": "concurrently --names \"SERVER,CLIENT\" -c \"blue,yellow\" \"pnpm --filter server dev\" \"pnpm --filter client dev\"",
+    "build": "pnpm --filter server build && pnpm --filter client build",
+    "start": "node server/dist/server.js"
+},
+
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "only-allow": "^1.2.2"
   }
-} 
+}

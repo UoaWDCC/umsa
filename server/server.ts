@@ -4,8 +4,8 @@ dotenv.config({ path: './.env' });
 
 import express from 'express';
 import cors from 'cors';
-import connectDB from './db/connection.ts';
-import developerRoutes from './src/routes/developers.ts';
+import connectDB from './db/connection.js';
+import developerRoutes from './src/routes/developers.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
