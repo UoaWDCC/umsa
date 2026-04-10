@@ -8,7 +8,7 @@ import connectDB from './db/connection.js';
 import developerRoutes from './src/routes/developers.js';
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5050;
 
 connectDB();
 
