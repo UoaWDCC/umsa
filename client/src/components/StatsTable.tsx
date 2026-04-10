@@ -6,7 +6,7 @@ type MemberStats = {
   ethnicity: string;
   year: string;
   degree: string;
-  wpm: number;
+  typingSpeed: string;
   favouritePaper: string;
   favouriteFood: string;
 };
@@ -22,20 +22,20 @@ export default function MemberStatsTable({ stats }: Props) {
     { label: "Ethnicity", value: stats.ethnicity },
     { label: "Year", value: stats.year },
     { label: "Degree", value: stats.degree },
-    { label: "Avg WPM", value: stats.wpm },
+    { label: "Avg Typing Speed", value: stats.typingSpeed },
     { label: "Favourite Paper", value: stats.favouritePaper },
     { label: "Favourite Food", value: stats.favouriteFood },
   ];
 
   return (
     <div className="max-w-md">
-      <table className="border-separate border-spacing-x-4 w-full text-sm">
+      <table className="border-separate border-spacing-y-2 border-spacing-x-2 w-full text-xs">
 
         <tbody>
 
           {rows.map((row) => (
             <tr key={row.label} className="border-b last:border-none">
-              <td className="text-left text-gray-500">
+              <td className="text-left text-gray-400">
                 {row.label}
               </td>
               <td className="text-left text-white font-medium">

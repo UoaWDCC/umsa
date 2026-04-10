@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import RootLayout from './layouts/RootLayout'
 import App from './App'
 import ProjectTeam from './pages/Project-Team'
-import Alanna from './pages/Alanna'
+import Alanna from './pages/project-team/Alanna'
 import './index.css'
 
 const router = createBrowserRouter([
