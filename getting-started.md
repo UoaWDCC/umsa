@@ -17,11 +17,11 @@ navigate to the [pages file](/client/src/pages/), and see what files you can fin
 the [Alanna.tsx](/client/src/pages/project-team/Alanna.tsx) file is running behind my about me website.
 
 ## page requirements
-[] document title with your name on it
-[] photo that represents you
-[] stats table, using the component [here](/client/src/components/) 
-[] a paragraph about you
-[] links to your social media
++ [] document title with your name on it
++ [] photo that represents you
++ [] stats table, using the component [here](/client/src/components/) 
++ [] a paragraph about you
++ [] links to your social media
 
 ## things to have a think about
 - have a look at the [Alanna.tsx](/client/src/pages/project-team/Alanna.tsx) file. how is it structured? how are classNames used to style the page?  
