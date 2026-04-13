@@ -7,6 +7,8 @@ export default function ProjectTeam() {
       <p className="text-lg mb-4">This project was created by:</p>
       <ul className="list-disc list-inside text-lg">
         <li><Link to="/alanna" className="text-blue-500 hover:underline">Alanna Santoso</Link></li>
+          <li><Link to="/andrew" className="text-blue-500 hover:underline">andrew qiu</Link></li>
+
       </ul>
     </div>
   );

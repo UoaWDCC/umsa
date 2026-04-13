@@ -5,6 +5,7 @@ import RootLayout from './layouts/RootLayout'
 import App from './App'
 import ProjectTeam from './pages/Project-Team'
 import Alanna from './pages/project-team/Alanna'
+import Andrew from './pages/project-team/Andrew'
 import './index.css'
 
 const router = createBrowserRouter([
@@ -15,6 +16,8 @@ const router = createBrowserRouter([
       { index: true,              element: <App /> },
       { path: 'project-team',     element: <ProjectTeam /> },
       { path: 'alanna',          element: <Alanna /> },
+      { path: 'andrew',          element: <Andrew /> },
+
     ],
   },
 ]);
