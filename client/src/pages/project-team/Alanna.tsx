@@ -27,11 +27,11 @@ export default function Alanna(){
         </div>
 
         {/* stats section */}
-        <div className="grid grid-cols-3 gap-10 item-center justify-center"> 
+        <div className="md:grid grid-cols-3 gap-10 item-center justify-center"> 
             {/* we use an img component to display my photo! */}
             <img 
             src={AlannaPhoto} 
-            className="col-span-1 object-cover h-full rounded-2xl"
+            className="col-span-1 object-cover md:mb-0 mb-5 h-full rounded-2xl"
             /> 
 
             {/* here's where components come in - we use a pre built stats component, 
@@ -59,7 +59,7 @@ export default function Alanna(){
         <div> 
             <p className="text-sm mt-10">
                 hey everyone :) i&apos;m super excited to be umsa&apos;s tech lead for 2026! <br/> a couple fun facts
-                about me: i&apos;m a huge fan of sitcoms (how i met your mother!), movies, 
+                about me: i&apos;m a huge sitcom fan (how i met your mother!), movies, 
                 photography & murder mysteries. i love compsci because it lets me get creative, see how things work
                 and meet super cool people :)) i&apos;m always down for a coffee/milk-tea/matcha 
                 run,, and love to yap about everything from world history

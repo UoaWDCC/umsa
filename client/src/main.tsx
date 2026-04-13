@@ -7,6 +7,7 @@ import ProjectTeam from './pages/Project-Team'
 import Alanna from './pages/project-team/Alanna'
 import './index.css'
 
+{/* here's where we set up all our routing */}
 const router = createBrowserRouter([
   {
     path: '/',
