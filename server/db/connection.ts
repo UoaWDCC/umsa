@@ -5,9 +5,9 @@ const connectDB = async (): Promise<void> => {
 
   try {
     await mongoose.connect(uri);
-    console.log('is the db connected?: HELLLL nah (jk it worked lol)');
+    console.log('is the db connected?: yes');
   } catch (err) {
-    console.error('is the db connected: YIPPPEEEEE (jk it didnt work take the L)', err);
+    console.error('is the db connected?: no', err);
     process.exit(1);
   }
 };
