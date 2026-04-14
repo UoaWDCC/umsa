@@ -31,3 +31,4 @@ to build: pnpm build
 | nicholars garcia-scholtz | tech exec ||||
 | amy yan | designer | | *"meow"* |
 | andrew qiu | designer | charlies tea osmanthus oolong 30 sugar no ice | *"i am just a designer~"*| 
+| jacky chen | developer | purple rice yoghurt | *"CAWCAW"* |
