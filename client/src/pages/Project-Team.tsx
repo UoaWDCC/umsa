@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 export default function ProjectTeam() {
 
   return (
@@ -14,7 +15,10 @@ export default function ProjectTeam() {
       
       <p className="pl-15 text-left">
       {/* make a link to your page here! */}
-      <Link to="/alanna" className="text-white-500 text-lg hover:italic">Alanna Santoso</Link>
+        <Link to="/alanna" className="text-white-500 text-lg hover:italic">Alanna Santoso</Link>
+      </p>
+      <p className="pl-15 text-left">
+        <Link to="/jacky" className="text-white-500 text-lg hover:italic">Jacky Chen</Link>
       </p>
     </div>
     </div>
