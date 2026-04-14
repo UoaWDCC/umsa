@@ -18,3 +18,4 @@ this is a full-stack react, node, express & mongodb, written in typescript with 
 | koutaro yumimi | tech overlord | ethiopian natural | *"studying is doubting your own potential"* | 
 | amy yan | designer | | *"meow"* |
 | andrew qiu | designer | charlies tea osmanthus oolong 30 sugar no ice | *"i am just a designer~"*| 
+| pruna lee | developer | coconut redbull | *"i love food"* |
