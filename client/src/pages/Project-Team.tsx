@@ -15,6 +15,7 @@ export default function ProjectTeam() {
       <p className="pl-15 text-left">
       {/* make a link to your page here! */}
       <Link to="/alanna" className="text-white-500 text-lg hover:italic">Alanna Santoso</Link>
+      <Link to="/terrence" className="text-white-500 text-lg hover:italic">Terrence Wu</Link>
       </p>
     </div>
     </div>

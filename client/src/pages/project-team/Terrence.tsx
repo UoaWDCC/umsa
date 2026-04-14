@@ -53,26 +53,27 @@ export default function Terrence() {
         
         <div>
             <p className="text-sm mt-10">
-                hi
+                Temporary about me section
             </p>
         </div>
 
         {/* social media section */}
         <div>
-            <h1 className="text-3xl mt-10 mb-5 font-bold italic text-left">add me on linkedin pls</h1>
+            <h1 className="text-3xl mt-10 mb-5 font-bold text-left">Social Links:</h1>
+            <h1 className="text-l mt-10 mb-5 font-bold italic text-left">add me on Linkedin pls</h1>
             <div className="flex grid-cols-4 gap-4 mt-4">
 
                 {/* the <a></a> tags are for creating links */}
                 <a href="https://www.instagram.com/_tw1738" target="_blank" rel="noopener noreferrer">
-                    <FaInstagram className="text-3xl text-pink-300 hover:text-white" />
+                    <FaInstagram className="text-3xl text-gray-300 hover:text-white" />
                 </a>
 
                 <a href="https://github.com/Twu1738" target="_blank" rel="noopener noreferrer">
-                    <FaGithub className="text-3xl text-pink-300 hover:text-white" />
+                    <FaGithub className="text-3xl text-gray-300 hover:text-white" />
                 </a>
 
                 <a href="https://www.linkedin.com/in/terrence-wu" target="_blank" rel="noopener noreferrer">
-                    <FaLinkedin className="text-3xl text-pink-300 hover:text-white" />
+                    <FaLinkedin className="text-3xl text-gray-300 hover:text-white" />
                 </a>
 
             </div>
