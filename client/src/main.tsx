@@ -5,8 +5,10 @@ import RootLayout from './layouts/RootLayout'
 import App from './App'
 import ProjectTeam from './pages/Project-Team'
 import Alanna from './pages/project-team/Alanna'
+
 import './index.css'
 import Intro from './pages/project-team/Intro'
+import Minahil from './pages/project-team/Minahil'
 
 {/* here's where we set up all our routing */}
 const router = createBrowserRouter([
@@ -17,7 +19,9 @@ const router = createBrowserRouter([
       { index: true,              element: <App /> },
       { path: 'project-team',     element: <ProjectTeam /> },
       { path: 'alanna',          element: <Alanna /> },
-      { path: 'intro', element: <Intro />}
+      { path: 'intro', element: <Intro /> },
+      { path: 'minahil', element: <Minahil /> }
+
     ],
   },
 ]);
