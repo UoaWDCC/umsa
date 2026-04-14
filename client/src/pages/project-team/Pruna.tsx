@@ -18,15 +18,15 @@ export default function Pruna() {
             </h1>
           </div>
 
-          <div className="grid grid-rows-3 gap-10 item-center justify-center">
+          <div className="grid grid-rows-2 gap-10 item-center justify-center">
             <img
               src={PrunaPhoto}
               className="row-span-1 object-cover h-full rounded-2xl"
             />
-            <div className="row-span-2 max-w-md bg-[#D8BCAB] text-[#000000] p-10 rounded-lg">
+            <div className="row-span-1 bg-[#38302E] text-[#000000] p-10 mx-30 rounded-lg flex item-center justify-center">
               <MemberStatsTable
                 stats={{
-                  fullName: "prunalee",
+                  fullName: "pruna lee",
                   age: 19,
                   ethnicity: "korean",
                   year: "second year",
