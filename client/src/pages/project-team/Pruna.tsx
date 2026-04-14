@@ -56,7 +56,7 @@ export default function Pruna() {
                 <a href="https://www.github.com/nryuzl" target="_blank" rel="noopener noreferrer">
                     <FaGithub className="text-3xl text-pink-300 hover:text-white" />
                 </a>
-                <a href="https://www.linkedin.com/in/prunalee" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/pruna-lee-58114a292/" target="_blank" rel="noopener noreferrer">
                     <FaLinkedin className="text-3xl text-pink-300 hover:text-white" />
                 </a>
             </div>
