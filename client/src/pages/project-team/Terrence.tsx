@@ -35,7 +35,7 @@ export default function Terrence() {
             <div className="col-span-2 w-156 bg-gray-900 p-6 rounded-lg item-center justify-center">
                 <MemberStatsTable
                 stats={{
-                    fullName: "Terrence u",
+                    fullName: "Terrence Wu",
                     age: 17,
                     ethnicity: "Chinese",
                     year: "First year",
