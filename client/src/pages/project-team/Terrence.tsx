@@ -38,11 +38,11 @@ export default function Terrence() {
                     fullName: "Terrence Wu",
                     age: 17,
                     ethnicity: "Chinese",
-                    year: "First year",
+                    year: "First Year",
                     degree: "Computer Science",
                     typingSpeed: "135wpm",
                     favouritePaper: "CompSci120",
-                    favouriteFood: "Fried chicken and Burgers",
+                    favouriteFood: "Fried Chicken, Burgers, Beef Noodles, everything but sea food",
                 }}
                 />
 
