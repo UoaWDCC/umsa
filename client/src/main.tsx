@@ -6,6 +6,7 @@ import App from './App'
 import ProjectTeam from './pages/Project-Team'
 import Alanna from './pages/project-team/Alanna'
 import './index.css'
+import SignUp from './pages/SignUp'
 
 {/* here's where we set up all our routing */}
 const router = createBrowserRouter([
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       { index: true,              element: <App /> },
       { path: 'project-team',     element: <ProjectTeam /> },
       { path: 'alanna',          element: <Alanna /> },
+      {path: 'sign-up',            element: <SignUp />},
     ],
   },
 ]);
