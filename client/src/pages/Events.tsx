@@ -11,7 +11,7 @@ export default function Events() {
     return(
         <div className="flex flex-col items-center justify-center">
             <div className="flex flex-col w-full">
-                <h1 className="text-3xl font-bold my-4">
+                <h1 className="text-3xl font-bold mb-4">
                     Events
                 </h1>
             </div>
@@ -21,7 +21,7 @@ export default function Events() {
                         eventName: "Jalinan Raya",
                         eventImage: EventImage,
                         eventLink: "https://www.instagram.com/p/DWPgAxmky6q/?img_index=1",
-                        eventDescription: "cool descriptive description",
+                        eventDescription: "very cool and very descriptive description",
                         eventIsDone: false,
 
                     }}
@@ -31,7 +31,7 @@ export default function Events() {
                         eventName: "Bersatu Trials",
                         eventImage: EventImage,
                         eventLink: "https://www.instagram.com/p/DV7o4eZmPHH/?img_index=1",
-                        eventDescription: "even cooler descriptive description",
+                        eventDescription: "even cooler and even more descriptive description",
                         eventIsDone: false,
 
                     }}
@@ -41,14 +41,12 @@ export default function Events() {
                         eventName: "Clash of UMSA",
                         eventImage: EventImage,
                         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
-                        eventDescription: "even even cooler descriptive description",
+                        eventDescription: "even even cooler and way wayyyyy more descriptive description",
                         eventIsDone: true,
 
                     }}
                 />
             </div>
-
         </div>
     )
-
 }
