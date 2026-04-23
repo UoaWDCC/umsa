@@ -1,5 +1,3 @@
-import React from "react";
-
 {/* this sets up the types for the stats table */}
 type MemberStats = {
   fullName: string;
