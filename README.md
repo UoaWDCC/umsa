@@ -31,4 +31,4 @@ to build: pnpm build
 | nicholars garcia-scholtz | tech exec ||||
 | amy yan | designer | | *"meow"* |
 | andrew qiu | designer | charlies tea osmanthus oolong 30 sugar no ice | *"i am just a designer~"*| 
-| terrence wu | developer | oolong milk tea 30 sugar little ice | *"i've been hardstuck bronze in league for 6 years (BUT IM GETTING OUT THIS YEAR IM BRONZE 3 44LP NOW)"*
+| terrence wu | developer | oolong milk tea 30 sugar little ice | *"hardstuck bronze in league for 6 years (BUT IM GETTING OUT THIS YEAR IM BRONZE 3 44LP NOW)"*
