@@ -31,4 +31,4 @@ to build: pnpm build
 | nicholars garcia-scholtz | tech exec ||||
 | amy yan | designer | | *"meow"* |
 | andrew qiu | designer | charlies tea osmanthus oolong 30 sugar no ice | *"i am just a designer~"*| 
-| eric zheng | koutaro's dad | dirty matcha latte | *"i am just a dad~"* |
+| eric zheng | developer | dirty matcha latte | "disaster-" |
