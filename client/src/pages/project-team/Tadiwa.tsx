@@ -12,7 +12,7 @@ export default function Tadiwa(){
     return(
         <>
     <h1 style={{ fontFamily: "Fredoka One"}} >
-           TADIWA&apos;S ABOUT ME PAGE 
+           TADIWA&apos;S ABOUT ME PAGE  
     </h1>
 
 <div className="bg-pink-300 italic text-black">  
@@ -66,7 +66,7 @@ src={pinkme}
                    
                     please add my linkedin #verylongroadto500
             
-                     
+                     {/* social media section */}
                         <div>
                             <h1 className="text-3xl mt-10 mb-5 font-bold italic text-left">if u wanna stalk me..click on the icon </h1>
                             <div className="flex grid-cols-4 gap-4 mt-4">
@@ -75,8 +75,8 @@ src={pinkme}
                                 <a href="https://www.instagram.com/tadiwaxm" target="_blank" rel="noopener noreferrer">
                                     <img 
             src={instapic} 
-            className="col-span-1 object-cover md:mb-0 mb-5 h-full rounded-2xl"
-            className="w-40 h-60 object-cover"
+            className="col-span-1 object-cover md:mb-0 mb-5 h-full rounded-2xl w-40 h-60"
+        
             /> 
                 
                                 </a>
