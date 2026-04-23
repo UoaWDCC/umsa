@@ -33,7 +33,7 @@ export default function MemberStatsTable({ stats }: Props) {
 
 {/* we return the formatted table here */}
   return (
-    <div className="max-w-md">
+    <div className="max-w-md text-black">
       <table className="border-separate border-spacing-y-2 border-spacing-x-2 w-full text-xs">
 
         <tbody>
