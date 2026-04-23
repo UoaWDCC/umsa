@@ -22,6 +22,5 @@ export default function ProjectTeam() {
       <br></br><Link to="/terrence" className="text-white-500 text-lg hover:italic">Terrence Wu</Link>
       </p>
     </div>
-    </div>
   );
 }
