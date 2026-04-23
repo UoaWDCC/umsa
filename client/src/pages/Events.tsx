@@ -5,6 +5,11 @@ export default function Events() {
 
     return(
         <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-col w-full">
+                <h1 className="text-3xl font-bold my-4">
+                    Events
+                </h1>
+            </div>
             <div className="w-4/5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <EventsInfo
                     element={{
