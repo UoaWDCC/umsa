@@ -14,10 +14,10 @@ const router = createBrowserRouter([
     path: '/',
     element: <RootLayout />, 
     children: [
-      { index: true,              element: <App /> },
-      { path: 'project-team',     element: <ProjectTeam /> },
-      { path: 'alanna',          element: <Alanna /> },
-      {path: 'sign-up',            element: <SignUp />},
+      {index: true,             element: <App /> },
+      {path: 'project-team',    element: <ProjectTeam /> },
+      {path: 'alanna',          element: <Alanna /> },
+      {path: 'sign-up',         element: <SignUp />},
     ],
   },
 ]);
