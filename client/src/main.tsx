@@ -8,6 +8,7 @@ import Alanna from "./pages/project-team/Alanna";
 import "./index.css";
 import Pruna from "./pages/project-team/Pruna";
 
+{/* here's where we set up all our routing */}
 const router = createBrowserRouter([
   {
     path: "/",
