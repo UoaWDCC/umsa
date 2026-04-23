@@ -7,6 +7,7 @@ import ProjectTeam from "./pages/Project-Team";
 import Alanna from "./pages/project-team/Alanna";
 import "./index.css";
 import Pruna from "./pages/project-team/Pruna";
+import Contact from "./pages/Contact";
 
 {/* here's where we set up all our routing */}
 const router = createBrowserRouter([
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: "project-team", element: <ProjectTeam /> },
       { path: "alanna", element: <Alanna /> },
       { path: "pruna", element: <Pruna /> },
+      { path: "contact", element: <Contact /> },
     ],
   },
 ]);
