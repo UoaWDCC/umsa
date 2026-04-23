@@ -32,3 +32,7 @@ to build: pnpm build
 | amy yan | designer | | *"meow"* |
 | andrew qiu | designer | charlies tea osmanthus oolong 30 sugar no ice | *"i am just a designer~"*| 
 | terrence wu | developer | oolong milk tea 30 sugar little ice | *"hardstuck bronze in league for 6 years (BUT IM GETTING OUT THIS YEAR IM BRONZE 3 44LP NOW)"*
+| alex lee | developer | pink monster | "DAH" -pinkpanteress |
+| eric zheng | developer | dirty matcha latte | "disaster-" |
+| jacky chen | developer | purple rice yoghurt | *"i make a lot of typos"* |
+| pruna lee | developer | coconut redbull | *"i love food"* |

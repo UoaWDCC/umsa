@@ -7,22 +7,24 @@ import ProjectTeam from './pages/Project-Team'
 import Alanna from './pages/project-team/Alanna'
 import Terrence from './pages/project-team/Terrence'
 import './index.css'
+import Pruna from "./pages/project-team/Pruna";
 
 {/* here's where we set up all our routing */}
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <RootLayout />, 
+    path: "/",
+    element: <RootLayout />,
     children: [
       { index: true,              element: <App /> },
       { path: 'project-team',     element: <ProjectTeam /> },
       { path: 'alanna',          element: <Alanna /> },
       { path: 'terrence',         element: <Terrence />},
+      { path: "pruna", element: <Pruna /> },
     ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>
