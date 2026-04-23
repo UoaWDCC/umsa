@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 import EventsInfo from "../components/EventsElement"; 
 import EventImage from "../assets/about-us/Copy of UMSA_Guitar.png"
 
 export default function Events() {
+
+    useEffect(() => {
+        document.title = "Events | UMSA";
+        }, []);
 
     return(
         <div className="flex flex-col items-center justify-center">
