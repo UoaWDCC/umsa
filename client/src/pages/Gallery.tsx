@@ -17,9 +17,9 @@ export default function Gallery(){
     return (
         <>
         <div>
-            <p className="text-3xl font-bold">Gallery</p>
+            <p className="text-3xl font-bold mb-5">Gallery</p>
         </div>
-        
+
         <div className="flex px-5 gap-10 flex-wrap justify-center" >
             {images.map((image, index) => (
                 <img key={index} src={image.src} alt={image.alt} 
