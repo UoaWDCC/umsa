@@ -5,7 +5,9 @@ export default function Navbar() {
     `transition-colors hover:text-white ${isActive ? 'text-white font-semibold' : 'text-gray-400'}`;
 
   return (
+    
     <nav className="mx-6 py-4">
+      <div className="hidden md:flex space-x-4">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         <Link to="/" className="text-xl font-bold tracking-tight">
           UMSA
@@ -16,6 +18,7 @@ export default function Navbar() {
           <NavLink to="/sign-up" className={linkClass}>Sign Up</NavLink>
           <NavLink to="/gallery" className={linkClass}>Gallery</NavLink>
         </div>
+      </div>
       </div>
     </nav>
   );
