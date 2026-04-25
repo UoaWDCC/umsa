@@ -1,19 +1,28 @@
 
 import { useEffect } from "react";
 import SponsorInfoBox from "../components/SponsorBox"
+import jayPark from "../assets/sponsors/jay-park.jpg";
+import dprIan from "../assets/sponsors/dpr-ian.jpg";
+import karina from "../assets/sponsors/karina.jpg";
 
 {/*add sponsor info and make new sponsor boxes here*/}
 const sponsors = [
     {
     sponsorName: "Jay Park (real)",
     sponsorLink: "https://JayPark.com",
-    sponsorLogo: "",
+    sponsorLogo: jayPark,
     discount: 10,
     },
     {
-    sponsorName: "Sponsor Two",
-    sponsorLink: "https://example.com",
-    sponsorLogo: "",
+    sponsorName: "Christian Yu (real)",
+    sponsorLink: "https://www.instagram.com/dprian/",
+    sponsorLogo: dprIan,
+    discount: 20,
+    },
+    {
+    sponsorName: "Karina (real)",
+    sponsorLink: "https://www.instagram.com/dprian/",
+    sponsorLogo: karina,
     discount: 20,
     },
 ];
