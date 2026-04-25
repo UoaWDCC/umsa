@@ -6,6 +6,7 @@ import App from './App'
 import ProjectTeam from './pages/Project-Team'
 import Events from './pages/Events'
 import Alanna from './pages/project-team/Alanna'
+import Alex from './pages/project-team/Alex'
 import './index.css'
 
 {/* here's where we set up all our routing */}
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: 'events',           element: <Events /> },
       { path: 'project-team',     element: <ProjectTeam /> },
       { path: 'alanna',          element: <Alanna /> },
+      { path: 'alex',            element: <Alex/> }
     ],
   },
 ]);
