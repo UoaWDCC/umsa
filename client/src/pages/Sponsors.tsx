@@ -1,5 +1,23 @@
 
 import { useEffect } from "react";
+import SponsorInfoBox from "../components/SponsorBox"
+
+{/*add sponsor info and make new sponsor boxes here*/}
+const sponsors = [
+    {
+    sponsorName: "Jay Park (real)",
+    sponsorLink: "https://JayPark.com",
+    sponsorLogo: "",
+    discount: 10,
+    },
+    {
+    sponsorName: "Sponsor Two",
+    sponsorLink: "https://example.com",
+    sponsorLogo: "",
+    discount: 20,
+    },
+];
+
 export default function Sponsors() {
     useEffect(() => {
         document.title = "Sponsors | UMSA";
@@ -12,7 +30,9 @@ export default function Sponsors() {
                 UMSA Sponsors Page
             </p>
             <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
-                {/* SPONSORS WILL GO HERE */}
+                {sponsors.map((s) => (
+                    <SponsorInfoBox key={s.sponsorName} sponsor={s} />
+                ))}
             </div>
         </div>
         );
