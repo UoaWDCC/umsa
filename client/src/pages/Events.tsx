@@ -5,23 +5,23 @@ import EventImage from "../assets/about-us/Copy of UMSA_Guitar.png"
 {/* constant events array */}
 const events = [
     {
-        eventName: "Jalinan Raya 2",
+        eventName: "Jalinan Raya",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DWPgAxmky6q/?img_index=1",
         eventDescription: "very cool and very descriptive description",
         eventIsDone: false,
-        eventDate: new Date("2026-05-28"),
+        eventDate: new Date("2026-05-20"),
     },
     {
-        eventName: "Bersatu Trials 1",
+        eventName: "Bersatu Trials",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DV7o4eZmPHH/?img_index=1",
         eventDescription: "even cooler and even more descriptive description",
         eventIsDone: false,
-        eventDate: new Date("2026-05-20"),
+        eventDate: new Date("2026-05-28"),
     },
     {
-        eventName: "Clash of UMSA 3",
+        eventName: "Clash of UMSA",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
         eventDescription: "even even cooler and way wayyyyy more descriptive description",
@@ -29,7 +29,7 @@ const events = [
         eventDate: new Date("2026-06-21"),
     },
     {
-        eventName: "Clash of UMSA 2",
+        eventName: "Clash of UMSA",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
         eventDescription: "even even cooler and way wayyyyy more descriptive description",
@@ -37,7 +37,7 @@ const events = [
         eventDate: new Date("2026-03-21"),
     },
     {
-        eventName: "Clash of UMSA 1",
+        eventName: "Clash of UMSA",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
         eventDescription: "even even cooler and way wayyyyy more descriptive description",

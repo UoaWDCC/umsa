@@ -1,7 +1,7 @@
 import { FaInstagram, FaGithub, FaLinkedin, FaFilm, FaSpotify } from "react-icons/fa";
 import MemberStatsTable from "../../components/StatsTable";
-import bgImage from "../../assets/about-us/IMG_7577.jpeg"; 
-import AlexImage from "../../assets/about-us/P1010200.jpeg";
+import bgImage from "../../assets/about-us/alexBackground.jpeg"; 
+import AlexImage from "../../assets/about-us/alex.jpeg";
 import { useEffect } from "react";
 
 export default function Alex(){
@@ -16,7 +16,7 @@ export default function Alex(){
             <div style={{ backgroundImage: `url(${bgImage})` }} className="absolute inset-0 bg-cover bg-center opacity-50 rounded-lg"></div>
 
             {/* contents */}
-            <div className ="relative h-full max-w-[700px] flex flex-col">
+            <div className ="relative h-full max-w-175 flex flex-col">
                 {/* header */}
                 <div className="flex flex-col items-center mt-8">
                     <h1 className="text-3xl font-sans font-bold mb-4">ALEXANDER THE GREAT</h1>
@@ -25,7 +25,7 @@ export default function Alex(){
                 {/* main */}
                 <div className="md:grid grid-cols-3 flex flex-col w-full gap-10 items-center justify-center">
                     {/* beautiful photo of me */}
-                    <img src={AlexImage} className="col-span-1 object-cover w-full max-w-sm md:max-w-none h-full min-h-[300px] rounded-2xl shadow-lg shadow-xl/30"/>
+                    <img src={AlexImage} className="col-span-1 object-cover w-full max-w-sm md:max-w-none h-full min-h-75 rounded-2xl shadow-lg shadow-xl/30"/>
 
                     {/* stats */}
                     <div className="col-span-2 w-full max-w-sm md:max-w-none flex flex-col bg-gray-900 p-6 rounded-lg shadow-lg shadow-xl/30">
@@ -37,7 +37,7 @@ export default function Alex(){
                             ethnicity: "Korean🇰🇷🇰🇷🇰🇷",
                             year: "First year",
                             degree: "compsci & IT management(im gonna drop this for Finance conjoint)",
-                            typingSpeed: "106 wpm",
+                            typingSpeed: "16 wpm",
                             favouritePaper: "A4",
                             favouriteFood: "3am maccas mish(Big Mac, 2 Cheeseburgers, medium fries, 6pcs chicken nugget with 2 sweet and sour sauce and medium Sprite zero)",
                     
@@ -49,29 +49,9 @@ export default function Alex(){
                 {/* about me */}
                 <div className="w-full mb-32"> 
                     <p className="text-sm mt-4 leading-relaxed">
-                        pretend like i have a really cool and interesting about me here.<br/>
-                        Snorlax RAWRRRR<br/>
-                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⣿⣶⣦⣄⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣤⣶⣾⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀<br/>
-                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⠿⠿⠿⣿⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀<br/>
-                        ⠀⠀⠀⠀⠀⢀⡀⣄⠀⠀⠀⠀⠀⠀⠀⣿⣿⠟⠉⠀⢀⣀⠀⠀⠈⠉⠀⠀⣀⣀⠀⠀⠙⢿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀<br/>
-                        ⠀⠀⠀⣀⣶⣿⣿⣿⣾⣇⠀⠀⠀⠀⢀⣿⠃⠀⠀⠀⠀⢀⣀⡀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠹⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀<br/>
-                        ⠀⠀⠀⢻⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⣼⡏⠀⠀⠀⣀⣀⣉⠉⠩⠭⠭⠭⠥⠤⢀⣀⣀⠀⠀⠀⢻⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀<br/>
-                        ⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⣿⠷⠒⠋⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠑⠒⠼⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀<br/>
-                        ⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀<br/>
-                        ⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣷⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀<br/>
-                        ⠀⠀⠀⠈⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀<br/>
-                        ⠀⠀⠀⠀⢹⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀<br/>
-                        ⠀⠀⠀⠀⠀⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣧⡀⠀⠀<br/>
-                        ⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣶⣤⣄⣠⣤⣤⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣶⣶⣶⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀<br/>
-                        ⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀<br/>
-                        ⠀⠀⣀⠀⢸⡿⠿⣿⡿⠋⠉⠛⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠉⠀⠻⠿⠟⠉⢙⣿⣿⣿⣿⣿⣿⡇<br/>
-                        ⠀⠀⢿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⠀⠀⠀⠀⠀⠀⠀⠈⠻⠿⢿⡿⣿⠳⠀<br/>
-                        ⠀⠀⡞⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣇⡀⠀⠀<br/>
-                        ⢀⣸⣀⡀⠀⠀⠀⠀⣠⣴⣾⣿⣷⣆⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⣰⣿⣿⣿⣿⣷⣦⠀⠀⠀⠀⢿⣿⠿⠃⠀<br/>
-                        ⠘⢿⡿⠃⠀⠀⠀⣸⣿⣿⣿⣿⣿⡿⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⢻⣿⣿⣿⣿⣿⣿⠂⠀⠀⠀⡸⠁⠀⠀⠀<br/>
-                        ⠀⠀⠳⣄⠀⠀⠀⠹⣿⣿⣿⡿⠛⣠⠾⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠿⠿⠳⣄⠙⠛⠿⠿⠛⠉⠀⠀⣀⠜⠁⠀⠀⠀⠀<br/>
-                        ⠀⠀⠀⠈⠑⠢⠤⠤⠬⠭⠥⠖⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠒⠢⠤⠤⠤⠒⠊⠁⠀⠀⠀⠀⠀⠀
+                        about me:<br/>
                     </p>
+                    <a href="https://www.instagram.com/p/DXXXjSwxI9m" target="_blank" rel="noopener noreferrer"><u>https://www.instagram.com/p/DXXXjSwxI9m</u></a>
                 </div>
 
                 {/* social media section */}
