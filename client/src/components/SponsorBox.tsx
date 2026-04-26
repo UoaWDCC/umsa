@@ -13,7 +13,7 @@ type Props = {
 
 export default function SponsorInfoBox({ sponsor }: Props) {
   return (
-    <div className="flex flex-col items-center p-5 bg-[#FFFFFF] rounded-lg max-w-sm">
+    <div className="flex flex-col items-center p-5 bg-[#FFFFFF] rounded-lg w-full max-w-xs">
       <img
         src={sponsor.sponsorLogo}
         alt={`${sponsor.sponsorName} logo`}

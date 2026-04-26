@@ -38,7 +38,7 @@ export default function Sponsors() {
             <p className="mt-4 text-gray-400">
                 UMSA Sponsors Page
             </p>
-            <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 w-full justify-items-center">
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-2xl justify-items-center items-stretch">
                 {sponsors.map((s) => (
                     <SponsorInfoBox key={s.sponsorName} sponsor={s} />
                 ))}
