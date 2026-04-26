@@ -48,21 +48,17 @@ const events = [
 
 {/* eventIsDone is overriden depending on if event.eventDate is before todays date */}
 const today = new Date();
-const processedEvents = events.map(
-    (event) => ({
-        ...event, eventIsDone: event.eventDate < today,
-    })
-)
-.sort( //sorting the array based on how close the date is to origin(today)
-    (a, b) => {
-        if (a.eventIsDone == false && b.eventIsDone == false) {
-            return a.eventDate.getTime() - b.eventDate.getTime();
-        } 
-        else {
-            return b.eventDate.getTime() - a.eventDate.getTime();
-        }
+const processedEvents = events.map((event) => ({
+    ...event, eventIsDone: event.eventDate < today,
+}))
+.sort((a, b) => { //sorting the array based on how close the date is to origin(today)
+    if (a.eventIsDone == false && b.eventIsDone == false) {
+        return a.eventDate.getTime() - b.eventDate.getTime();
+    } 
+    else {
+        return b.eventDate.getTime() - a.eventDate.getTime();
     }
-);
+});
 
 {/* use .filter() to make new array depending on events.eventIsDone is true or false */}
 const upcomingEvents = processedEvents.filter((event) => event.eventIsDone == false);
