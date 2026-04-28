@@ -1,31 +1,36 @@
-.biggest.flex.container {
+.main{
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
+    
+}
+.about{
+    max-width: 1000px;
+    margin:auto;
+    
 }
 .box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 500px;
-    height: 150px;
-    font-size: 1em;
-    text-align: center;
-    border-radius: 15px;
-    
-
+   padding: 1.5rem;
+   border: 1px solid #ccc;
+   width: 100%;
+   box-sizing: border-box;
+   min-height: 200px;
+   display: flex;
+   flex-direction: column;
+   gap: 2rem;
+   
 }
-#history{
-    background: #ffffff -600px;
-}
-#vision{
-    background: rgb(210, 131, 187) 400px;
-}
-#purpose{
-    background: rgb(100, 143, 182) 400px;
+.title{
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
 }
 
-#header{
 
+.header{
+    margin-bottom: 2rem;
+}
+
+.link{
+    margin-top: 2rem;
 }

@@ -6,26 +6,39 @@ export default function About(){
     []);
 
     return(
-<div>
+<div className="about">
     <div className=" header">
-        <header style={{ fontSize: "2rem" , marginBottom: "3rem"}} >
-            UMSA
-        </header>
+        <h1> UMSA </h1>
+        <p> Welcome to umsa about us page </p>
     </div>
-    <div className = " biggest flex container " style={{ color: "black"}}> 
+
+
+    <div className = "main" style={{ color: "white"}}> 
+
         <div className = "box" id="history" >
-            <p> history</p> 
-            <p> The history of umsa is as follows:</p>
+            <h2 style= {{ fontSize: "1.5rem" , position: "relative" , top: "-10px" }}> History </h2> 
+            <p> bla bla bla bla </p>
         </div>
 
-        <div className = "box" id="vision">  Vision </div>
-        <div className = "box" id= "purpose"> Purpose </div>
+        <div className = "box" id="vision"> 
+            <h2 style= {{ fontSize: "1.5rem" , position: "relative" , top: "-10px" }}>Vision</h2>
+            <p> bla bla bla bla bla bla bla </p>
+             </div>
+
+        <div className = "box" id= "purpose"> 
+            <h2 style= {{ fontSize: "1.5rem" , position: "relative" , top: "-10px" }}>Purpose</h2>
+            <p> bla bla bla bla  </p>
+             </div>
+        
     </div>
+    <div className="link">
+        <h2> Meet the team: </h2>
+         </div>
 </div>
 
     )
 }
-
+ 
 
 
 
