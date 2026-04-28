@@ -32,7 +32,8 @@ export default function About(){
         
     </div>
     <div className="link">
-        <h2> Meet the team: </h2>
+        <h2> Meet the team:  </h2>
+        <a href = " https://github.com/UoaWDCC/umsa/tree/tadiwa/about-us-page/"> Press here </a>
          </div>
 </div>
 
