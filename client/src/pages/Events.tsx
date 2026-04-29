@@ -92,24 +92,24 @@ export default function Events() {
                     Upcoming Events
                 </h1>
             </div>
-            <div className="flex flex-wrap-reverse justify-end w-4/5 mb-3">
+            <div className="flex flex-wrap-reverse justify-end w-4/5 mb-3 gap-4">
                 <button onClick={() => setActiveTag("All")} //onClick calls setActiveTag function, useState updates - react rerenders - activeTag returns new value
                     className={
-                        `w-fit px-2 text-sm text-gray-400 hover:text-white 
+                        `w-fit text-sm text-gray-400 hover:text-white cursor-pointer 
                         ${activeTag == "All" ? "text-white font-bold" : ""}`
                     }>
                     all
                 </button>
                 <button onClick={() => setActiveTag("Social")} 
                     className={
-                        `w-fit px-2 text-sm text-gray-400 hover:text-white 
+                        `w-fit text-sm text-gray-400 hover:text-white cursor-pointer 
                         ${activeTag == "Social" ? "text-white font-bold" : ""}`
                     }>
                     social
                 </button>
                 <button onClick={() => setActiveTag("Competition")} 
                     className={
-                        `w-fit px-2 text-sm text-gray-400 hover:text-white 
+                        `w-fit text-sm text-gray-400 hover:text-white cursor-pointer 
                         ${activeTag == "Competition" ? "text-white font-bold" : ""}`
                     }>
                     competition
