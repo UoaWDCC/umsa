@@ -75,7 +75,7 @@ export default function Events() {
         document.title = "Events | UMSA";
         }, []);
 
-    {/* using useState with default value All, to rerender the activeTag based on onClick event from button */}
+    {/* state variable and setter function using useState with default value All, to rerender the activeTag based on onClick event from button */}
     const [activeTag, setActiveTag] = useState("All");
     {/* when initial or new activeTag, EventsArrays are filtered for activeTag */}
     const filteredUpcomingEvents = 
