@@ -75,7 +75,9 @@ export default function Events() {
         document.title = "Events | UMSA";
         }, []);
 
+    {/* using useState with default value All, to rerender the activeTag based on onClick event from button */}
     const [activeTag, setActiveTag] = useState("All");
+    {/* when initial or new activeTag, EventsArrays are filtered for activeTag */}
     const filteredUpcomingEvents = 
         activeTag == "All" ? upcomingEvents : upcomingEvents.filter((event) => event.eventTag == activeTag);
 
@@ -91,7 +93,7 @@ export default function Events() {
                 </h1>
             </div>
             <div className="flex flex-wrap-reverse justify-end w-4/5 mb-3">
-                <button onClick={() => setActiveTag("All")} 
+                <button onClick={() => setActiveTag("All")} //onClick calls setActiveTag function, useState updates - react rerenders - activeTag returns new value
                     className={
                         `w-fit px-2 text-sm text-gray-400 hover:text-white 
                         ${activeTag == "All" ? "text-white font-bold" : ""}`
