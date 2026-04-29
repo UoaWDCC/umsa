@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import EventsInfo from "../components/EventsElement"; 
 import EventImage from "../assets/about-us/Copy of UMSA_Guitar.png"
 
