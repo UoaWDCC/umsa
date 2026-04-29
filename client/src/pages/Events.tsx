@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import EventsInfo from "../components/EventsElement"; 
 import EventImage from "../assets/about-us/Copy of UMSA_Guitar.png"
 
@@ -11,6 +11,7 @@ const events = [
         eventDescription: "very cool and very descriptive description",
         eventIsDone: false,
         eventDate: new Date("2026-05-20"),
+        eventTag: "Social",
     },
     {
         eventName: "Bersatu Trials",
@@ -19,6 +20,7 @@ const events = [
         eventDescription: "even cooler and even more descriptive description",
         eventIsDone: false,
         eventDate: new Date("2026-05-28"),
+        eventTag: "Social",
     },
     {
         eventName: "Clash of UMSA",
@@ -27,6 +29,7 @@ const events = [
         eventDescription: "even even cooler and way wayyyyy more descriptive description",
         eventIsDone: false,
         eventDate: new Date("2026-06-21"),
+        eventTag: "Competition",
     },
     {
         eventName: "Clash of UMSA",
@@ -35,6 +38,7 @@ const events = [
         eventDescription: "even even cooler and way wayyyyy more descriptive description",
         eventIsDone: false,
         eventDate: new Date("2026-03-21"),
+        eventTag: "Social",
     },
     {
         eventName: "Clash of UMSA",
@@ -43,6 +47,7 @@ const events = [
         eventDescription: "even even cooler and way wayyyyy more descriptive description",
         eventIsDone: true,
         eventDate: new Date("2026-04-20"),
+        eventTag: "Competition",
     },
 ];
 
@@ -64,12 +69,18 @@ const processedEvents = events.map((event) => ({
 const upcomingEvents = processedEvents.filter((event) => event.eventIsDone == false);
 const pastEvents = processedEvents.filter((event) => event.eventIsDone == true);
 
-
 export default function Events() {
 
     useEffect(() => {
         document.title = "Events | UMSA";
         }, []);
+
+    const [activeTag, setActiveTag] = useState("All");
+    const filteredUpcomingEvents = 
+        activeTag == "All" ? upcomingEvents : upcomingEvents.filter((event) => event.eventTag == activeTag);
+
+    const filteredPastEvents = 
+        activeTag == "All" ? pastEvents : pastEvents.filter((event) => event.eventTag == activeTag);
 
     return(
         <>
@@ -79,9 +90,33 @@ export default function Events() {
                     Upcoming Events
                 </h1>
             </div>
+            <div className="flex flex-wrap-reverse justify-end w-4/5 mb-3">
+                <button onClick={() => setActiveTag("All")} 
+                    className={
+                        `w-fit px-2 text-sm text-gray-400 hover:text-white 
+                        ${activeTag == "All" ? "text-white font-bold" : ""}`
+                    }>
+                    all
+                </button>
+                <button onClick={() => setActiveTag("Social")} 
+                    className={
+                        `w-fit px-2 text-sm text-gray-400 hover:text-white 
+                        ${activeTag == "Social" ? "text-white font-bold" : ""}`
+                    }>
+                    social
+                </button>
+                <button onClick={() => setActiveTag("Competition")} 
+                    className={
+                        `w-fit px-2 text-sm text-gray-400 hover:text-white 
+                        ${activeTag == "Competition" ? "text-white font-bold" : ""}`
+                    }>
+                    competition
+                </button>
+
+            </div>
             {/* grid only containing upcoming events, using the upcomingEvents array */}
             <div className="w-4/5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {upcomingEvents.map((upcomingEvent) => (
+                {filteredUpcomingEvents.map((upcomingEvent) => (
                     <EventsInfo key={upcomingEvent.eventName} element={upcomingEvent}/>
                 ))}
             </div>
@@ -92,7 +127,7 @@ export default function Events() {
             </div>
             {/* grid only containing past events, using the pastEvents array */}
             <div className="w-4/5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {pastEvents.map((pastEvent) => (
+                {filteredPastEvents.map((pastEvent) => (
                     <EventsInfo key={pastEvent.eventName} element={pastEvent}/>
                 ))}
             </div>

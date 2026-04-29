@@ -6,6 +6,7 @@ type EventsElement = {
     eventDescription: string;
     eventIsDone: boolean;
     eventDate: Date;
+    eventTag: string;
 };
 
 {/* properties */}
