@@ -16,7 +16,7 @@ navigate to the [pages file](/client/src/pages/), and see what files you can fin
 
 the [Alanna.tsx](/client/src/pages/project-team/Alanna.tsx) file is running behind my about me website.
 
-## page requirements
+## page requirementse
 + [] document title with your name on it
 + [] photo that represents you
 + [] stats table, using the component [here](/client/src/components/) 
