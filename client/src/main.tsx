@@ -3,8 +3,11 @@ import * as ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import RootLayout from './layouts/RootLayout'
 import App from './App'
-import ProjectTeam from './pages/Project-Team'
 import './index.css'
+
+{/* page imports */}
+import ProjectTeam from './pages/Project-Team'
+import Events from './pages/Events'
 import SignUp from './pages/SignUp'
 import Gallery from './pages/Gallery'
 
@@ -13,6 +16,7 @@ import Pruna from "./pages/project-team/Pruna";
 import Alanna from './pages/project-team/Alanna'
 import Tadiwa from './pages/project-team/Tadiwa'
 import Terrence from './pages/project-team/Terrence'
+import Alex from './pages/project-team/Alex'
 
 {/* here's where we set up all our routing */}
 const router = createBrowserRouter([
@@ -20,15 +24,18 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootLayout />,
     children: [
-      {index: true,             element: <App /> },
-      {path: 'project-team',    element: <ProjectTeam /> },
-      {path: 'sign-up',         element: <SignUp />},
-      {path: 'gallery',         element: <Gallery />},
+      { index: true,              element: <App /> },
+      { path: 'events',           element: <Events /> },
+      { path: 'project-team',    element: <ProjectTeam /> },
+      { path: 'sign-up',         element: <SignUp />},
+      { path: 'gallery',         element: <Gallery />},
       
-      {path: 'alanna',          element: <Alanna /> },
-      {path: 'tadiwa', element: <Tadiwa />},
-      {path: 'terrence',         element: <Terrence />},
-      {path: "pruna", element: <Pruna />},
+      { path: 'alanna',          element: <Alanna /> },
+      { path: 'tadiwa', element: <Tadiwa />},
+      { path: 'terrence',         element: <Terrence />},
+      { path: "pruna", element: <Pruna />},
+      { path: 'alex',            element: <Alex/> }
+
     ],
   },
 ]);
