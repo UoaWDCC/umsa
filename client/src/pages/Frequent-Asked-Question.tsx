@@ -1,8 +1,14 @@
 import FAQItem from "../components/FAQItem";
+import { useEffect } from "react";
 
 
 export default function FrequentAskedQuestions(){
+    useEffect(() => {
+            document.title = "FAQ | UMSA";
+            }, []);
+
     return(
+        
         <>
         <h1 className="text-3xl font-bold mb-8">Frequently Asked Questions</h1>
 
