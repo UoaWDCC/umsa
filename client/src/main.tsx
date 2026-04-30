@@ -10,7 +10,7 @@ import ProjectTeam from './pages/Project-Team'
 import Events from './pages/Events'
 import SignUp from './pages/SignUp'
 import Gallery from './pages/Gallery'
-import FAQ from './pages/FAQ'
+import FAQ from './pages/Frequent-Asked-Question'
 
 {/* project team imports */}
 import Pruna from "./pages/project-team/Pruna";
