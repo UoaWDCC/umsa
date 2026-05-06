@@ -10,10 +10,10 @@ export default function Footer() {
         {/* Footer elements */}
         <nav className='mx-6 py-4 gap-4 flex flex-col'>
             {/* Main footer content */}
-            <div className='flex flex-row gap-20 mx-4'>
+            <div className='flex flex-row gap-20 mx-4 text-sm'>
                 {/* Page Navigation */}
                 <div className='flex flex-col'>
-                    <p className='text-left'>Pages</p>
+                    <p className='text-left underline'>Pages</p>
                     <Link to="/" className={footerLinkClass}>Home</Link>
                     <Link to="/project-team" className={footerLinkClass}>project team</Link>
                     <Link to="/sign-up" className={footerLinkClass}>Sign Up</Link>
