@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link'
 import { FaInstagram, FaFacebook } from "react-icons/fa";
 
 export default function Footer() {
@@ -22,8 +23,8 @@ export default function Footer() {
                 {/* Events Navigation */}
                 <div className='flex flex-col'>
                     <p className='text-left'>Events</p>
-                    <Link to="/events#upcoming-events-section" className={footerLinkClass}>Upcoming Events</Link>
-                    <Link to="/events#past-events-section" className={footerLinkClass}>Past Events</ Link>
+                    <HashLink to="/events#upcoming-events-section" className={footerLinkClass}>Upcoming Events</HashLink>
+                    <HashLink to="/events#past-events-section" className={footerLinkClass}>Past Events</HashLink>
                 </div>
 
                 {/* External Links */}
