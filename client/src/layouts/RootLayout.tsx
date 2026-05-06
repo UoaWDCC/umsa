@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export default function RootLayout() {
   return (
@@ -8,6 +9,7 @@ export default function RootLayout() {
       <main className="w-full px-4 py-8">
         <Outlet />  
       </main>
+      <Footer />
     </div>
   );
 }
