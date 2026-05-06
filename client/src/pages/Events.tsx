@@ -88,7 +88,7 @@ export default function Events() {
         <>
         <div className="flex flex-col items-center justify-center">
             <div className="flex flex-col w-4/5">
-                <h1 className="text-3xl font-bold mb-6">
+                <h1 className="text-3xl font-bold mb-6" id="upcoming-events-section">
                     Upcoming Events
                 </h1>
             </div>
@@ -123,7 +123,7 @@ export default function Events() {
                 ))}
             </div>
             <div className="flex flex-col w-4/5">
-                <h1 className="text-3xl font-bold mt-12 mb-6">
+                <h1 className="text-3xl font-bold mt-12 mb-6" id="past-events-section">
                     Past Events
                 </h1>
             </div>
