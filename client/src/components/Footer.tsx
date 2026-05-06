@@ -44,7 +44,7 @@ export default function Footer() {
                     All rights reserved UMSA 2026.
                 </p>
                 <p>
-                    Design and Developed by WDCC
+                    Design and Developed by <a href="https://wdcc.co.nz/" target="_blank" rel="noreferrer" className='underline'>WDCC</a>
                 </p>
             </div>
         </nav>
