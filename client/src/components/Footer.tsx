@@ -13,7 +13,7 @@ export default function Footer() {
             <div className='flex flex-row gap-20 mx-4 text-sm'>
                 {/* Page Navigation */}
                 <div className='flex flex-col'>
-                    <p className='text-left underline'>Pages</p>
+                    <p className='text-left font-bold'>Pages</p>
                     <Link to="/" className={footerLinkClass}>Home</Link>
                     <Link to="/project-team" className={footerLinkClass}>project team</Link>
                     <Link to="/sign-up" className={footerLinkClass}>Sign Up</Link>
@@ -22,7 +22,7 @@ export default function Footer() {
 
                 {/* Events Navigation */}
                 <div className='flex flex-col'>
-                    <p className='text-left'>Events</p>
+                    <p className='text-left font-bold'>Events</p>
                     <HashLink to="/events#upcoming-events-section" className={footerLinkClass}>Upcoming Events</HashLink>
                     <HashLink to="/events#past-events-section" className={footerLinkClass}>Past Events</HashLink>
                 </div>
