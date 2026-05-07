@@ -10,7 +10,7 @@ export default function Footer() {
         {/* Footer elements */}
         <nav className='mx-6 py-4 gap-4 flex flex-col'>
             {/* Main footer content */}
-            <div className='flex flex-row gap-20 mx-4 text-sm'>
+            <div className='flex flex-row gap-20 mx-6 text-sm'>
                 {/* Page Navigation */}
                 <div className='flex flex-col'>
                     <p className='text-left font-bold'>Pages</p>
@@ -39,7 +39,7 @@ export default function Footer() {
             </div>
 
             {/* Copyright bottom footer */}
-            <div className='flex flex-row justify-between text-sm text-gray-600'>
+            <div className='flex flex-row justify-between text-sm text-gray-600 mx-6'>
                 <p>
                     All rights reserved UMSA 2026.
                 </p>
