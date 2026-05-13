@@ -26,22 +26,24 @@ export default function Navbar() {
 
       {/* shows on desktop screens (hidden at first) */}
       <div className="hidden md:flex gap-6 text-sm">
-        <NavLink to="/" end className={linkClass}>home</NavLink>
-        <NavLink to="/project-team" className={linkClass}>project team</NavLink>
+        <NavLink to="/" end className={linkClass}>Home</NavLink>
+        <NavLink to="/project-team" className={linkClass}>Project Team</NavLink>
         <NavLink to="/sign-up" className={linkClass}>Sign Up</NavLink>
       </div>
 
       {/* shows on small screens only (is hidden once screen size is big) */}
-      <div className="block md:hidden">
+      <div className="relative">
+
+      <div className="md:hidden">
         <button onClick={toggleDropdown}>
-          Options
+          Dropdown
         </button>
       </div>
-        
+
       {/* if isOpen is true it runs the code in the block */}
       {isOpen && (
-        <div className="mt-10 w-80 rounded-md shadow-lg bg-white ring-1
-          ring-black ring-opacity-5 ocus:outline-none">
+        <div className="md:hidden absolute z-5 my-5 w-full rounded-md bg-white
+          ring-black ring-opacity-5 focus:outline-none">
           <div>
             <div className="flex flex-col px-4 py-10 gap-2">
               <NavLink to="/" end className={linkClass}>
@@ -55,9 +57,10 @@ export default function Navbar() {
               </NavLink>
               </div>
           </div>
+          
         </div>
       )}
-      
+      </div>
     </div>
   </nav>
   );
