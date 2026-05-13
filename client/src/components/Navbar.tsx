@@ -3,9 +3,12 @@ import React, { useState } from 'react';
 
 export default function Navbar() {
 
+  // eeee
   const [isOpen, setIsOpen] = useState(false);
 
+  // seeee
   const toggleDropdown = () => {
+    // reverses isOpen i.e. if isOpen = True, !isOpen = False
     setIsOpen(!isOpen);
     }
 
@@ -35,40 +38,25 @@ export default function Navbar() {
         </button>
       </div>
 
+        {/* if isOpen is true it runs the code in the block */}
         {isOpen && (
-            <div
-                className="mt-2 w-56 
-                rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5
-                focus:outline-none"
-                role="dropdown"
-            >
-                <div className="py-1" role="none">
-                    <a
-                        href="/project-team"
-                        className="block px-4 py-2 text-sm text-gray-700 
-                        hover:bg-gray-100"
-                        role="dropdownitem"
-                    >
-                        Account settings
-                    </a>
-                    <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700
-                        hover:bg-gray-100"
-                        role="menuitem"
-                    >
-                        Support
-                    </a>
-                    <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700
-                        hover:bg-gray-100"
-                        role="menuitem"
-                    >
-                        License
-                    </a>
-                </div>
+          <div
+              className="mt-2 w-56 
+              rounded-md shadow-lg bg-black ring-1 ring-black ring-opacity-5
+              focus:outline-none"
+          >
+            <div>
+                <NavLink to="/" end className={linkClass}>
+                  Home
+                </NavLink>
+                <NavLink to="/project-team" className={linkClass}>
+                  Project Team
+                </NavLink>
+                <NavLink to="/sign-up" className={linkClass}>
+                    Sign Up
+                </NavLink>
             </div>
+          </div>
         )}
 
     </div>
