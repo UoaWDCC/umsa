@@ -37,28 +37,27 @@ export default function Navbar() {
           Options
         </button>
       </div>
-
-        {/* if isOpen is true it runs the code in the block */}
-        {isOpen && (
-          <div
-              className="mt-2 w-56 
-              rounded-md shadow-lg bg-black ring-1 ring-black ring-opacity-5
-              focus:outline-none"
-          >
-            <div>
-                <NavLink to="/" end className={linkClass}>
-                  Home
-                </NavLink>
-                <NavLink to="/project-team" className={linkClass}>
-                  Project Team
-                </NavLink>
-                <NavLink to="/sign-up" className={linkClass}>
-                    Sign Up
-                </NavLink>
-            </div>
+        
+      {/* if isOpen is true it runs the code in the block */}
+      {isOpen && (
+        <div className="mt-10 w-80 rounded-md shadow-lg bg-white ring-1
+          ring-black ring-opacity-5 ocus:outline-none">
+          <div>
+            <div className="flex flex-col px-4 py-10 gap-2">
+              <NavLink to="/" end className={linkClass}>
+                Home
+              </NavLink>
+              <NavLink to="/project-team" className={linkClass}>
+                Project Team
+              </NavLink>
+              <NavLink to="/sign-up" className={linkClass}>
+                  Sign Up
+              </NavLink>
+              </div>
           </div>
-        )}
-
+        </div>
+      )}
+      
     </div>
   </nav>
   );
