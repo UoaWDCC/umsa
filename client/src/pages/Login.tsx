@@ -6,10 +6,12 @@ export default function Login(){
         <p>Username</p>
         <input className="border border-gray-300 rounded py-2 px-4"
             placeholder="Enter username"
+            type="text"
         />
         <p>Password</p>
         <input className="border border-gray-300 rounded py-2 px-4"
             placeholder="Enter password"
+            type="password"
         />
         <button className="bg-blue-500 text-white rounded py-2 px-4 mt-4 cursor-pointer">
             Login
