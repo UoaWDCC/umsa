@@ -10,6 +10,7 @@ import ProjectTeam from './pages/Project-Team'
 import Events from './pages/Events'
 import SignUp from './pages/SignUp'
 import Gallery from './pages/Gallery'
+import Login from './pages/Login'
 
 {/* project team imports */}
 import Pruna from "./pages/project-team/Pruna";
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       { path: 'events',           element: <Events /> },
       { path: 'project-team',    element: <ProjectTeam /> },
       { path: 'sign-up',         element: <SignUp />},
+      { path: 'login',           element: <Login /> },
       { path: 'gallery',         element: <Gallery />},
       
       { path: 'alanna',          element: <Alanna /> },
