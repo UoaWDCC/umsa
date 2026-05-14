@@ -1,3 +1,4 @@
+
 import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -10,10 +11,13 @@ import ProjectTeam from './pages/Project-Team'
 import Events from './pages/Events'
 import SignUp from './pages/SignUp'
 import Gallery from './pages/Gallery'
+import Team from "./pages/Team";
+import Contact from "./pages/Contact";
+import Sponsors from "./pages/Sponsors";
 import FAQ from './pages/Frequent-Asked-Question'
 
 {/* project team imports */}
-import Pruna from "./pages/project-team/Pruna";
+import Pruna from "./pages/project-team/Pruna"
 import Alanna from './pages/project-team/Alanna'
 import Tadiwa from './pages/project-team/Tadiwa'
 import Terrence from './pages/project-team/Terrence'
@@ -31,6 +35,9 @@ const router = createBrowserRouter([
       { path: 'sign-up',         element: <SignUp />},
       { path: 'gallery',         element: <Gallery />},
       { path: 'faq',             element: <FAQ /> },
+      { path: "contact", element: <Contact /> },
+      { path: "sponsors", element: <Sponsors />},
+   
       
       { path: 'alanna',          element: <Alanna /> },
       { path: 'tadiwa', element: <Tadiwa />},
