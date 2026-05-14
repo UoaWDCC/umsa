@@ -16,6 +16,7 @@ export default function Navbar() {
           <NavLink to="/events" className={linkClass}>events</NavLink>
           <NavLink to="/sign-up" className={linkClass}>Sign Up</NavLink>
           <NavLink to="/gallery" className={linkClass}>Gallery</NavLink>
+          <NavLink to="/Login" className={linkClass}>Login</NavLink>
         </div>
       </div>
     </nav>
