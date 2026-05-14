@@ -1,4 +1,3 @@
-
 import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -15,6 +14,7 @@ import Team from "./pages/Team";
 import Contact from "./pages/Contact";
 import Sponsors from "./pages/Sponsors";
 import FAQ from './pages/Frequent-Asked-Question'
+import About from "./pages/About";
 
 {/* project team imports */}
 import Pruna from "./pages/project-team/Pruna"
@@ -29,6 +29,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootLayout />,
     children: [
+
       { index: true,              element: <App /> },
       { path: 'events',           element: <Events /> },
       { path: 'team',             element: <Team /> },
@@ -38,8 +39,10 @@ const router = createBrowserRouter([
       { path: 'faq',             element: <FAQ /> },
       { path: "contact", element: <Contact /> },
       { path: "sponsors", element: <Sponsors />},
+      { path: "about", element: <About />},
+  
    
-      
+    
       { path: 'alanna',          element: <Alanna /> },
       { path: 'tadiwa', element: <Tadiwa />},
       { path: 'terrence',         element: <Terrence />},
