@@ -1,12 +1,12 @@
 import { Link, NavLink } from 'react-router-dom';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default function Navbar() {
 
-  // eeee
+  // checks to see if dropdown is open or not
   const [isOpen, setIsOpen] = useState(false);
 
-  // seeee
+  // activates if isOpen updates
   const toggleDropdown = () => {
     // reverses isOpen i.e. if isOpen = True, !isOpen = False
     setIsOpen(!isOpen);
@@ -31,39 +31,41 @@ export default function Navbar() {
         <NavLink to="/sign-up" className={linkClass}>Sign Up</NavLink>
       </div>
 
-      {/* shows on small screens only (is hidden once screen size is big) */}
-      <div className="relative">
 
+
+      {/* shows on small screens only (is hidden once screen size is big) */}
       <div className="md:hidden">
         <button onClick={toggleDropdown} className="block lg:hidden p-2 text-white">
+          {/* hamburger icon */}
           <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://w3.org">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </div>
+      </div>
 
       {/* if isOpen is true it runs the code in the block */}
       {isOpen && (
-        <div className="md:hidden absolute z-5 my-5 w-full rounded-md bg-white
+        // drop down options
+        <div className="md:hidden absolute mt-2 left-0 w-full justify-items-start rounded-md bg-gray-900
           ring-black ring-opacity-5 focus:outline-none">
           <div>
-            <div className="flex flex-col px-4 py-10 gap-2">
-              <NavLink to="/" end className={linkClass}>
+            <div className="flex flex-col px-8 py-10 gap-2 text-left whitespace-nowrap">
+              <NavLink to="/" end className={linkClass} onClick={() => setIsOpen(false)}>
                 Home
               </NavLink>
-              <NavLink to="/project-team" className={linkClass}>
+              <NavLink to="/project-team" className={linkClass} onClick={() => setIsOpen(false)}>
                 Project Team
               </NavLink>
-              <NavLink to="/sign-up" className={linkClass}>
-                  Sign Up
+              <NavLink to="/sign-up" className={linkClass} onClick={() => setIsOpen(false)}>
+                Sign Up
               </NavLink>
-              </div>
+            </div>
           </div>
           
         </div>
       )}
-      </div>
-    </div>
+
   </nav>
   );
 }
