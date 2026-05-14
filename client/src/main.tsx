@@ -31,6 +31,7 @@ const router = createBrowserRouter([
     children: [
       { index: true,              element: <App /> },
       { path: 'events',           element: <Events /> },
+      { path: 'team',             element: <Team /> },
       { path: 'project-team',    element: <ProjectTeam /> },
       { path: 'sign-up',         element: <SignUp />},
       { path: 'gallery',         element: <Gallery />},

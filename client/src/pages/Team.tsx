@@ -2,7 +2,7 @@ import MemberInfo from "../components/MemberInfo";
 import { useEffect } from "react";
 
 
-export default function ProjectTeam() {
+export default function Team() {
     useEffect(() => {
     document.title = "Meet the Team | UMSA";
     }, []);
