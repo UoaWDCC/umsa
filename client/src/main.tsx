@@ -14,6 +14,7 @@ import Gallery from './pages/Gallery'
 import Team from "./pages/Team";
 import Contact from "./pages/Contact";
 import Sponsors from "./pages/Sponsors";
+import FAQ from './pages/Frequent-Asked-Question'
 
 {/* project team imports */}
 import Pruna from "./pages/project-team/Pruna"
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
       { path: 'project-team',    element: <ProjectTeam /> },
       { path: 'sign-up',         element: <SignUp />},
       { path: 'gallery',         element: <Gallery />},
+      { path: 'faq',             element: <FAQ /> },
       { path: "contact", element: <Contact /> },
       { path: "sponsors", element: <Sponsors />},
    
