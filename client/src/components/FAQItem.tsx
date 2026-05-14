@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 type FAQItem = {
     question: string;
     answer: string;
@@ -8,11 +10,15 @@ type Props = {
 }
 
 export default function FAQItem({ stats }: Props) { 
+    const [isHidden, setIsHidden] = useState(true);
 
     return(
-        <div className="mb-8">
-            <h2 className="text-xl font-bold mb-2">{stats.question}</h2>
-            <p className="text-lg mb-4">{stats.answer}</p>
+        <div className="mb-8 border-b border-white pb-4 w-[90%] mx-auto text-left">
+            <div className="cursor-pointer flex gap-2" onClick={() => setIsHidden(!isHidden)}>
+                <h2 className="text-xl font-bold mb-2">{stats.question}</h2>
+                <span className="inline-block w-3.5 h-3.5 border-r-2 border-b-2 rotate-45 "></span>
+            </div>
+            <p className={`text-lg mb-4 ${isHidden ? "hidden" : ""} `}>{stats.answer}</p>
         </div>
     );
 }
