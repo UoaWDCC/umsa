@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import EventsInfo from "../components/EventsElement"; 
-import EventImage from "../assets/about-us/Copy of UMSA_Guitar.png"
+import EventImage from "../assets/about-us/Copy of UMSA_Guitar.png";
 
 {/* constant events array */}
 const events = [
@@ -87,8 +87,8 @@ export default function Events() {
     return(
         <>
         <div className="flex flex-col items-center justify-center">
-            <div className="flex flex-col w-4/5">
-                <h1 className="text-3xl font-bold mb-6">
+            <div className="flex flex-col w-4/5" id="upcoming-events-section">
+                <h1 className="text-3xl font-bold my-6">
                     Upcoming Events
                 </h1>
             </div>
@@ -122,8 +122,11 @@ export default function Events() {
                     <EventsInfo key={upcomingEvent.eventName} element={upcomingEvent}/>
                 ))}
             </div>
-            <div className="flex flex-col w-4/5">
-                <h1 className="text-3xl font-bold mt-12 mb-6">
+
+            <div className="my-8"></div>
+
+            <div className="flex flex-col w-4/5"  id="past-events-section">
+                <h1 className="text-3xl font-bold my-6">
                     Past Events
                 </h1>
             </div>
