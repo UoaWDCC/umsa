@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import EventsInfo from "../components/EventsElement"; 
 import EventImage from "../assets/about-us/Copy of UMSA_Guitar.png";
+import Page from "../components/EventsPageNumber";
 
 {/* constant events array */}
 const events = [
@@ -12,6 +13,7 @@ const events = [
         eventIsDone: false,
         eventDate: new Date("2026-05-20"),
         eventTag: "Social",
+        page: 1,
     },
     {
         eventName: "Bersatu Trials",
@@ -21,6 +23,7 @@ const events = [
         eventIsDone: false,
         eventDate: new Date("2026-05-28"),
         eventTag: "Social",
+        page: 1,
     },
     {
         eventName: "Clash of UMSA",
@@ -30,6 +33,7 @@ const events = [
         eventIsDone: false,
         eventDate: new Date("2026-06-21"),
         eventTag: "Competition",
+        page: 1,
     },
     {
         eventName: "Clash of UMSA",
@@ -39,15 +43,127 @@ const events = [
         eventIsDone: false,
         eventDate: new Date("2026-03-21"),
         eventTag: "Social",
+        page: 1,
     },
     {
-        eventName: "Clash of UMSA",
+        eventName: "Clash of UMSA 2026",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
         eventDescription: "even even cooler and way wayyyyy more descriptive description",
         eventIsDone: true,
         eventDate: new Date("2026-04-20"),
         eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 2025",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2025-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 2024",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2024-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 2023",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2023-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 2022",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2022-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 21",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2021-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 20",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2020-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 19",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2019-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 18",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2018-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 17",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2017-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 16",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2016-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
     },
 ];
 
@@ -69,6 +185,12 @@ const processedEvents = events.map((event) => ({
 const upcomingEvents = processedEvents.filter((event) => event.eventIsDone == false);
 const pastEvents = processedEvents.filter((event) => event.eventIsDone == true);
 
+{/* Check how many pages needed to display the past events */}
+const maxItemPage = 6;
+const pastEventsGrouped = pastEvents.map((event, index) => ({ 
+      ...event, page: Math.floor(index / maxItemPage) + 1
+}));
+
 export default function Events() {
 
     useEffect(() => {
@@ -80,9 +202,19 @@ export default function Events() {
     {/* when initial or new activeTag, EventsArrays are filtered for activeTag */}
     const filteredUpcomingEvents = 
         activeTag == "All" ? upcomingEvents : upcomingEvents.filter((event) => event.eventTag == activeTag);
-
     const filteredPastEvents = 
-        activeTag == "All" ? pastEvents : pastEvents.filter((event) => event.eventTag == activeTag);
+        activeTag == "All" ? pastEventsGrouped : pastEventsGrouped.filter((event) => event.eventTag == activeTag);
+
+    {/* Filter pastEvent for active page */}
+    const [activePage, setActivePage] = useState(1);
+    const filteredPastEventsPage = filteredPastEvents.filter((event) => event.page == activePage);
+
+    {/* make a list with just page numbers for all the page needed*/}
+    const filteredPageNum = Math.floor(filteredPastEvents.length / maxItemPage) + 1;
+    const pageButtons = Array.from({ length: filteredPageNum }, (_, index) => ({
+        page: index + 1,
+        setterFunction: (page: number) => setActivePage(page),
+    }));
 
     return(
         <>
@@ -132,9 +264,19 @@ export default function Events() {
             </div>
             {/* grid only containing past events, using the pastEvents array */}
             <div className="w-4/5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {filteredPastEvents.map((pastEvent) => (
+                {filteredPastEventsPage.map((pastEvent) => (
                     <EventsInfo key={pastEvent.eventName} element={pastEvent}/>
                 ))}
+            </div>
+            <div className="flex flex-wrap justify-center w-4/5 mt-4 mb-4 gap-4">
+                <p className={"w-fit text-sm text-gray-400"}>
+                    Page:
+                </p>
+                <div className="flex flex-row gap-4">
+                    {pageButtons.map((button) => (
+                        <Page key={button.page} element={button} currentPage={activePage} />
+                    ))}
+                </div>
             </div>
         </div>
         </>
