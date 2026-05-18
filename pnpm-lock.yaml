@@ -11,9 +11,15 @@ importers:
       '@eslint/js':
         specifier: ^9.39.4
         version: 9.39.4
+      flag:
+        specifier: ^5.0.1
+        version: 5.0.1(react@19.2.5)
       globals:
         specifier: ^17.4.0
         version: 17.4.0
+      motion:
+        specifier: ^12.38.0
+        version: 12.38.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       react-router-hash-link:
         specifier: ^2.4.3
         version: 2.4.3(react-router-dom@7.14.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)
@@ -732,6 +738,9 @@ packages:
   '@types/node@25.5.2':
     resolution: {integrity: sha512-tO4ZIRKNC+MDWV4qKVZe3Ql/woTnmHDr5JD8UI5hn2pwBrHEwOEMZK7WlNb5RKB6EoJ02gwmQS9OrjuFnZYdpg==}
 
+  '@types/prop-types@15.7.15':
+    resolution: {integrity: sha512-F6bEyamV9jKGAFBEmlQnesRPGOQqS2+Uwi0Em15xenOxHaf2hv6L8YCVn3rPdPJOiJfPiCnLIRyvwVaqMY3MIw==}
+
   '@types/qs@6.15.0':
     resolution: {integrity: sha512-JawvT8iBVWpzTrz3EGw9BTQFg3BQNmwERdKE22vlTxawwtbyUSlMppvZYKLZzB5zgACXdXxbD3m1bXaMqP/9ow==}
 
@@ -751,6 +760,9 @@ packages:
 
   '@types/react-router@5.1.20':
     resolution: {integrity: sha512-jGjmu/ZqS7FjSH6owMcD5qpq19+1RS9DeVRqfl1FeBMxTDQAGwlMWOcs52NDoXaNKyG3d1cYQFMs9rCrb88o9Q==}
+
+  '@types/react@18.3.28':
+    resolution: {integrity: sha512-z9VXpC7MWrhfWipitjNdgCauoMLRdIILQsAEV+ZesIzBq/oUlxk0m3ApZuMFCXdnS4U7KrI+l3WRUEGQ8K1QKw==}
 
   '@types/react@19.2.14':
     resolution: {integrity: sha512-ilcTH/UniCkMdtexkoCN0bI7pMcJDvmQFPvuPvmEaYA/NSfFTAgdUSLAoVjaRJm7+6PvcM+q1zYOwS4wTYMF9w==}
@@ -905,6 +917,9 @@ packages:
   async-function@1.0.0:
     resolution: {integrity: sha512-hsU18Ae8CDTR6Kgu9DYf0EbCr/a5iGL0rytQDobUcdpYOKokk8LEjVphnXkDkgpi0wYVsqrXuP0bZxJaTqdgoA==}
     engines: {node: '>= 0.4'}
+
+  async-ref@0.1.6:
+    resolution: {integrity: sha512-gIvfC7ahv452pM+nwnxZJd/vhUh8UFMrd1DCvIvWjoy9WrRmYroXTTDxwg91oiD+4CqQKrg+11uCxZrzat4UvQ==}
 
   autoprefixer@10.4.27:
     resolution: {integrity: sha512-NP9APE+tO+LuJGn7/9+cohklunJsXWiaWEfV3si4Gi/XHDwVNgkwr1J3RQYFIvPy76GmJ9/bW8vyoU1LcxwKHA==}
@@ -1266,6 +1281,11 @@ packages:
     resolution: {integrity: sha512-78/PXT1wlLLDgTzDs7sjq9hzz0vXD+zn+7wypEe4fXQxCmdmqfGsEPQxmiCSQI3ajFV91bVSsvNtrJRiW6nGng==}
     engines: {node: '>=10'}
 
+  flag@5.0.1:
+    resolution: {integrity: sha512-4P/rvPGKcFBneboyYHMOKbKaJL5ZhNjScbY7bGToas7FgBvrTWbh76yxRaoSoFe3HSjWc6IJ0EajUwSadcP6Lg==}
+    peerDependencies:
+      react: ^18
+
   flat-cache@4.0.1:
     resolution: {integrity: sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw==}
     engines: {node: '>=16'}
@@ -1283,6 +1303,20 @@ packages:
 
   fraction.js@5.3.4:
     resolution: {integrity: sha512-1X1NTtiJphryn/uLQz3whtY6jK3fTqoE3ohKs0tT+Ujr1W59oopxmoEh7Lu5p6vBaPbgoM0bzveAW4Qi5RyWDQ==}
+
+  framer-motion@12.38.0:
+    resolution: {integrity: sha512-rFYkY/pigbcswl1XQSb7q424kSTQ8q6eAC+YUsSKooHQYuLdzdHjrt6uxUC+PRAO++q5IS7+TamgIw1AphxR+g==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
 
   fresh@2.0.0:
     resolution: {integrity: sha512-Rx/WycZ60HOaqLKAi6cHRKKI7zxWbJ31MhntmtwMoaTeF7XFH9hhBp8vITaMidfljRQ6eYWCKkaTK+ykVJHP2A==}
@@ -1750,6 +1784,26 @@ packages:
   mongoose@9.4.1:
     resolution: {integrity: sha512-4rFBWa+/wdBQSfvnOPJBpiSG6UCEbhSQh865dEdaH9Y8WfHBUC+I2XT28dp0IBIGrEwmh+gzrgZgea5PbmrHWA==}
     engines: {node: '>=20.19.0'}
+
+  motion-dom@12.38.0:
+    resolution: {integrity: sha512-pdkHLD8QYRp8VfiNLb8xIBJis1byQ9gPT3Jnh2jqfFtAsWUA3dEepDlsWe/xMpO8McV+VdpKVcp+E+TGJEtOoA==}
+
+  motion-utils@12.36.0:
+    resolution: {integrity: sha512-eHWisygbiwVvf6PZ1vhaHCLamvkSbPIeAYxWUuL3a2PD/TROgE7FvfHWTIH4vMl798QLfMw15nRqIaRDXTlYRg==}
+
+  motion@12.38.0:
+    resolution: {integrity: sha512-uYfXzeHlgThchzwz5Te47dlv5JOUC7OB4rjJ/7XTUgtBZD8CchMN8qEJ4ZVsUmTyYA44zjV0fBwsiktRuFnn+w==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
 
   mpath@0.9.0:
     resolution: {integrity: sha512-ikJRQTk8hw5DEoFVxHG1Gn9T/xcjtdnOKIU1JTmGjZZlg9LST2mBLmcX3/ICIbgJydT2GOc15RnNy5mHmzfSew==}
@@ -2844,6 +2898,8 @@ snapshots:
     dependencies:
       undici-types: 7.18.2
 
+  '@types/prop-types@15.7.15': {}
+
   '@types/qs@6.15.0': {}
 
   '@types/range-parser@1.2.7': {}
@@ -2868,6 +2924,11 @@ snapshots:
     dependencies:
       '@types/history': 4.7.11
       '@types/react': 19.2.14
+
+  '@types/react@18.3.28':
+    dependencies:
+      '@types/prop-types': 15.7.15
+      csstype: 3.2.3
 
   '@types/react@19.2.14':
     dependencies:
@@ -3074,6 +3135,8 @@ snapshots:
       is-array-buffer: 3.0.5
 
   async-function@1.0.0: {}
+
+  async-ref@0.1.6: {}
 
   autoprefixer@10.4.27(postcss@8.5.9):
     dependencies:
@@ -3590,6 +3653,12 @@ snapshots:
       locate-path: 6.0.0
       path-exists: 4.0.0
 
+  flag@5.0.1(react@19.2.5):
+    dependencies:
+      '@types/react': 18.3.28
+      async-ref: 0.1.6
+      react: 19.2.5
+
   flat-cache@4.0.1:
     dependencies:
       flatted: 3.4.2
@@ -3604,6 +3673,15 @@ snapshots:
   forwarded@0.2.0: {}
 
   fraction.js@5.3.4: {}
+
+  framer-motion@12.38.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
+    dependencies:
+      motion-dom: 12.38.0
+      motion-utils: 12.36.0
+      tslib: 2.8.1
+    optionalDependencies:
+      react: 19.2.5
+      react-dom: 19.2.5(react@19.2.5)
 
   fresh@2.0.0: {}
 
@@ -4018,6 +4096,20 @@ snapshots:
       - mongodb-client-encryption
       - snappy
       - socks
+
+  motion-dom@12.38.0:
+    dependencies:
+      motion-utils: 12.36.0
+
+  motion-utils@12.36.0: {}
+
+  motion@12.38.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
+    dependencies:
+      framer-motion: 12.38.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      tslib: 2.8.1
+    optionalDependencies:
+      react: 19.2.5
+      react-dom: 19.2.5(react@19.2.5)
 
   mpath@0.9.0: {}
 
