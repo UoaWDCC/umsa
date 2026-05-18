@@ -10,7 +10,7 @@ type Props = {
     currentPage: number;
 };
 
-{/* eventsInfo function that define how each event element should look in the grid */}
+{/* Page */}
 export default function Page({ element,currentPage }: Props) {
     return(
         <>

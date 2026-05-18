@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import EventsInfo from "../components/EventsElement"; 
 import EventImage from "../assets/about-us/Copy of UMSA_Guitar.png";
-import Page from "../components/EventsPageNumber";
+import Page from "../components/EventsPageButton";
 
 {/* constant events array */}
 const events = [
