@@ -28,8 +28,15 @@ export default function Navbar() {
       {/* shows on desktop screens (hidden at first) */}
       <div className="hidden md:flex gap-6 text-sm">
         <NavLink to="/" end className={linkClass}>Home</NavLink>
-        <NavLink to="/project-team" className={linkClass}>Project Team</NavLink>
+        <NavLink to="/About" className={linkClass}> About </NavLink>
+        <NavLink to="/Events" className={linkClass}> Events</NavLink>
         <NavLink to="/sign-up" className={linkClass}>Sign Up</NavLink>
+        <NavLink to="/Contact" className={linkClass}>Contact</NavLink>
+        <NavLink to= "/Team" className={linkClass}> Team </NavLink>
+        <NavLink to="/Sponsors" className={linkClass}> Sponsors </NavLink>
+        <NavLink to="/Gallery" className={linkClass}>Gallery</NavLink>
+        <NavLink to= "/faq" className={linkClass}> FAQ </NavLink> 
+        <NavLink to="/project-team" className={linkClass}>Project Team</NavLink>
       </div>
 
       {/* shows on small screens only (is hidden once screen size is big) */}
@@ -70,12 +77,29 @@ export default function Navbar() {
               <NavLink to="/" end className={linkClass} onClick={() => setIsOpen(false)}>
                 Home
               </NavLink>
-              <NavLink to="/project-team" className={linkClass} onClick={() => setIsOpen(false)}>
-                Project Team
-              </NavLink>
               <NavLink to="/sign-up" className={linkClass} onClick={() => setIsOpen(false)}>
                 Sign Up
               </NavLink>
+
+               <NavLink to="/Contact" className={linkClass} onClick={() => setIsOpen(false)}>
+                Contact
+              </NavLink>
+                  <NavLink to="/Team" className={linkClass} onClick={() => setIsOpen(false)}>
+                Team
+              </NavLink>
+              <NavLink to="/Sponser" className={linkClass} onClick={() => setIsOpen(false)}>
+                Sponsers
+              </NavLink>
+              <NavLink to="/Gallery" className={linkClass} onClick={() => setIsOpen(false)}>
+                Gallery
+              </NavLink>
+              <NavLink to="/faq" className={linkClass} onClick={() => setIsOpen(false)}>
+                FAQ
+              </NavLink>
+              <NavLink to="/project-team" className={linkClass} onClick={() => setIsOpen(false)}>
+                Project Team
+              </NavLink>
+              
             </div>
           </div>
           
