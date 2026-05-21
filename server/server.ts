@@ -1,9 +1,9 @@
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 
-dotenv.config({ path: './.env' });
+dotenv.config({ path: "./.env" });
 
-import connectDB from './db/connection.js';
-import app from './src/app.js';
+import connectDB from "./db/connection.js";
+import app from "./src/app.js";
 
 // entry point for starting the back-end server
 

@@ -8,23 +8,23 @@ export default defineConfig([
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
     plugins: {
-      react
+      react,
     },
     extends: [
       js.configs.recommended,
       ...tseslint.configs.recommended,
-      react.configs.flat.recommended
+      react.configs.flat.recommended,
     ],
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...globals.node
-      }
+        ...globals.node,
+      },
     },
     settings: {
       react: {
-        version: "detect"
-      }
+        version: "detect",
+      },
     },
     rules: {
       // React 17+ no longer requires importing React
@@ -33,16 +33,11 @@ export default defineConfig([
       // Allow intentionally unused variables with _
       "@typescript-eslint/no-unused-vars": [
         "error",
-        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }
-      ]
-    }
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      ],
+    },
   },
 
   // Ignore generated files
-  globalIgnores([
-    "node_modules/**",
-    "dist/**",
-    "build/**",
-    "server/dist/**"
-  ])
+  globalIgnores(["node_modules/**", "dist/**", "build/**", "server/dist/**"]),
 ]);

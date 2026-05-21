@@ -1,11 +1,11 @@
-import { Router } from 'express';
+import { Router } from "express";
 
 const router = Router();
 
-router.get('/', (_req, res) => {
+router.get("/", (_req, res) => {
   res.json({
-    status: 'ok',
-    service: 'umsa-api',
+    status: "ok",
+    service: "umsa-api",
   });
 });
 
