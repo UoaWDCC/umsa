@@ -209,13 +209,14 @@ export default function Events() {
     const [activePage, setActivePage] = useState(1);
     const filteredPastEventsPage = filteredPastEvents.filter((event) => event.page == activePage);
 
-    {/* make a list with just page numbers for all the page needed*/}
+    {/* make a list with just page numbers for all the page needed */}
     const filteredPageNum = Math.floor(filteredPastEvents.length / maxItemPage) + 1;
     const pageButtons = Array.from({ length: filteredPageNum }, (_, index) => ({
         page: index + 1,
         setterFunction: (page: number) => setActivePage(page),
     }));
 
+    {/* useState for current pageGroup */}
     const [pageGroupOffset, setPageGroupOffset] = useState(0);
 
     const pagesPerGroup = 5;
@@ -279,8 +280,7 @@ export default function Events() {
             <div className="flex flex-wrap justify-center w-4/5 mt-4 mb-4 gap-4">
                 <div className="flex flex-row gap-4">
                     {hasPrevGroup && (
-                        <button 
-                            onClick={() => setPageGroupOffset(pageGroupOffset - 1)}
+                        <button onClick={() => setPageGroupOffset(pageGroupOffset - 1)}
                             className="text-gray-400 hover:text-white"
                         >
                             &lt;
@@ -290,8 +290,7 @@ export default function Events() {
                         <Page key={button.page} element={button} currentPage={activePage} />
                     ))}
                     {hasNextGroup && (
-                        <button 
-                            onClick={() => setPageGroupOffset(pageGroupOffset + 1)}
+                        <button onClick={() => setPageGroupOffset(pageGroupOffset + 1)}
                             className="text-gray-400 hover:text-white"
                         >
                             &gt;
