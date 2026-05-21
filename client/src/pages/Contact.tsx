@@ -23,13 +23,13 @@ export default function Contact() {
   };
   return (
     <>
-      <div className="bg-[#000000] w-full p-20 items-center justify-center rounded-lg">
+      <div className="bg-[#000000] w-full p-10 items-center justify-center rounded-lg">
         <h1 className="text-4xl font-bold text-white">Contact us</h1>
-        <p className="text-white text-center mt-10">
+        <p className="text-white font-bold text-center mt-10">
           Have questions or want to get in touch? We&apos;d love to hear from you!
         </p>
         <p className="text-white text-center mt-5">
-          Fill out the form below or reach out to us on social media. We look forward to connecting with you! (｡˃ ᵕ ˂ )⸝♡
+          Fill out the form below or reach out to us on social media.<br></br>We look forward to connecting with you! (｡˃ ᵕ ˂ )⸝♡
         </p>
       </div>
       

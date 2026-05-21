@@ -1,3 +1,4 @@
+
 import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -40,15 +41,6 @@ const router = createBrowserRouter([
       { path: "contact", element: <Contact /> },
       { path: "sponsors", element: <Sponsors />},
       { path: "about", element: <About />},
-  
-   
-    
-      { path: 'alanna',          element: <Alanna /> },
-      { path: 'tadiwa', element: <Tadiwa />},
-      { path: 'terrence',         element: <Terrence />},
-      { path: "pruna", element: <Pruna />},
-      { path: 'alex',            element: <Alex/> }
-
     ],
   },
 ]);
