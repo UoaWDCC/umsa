@@ -18,11 +18,11 @@ import FAQ from './pages/Frequent-Asked-Question'
 import About from "./pages/About";
 
 {/* project team imports */}
-import Pruna from "./pages/project-team/Pruna"
-import Alanna from './pages/project-team/Alanna'
-import Tadiwa from './pages/project-team/Tadiwa'
-import Terrence from './pages/project-team/Terrence'
-import Alex from './pages/project-team/Alex'
+import _Pruna from "./pages/project-team/Pruna"
+import _Alanna from './pages/project-team/Alanna'
+import _Tadiwa from './pages/project-team/Tadiwa'
+import _Terrence from './pages/project-team/Terrence'
+import _Alex from './pages/project-team/Alex'
 
 {/* here's where we set up all our routing */}
 const router = createBrowserRouter([
