@@ -1,46 +1,50 @@
+import * as React from "react";
+import * as ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import RootLayout from "./layouts/RootLayout";
+import App from "./App";
+import "./index.css";
 
-import * as React from 'react'
-import * as ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import RootLayout from './layouts/RootLayout'
-import App from './App'
-import './index.css'
-
-{/* page imports */}
-import ProjectTeam from './pages/Project-Team'
-import Events from './pages/Events'
-import SignUp from './pages/SignUp'
-import Gallery from './pages/Gallery'
+{
+  /* page imports */
+}
+import ProjectTeam from "./pages/Project-Team";
+import Events from "./pages/Events";
+import SignUp from "./pages/SignUp";
+import Gallery from "./pages/Gallery";
 import Team from "./pages/Team";
 import Contact from "./pages/Contact";
 import Sponsors from "./pages/Sponsors";
-import FAQ from './pages/Frequent-Asked-Question'
+import FAQ from "./pages/Frequent-Asked-Question";
 import About from "./pages/About";
 
-{/* project team imports */}
-import Pruna from "./pages/project-team/Pruna"
-import Alanna from './pages/project-team/Alanna'
-import Tadiwa from './pages/project-team/Tadiwa'
-import Terrence from './pages/project-team/Terrence'
-import Alex from './pages/project-team/Alex'
+{
+  /* project team imports */
+}
+import Pruna from "./pages/project-team/Pruna";
+import Alanna from "./pages/project-team/Alanna";
+import Tadiwa from "./pages/project-team/Tadiwa";
+import Terrence from "./pages/project-team/Terrence";
+import Alex from "./pages/project-team/Alex";
 
-{/* here's where we set up all our routing */}
+{
+  /* here's where we set up all our routing */
+}
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     children: [
-
-      { index: true,              element: <App /> },
-      { path: 'events',           element: <Events /> },
-      { path: 'team',             element: <Team /> },
-      { path: 'project-team',    element: <ProjectTeam /> },
-      { path: 'sign-up',         element: <SignUp />},
-      { path: 'gallery',         element: <Gallery />},
-      { path: 'faq',             element: <FAQ /> },
+      { index: true, element: <App /> },
+      { path: "events", element: <Events /> },
+      { path: "team", element: <Team /> },
+      { path: "project-team", element: <ProjectTeam /> },
+      { path: "sign-up", element: <SignUp /> },
+      { path: "gallery", element: <Gallery /> },
+      { path: "faq", element: <FAQ /> },
       { path: "contact", element: <Contact /> },
-      { path: "sponsors", element: <Sponsors />},
-      { path: "about", element: <About />},
+      { path: "sponsors", element: <Sponsors /> },
+      { path: "about", element: <About /> },
     ],
   },
 ]);
@@ -48,5 +52,5 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
