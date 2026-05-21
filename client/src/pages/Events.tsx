@@ -165,6 +165,276 @@ const events = [
         eventTag: "Competition",
         page: 1,
     },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
+    {
+        eventName: "Clash of UMSA 15",
+        eventImage: EventImage,
+        eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
+        eventDescription: "even even cooler and way wayyyyy more descriptive description",
+        eventIsDone: true,
+        eventDate: new Date("2015-04-20"),
+        eventTag: "Competition",
+        page: 1,
+    },
 ];
 
 {/* eventIsDone is overriden depending on if event.eventDate is before todays date */}
@@ -215,6 +485,14 @@ export default function Events() {
         page: index + 1,
         setterFunction: (page: number) => setActivePage(page),
     }));
+
+    const [pageGroupOffset, setPageGroupOffset] = useState(0);
+
+    const pagesPerGroup = 2;
+    const startIndex = pageGroupOffset * pagesPerGroup;
+    const visiblePages = pageButtons.slice(startIndex, startIndex + pagesPerGroup);
+    const hasNextGroup = startIndex + pagesPerGroup < pageButtons.length;
+    const hasPrevGroup = pageGroupOffset > 0;
 
     return(
         <>
@@ -269,13 +547,26 @@ export default function Events() {
                 ))}
             </div>
             <div className="flex flex-wrap justify-center w-4/5 mt-4 mb-4 gap-4">
-                <p className={"w-fit text-sm text-gray-400"}>
-                    Page:
-                </p>
                 <div className="flex flex-row gap-4">
-                    {pageButtons.map((button) => (
+                    {hasPrevGroup && (
+                        <button 
+                            onClick={() => setPageGroupOffset(pageGroupOffset - 1)}
+                            className="text-gray-400 hover:text-white"
+                        >
+                            &lt;
+                        </button>
+                    )}
+                    {visiblePages.map((button) => (
                         <Page key={button.page} element={button} currentPage={activePage} />
                     ))}
+                    {hasNextGroup && (
+                        <button 
+                            onClick={() => setPageGroupOffset(pageGroupOffset + 1)}
+                            className="text-gray-400 hover:text-white"
+                        >
+                            &gt;
+                        </button>
+                    )}
                 </div>
             </div>
         </div>
