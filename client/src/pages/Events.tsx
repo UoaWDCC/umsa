@@ -3,7 +3,9 @@ import EventsInfo from "../components/EventsElement";
 import EventImage from "../assets/about-us/Copy of UMSA_Guitar.png";
 import Page from "../components/EventsPageButton";
 
-{/* constant events array */}
+{
+  /* constant events array */
+}
 const events = [
     {
         eventName: "Jalinan Raya",
@@ -167,22 +169,30 @@ const events = [
     },
 ];
 
-{/* eventIsDone is overriden depending on if event.eventDate is before todays date */}
+{
+  /* eventIsDone is overriden depending on if event.eventDate is before todays date */
+}
 const today = new Date();
-const processedEvents = events.map((event) => ({
-    ...event, eventIsDone: event.eventDate < today,
-}))
-.sort((a, b) => { //sorting the array based on how close the date is to origin(today)
+const processedEvents = events
+  .map((event) => ({
+    ...event,
+    eventIsDone: event.eventDate < today,
+  }))
+  .sort((a, b) => {
+    //sorting the array based on how close the date is to origin(today)
     if (a.eventIsDone == false && b.eventIsDone == false) {
-        return a.eventDate.getTime() - b.eventDate.getTime();
-    } 
-    else {
-        return b.eventDate.getTime() - a.eventDate.getTime();
+      return a.eventDate.getTime() - b.eventDate.getTime();
+    } else {
+      return b.eventDate.getTime() - a.eventDate.getTime();
     }
-});
+  });
 
-{/* use .filter() to make new array depending on events.eventIsDone is true or false */}
-const upcomingEvents = processedEvents.filter((event) => event.eventIsDone == false);
+{
+  /* use .filter() to make new array depending on events.eventIsDone is true or false */
+}
+const upcomingEvents = processedEvents.filter(
+  (event) => event.eventIsDone == false,
+);
 const pastEvents = processedEvents.filter((event) => event.eventIsDone == true);
 
 {/* Check how many pages needed to display the past events */}
@@ -192,10 +202,21 @@ const pastEventsGrouped = pastEvents.map((event, index) => ({
 }));
 
 export default function Events() {
+  useEffect(() => {
+    document.title = "Events | UMSA";
+  }, []);
 
-    useEffect(() => {
-        document.title = "Events | UMSA";
-        }, []);
+  {
+    /* state variable and setter function using useState with default value All, to rerender the activeTag based on onClick event from button */
+  }
+  const [activeTag, setActiveTag] = useState("All");
+  {
+    /* when initial or new activeTag, EventsArrays are filtered for activeTag */
+  }
+  const filteredUpcomingEvents =
+    activeTag == "All"
+      ? upcomingEvents
+      : upcomingEvents.filter((event) => event.eventTag == activeTag);
 
     {/* state variable and setter function using useState with default value All, to rerender the activeTag based on onClick event from button */}
     const [activeTag, setActiveTag] = useState("All");
@@ -299,6 +320,7 @@ export default function Events() {
                 </div>
             </div>
         </div>
-        </>
-    )
+      </div>
+    </>
+  );
 }

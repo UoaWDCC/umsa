@@ -1,6 +1,6 @@
-import { Outlet, ScrollRestoration } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import { Outlet, ScrollRestoration } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export default function RootLayout() {
   return (
@@ -8,7 +8,7 @@ export default function RootLayout() {
       <Navbar />
       <main className="w-full px-4 py-8">
         <ScrollRestoration />
-        <Outlet />  
+        <Outlet />
       </main>
       <Footer />
     </div>

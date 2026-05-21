@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Document, Schema } from "mongoose";
 
 export interface IDeveloperDocument extends Document {
   name: string;
@@ -7,10 +7,10 @@ export interface IDeveloperDocument extends Document {
 
 const DeveloperSchema = new Schema<IDeveloperDocument>(
   {
-    name:      { type: String, required: true },
-    bio:       { type: String, required: true },
+    name: { type: String, required: true },
+    bio: { type: String, required: true },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-export default mongoose.model<IDeveloperDocument>('Developer', DeveloperSchema);
+export default mongoose.model<IDeveloperDocument>("Developer", DeveloperSchema);
