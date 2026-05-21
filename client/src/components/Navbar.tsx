@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useState } from 'react';
+import { motion } from 'motion/react';
 
 export default function Navbar() {
 
@@ -32,22 +33,37 @@ export default function Navbar() {
         <NavLink to="/sign-up" className={linkClass}>Sign Up</NavLink>
         <NavLink to="/Contact" className={linkClass}>Contact</NavLink>
         <NavLink to= "/Team" className={linkClass}> Team </NavLink>
-        <NavLink to="/Sponsors" className={linkClass}> Sponser </NavLink>
+        <NavLink to="/Sponsors" className={linkClass}> Sponsors </NavLink>
         <NavLink to="/Gallery" className={linkClass}>Gallery</NavLink>
         <NavLink to= "/faq" className={linkClass}> FAQ </NavLink> 
         <NavLink to="/project-team" className={linkClass}>Project Team</NavLink>
       </div>
 
-
-
       {/* shows on small screens only (is hidden once screen size is big) */}
       <div className="md:hidden">
-        <button onClick={toggleDropdown} className="block lg:hidden p-2 text-white">
-          {/* hamburger icon */}
-          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://w3.org">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
+        <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
+        <button onClick={toggleDropdown} className="flex flex-col gap-1.5 lg:hidden p-2 text-white">
+
+          {/* top line  */}
+          <motion.span
+          animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+          className="w-8 h-1 bg-white block transition-colors"
+          />
+
+          {/* middle Line */}
+          <motion.span
+            animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
+            className="w-8 h-1 bg-white block transition-colors"
+          />
+
+          {/* bottom Line */}
+          <motion.span
+            animate={isOpen ? { rotate: -45, y: -12 } : { rotate: 0, y: 0 }}
+            className="w-8 h-1 bg-white block transition-colors"
+          />
+
         </button>
+        </motion.div>
       </div>
       </div>
 
@@ -61,15 +77,10 @@ export default function Navbar() {
               <NavLink to="/" end className={linkClass} onClick={() => setIsOpen(false)}>
                 Home
               </NavLink>
-              <NavLink to="/About" className={linkClass} onClick={() => setIsOpen(false)}>
-                About
-              </NavLink>
-              <NavLink to="/Events" className={linkClass} onClick={() => setIsOpen(false)}>
-                Events
-              </NavLink>
               <NavLink to="/sign-up" className={linkClass} onClick={() => setIsOpen(false)}>
                 Sign Up
               </NavLink>
+
                <NavLink to="/Contact" className={linkClass} onClick={() => setIsOpen(false)}>
                 Contact
               </NavLink>
