@@ -206,45 +206,43 @@ export default function Events() {
     document.title = "Events | UMSA";
   }, []);
 
-  {
-    /* state variable and setter function using useState with default value All, to rerender the activeTag based on onClick event from button */
-  }
   const [activeTag, setActiveTag] = useState("All");
-  {
-    /* when initial or new activeTag, EventsArrays are filtered for activeTag */
-  }
+  const [activePage, setActivePage] = useState(1);
+  const [pageGroupOffset, setPageGroupOffset] = useState(0);
+
   const filteredUpcomingEvents =
-    activeTag == "All"
+    activeTag === "All"
       ? upcomingEvents
-      : upcomingEvents.filter((event) => event.eventTag == activeTag);
+      : upcomingEvents.filter((event) => event.eventTag === activeTag);
+  const filteredPastEvents =
+    activeTag === "All"
+      ? pastEventsGrouped
+      : pastEventsGrouped.filter((event) => event.eventTag === activeTag);
 
-    {/* state variable and setter function using useState with default value All, to rerender the activeTag based on onClick event from button */}
-    const [activeTag, setActiveTag] = useState("All");
-    {/* when initial or new activeTag, EventsArrays are filtered for activeTag */}
-    const filteredUpcomingEvents = 
-        activeTag == "All" ? upcomingEvents : upcomingEvents.filter((event) => event.eventTag == activeTag);
-    const filteredPastEvents = 
-        activeTag == "All" ? pastEventsGrouped : pastEventsGrouped.filter((event) => event.eventTag == activeTag);
+  const filteredPageNum = Math.max(
+    1,
+    Math.ceil(filteredPastEvents.length / maxItemPage),
+  );
+  const currentPage = Math.min(activePage, filteredPageNum);
+  const filteredPastEventsPage = filteredPastEvents.filter(
+    (event) => event.page === currentPage,
+  );
+  const pageButtons = Array.from({ length: filteredPageNum }, (_, index) => ({
+    page: index + 1,
+    setterFunction: (page: number) => setActivePage(page),
+  }));
 
-    {/* Filter pastEvent for active page */}
-    const [activePage, setActivePage] = useState(1);
-    const filteredPastEventsPage = filteredPastEvents.filter((event) => event.page == activePage);
+  const handleTagChange = (tag: string) => {
+    setActiveTag(tag);
+    setActivePage(1);
+    setPageGroupOffset(0);
+  };
 
-    {/* make a list with just page numbers for all the page needed */}
-    const filteredPageNum = Math.floor(filteredPastEvents.length / maxItemPage) + 1;
-    const pageButtons = Array.from({ length: filteredPageNum }, (_, index) => ({
-        page: index + 1,
-        setterFunction: (page: number) => setActivePage(page),
-    }));
-
-    {/* useState for current pageGroup */}
-    const [pageGroupOffset, setPageGroupOffset] = useState(0);
-
-    const pagesPerGroup = 5;
-    const startIndex = pageGroupOffset * pagesPerGroup;
-    const visiblePages = pageButtons.slice(startIndex, startIndex + pagesPerGroup);
-    const hasNextGroup = startIndex + pagesPerGroup < pageButtons.length;
-    const hasPrevGroup = pageGroupOffset > 0;
+  const pagesPerGroup = 5;
+  const startIndex = pageGroupOffset * pagesPerGroup;
+  const visiblePages = pageButtons.slice(startIndex, startIndex + pagesPerGroup);
+  const hasNextGroup = startIndex + pagesPerGroup < pageButtons.length;
+  const hasPrevGroup = pageGroupOffset > 0;
 
     return(
         <>
@@ -255,24 +253,24 @@ export default function Events() {
                 </h1>
             </div>
             <div className="flex flex-wrap-reverse justify-end w-4/5 mb-3 gap-4">
-                <button onClick={() => setActiveTag("All")} //onClick calls setActiveTag function, useState updates - react rerenders - activeTag returns new value
+                <button onClick={() => handleTagChange("All")} //onClick calls setActiveTag function, useState updates - react rerenders - activeTag returns new value
                     className={
                         `w-fit text-sm text-gray-400 hover:text-white cursor-pointer 
-                        ${activeTag == "All" ? "text-white font-bold" : ""}`
+                        ${activeTag === "All" ? "text-white font-bold" : ""}`
                     }>
                     all
                 </button>
-                <button onClick={() => setActiveTag("Social")} 
+                <button onClick={() => handleTagChange("Social")} 
                     className={
                         `w-fit text-sm text-gray-400 hover:text-white cursor-pointer 
-                        ${activeTag == "Social" ? "text-white font-bold" : ""}`
+                        ${activeTag === "Social" ? "text-white font-bold" : ""}`
                     }>
                     social
                 </button>
-                <button onClick={() => setActiveTag("Competition")} 
+                <button onClick={() => handleTagChange("Competition")} 
                     className={
                         `w-fit text-sm text-gray-400 hover:text-white cursor-pointer 
-                        ${activeTag == "Competition" ? "text-white font-bold" : ""}`
+                        ${activeTag === "Competition" ? "text-white font-bold" : ""}`
                     }>
                     competition
                 </button>
@@ -308,7 +306,7 @@ export default function Events() {
                         </button>
                     )}
                     {visiblePages.map((button) => (
-                        <Page key={button.page} element={button} currentPage={activePage} />
+                        <Page key={button.page} element={button} currentPage={currentPage} />
                     ))}
                     {hasNextGroup && (
                         <button onClick={() => setPageGroupOffset(pageGroupOffset + 1)}
@@ -320,7 +318,7 @@ export default function Events() {
                 </div>
             </div>
         </div>
-      </div>
+    
     </>
   );
 }

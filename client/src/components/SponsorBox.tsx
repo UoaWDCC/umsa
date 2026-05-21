@@ -1,5 +1,3 @@
-import React from "react";
-
 type SponsorInfo = {
   sponsorName: string;
   sponsorLink: string;
