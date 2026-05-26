@@ -12,13 +12,16 @@ export default function HomePage() {
         University of Auckland Malaysian Students Association
       </p>
       <div className="w-full aspect-video">
-        <iframe
-          className="w-full h-full"
-          src="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-          title="UMSA Video"
-          allowFullScreen
-        />
+        <iframe 
+        className="w-full h-full rounded-lg mt-10"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=uBbsDjvI95vfXOQA"
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerPolicy="strict-origin-when-cross-origin"
+        allowFullScreen>
+        </iframe>
       </div>
+      <div className="max-w-xl text-center mb-5"></div>
     </div>
   );
 }
