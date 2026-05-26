@@ -11,6 +11,14 @@ export default function HomePage() {
       <p className="text-white text-lg">
         University of Auckland Malaysian Students Association
       </p>
+      <div className="w-full aspect-video">
+        <iframe
+          className="w-full h-full"
+          src="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          title="UMSA Video"
+          allowFullScreen
+        />
+      </div>
     </div>
   );
 }
