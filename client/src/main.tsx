@@ -17,6 +17,7 @@ import Contact from "./pages/Contact";
 import Sponsors from "./pages/Sponsors";
 import FAQ from "./pages/Frequent-Asked-Question";
 import About from "./pages/About";
+import Surprise from "./pages/TW_Surprise"
 
 {
   /* project team imports */
@@ -50,6 +51,7 @@ const router = createBrowserRouter([
       { path: "contact", element: <Contact /> },
       { path: "sponsors", element: <Sponsors /> },
       { path: "about", element: <About /> },
+      { path: "surprise", element: <Surprise />}
     ],
   },
 ]);
