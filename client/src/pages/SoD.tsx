@@ -1,5 +1,6 @@
 import { useState } from "react"
 import slangData from "../data/malaysian-slang.json"
+import { motion } from "motion/react";
 
 export default function SoD() {
 
@@ -27,20 +28,33 @@ export default function SoD() {
     <>
       <h1>Slang of the Day</h1>
       <p>{maskedWordSpaced}</p>
-      <div>
-        {alphabet.map((letter) => (
-          <button
-          key={letter}
-          type="button"
-          onClick={() => handleGuess(letter)}
-          disabled={guessedLetters.includes(letter)}
-          className="pointer"
-          >
-            {letter}
-          </button>
-        ))}
+      <div className="flex flex-wrap m-5 p-4 gap-4 justify-center mx-auto">
+        {alphabet.map((letter) => {
+          const isGuessed = guessedLetters.includes(letter);
+          const isCorrect = targetWord.includes(letter);
+
+          const tileColor = !isGuessed ? "bg-gray-300" : isCorrect ? "bg-green-400" : "bg-red-400";
+        
+        
+        return (
+          <motion.div key={letter} initial={{scale:0}} animate={{scale:1}} transition={{duration:0.5}}>
+            <div className={`w-20 h-20 ${tileColor} rounded-2xl flex justify-center items-center cursor-pointer`}
+            key={letter}
+            role="button"
+            onClick={() => handleGuess(letter)}
+            tabIndex={0}
+            >
+              <p className="text-2xl">
+                {letter}
+              </p>
+            </div>
+          </motion.div>
+        
+        );
+      })}
       </div>
       <p>Definition: {randomEntry.definition}</p>
+      <p>{guessedLetters}</p>
     </>
   );
 }
