@@ -2,8 +2,6 @@ import { useState } from "react"
 
 export default function SoD() {
   const targetWord = "HAIYA";
-  const maskedWordSpaced = Array(targetWord.length).fill("_").join(" ");
-
   const alphabet = Array.from(
     { length: 26 }, (_, index) =>
     String.fromCharCode(65 + index)
@@ -18,6 +16,7 @@ export default function SoD() {
     setGuessedLetters((previous) => [...previous, letter]);
   }
 
+  const maskedWordSpaced = targetWord.split("").map((letter) => (guessedLetters.includes(letter) ? letter : "_")).join(" ");
   return (
     <>
       <h1>Slang of the Day</h1>
@@ -35,7 +34,6 @@ export default function SoD() {
           </button>
         ))}
       </div>
-      <p>{guessedLetters}</p>
     </>
   );
 }
