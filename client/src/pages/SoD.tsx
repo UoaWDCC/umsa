@@ -2,10 +2,12 @@ import { useState } from "react"
 import slangData from "../data/malaysian-slang.json"
 
 export default function SoD() {
-  const [targetWord] = useState(() => {
-    const randomEntry = slangData[Math.floor(Math.random() * slangData.length)];
-    return randomEntry.word.toUpperCase();
+
+  const [randomEntry] = useState(() => {
+    return slangData[Math.floor(Math.random() * slangData.length)];
   })
+
+  const targetWord = randomEntry.word.toUpperCase();
   const alphabet = Array.from(
     { length: 26 }, (_, index) =>
     String.fromCharCode(65 + index)
@@ -38,6 +40,7 @@ export default function SoD() {
           </button>
         ))}
       </div>
+      <p>Definition: {randomEntry.definition}</p>
     </>
   );
 }
