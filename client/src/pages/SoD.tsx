@@ -27,7 +27,8 @@ export default function SoD() {
   return (
     <>
       <h1>Slang of the Day</h1>
-      <p>{maskedWordSpaced}</p>
+      <p className="text-5xl">{maskedWordSpaced}</p>
+      <p>Definition: {randomEntry.definition}</p>
       <div className="flex flex-wrap m-5 p-4 gap-4 justify-center mx-auto">
         {alphabet.map((letter) => {
           const isGuessed = guessedLetters.includes(letter);
@@ -37,8 +38,12 @@ export default function SoD() {
         
         
         return (
-          <motion.div key={letter} initial={{scale:0}} animate={{scale:1}} transition={{duration:0.5}}>
-            <div className={`w-20 h-20 ${tileColor} rounded-2xl flex justify-center items-center cursor-pointer`}
+          <motion.div 
+          key={letter} 
+          initial={{scale:0}} 
+          animate={{scale:1}} 
+          transition={{duration:0.5}}>
+            <div className={`w-20 h-20 ${tileColor} rounded-2xl flex justify-center items-center cursor-pointer transition-colors duration-300 ease-in-out`}
             key={letter}
             role="button"
             onClick={() => handleGuess(letter)}
@@ -53,8 +58,6 @@ export default function SoD() {
         );
       })}
       </div>
-      <p>Definition: {randomEntry.definition}</p>
-      <p>{guessedLetters}</p>
     </>
   );
 }
