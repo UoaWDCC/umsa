@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "word": "Lah",
+    "pronunciation": "lah",
+    "origin": "Malay",
+    "definition": "A sentence-final particle used for emphasis or to soften a statement. One of the most iconic Manglish words.",
+    "example": "Don't worry lah, it's not a big deal."
+  },
+  {
+    "id": 2,
+    "word": "Wah",
+    "pronunciation": "wah",
+    "origin": "Hokkien",
+    "definition": "An exclamation of surprise, admiration, or shock.",
+    "example": "Wah, this nasi lemak damn good!"
+  },
+  {
+    "id": 3,
+    "word": "Aiyo",
+    "pronunciation": "ai-yo",
+    "origin": "Tamil / Cantonese",
+    "definition": "An expression of dismay, frustration, or exasperation.",
+    "example": "Aiyo, you forgot to bring the tickets again?!"
+  },
+  {
+    "id": 4,
+    "word": "Bojio",
+    "pronunciation": "bo-jio",
+    "origin": "Hokkien",
+    "definition": "To not invite someone. Used to express feeling left out.",
+    "example": "You all went for teh tarik bojio me?!"
+  },
+  {
+    "id": 5,
+    "word": "Lepak",
+    "pronunciation": "le-pak",
+    "origin": "Malay",
+    "definition": "To hang out, chill, or lounge around doing nothing in particular.",
+    "example": "Nothing to do tonight, just lepak at mamak lah."
+  },
+  {
+    "id": 6,
+    "word": "Makan",
+    "pronunciation": "ma-kan",
+    "origin": "Malay",
+    "definition": "To eat. Also used as an invitation to go eat together.",
+    "example": "Eh, let's go makan — I'm starving already."
+  },
+  {
+    "id": 7,
+    "word": "Cincai",
+    "pronunciation": "chin-chai",
+    "origin": "Hokkien",
+    "definition": "Careless, sloppy, or 'whatever goes'. Can mean easy-going or haphazardly done.",
+    "example": "Cincai only lah, any food also can."
+  },
+  {
+    "id": 8,
+    "word": "Blur",
+    "pronunciation": "blur",
+    "origin": "Manglish",
+    "definition": "Confused, clueless, or not aware of what's happening around you.",
+    "example": "He walked into the wrong lecture hall — so blur one."
+  },
+  {
+    "id": 9,
+    "word": "Shiok",
+    "pronunciation": "shi-ok",
+    "origin": "Hokkien",
+    "definition": "Extremely enjoyable, satisfying, or pleasurable.",
+    "example": "After a long day, a cold shower feels so shiok!"
+  },
+  {
+    "id": 10,
+    "word": "Potong",
+    "pronunciation": "po-tong",
+    "origin": "Malay",
+    "definition": "Literally 'to cut', but used to mean a buzzkill or mood-ruiner.",
+    "example": "We planned a picnic but it rained. So potong."
+  },
+  {
+    "id": 11,
+    "word": "Kan Cheong",
+    "pronunciation": "kan-cheong",
+    "origin": "Cantonese",
+    "definition": "Anxious, nervous, or panicky — especially over small things.",
+    "example": "Why so kan cheong? The exam is still one week away."
+  },
+  {
+    "id": 12,
+    "word": "Tapau",
+    "pronunciation": "ta-pau",
+    "origin": "Cantonese",
+    "definition": "To takeaway or pack food to go.",
+    "example": "I'll tapau nasi goreng for dinner tonight."
+  },
+  {
+    "id": 13,
+    "word": "Kiasu",
+    "pronunciation": "kia-su",
+    "origin": "Hokkien",
+    "definition": "Fear of losing out. Describes someone overly competitive or desperate to come out on top.",
+    "example": "He queued up at 5am just to get a free sample — so kiasu."
+  },
+  {
+    "id": 14,
+    "word": "Lagi",
+    "pronunciation": "la-gi",
+    "origin": "Malay",
+    "definition": "More, again, or even more so. Used for added emphasis.",
+    "example": "This new place is good, but the old one lagi nice."
+  },
+  {
+    "id": 15,
+    "word": "Alamak",
+    "pronunciation": "a-la-mak",
+    "origin": "Malay",
+    "definition": "An exclamation of shock, surprise, or horror — like 'oh no!' or 'oh my goodness!'",
+    "example": "Alamak, I left my wallet at home!"
+  },
+  {
+    "id": 16,
+    "word": "Chope",
+    "pronunciation": "chope",
+    "origin": "Singlish / Manglish",
+    "definition": "To reserve or claim a seat, usually by placing an item on it.",
+    "example": "I choped a seat already, just go order the food first."
+  },
+  {
+    "id": 17,
+    "word": "Paiseh",
+    "pronunciation": "pai-seh",
+    "origin": "Hokkien",
+    "definition": "Embarrassed, shy, or feeling ashamed. Also used when declining something out of politeness.",
+    "example": "Paiseh lah, can you repeat what you said? I wasn't listening."
+  },
+  {
+    "id": 18,
+    "word": "Kautim",
+    "pronunciation": "kau-tim",
+    "origin": "Cantonese",
+    "definition": "To settle or sort something out. Signals a task is handled.",
+    "example": "Don't worry about the booking, I already kautim."
+  },
+  {
+    "id": 19,
+    "word": "Walao",
+    "pronunciation": "wa-lao",
+    "origin": "Hokkien",
+    "definition": "An exclamation of disbelief, frustration, or amazement. Similar to 'oh my god'.",
+    "example": "Walao, you finished the whole plate in 5 minutes?!"
+  },
+  {
+    "id": 20,
+    "word": "Gostan",
+    "pronunciation": "gos-tan",
+    "origin": "English (go astern)",
+    "definition": "To reverse a vehicle. Derived from the nautical phrase 'go astern'.",
+    "example": "Gostan a bit lah, you're too close to the wall."
+  },
+  {
+    "id": 21,
+    "word": "Atas",
+    "pronunciation": "a-tas",
+    "origin": "Malay",
+    "definition": "Literally 'above/up', but used to mean posh, fancy, or upper-class.",
+    "example": "She only eats at atas restaurants — never mamak with us."
+  },
+  {
+    "id": 22,
+    "word": "Bodoh",
+    "pronunciation": "bo-doh",
+    "origin": "Malay",
+    "definition": "Stupid or foolish. Can be used affectionately between close friends.",
+    "example": "Aiyo, bodohnya — you pressed the wrong floor again!"
+  },
+  {
+    "id": 23,
+    "word": "Action",
+    "pronunciation": "ak-syen",
+    "origin": "Manglish",
+    "definition": "Arrogant, showing off, or acting like you're better than others.",
+    "example": "Since he got promoted, he's been so action already."
+  },
+  {
+    "id": 24,
+    "word": "Sayang",
+    "pronunciation": "sa-yang",
+    "origin": "Malay",
+    "definition": "A term of endearment meaning 'love' or 'dear'. Also used to express a pity or waste.",
+    "example": "Sayang lah, the cafe closed down — their coffee was amazing."
+  },
+  {
+    "id": 25,
+    "word": "Tahan",
+    "pronunciation": "ta-han",
+    "origin": "Malay",
+    "definition": "To endure, withstand, or hold back. Often used to describe tolerating something difficult.",
+    "example": "The durian smell is so strong, cannot tahan."
+  },
+  {
+    "id": 26,
+    "word": "Habis",
+    "pronunciation": "ha-bis",
+    "origin": "Malay",
+    "definition": "Finished, done, or all gone. Can also mean 'you're in trouble now'.",
+    "example": "The char kway teow habis already? We came too late lah."
+  },
+  {
+    "id": 27,
+    "word": "Gila",
+    "pronunciation": "gi-la",
+    "origin": "Malay",
+    "definition": "Crazy or insane. Used both literally and as an intensifier meaning 'extremely'.",
+    "example": "Gila lah this traffic, we've been stuck for an hour."
+  },
+  {
+    "id": 28,
+    "word": "Malu",
+    "pronunciation": "ma-lu",
+    "origin": "Malay",
+    "definition": "Shy, embarrassed, or ashamed.",
+    "example": "So malu lah — I called the lecturer by the wrong name."
+  },
+  {
+    "id": 29,
+    "word": "Senang",
+    "pronunciation": "se-nang",
+    "origin": "Malay",
+    "definition": "Easy, comfortable, or relaxed. Sometimes used sarcastically.",
+    "example": "Wah, very senang life — always on holiday one."
+  },
+  {
+    "id": 30,
+    "word": "Suka-suka",
+    "pronunciation": "su-ka su-ka",
+    "origin": "Malay",
+    "definition": "Doing whatever you like without care for rules or others. Means 'as you please'.",
+    "example": "Cannot just come and go suka-suka lah, got rules one."
+  }
+]
