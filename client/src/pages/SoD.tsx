@@ -1,7 +1,11 @@
 import { useState } from "react"
+import slangData from "../data/malaysian-slang.json"
 
 export default function SoD() {
-  const targetWord = "HAIYA";
+  const [targetWord] = useState(() => {
+    const randomEntry = slangData[Math.floor(Math.random() * slangData.length)];
+    return randomEntry.word.toUpperCase();
+  })
   const alphabet = Array.from(
     { length: 26 }, (_, index) =>
     String.fromCharCode(65 + index)
