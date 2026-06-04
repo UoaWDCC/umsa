@@ -27,14 +27,14 @@ export default function SoD() {
   return (
     <>
       <h1>Slang of the Day</h1>
-      <p className="text-5xl">{maskedWordSpaced}</p>
-      <p>Definition: {randomEntry.definition}</p>
+      <p className="text-5xl mt-2">{maskedWordSpaced}</p>
+      <p className="mt-2">Definition: {randomEntry.definition}</p>
       <div className="flex flex-wrap m-5 p-4 gap-4 justify-center mx-auto">
         {alphabet.map((letter) => {
           const isGuessed = guessedLetters.includes(letter);
           const isCorrect = targetWord.includes(letter);
 
-          const tileColor = !isGuessed ? "bg-gray-300" : isCorrect ? "bg-green-400" : "bg-red-400";
+          const tileColor = !isGuessed ? "bg-white" : isCorrect ? "bg-green-400" : "bg-red-400";
         
         
         return (
@@ -49,7 +49,7 @@ export default function SoD() {
             onClick={() => handleGuess(letter)}
             tabIndex={0}
             >
-              <p className="text-2xl">
+              <p className="text-2xl text-[#140fff]">
                 {letter}
               </p>
             </div>
