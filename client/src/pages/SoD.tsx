@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import slangData from "../data/malaysian-slang.json"
 import { motion } from "motion/react";
 
@@ -24,11 +24,42 @@ export default function SoD() {
   }
 
   const maskedWordSpaced = targetWord.split("").map((letter) => (guessedLetters.includes(letter) ? letter : "_")).join(" ");
+
+  const [isHidden, setIsHidden] = useState(true);
+  const answerRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState("0px")
+
+  useEffect(() => {
+      if (!isHidden && answerRef.current) {
+          setHeight(`${answerRef.current.scrollHeight}px`);
+      } else {
+          setHeight("0px");
+      }
+  
+  }, [isHidden]);
+
+  useEffect(() => {
+  const isWordComplete = targetWord.split("").every((letter) => guessedLetters.includes(letter));
+
+  if (isWordComplete) {
+    setIsHidden(false);
+  }
+  }, [guessedLetters, targetWord]);
+
+    
+
   return (
     <>
       <h1>Slang of the Day</h1>
       <p className="text-5xl mt-2">{maskedWordSpaced}</p>
-      <p className="mt-2">Definition: {randomEntry.definition}</p>
+      <p className="mt-2"><span className="text-[#140fff]">Definition:</span> {randomEntry.definition}</p>
+      <div ref={answerRef}
+            style={{ height }}
+            className={`${isHidden ? "opacity-0" : "opacity-100"} overflow-hidden transition-[height,opacity] duration-300 ease-in-out`}>
+        <p><span className="text-[#140fff]">Origin: </span>{randomEntry.origin}</p>
+        <p><span className="text-[#140fff]">Pronunciation: </span>{randomEntry.pronunciation}</p>
+        <p><span className="text-[#140fff]">Example: </span>{randomEntry.example}</p>
+      </div>
       <div className="flex flex-wrap m-5 p-4 gap-4 justify-center mx-auto">
         {alphabet.map((letter) => {
           const isGuessed = guessedLetters.includes(letter);
@@ -54,7 +85,6 @@ export default function SoD() {
               </p>
             </div>
           </motion.div>
-        
         );
       })}
       </div>
