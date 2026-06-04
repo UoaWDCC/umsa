@@ -46,7 +46,20 @@ export default function SoD() {
   }
   }, [guessedLetters, targetWord]);
 
-    
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
+      if (!/^[a-z]$/i.test(event.key)) return;
+
+      handleGuess(event.key.toUpperCase());
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleGuess]);
 
   return (
     <>
