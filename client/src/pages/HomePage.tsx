@@ -35,11 +35,10 @@ export default function HomePage() {
         </p>
       </div>
 
-      <div className="w-full max-w-3xl">
+      <div className="w-full max-w-2xl">
         <div className="relative rounded-2xl overflow-hidden border border-blue-500/30 bg-blue-950/20 p-10">
-          {/* Background accent */}
           <div className="absolute top-0 right-0 w-48 h-48 bg-blue-600/10 rounded-full blur-3xl" />
-          <h2 className="text-3xl mb-3">
+          <h2 className="text-3xl font-semibold mb-3">
             MEET THE EXEC TEAM
           </h2>
           <div className="h-px bg-blue-500 mb-5" />
