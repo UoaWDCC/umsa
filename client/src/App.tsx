@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import image from "./assets/GalleryTest2.png";
+import image from "./assets/umsamascot.png";
 
 function App() {
   const [showImage, setShowImage] = useState(false);
@@ -28,11 +28,11 @@ function App() {
         <div>
           <Link
             to="/slang-of-the-day"
-            className="absolute right-6 top-1/2 -translate-y-1/2 z-20 animate-fadeIn">
+            className="absolute right-0 top-[58%] -translate-y-1/2 z-20 animate-fadeIn">
             <img
               src={image}
               alt="Slang of the Day easter egg"
-              className="w-64 rounded-3xl shadow-2xl cursor-pointer hover:scale-105 transition-transform duration-300"
+              className="w-64 rounded-3xl shadow-2xl cursor-pointer hover:scale-105 transition-transform duration-300 rotate-300"
             />
           </Link>
         </div>
