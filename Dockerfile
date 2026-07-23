@@ -6,6 +6,9 @@ RUN npm install -g pnpm
 
 WORKDIR /app
 
+# Production behavior: enables the Secure cookie flag and the JWT_SECRET boot check
+ENV NODE_ENV=production
+
 # Copy workspace files
 COPY package.json pnpm-workspace.yaml ./
 COPY server/package.json ./server/
