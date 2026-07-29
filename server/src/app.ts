@@ -2,7 +2,6 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
-import developerRoutes from "./routes/developers.js";
 import healthRoutes from "./routes/health.js";
 import contentRoutes from "./routes/content.js";
 import adminAuthRoutes from "./routes/admin/auth.js";
@@ -32,7 +31,6 @@ app.use("/api", apiRateLimit);
 app.use("/api/health", healthRoutes);
 
 // endpoints -- add new endpoints below
-app.use("/api/developers", developerRoutes);
 app.use("/api/content", contentRoutes);
 
 app.use("/api/admin/auth", adminAuthRoutes);
