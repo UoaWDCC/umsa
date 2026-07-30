@@ -7,7 +7,6 @@ mental model; this is the detail.
 server/
 ├── server.ts                 process entry point
 ├── db/connection.ts          mongoose.connect
-├── scripts/seed-admin.ts     creates/rotates the admin account
 ├── src/
 │   ├── app.ts                Express app assembly — middleware order, route mounting
 │   ├── middleware/
