@@ -4,6 +4,7 @@ export type ApiErrorCode =
   | "BAD_REQUEST"
   | "INTERNAL_ERROR"
   | "NOT_FOUND"
+  | "UNAUTHORIZED"
   | "VALIDATION_ERROR";
 
 export type ApiErrorResponse = {
