@@ -143,15 +143,3 @@ Two lines, no auth work:
 
 Admin routes are **siblings** of the public `RootLayout` route, which is why admin pages don't
 inherit the public navbar and footer.
-
-## Known gaps
-
-Documented so nobody assumes they're handled:
-
-- **No dedicated login throttle.** Login shares the global 300/15min limiter.
-- **No timing-safe compare.** An unknown email returns faster than a wrong password, which leaks
-  whether an account exists despite the identical message.
-- **No CSRF token.** We rely entirely on `sameSite: "lax"`.
-- **No password reset, no second admin, no roles.**
-
-All four are specced in [blueprints/06-admin-accounts.md](blueprints/06-admin-accounts.md).
