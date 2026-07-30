@@ -9,7 +9,7 @@ const AdminUserSchema = new Schema<IAdminUserDocument>(
   {
     email: { type: String, required: true, unique: true, lowercase: true, trim: true },
     // only the bcrypt hash is ever stored
-    passwordHash: { type: String, required: true },
+    passwordHash: { type: String, required: true, select: false },
   },
   { timestamps: true },
 );

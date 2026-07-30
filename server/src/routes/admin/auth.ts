@@ -19,7 +19,7 @@ router.post("/login", validate(loginSchema), async (req: Request, res: Response)
   try {
     const { email, password } = req.body as LoginInput;
 
-    const user = await AdminUser.findOne({ email: email.toLowerCase() });
+    const user = await AdminUser.findOne({ email: email.toLowerCase() }).select("+passwordHash");
     // Same message for unknown email and wrong password — never reveal which one it was
     const ok = user !== null && (await bcrypt.compare(password, user.passwordHash));
     if (!ok) {
