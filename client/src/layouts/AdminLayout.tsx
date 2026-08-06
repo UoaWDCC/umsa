@@ -2,7 +2,7 @@ import { Navigate, NavLink, Outlet } from "react-router-dom";
 import { useLogout, useMe } from "../hooks/useAuth";
 
 // Adding an admin page = one entry here + one route in main.tsx.
-const MENU = [{ to: "/admin/home-content", label: "Homepage text" }];
+const MENU = [{ to: "/admin/home-content", label: "Homepage text" }, {to: "/admin/admin-approve", label: "Admin Approve"}];
 
 export default function AdminLayout() {
   const { data: me, isPending } = useMe();
