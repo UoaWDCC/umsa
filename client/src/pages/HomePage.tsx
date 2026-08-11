@@ -11,11 +11,9 @@ export default function HomePage() {
     <div className="flex flex-col items-center text-white px-6 py-12">
       <img src={logo} alt="UMSA logo" className="w-20 mb-4" />
       <h1 className="text-8xl font-bold mb-2">UMSA</h1>
-      <div className="mt-3 px-2 py-2 border border-blue-500/50 rounded-full bg-blue-950/40 backdrop-blur-sm">
         <p className="text-med text-blue-300 font-medium">
           UNION OF MALAYSIAN STUDENTS IN AUCKLAND
         </p>
-      </div>
       <div className="w-full max-w-2xl aspect-video mt-12 mb-10">
         <iframe
           className="w-full h-full rounded-lg"
