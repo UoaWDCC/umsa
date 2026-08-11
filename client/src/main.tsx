@@ -2,7 +2,6 @@ import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
-import App from "./App";
 import "./index.css";
 
 {
@@ -35,7 +34,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootLayout />,
     children: [
-      { index: true, element: <App /> },
+      { index: true, element: <HomePage /> },
       { path: "events", element: <Events /> },
       { path: "team", element: <Team /> },
       { path: "project-team", element: <ProjectTeam /> },
@@ -44,7 +43,6 @@ const router = createBrowserRouter([
       { path: "faq", element: <FAQ /> },
       { path: "contact", element: <Contact /> },
       { path: "sponsors", element: <Sponsors /> },
-      { path: "home", element: <HomePage /> },
 
       { path: "alanna", element: <Alanna /> },
       { path: "tadiwa", element: <Tadiwa /> },
