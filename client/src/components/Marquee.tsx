@@ -28,7 +28,7 @@ export default function Marquee() {
                       : "h-full w-auto flex-shrink-0 mr-2"
                   }
                 />
-                <span className="whitespace-nowrap px-6 text-lg font-extrabold uppercase tracking-wide text-white">
+                <span className="whitespace-nowrap px-6 text-lg font-sekuya uppercase tracking-wide text-white">
                   Welcome to UMSA
                 </span>
               </div>

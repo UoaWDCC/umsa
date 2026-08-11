@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sekuya: 'Sekuya', serif;
+}
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -77,7 +81,7 @@ body {
 }
 
 .animate-marquee {
-  animation: marquee 25s linear infinite;
+  animation: marquee 30s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
