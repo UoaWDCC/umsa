@@ -10,6 +10,7 @@ import { apiRateLimit } from "./middleware/rateLimit.js";
 import { requireAdmin } from "./middleware/requireAdmin.js";
 import { notFound } from "./middleware/notFound.js";
 import { errorHandler } from "./middleware/errorHandler.js";
+import emailRoutes from "./routes/email.js";
 
 // splitting
 
@@ -37,6 +38,9 @@ app.use("/api/admin/auth", adminAuthRoutes);
 // every /api/admin/* route below requires a logged-in admin account
 app.use("/api/admin", requireAdmin);
 app.use("/api/admin/content", adminContentRoutes);
+
+// e
+app.use("/api/email", emailRoutes);
 
 // fallbacks
 app.use(notFound);

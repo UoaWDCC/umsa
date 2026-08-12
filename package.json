@@ -21,7 +21,9 @@
   },
   "dependencies": {
     "@eslint/js": "^9.39.4",
+    "flag": "^5.0.1",
     "globals": "^17.4.0",
+    "resend": "^6.19.0",
     "typescript-eslint": "^8.58.1"
   }
 }

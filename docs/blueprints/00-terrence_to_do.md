@@ -1,16 +1,17 @@
 ## Taken from the bottom of 06-admin-accounts.md
 
-## Definition of done
+## 
 
+**adding new admin**
+-> fills out a form 
+-> sends email to you to create account
+-> email has link with unique token (token valid for x amount of time)
+-> sign-up page (email address alr filled out)
+-> user fills out the password
+
+## Definition of done
 **Part A + B:**
 - [ ] An admin can add a second admin who can then log in.
-Current way of how I want to implement it:
-1. new admin user wants to sign up for an admin account
-2. they enter their info
-3. it sends an email to the official umsa account with a link or just as a notifcation
-4. then the umsa execs can go onto their admin accounts and then decide to approve or deny the request
-5. if they approve then the new admin user account can be created, otherwise it won't be created and the info will be deleted
-
 - [ ] The admin list never includes `passwordHash` — check the raw network response.
 - [ ] Deleting the last admin returns `400` and does not delete.
 - [ ] Changing your own password requires the current one; the new password works on next login.
