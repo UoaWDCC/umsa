@@ -1,4 +1,8 @@
 @theme {
+  /* Font tokens */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-heading: "Sekuya", system-ui, sans-serif;
+
   /* Color tokens (ask Andrew!!) */
 
   --color-foreground-primary: var(--color-gray-800);
