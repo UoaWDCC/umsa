@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-200 justify-center items-center">
-      <h1 className="text-4xl mt-7 font-bold text-white">{content.heading}</h1>
+      <h1 className="text-4xl mt-7 font-bold text-white font-heading">{content.heading}</h1>
       <div className="text-sm mt-3 text-gray-400">
         <p>{content.subtitle}</p>
       </div>
