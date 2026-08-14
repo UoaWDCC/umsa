@@ -33,39 +33,39 @@ export default function Navbar() {
           <NavLink to="/About" className={linkClass}>
             About
           </NavLink>
+          <NavLink to="/Team" className={linkClass}>
+            Our Team
+          </NavLink>
           <NavLink to="/Events" className={linkClass}>
             Events
-          </NavLink>
-          <NavLink to="/sign-up" className={linkClass}>
-            Sign Up
-          </NavLink>
-          <NavLink to="/Contact" className={linkClass}>
-            Contact
-          </NavLink>
-          <NavLink to="/Team" className={linkClass}>
-            Team
           </NavLink>
           <NavLink to="/Sponsors" className={linkClass}>
             Sponsors
           </NavLink>
+          {/* <NavLink to="/sign-up" className={linkClass}>
+            Sign Up
+          </NavLink> */}
+          <NavLink to="/Contact" className={linkClass}>
+            Contact
+          </NavLink>
           <NavLink to="/Gallery" className={linkClass}>
-            Gallery
+            Photos
           </NavLink>
-          <NavLink to="/faq" className={linkClass}>
-            FAQ
-          </NavLink>
-          <NavLink to="/project-team" className={linkClass}>
+          {/* <NavLink to="/project-team" className={linkClass}>
             Project Team
-          </NavLink>
+          </NavLink> */}
+          {/* <NavLink to="/faq" className={linkClass} onClick={closeDropdown}>
+            FAQ
+          </NavLink> */}
 
-          <a
+          {/* <a
             href="https://forms.gle/CQoE2nsZ9sGCWZqW8"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-1 rounded-full bg-blue-400 hover:bg-blue-700 hover:scale-110 transition-transform duration-100 text-white font-bold"
           >
             Sign Up
-          </a>
+          </a> */}
         </div>
 
         {/* Mobile menu button */}
@@ -113,27 +113,27 @@ export default function Navbar() {
             <NavLink to="/About" className={linkClass} onClick={closeDropdown}>
               About
             </NavLink>
+            <NavLink to="/Team" className={linkClass} onClick={closeDropdown}>
+              Our Team
+            </NavLink>
             <NavLink to="/Events" className={linkClass} onClick={closeDropdown}>
               Events
-            </NavLink>
-            <NavLink to="/sign-up" className={linkClass} onClick={closeDropdown}>
-              Sign Up
-            </NavLink>
-            <NavLink to="/Contact" className={linkClass} onClick={closeDropdown}>
-              Contact
-            </NavLink>
-            <NavLink to="/Team" className={linkClass} onClick={closeDropdown}>
-              Team
             </NavLink>
             <NavLink to="/Sponsors" className={linkClass} onClick={closeDropdown}>
               Sponsors
             </NavLink>
+            {/* <NavLink to="/sign-up" className={linkClass} onClick={closeDropdown}>
+              Sign Up
+            </NavLink> */}
+            <NavLink to="/Contact" className={linkClass} onClick={closeDropdown}>
+              Contact
+            </NavLink>
             <NavLink to="/Gallery" className={linkClass} onClick={closeDropdown}>
-              Gallery
+              Photos
             </NavLink>
-            <NavLink to="/faq" className={linkClass} onClick={closeDropdown}>
+            {/* <NavLink to="/faq" className={linkClass} onClick={closeDropdown}>
               FAQ
-            </NavLink>
+            </NavLink> */}
             <NavLink
               to="/project-team"
               className={linkClass}
