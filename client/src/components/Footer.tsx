@@ -1,16 +1,19 @@
 import { Link } from 'react-router-dom';
 import { FaInstagram, FaFacebook, FaLinkedin } from "react-icons/fa";
 import umsa2  from "../assets/icons/umsa2.png";
+import footerWave from "../assets/footerwave.png";
 
 export default function Footer() {
-    const footerLinkClass = "text-gray-400 hover:text-white cursor-pointer"
+    const footerLinkClass = "text-gray-400 text-white hover:text-gray-200 cursor-pointer"
 
     return (
         <>
         {/* Footer elements */}
-        <nav className='mx-6 py-4 gap-4 flex flex-row justify-around'>
+        <nav className='py-4 min-h-50 gap-4 flex flex-row justify-around bg-cover bg-center' 
+        style={{backgroundImage: `url(${footerWave})`}}>
+
             {/* Main footer content */}
-            <div className='flex flex-row gap-18 mx-6 text-sm'>
+            <div className='flex flex-row gap-18 mx-6 mt-12 text-sm'>
                 {/* Page Navigation */}
                 <div className='flex flex-col text-right'>
                     <Link to="/" className={footerLinkClass}>About Us</Link>
