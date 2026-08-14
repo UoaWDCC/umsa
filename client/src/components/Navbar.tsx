@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import { motion } from "motion/react";
+import umsa  from "../assets/icons/umsa.png";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,13 +21,12 @@ export default function Navbar() {
 
   return (
     <nav className="mx-6 py-4">
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
+      <div className="max-w-6xl mx-auto hidden md:flex gap-6 items-center justify-between">
         <Link to="/" className="text-xl font-bold tracking-tight">
-          UMSA
+          <img src={umsa} className="max-w-15"/>
         </Link>
-
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-6 text-sm">
+
           <NavLink to="/" end className={linkClass}>
             Home
           </NavLink>
@@ -69,7 +69,10 @@ export default function Navbar() {
         </div>
 
         {/* Mobile menu button */}
-        <div className="md:hidden">
+        <div className="md:hidden flex justify-between">
+          <Link to="/" className="text-xl font-bold tracking-tight">
+            <img src={umsa} className="max-w-15"/>
+          </Link>
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -98,10 +101,10 @@ export default function Navbar() {
             </button>
           </motion.div>
         </div>
-      </div>
 
       {/* Mobile dropdown */}
       {isOpen && (
+
         <div className="md:hidden absolute mt-2 left-0 w-full rounded-md bg-gray-900 ring-black ring-opacity-5 focus:outline-none">
           <div className="flex flex-col px-8 py-10 gap-2 text-left whitespace-nowrap">
             <NavLink to="/" end className={linkClass} onClick={closeDropdown}>
