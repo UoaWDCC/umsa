@@ -25,11 +25,12 @@ export default function Navbar() {
 
   return (
     <nav>
-      <div className="mx-8 max-w-6xl hidden md:flex gap-4 items-center justify-between text-sm">
+      <div className="mx-8 hidden md:flex gap-4 items-center justify-between text-sm">
         <Link to="/" className="tracking-tight">
           <img src={umsa} className="max-w-15"/>
         </Link>
         {/* Desktop nav */}
+        <div className="flex flex-1 items-center-safe justify-between gap-10 pl-[clamp(1rem,5vw,8rem)]">
           <NavLink to="/" end className={linkClass}>
             Home
           </NavLink>
@@ -70,7 +71,8 @@ export default function Navbar() {
             Sign Up
           </a> */}
         </div>
-        
+      </div>
+
       <div className="hidden md:flex bg-blue-500">
           <div className="flex w-full items-center justify-between">
             <img src={redstar1} className="max-w-16"/>
