@@ -15,8 +15,8 @@ export default function Navbar() {
   };
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `transition-colors hover:text-white ${
-      isActive ? "text-white font-semibold" : "text-gray-400"
+    `transition-colors hover:text-blue-600 ${
+      isActive ? "text-blue-600 font-semibold" : "text-blue-500"
     }`;
 
   return (
@@ -142,14 +142,14 @@ export default function Navbar() {
               Project Team
             </NavLink>
 
-            <a
+            {/* <a
               href="https://forms.gle/CQoE2nsZ9sGCWZqW8"
               target="_blank"
               rel="noopener noreferrer"
               className="w-fit px-4 py-1 mt-2 rounded-full bg-blue-400 hover:bg-blue-700 hover:scale-110 transition-transform duration-100 text-white font-bold"
             >
               Sign Up
-            </a>
+            </a> */}
           </div>
         </div>
       )}

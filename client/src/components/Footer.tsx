@@ -31,7 +31,7 @@ export default function Footer() {
                 
 
                 {/* External Links */}
-                <div className='flex flex-row gap-4 items-center ml-auto mt-5 mr-13'>
+                <div className='flex flex-row gap-4 items-center ml-auto mt-2 mr-13'>
                     <a href="https://www.instagram.com/umsanz/" target="_blank" rel="noopener noreferrer">
                         <FaInstagram className="text-3xl text-grey-300 hover:text-white" />
                     </a>
