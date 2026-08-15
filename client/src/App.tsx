@@ -13,10 +13,12 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-200 justify-center items-center">
+    <div>
       <h1 className="text-4xl mt-7 font-bold text-blue-500">{content.heading}</h1>
       <div className="text-sm mt-3 text-blue-400">
         <p>{content.subtitle}</p>
       </div>
+    </div>
     </div>
   );
 }

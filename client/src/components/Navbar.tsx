@@ -1,7 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import { motion } from "motion/react";
-import umsa  from "../assets/icons/umsa.png";
+import umsa  from "../assets/icons/umsa.png"
+import redstar1 from "../assets/stars/redstar_left.svg"
+import pinkstar from "../assets/stars/pinkstar.svg"
+import redstar2 from "../assets/stars/redstar_right.svg"
+import minipink from "../assets/stars/pinkstar_mini.svg"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,13 +24,12 @@ export default function Navbar() {
     }`;
 
   return (
-    <nav className="mx-6 py-4">
-      <div className="max-w-6xl mx-auto hidden md:flex gap-6 items-center justify-between">
-        <Link to="/" className="text-xl font-bold tracking-tight">
+    <nav>
+      <div className="mx-8 max-w-6xl hidden md:flex gap-4 items-center justify-between text-sm">
+        <Link to="/" className="tracking-tight">
           <img src={umsa} className="max-w-15"/>
         </Link>
         {/* Desktop nav */}
-
           <NavLink to="/" end className={linkClass}>
             Home
           </NavLink>
@@ -67,6 +70,15 @@ export default function Navbar() {
             Sign Up
           </a> */}
         </div>
+        
+      <div className="hidden md:flex bg-blue-500">
+          <div className="flex w-full items-center justify-between">
+            <img src={redstar1} className="max-w-16"/>
+            <img src={pinkstar}/>
+            <img src={redstar2}/>
+            <img src={minipink}/>
+          </div>
+      </div>
 
         {/* Mobile menu button */}
         <div className="md:hidden flex justify-between">
