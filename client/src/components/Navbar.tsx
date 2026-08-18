@@ -6,6 +6,7 @@ import redstar1 from "../assets/stars/redstar_left.svg"
 import pinkstar from "../assets/stars/pinkstar.svg"
 import redstar2 from "../assets/stars/redstar_right.svg"
 import minipink from "../assets/stars/pinkstar_mini.svg"
+import mini_heart from "../assets/mini_heart.svg"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,12 +26,12 @@ export default function Navbar() {
 
   return (
     <nav>
-      <div className="mx-8 hidden md:flex gap-4 items-center justify-between text-sm">
+      <div className="mx-8 hidden md:flex gap-4 items-center justify-between text-sm text-nowrap">
         <Link to="/" className="tracking-tight">
           <img src={umsa} className="max-w-15"/>
         </Link>
         {/* Desktop nav */}
-        <div className="flex flex-1 items-center-safe justify-between gap-10 pl-[clamp(1rem,5vw,8rem)]">
+        <div className="flex flex-1 items-center-safe justify-between gap-10 pl-[clamp(1rem,5vw,5rem)]">
           <NavLink to="/" end className={linkClass}>
             Home
           </NavLink>
@@ -73,12 +74,21 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="hidden md:flex bg-blue-500">
-          <div className="flex w-full items-center justify-between">
-            <img src={redstar1} className="max-w-16"/>
-            <img src={pinkstar}/>
-            <img src={redstar2}/>
-            <img src={minipink}/>
+      <div className="hidden md:flex bg-blue-500 h-13.5">
+          <div className="flex w-full items-center justify-between px-6 text-white">
+            <img src={redstar1} className="h-13 w-auto"/>
+            <p className="flex items-center gap-3">
+              i <img src={mini_heart} className="w-4 h-4 inline-block" /> malaysia
+            </p>
+            <img src={pinkstar} className="h-13 w-auto"/>
+            <p className="flex items-center gap-3">
+              i <img src={mini_heart} className="w-4 h-4 inline-block" /> malaysia
+            </p>
+            <img src={redstar2} className="h-13 w-auto"/>
+            <p className="flex items-center gap-3">
+              i <img src={mini_heart} className="w-4 h-4 inline-block" /> malaysia
+            </p>
+            <img src={minipink} className="h-13 w-auto"/>
           </div>
       </div>
 
