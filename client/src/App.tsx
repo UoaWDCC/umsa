@@ -10,6 +10,8 @@ import bluestar_left from "./assets/stars/bluestar_left.svg"
 import pinkstar_right from "./assets/stars/pinkstar_right.svg"
 import events_photo from "./assets/events_photo.jpg"
 import humans from "./assets/humans.png"
+import right_arrow from "./assets/right_arrow.svg"
+import left_arrow from "./assets/left_arrow.svg"
 import { NavLink } from "react-router-dom";
 
 // exemplar CMS default data -> shown when data does not exist / API is down 
@@ -79,17 +81,24 @@ function App() {
     </div>
 
     {/* our events section */}
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full gap-7 mb-3">
       <div className="flex flex-wrap items-center gap-2 w-full">
         <img src={redstar_right} className="max-h-17"/>
         <img src={bluestar_left} className="max-h-22"/>
         <img src={pinkstar_right} className="max-h-22"/>
         <p className="text-right text-[clamp(2.25rem,7vw,5.82rem)] text-accent2-primary">Our Events</p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
-        <img src={events_photo} className="w-full h-64 object-cover rounded-md"/>
-        <img src={events_photo} className="w-full h-64 object-cover rounded-md"/>
-        <img src={events_photo} className="w-full h-64 object-cover rounded-md"/>
+
+      {/* NOTE: this aspect is just for showcase, it fits the iphone 3/4 aspect ratio but 
+      if its a photo taken on something else then it will break e.g. massive gaps between each photo */}
+      <div className="flex flex-row justify-center items-center gap-20">
+        <img src={left_arrow}/>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 max-w-324">
+          <img src={events_photo} className="w-full aspect-[3/4] object-contain rounded-md"/>
+          <img src={events_photo} className="w-full aspect-[3/4] object-contain rounded-md"/>
+          <img src={events_photo} className="w-full aspect-[3/4] object-contain rounded-md"/>
+        </div>
+        <img src={right_arrow}/>
       </div>
     </div>
 
