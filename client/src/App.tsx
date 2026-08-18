@@ -1,5 +1,15 @@
 import { useHomeContent } from "./hooks/useHomeContent";
 import type { HomeContentValues } from "./schemas/content";
+import umsa_sit from "./assets/icons/umsa_sit.png";
+import umsa_cool from "./assets/icons/umsa_cool.png";
+import sun from "./assets/icons/sun.svg"
+import redstar from "./assets/stars/fullredstar.png"
+import whitestar from "./assets/stars/white_star.svg"
+import redstar_right from "./assets/stars/redstar_right.svg"
+import bluestar_left from "./assets/stars/bluestar_left.svg"
+import pinkstar_right from "./assets/stars/pinkstar_right.svg"
+import humans from "./assets/humans.png"
+import { NavLink } from "react-router-dom";
 
 // exemplar CMS default data -> shown when data does not exist / API is down 
 const DEFAULTS: HomeContentValues = {
@@ -12,13 +22,70 @@ function App() {
   const content = data ?? DEFAULTS;
 
   return (
-    <div className="flex flex-col min-h-200 justify-center items-center">
+    <div className="flex flex-col items-center">
+    
+    {/* big welcome to umsa + text */}
+    <div className="w-full">
+      <p className="w-full gap-3 text-[5.82rem] text-accent1-primary">Welcome to <span className="text-red-300">UMSA</span></p>
+      <p className="mr-2.5 mb-2.5 text-red-200 text-right">The Union of Malaysian</p>
+      <p className="mr-2.5 text-red-200 text-right">Students in Auckalnd</p>
+    </div>
+
+    {/* umsa sitting cat thing */}
     <div>
+      <img src={umsa_sit} className="mb-[3.5vw] -mt-[3vw]"/>
+    </div>
+
+    <div>
+      <img src={redstar}/>
+    </div>
+
+    {/* text right above image */}
+    <div className="w-full gap-2">
+      <p className="text-red-150 text-left text-sm gap-2">Non-Profit Malaysian</p>
+      <p className="text-red-150 text-left text-sm gap-2">Student-Run Club Affiliated With</p>
+      <p className="text-red-150 text-left text-sm gap-2">The University of Auckland New Zealand</p>
+    </div>
+    
+    {/* human group photo */}
+    <div className="w-full items-center mt-10">
+      <img src={humans} className="w-full"/>
+    </div>
+
+    {/* read more section */}
+    <div className="flex flex-col w-full min-h-100 bg-blue-50">
+      <div className="flex flex-row w-full">
+        <p className="text-left text-[5.82rem]">What is UMSA?</p>
+        <img src={redstar_right}/>
+        <img src={bluestar_left}/>
+        <img src={pinkstar_right}/>
+      </div>
+      <p className="text-right text-2xl">Lorem ipsum dolor sit amet, 
+      consectetur adipiscing elit. Vivamus fermentum, sapien</p>
+      <img src={umsa_cool} className="w-[40vh] self-center"/>
+
+      {/* im sorry this is so long 😭 */}
+      <NavLink to="/About" className="flex items-center gap-2w-fit self-center -mt-24
+       bg-accent2-primary rounded-3xl px-6 py-4 text-white whitespace-nowrap">
+      <img src={sun} className="max-w-[3vh] mr-1.5"/>Read More</NavLink>
+     
+     {/* the 3 white stars below read more */}
+      <div className="flex flex-row ml-10">
+        <img src={whitestar} className="max-h-20 mb-10"/>
+        <img src={whitestar} className="max-h-20 mb-10"/>
+        <img src={whitestar} className="max-h-20 mb-10"/>
+      </div>
+
+    </div>
+
+    {/* home page content -- removed it for now for miltestone 2 showcase */}
+    {/* <div className="min-h-150">
       <h1 className="text-4xl mt-7 font-bold text-blue-500">{content.heading}</h1>
       <div className="text-sm mt-3 text-blue-400">
         <p>{content.subtitle}</p>
       </div>
-    </div>
+    </div> */}
+
     </div>
   );
 }
