@@ -9,7 +9,7 @@ export default function Footer() {
     return (
         <>
         {/* Footer elements */}
-        <nav className='py-4 min-h-50 gap-4 flex flex-row justify-around bg-cover bg-center' 
+        <nav className='py-4 min-h-50 gap-4 flex flex-row justify-around bg-cover bg-top'
         style={{backgroundImage: `url(${footerWave})`}}>
 
             {/* Main footer content */}
