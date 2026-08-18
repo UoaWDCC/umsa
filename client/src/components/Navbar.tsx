@@ -31,7 +31,7 @@ export default function Navbar() {
           <img src={umsa} className="max-w-15"/>
         </Link>
         {/* Desktop nav */}
-        <div className="flex flex-1 items-center-safe justify-between gap-10 pl-[clamp(1rem,5vw,5rem)]">
+        <div className="flex flex-1 min-w-0 items-center-safe justify-between gap-[clamp(0.75rem,3vw,2.5rem)] pl-[clamp(1rem,5vw,5rem)]">
           <NavLink to="/" end className={linkClass}>
             Home
           </NavLink>
@@ -74,21 +74,21 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="hidden md:flex bg-blue-500 h-13.5">
-          <div className="flex w-full items-center justify-between px-6 text-white">
-            <img src={redstar1} className="h-13 w-auto"/>
-            <p className="flex items-center gap-3">
+      <div className="hidden md:flex bg-blue-500 h-13.5 overflow-hidden">
+          <div className="flex w-full items-center justify-between px-[clamp(0.5rem,2vw,1.5rem)] gap-2 text-white">
+            <img src={redstar1} className="h-[clamp(1.75rem,4vw,3.25rem)] w-auto shrink-0"/>
+            <p className="flex items-center gap-3 shrink-0">
               i <img src={mini_heart} className="w-4 h-4 inline-block" /> malaysia
             </p>
-            <img src={pinkstar} className="h-13 w-auto"/>
-            <p className="flex items-center gap-3">
+            <img src={pinkstar} className="h-[clamp(1.75rem,4vw,3.25rem)] w-auto shrink-0"/>
+            <p className="flex items-center gap-3 shrink-0">
               i <img src={mini_heart} className="w-4 h-4 inline-block" /> malaysia
             </p>
-            <img src={redstar2} className="h-13 w-auto"/>
-            <p className="flex items-center gap-3">
+            <img src={redstar2} className="h-[clamp(1.75rem,4vw,3.25rem)] w-auto shrink-0"/>
+            <p className="flex items-center gap-3 shrink-0">
               i <img src={mini_heart} className="w-4 h-4 inline-block" /> malaysia
             </p>
-            <img src={minipink} className="h-13 w-auto"/>
+            <img src={minipink} className="h-[clamp(1.75rem,4vw,3.25rem)] w-auto shrink-0"/>
           </div>
       </div>
 

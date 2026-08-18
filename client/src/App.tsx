@@ -1,5 +1,5 @@
-import { useHomeContent } from "./hooks/useHomeContent";
-import type { HomeContentValues } from "./schemas/content";
+// import { useHomeContent } from "./hooks/useHomeContent";
+// import type { HomeContentValues } from "./schemas/content";
 import umsa_sit from "./assets/icons/umsa_sit.png";
 import umsa_cool from "./assets/icons/umsa_cool.png";
 import sun from "./assets/icons/sun.svg"
@@ -8,18 +8,19 @@ import whitestar from "./assets/stars/white_star.svg"
 import redstar_right from "./assets/stars/redstar_right.svg"
 import bluestar_left from "./assets/stars/bluestar_left.svg"
 import pinkstar_right from "./assets/stars/pinkstar_right.svg"
+import events_photo from "./assets/events_photo.jpg"
 import humans from "./assets/humans.png"
 import { NavLink } from "react-router-dom";
 
 // exemplar CMS default data -> shown when data does not exist / API is down 
-const DEFAULTS: HomeContentValues = {
-  heading: "Welcome to Project UMSA!",
-  subtitle: "to get started, go to the project team section and have a look :)",
-};
+// const DEFAULTS: HomeContentValues = {
+//   heading: "Welcome to Project UMSA!",
+//   subtitle: "to get started, go to the project team section and have a look :)",
+// };
 
 function App() {
-  const { data } = useHomeContent();
-  const content = data ?? DEFAULTS;
+  // const { data } = useHomeContent();
+  // const content = data ?? DEFAULTS;
 
   return (
     <div className="flex flex-col items-center">
@@ -75,7 +76,21 @@ function App() {
         <img src={whitestar} className="max-h-20 mb-10"/>
         <img src={whitestar} className="max-h-20 mb-10"/>
       </div>
+    </div>
 
+    {/* our events section */}
+    <div className="flex flex-col w-full">
+      <div className="flex flex-wrap items-center gap-2 w-full">
+        <img src={redstar_right} className="max-h-17"/>
+        <img src={bluestar_left} className="max-h-22"/>
+        <img src={pinkstar_right} className="max-h-22"/>
+        <p className="text-right text-[clamp(2.25rem,7vw,5.82rem)] text-accent2-primary">Our Events</p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
+        <img src={events_photo} className="w-full h-64 object-cover rounded-md"/>
+        <img src={events_photo} className="w-full h-64 object-cover rounded-md"/>
+        <img src={events_photo} className="w-full h-64 object-cover rounded-md"/>
+      </div>
     </div>
 
     {/* home page content -- removed it for now for miltestone 2 showcase */}
