@@ -13,7 +13,10 @@ Location: `/Users/alanna/umsa-demo-local`
 ## Hard constraints
 
 - **Completely local.** No database, no Express server, no network calls at runtime.
-- **No git.** Never `git init` here. Never add a remote.
+- **Git**: this now lives at `git@github.com:alannasantoso/umsawebsite.git` (private,
+  `main`). It was originally kept git-free as a throwaway; that no longer applies.
+  Pushed over SSH as `alannasantoso` — there is no `gh` CLI and no credential helper
+  configured, so HTTPS pushes will prompt.
 - Run with the client only: `pnpm --filter client dev` → http://localhost:5173
 - Preview launch config lives in `/Users/alanna/.claude/launch.json` as `umsa-client`.
 
