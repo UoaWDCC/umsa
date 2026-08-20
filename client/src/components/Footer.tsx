@@ -3,7 +3,7 @@ import { HashLink } from 'react-router-hash-link'
 import { FaInstagram, FaFacebook } from "react-icons/fa";
 
 export default function Footer() {
-    const footerLinkClass = "text-left text-gray-400 hover:text-white cursor-pointer"
+    const footerLinkClass = "text-left text-red-400 hover:text-white cursor-pointer"
 
     return (
         <>

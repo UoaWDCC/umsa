@@ -1,0 +1,101 @@
+import { Link, NavLink } from 'react-router-dom';
+import { useState } from 'react';
+import UMSALogo from './UMSALogo.png';
+
+
+export default function NewNavbar() {
+
+  // checks to see if dropdown is open or not
+  const [isOpen, setIsOpen] = useState(false);
+
+  // activates if isOpen updates
+  const toggleDropdown = () => {
+    // reverses isOpen i.e. if isOpen = True, !isOpen = False
+    setIsOpen(!isOpen);
+    }
+const linkClass = () =>
+  "text-[20px] font-normal  [font-family:'Sekuya'] text-[#2727DC] transition-colors hover:text-blue-700";
+
+  return (
+<nav className="inline-flex pt-[14px] pr-[80px] pb-[15px] pl-[149px] justify-end items-center bg-[#F9F9FB]">
+    <div className="max-w-6xl mx-auto flex items-center justify-between">
+      
+    <div> 
+        <img src={UMSALogo} alt="UMSA Logo" className="w-[75px] h-[75px] aspect-square"/>
+      </div>
+      {/* shows on desktop screens (hidden at first) */}
+      <div className="flex items-center gap-[65px]">
+        <NavLink to="/" end className={linkClass }>Home</NavLink>
+        <NavLink to="/About" className={linkClass}> About </NavLink>
+        <NavLink to="/Events" className={linkClass}> Events</NavLink>
+        <NavLink to="/sign-up" className={linkClass}>Sign Up</NavLink>
+        <NavLink to="/Contact" className={linkClass}>Contact</NavLink>
+        <NavLink to= "/Team" className={linkClass}> Team </NavLink>
+        <NavLink to="/Sponsors" className={linkClass}> Sponser </NavLink>
+        <NavLink to="/Gallery" className={linkClass}>Gallery</NavLink>
+        <NavLink to= "/faq" className={linkClass}> FAQ </NavLink> 
+        <NavLink to="/project-team" className={linkClass}>Project Team</NavLink>
+      </div>
+
+      
+
+
+
+      {/* shows on small screens only (is hidden once screen size is big) */}
+      <div className="md:hidden">
+        <button onClick={toggleDropdown} className="block lg:hidden p-2 text-white">
+          {/* hamburger icon */}
+          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://w3.org">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+      </div>
+
+      {/* if isOpen is true it runs the code in the block */}
+      {isOpen && (
+        // drop down options
+        <div className="md:hidden absolute mt-2 left-0 w-full justify-items-start rounded-md bg-gray-900
+          ring-black ring-opacity-5 focus:outline-none">
+          <div>
+            <div className="flex flex-col px-8 py-10 gap-2 text-left whitespace-nowrap">
+              <NavLink to="/" end className={linkClass} onClick={() => setIsOpen(false)}>
+                Home
+              </NavLink>
+              <NavLink to="/About" className={linkClass} onClick={() => setIsOpen(false)}>
+                About
+              </NavLink>
+              <NavLink to="/Events" className={linkClass} onClick={() => setIsOpen(false)}>
+                Events
+              </NavLink>
+              <NavLink to="/sign-up" className={linkClass} onClick={() => setIsOpen(false)}>
+                Sign Up
+              </NavLink>
+               <NavLink to="/Contact" className={linkClass} onClick={() => setIsOpen(false)}>
+                Contact
+              </NavLink>
+                  <NavLink to="/Team" className={linkClass} onClick={() => setIsOpen(false)}>
+                Team
+              </NavLink>
+              <NavLink to="/Sponser" className={linkClass} onClick={() => setIsOpen(false)}>
+                Sponsers
+              </NavLink>
+              <NavLink to="/Gallery" className={linkClass} onClick={() => setIsOpen(false)}>
+                Gallery
+              </NavLink>
+              <NavLink to="/faq" className={linkClass} onClick={() => setIsOpen(false)}>
+                FAQ
+              </NavLink>
+              <NavLink to="/project-team" className={linkClass} onClick={() => setIsOpen(false)}>
+                Project Team
+              </NavLink>
+              
+            </div>
+          </div>
+          
+        </div>
+      )}
+
+  </nav>
+  );
+}
