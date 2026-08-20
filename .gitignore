@@ -1,0 +1,33 @@
+**/node_modules/
+**/dist/
+**/dist-ssr/
+**/build/
+**/out/
+**/coverage/
+**/*.tsbuildinfo
+**/*.log
+
+# Env files
+**/.env
+**/.env.local
+**/.env.*.local
+**/.env.development
+**/.env.development.local
+**/.env.test
+**/.env.test.local
+**/.env.production
+**/.env.production.local
+
+# pnpm
+.pnpm-store/
+pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.sw?
