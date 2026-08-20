@@ -1,0 +1,66 @@
+@theme {
+  /* Font tokens */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-heading: "Sekuya", system-ui, sans-serif;
+  --font-display: "Sekuya", system-ui, serif;
+
+  /* Color tokens (ask Andrew!!) */
+
+  --color-foreground-primary: var(--color-gray-800);
+  --color-foreground-secondary: var(--color-gray-600);
+  --color-foreground-tertiary: var(--color-gray-300);
+  --color-background-primary: var(--color-gray-20);
+  --color-background-secondary: var(--color-gray-50);
+  --color-background-tertiary: var(--color-gray-100);
+
+  /* Accents can be swapped out if needed */
+  --color-accent1-primary: var(--color-blue-500);
+  --color-accent1-secondary: var(--color-blue-300);
+  --color-accent2-primary: var(--color-red-300);
+  --color-accent2-secondary: var(--color-red-100);
+
+  /* And also... standard color primitives for UMSA Project (see: Figma) */
+
+  --color-gray-900: hsla(250, 15%, 10%, 1);
+  --color-gray-800: hsla(250, 15%, 20%, 1);
+  --color-gray-700: hsla(250, 10%, 30%, 1);
+  --color-gray-600: hsla(250, 10%, 40%, 1);
+  --color-gray-500: hsla(250, 8%, 50%, 1);
+  --color-gray-400: hsla(250, 10%, 60%, 1);
+  --color-gray-300: hsla(250, 10%, 70%, 1);
+  --color-gray-250: hsla(250, 12%, 75%, 1);
+  --color-gray-200: hsla(250, 12%, 80%, 1);
+  --color-gray-150: hsla(251, 14%, 85%, 1);
+  --color-gray-100: hsla(250, 15%, 90%, 1);
+  --color-gray-50: hsla(250, 15%, 95%, 1);
+  --color-gray-20: hsla(250, 15%, 98%, 1);
+  --color-gray-10: hsla(250, 10%, 99%, 1);
+
+  --color-red-900: hsla(0, 100%, 10%, 1);
+  --color-red-800: hsla(0, 100%, 20%, 1);
+  --color-red-700: hsla(0, 100%, 30%, 1);
+  --color-red-600: hsla(0, 100%, 40%, 1);
+  --color-red-500: hsla(0, 100%, 50%, 1);
+  --color-red-400: hsla(0, 100%, 60%, 1);
+  --color-red-350: hsla(0, 100%, 66%, 1);
+  --color-red-300: hsla(0, 100%, 66%, 1);
+  --color-red-250: hsla(0, 100%, 75%, 1);
+  --color-red-200: hsla(0, 100%, 80%, 1);
+  --color-red-150: hsla(0, 100%, 85%, 1);
+  --color-red-100: hsla(0, 100%, 90%, 1);
+  --color-red-50: hsla(0, 100%, 95%, 1);
+
+  --color-blue-900: hsla(240, 72%, 10%, 1);
+  --color-blue-800: hsla(240, 72%, 20%, 1);
+  --color-blue-700: hsla(240, 72%, 30%, 1);
+  --color-blue-600: hsla(240, 72%, 40%, 1);
+  --color-blue-500: hsla(240, 72%, 51%, 1);
+  --color-blue-400: hsla(240, 72%, 60%, 1);
+  --color-blue-350: hsla(240, 72%, 65%, 1);
+  --color-blue-300: hsla(240, 72%, 70%, 1);
+  --color-blue-250: hsla(240, 72%, 75%, 1);
+  --color-blue-200: hsla(240, 72%, 80%, 1);
+  --color-blue-150: hsla(240, 72%, 85%, 1);
+  --color-blue-100: hsla(240, 72%, 90%, 1);
+  --color-blue-50: hsla(240, 72%, 95%, 1);
+}
