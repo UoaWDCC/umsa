@@ -13,8 +13,9 @@ const router = Router();
 router.post("/signature", validate(uploadSignatureSchema), async (req: Request, res: Response) => {
     try {
         //  get folder from req
-        //  .body just grabs everything in the json that was sent by browser, in this case only folder
+        //  .body just grabs everything in the json file that was sent by browser, in this case only folder
         const { folder } = req.body;
+
         //  get all the info from .env and also make sure env vars aren't ""
         const { cloudName, apiKey, apiSecret } = cloudinaryConfig();
         if (!cloudName || !apiKey || !apiSecret) {
