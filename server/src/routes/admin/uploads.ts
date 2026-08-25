@@ -3,16 +3,14 @@ import { sendError } from "../../utils/apiError.js";
 import { validate } from "../../middleware/validate.js";
 import { uploadSignatureSchema } from "../../schemas/upload.js";
 import { cloudinaryConfig, signUpload } from "../../utils/cloudinary.js";
-import { requireAdmin } from "../../middleware/requireAdmin.js";
 
 //  create a new router instance
 const router = Router(); 
 
 //  create a rule saying if incoming request is a post method and its path matches /signature
-//  first run requireAdmin to check admin cookie to see if its the admin
-//  after run the validate function with uploadSignatureSchema
+//  first run the validate function with uploadSignatureSchema
 //  after run the async arrow function with request and response
-router.post("/signature", requireAdmin, validate(uploadSignatureSchema), async (req: Request, res: Response) => {
+router.post("/signature", validate(uploadSignatureSchema), async (req: Request, res: Response) => {
     try {
         //  get folder from req
         //  .body just grabs everything in the json that was sent by browser, in this case only folder
