@@ -1,4 +1,4 @@
-import { FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FiHeart, FiMessageCircle, FiSend } from 'react-icons/fi';
 
 type MemberInfo = {
   img: string;
@@ -14,17 +14,19 @@ type Props = {
 
 export default function MemberInfo({ stats }: Props) {
   return (
-    <div className="flex flex-col items-center gap-4">
-      <img className="w-64 h-64 rounded-4xl " src={stats.img} />
-      <p>{stats.fullName}</p>
-      <p className="text-lg font-bold">{stats.role}</p>
-      <div className="flex">
-        <a href={stats.instagram} target="_blank" rel="noopener noreferrer">
-          <FaInstagram className="text-3xl text-black-300 hover:text-white" />
-        </a>
-        <a href={stats.linkedin} target="_blank" rel="noopener noreferrer">
-          <FaLinkedin className="text-3xl text-black-500 hover:text-white" />
-        </a>
+    <div className="flex flex-col items-center rounded-[10px] bg-[#7B7BEA] p-3 shadow-md w-[254px] h-[317px]">
+      <div>
+        <img className="w-[200px] h-[181px] rounded-[10px] object-cover" src={stats.img} />
+      
+        <div className="mt-1 text-left w-full">
+          <div className="flex items-center space-x-1 text-white text-xl mb-1">
+            <FiHeart></FiHeart>
+            <FiMessageCircle></FiMessageCircle>
+            <FiSend></FiSend>
+          </div>
+          <p className="text-lg font-bold">{stats.role}</p>
+          <p>{stats.fullName}</p>
+        </div>
       </div>
     </div>
   );
