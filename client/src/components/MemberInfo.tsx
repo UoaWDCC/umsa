@@ -17,15 +17,14 @@ export default function MemberInfo({ stats }: Props) {
     <div className="flex flex-col items-center rounded-[10px] bg-[#7B7BEA] p-3 shadow-md w-[254px] h-[317px]">
       <div>
         <img className="w-[200px] h-[181px] rounded-[10px] object-cover" src={stats.img} />
-      
-        <div className="mt-1 text-left w-full">
-          <div className="flex items-center space-x-1 text-white text-xl mb-1">
+        <div className="text-left w-full">
+          <div className="mb-2 mt-3 flex items-center space-x-1 text-white text-xl">
             <FiHeart></FiHeart>
             <FiMessageCircle></FiMessageCircle>
             <FiSend></FiSend>
           </div>
-          <p className="text-lg font-bold">{stats.role}</p>
-          <p>{stats.fullName}</p>
+          <p className="mb-0 text-lg font-bold leading-none">{stats.role}</p>
+          <p className="m-0 leading-none">{stats.fullName}</p>
         </div>
       </div>
     </div>
