@@ -16,21 +16,65 @@ export default function About() {
 
       <img src={mascot} alt="UMSA mascot" className="w-32 mx-auto" />
 
-      <div className="relative max-w-[1140px] mx-auto">
-        <img src={squiggle} alt="" className="absolute inset-0 left-0 w-full -z-10" />
+      <div className="relative max-w-[1140px] mx-auto" style={{ minHeight: "988px" }}>
+        <img src={squiggle} alt="" className="absolute top-0 left-0 w-full -z-10" />
+        <p
+  className="capitalize text-center absolute z-10"
+  style={{
+    color: "#2727DC",
+    fontFamily: "'Archivo Black', sans-serif",
+    fontSize: "48px",
+    lineHeight: "50px",
+    letterSpacing: "4.8px",
+    bottom: "40px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    whiteSpace: "nowrap",
+  }}
+>
+  A home away from home.
+</p>
         <div className="relative z-10 pt-8">
           <h2 style={{ color: "#2727DC", fontFamily: "'Archivo Black', sans-serif", fontSize: "48px", lineHeight: "50px", letterSpacing: "4.8px" }} className="capitalize">
             Culture
           </h2>
-          <p>Connecting Malaysians across campus...</p>
+          <p
+            className="capitalize text-justify mx-auto"
+            style={{
+              width: "573px",
+              height: "180px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              color: "#2727DC",
+              fontSize: "16px",
+              lineHeight: "30px",
+              letterSpacing: "1.6px",
+            }}
+          >
+            Connecting Malaysians across campus, our club celebrates Malaysian culture, fosters friendships, and creates a welcoming space for all students.
+          </p>
         </div>
+
         <div className="relative z-10 mt-40">
           <h2 style={{ color: "#2727DC", fontFamily: "'Archivo Black', sans-serif", fontSize: "48px", lineHeight: "50px", letterSpacing: "4.8px" }} className="capitalize">
             Community
           </h2>
-          <p>From cultural events to social gatherings...</p>
+          <p
+            className="capitalize text-justify mx-auto"
+            style={{
+              width: "558px",
+              color: "#2727DC",
+              fontSize: "16px",
+              lineHeight: "30px",
+              letterSpacing: "1.6px",
+            }}
+          >
+            From cultural events to social gatherings, we bring a piece of home to your university life. Sign up below to join our club today!
+          </p>
         </div>
       </div>
     </div>
   );
 }
+{/* TODO: squiggle image not rendering in DOM — works standalone, cause unclear, revisit later */}
