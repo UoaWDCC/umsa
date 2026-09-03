@@ -24,7 +24,7 @@ export default function MemberInfo({ stats }: Props) {
             <FiSend></FiSend>
           </div>
           <p className="mb-0 leading-none font-display text-sm font-bold">{stats.role}</p>
-          <p className="mt-1 leading-none font-display text-xs text-white/80">{stats.fullName}</p>
+          <p className="mt-1 leading-none font-display text-xs text-white/80 break-all">{stats.fullName}</p>
         </div>
       </div>
     </div>
