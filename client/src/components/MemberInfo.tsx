@@ -14,7 +14,7 @@ type Props = {
 
 export default function MemberInfo({ stats }: Props) {
   return (
-    <div className="@container flex flex-col items-center rounded-[10px] bg-[#7B7BEA] p-3 shadow-md w-52 aspect-3/4">
+    <div className=" flex flex-col items-center rounded-[10px] bg-[#7B7BEA] p-3 shadow-[10px_10px_0px_0px_rgba(0,0,0,0.2)] w-52 aspect-3/4">
       <div>
         <img className="w-45 h-40 rounded-[10px] object-cover" src={stats.img} />
         <div className="text-left w-full">
