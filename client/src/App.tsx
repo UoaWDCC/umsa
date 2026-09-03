@@ -5,6 +5,8 @@ import umsa_cool from "./assets/icons/umsa_cool.png";
 import sun from "./assets/icons/sun.svg"
 import redstar from "./assets/stars/fullredstar.png"
 import whitestar from "./assets/stars/white_star.svg"
+import pinkstar from "./assets/stars/pinkstar1111.svg"
+import bluestar from "./assets/stars/bluestar1111.svg"
 import redstar_right from "./assets/stars/redstar_right.svg"
 import bluestar_left from "./assets/stars/bluestar_left.svg"
 import pinkstar_right from "./assets/stars/pinkstar_right.svg"
@@ -24,8 +26,9 @@ function App() {
   // const { data } = useHomeContent();
   // const content = data ?? DEFAULTS;
 
+
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center overflow-x-hidden">
     
     {/* big welcome to umsa + text */}
     <div className="w-full">
@@ -36,11 +39,15 @@ function App() {
 
     {/* umsa sitting cat thing */}
     <div>
-      <img src={umsa_sit} className="mb-[3.5vw] -mt-[3vw]"/>
+      <img src={umsa_sit} className="mb-[3.5vw] -mt-[3vw] w-[clamp(20rem,10vw,10rem)]"/>
     </div>
 
-    <div>
-      <img src={redstar}/>
+    {/* star decorations */}
+    <div className="relative w-full h-[clamp(4rem,10vw,40rem)]">
+      <img src={redstar} className="absolute left-[0%] bottom-50 h-[clamp(9rem,22vw,17rem)] w-auto"/>
+      <img src={pinkstar} className="absolute left-[6%] bottom-37 h-[clamp(4rem,10vw,10rem)] w-auto"/>
+      <img src={bluestar} className="absolute right-[10%] bottom-37 h-[clamp(4rem,10vw,10rem)] w-auto"/>
+      <img src={pinkstar} className="absolute right-[-4%] -top-full bottom-37 h-[clamp(6rem,30vw,20rem)] w-auto"/>
     </div>
 
     {/* text right above image */}
@@ -72,7 +79,7 @@ function App() {
        bg-accent2-primary rounded-3xl px-6 py-4 text-white whitespace-nowrap">
       <img src={sun} className="max-w-[3vh] mr-1.5"/>Read More</NavLink>
      
-     {/* the 3 white stars below read more */}
+
       <div className="flex flex-row ml-10">
         <img src={whitestar} className="max-h-20 mb-10"/>
         <img src={whitestar} className="max-h-20 mb-10"/>
@@ -90,7 +97,8 @@ function App() {
       </div>
 
       {/* NOTE: this aspect is just for showcase, it fits the iphone 3/4 aspect ratio but 
-      if its a photo taken on something else then it will break e.g. massive gaps between each photo */}
+      if its a photo taken on something else then it will break e.g. massive gaps between each photo
+                 i think */}
       <div className="flex flex-row justify-center items-center gap-20">
         <img src={left_arrow}/>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 max-w-324">

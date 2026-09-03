@@ -26,7 +26,7 @@ export default function Navbar() {
 
   return (
     <nav>
-      <div className="mx-8 hidden md:flex gap-4 items-center justify-between text-sm text-nowrap">
+      <div className="mx-8 hidden md:flex gap-4 items-center justify-between text-sm text-nowrap transform: translate-x-()">
         <Link to="/" className="tracking-tight">
           <img src={umsa} className="max-w-15"/>
         </Link>
@@ -76,7 +76,7 @@ export default function Navbar() {
 
       <div className="hidden md:flex bg-blue-500 h-13.5 overflow-hidden">
           <div className="flex w-full items-center justify-between px-[clamp(0.5rem,2vw,1.5rem)] gap-2 text-white">
-            <img src={redstar1} className="h-[clamp(1.75rem,4vw,3.25rem)] w-auto shrink-0"/>
+            <img src={redstar1} className="h-[clamp(1.5rem,2.6vw,2.25rem)] w-auto shrink-0 -ml-[clamp(1rem,2.5vw,2rem)]"/>
             <p className="flex items-center gap-3 shrink-0">
               i <img src={mini_heart} className="w-4 h-4 inline-block" /> malaysia
             </p>
