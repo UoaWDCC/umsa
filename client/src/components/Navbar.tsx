@@ -25,7 +25,7 @@ export default function Navbar() {
     }`;
 
   return (
-    <nav>
+    <nav className="relative z-50">
       <div className="mx-8 hidden md:flex gap-4 items-center justify-between text-sm text-nowrap transform: translate-x-()">
         <Link to="/" className="tracking-tight">
           <img src={umsa} className="max-w-15"/>
@@ -110,17 +110,17 @@ export default function Navbar() {
             >
               <motion.span
                 animate={isOpen ? { rotate: 45, y: 10 } : { rotate: 0, y: 0 }}
-                className="w-8 h-1 bg-white block"
+                className="w-8 h-1 bg-accent1-primary block"
               />
 
               <motion.span
                 animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-                className="w-8 h-1 bg-white block"
+                className="w-8 h-1 bg-accent1-primary block"
               />
 
               <motion.span
                 animate={isOpen ? { rotate: -45, y: -10 } : { rotate: 0, y: 0 }}
-                className="w-8 h-1 bg-white block"
+                className="w-8 h-1 bg-accent1-primary block"
               />
             </button>
           </motion.div>
@@ -129,8 +129,10 @@ export default function Navbar() {
       {/* Mobile dropdown */}
       {isOpen && (
 
-        <div className="md:hidden absolute mt-2 left-0 w-full rounded-md bg-gray-900 ring-black ring-opacity-5 focus:outline-none">
-          <div className="flex flex-col px-8 py-10 gap-2 text-left whitespace-nowrap">
+        <div className="md:hidden absolute z-50 pb-10 mt-2 left-0 w-full rounded-md bg-gray-50 
+        ring-black ring-opacity-5 focus:outline-none">
+          <div className="mx-8 flex flex-col py-10 gap-6 text-left whitespace-nowrap border-y
+           border-accent1-primary/40">
             <NavLink to="/" end className={linkClass} onClick={closeDropdown}>
               Home
             </NavLink>
