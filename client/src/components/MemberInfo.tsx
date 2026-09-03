@@ -23,8 +23,8 @@ export default function MemberInfo({ stats }: Props) {
             <FiMessageCircle></FiMessageCircle>
             <FiSend></FiSend>
           </div>
-          <p className="mb-0 text-lg font-bold leading-none">{stats.role}</p>
-          <p className="m-0 leading-none">{stats.fullName}</p>
+          <p className="mb-0 text-lg font-bold leading-none font-display text-[18px]">{stats.role}</p>
+          <p className="mt-1 leading-none font-display text-[14px]">{stats.fullName}</p>
         </div>
       </div>
     </div>
