@@ -42,18 +42,31 @@ const teamData: TeamData = {
     ],
     Marketing: [
       { fullName: "Person 3", role: "Marketing Officer", img: "...", linkedin: "", instagram: "" },
+      { fullName: "Person 3", role: "Marketing Officer", img: "...", linkedin: "", instagram: "" },
+      { fullName: "Person 3", role: "Marketing Officer", img: "...", linkedin: "", instagram: "" },
     ],
     Social: [
+      { fullName: "Person 4", role: "Social Officer", img: "...", linkedin: "", instagram: "" },
       { fullName: "Person 4", role: "Social Officer", img: "...", linkedin: "", instagram: "" },
     ],
     Cultural: [
       { fullName: "Person ", role: "Cultrual Officer", img: "...", linkedin: "", instagram: "" },
+      { fullName: "Person ", role: "Cultrual Officer", img: "...", linkedin: "", instagram: "" },
     ],
     PublicRelations: [
+      { fullName: "Person 4", role: "Public Relation Officer", img: "...", linkedin: "", instagram: "" },
       { fullName: "Person 4", role: "Public Relation Officer", img: "...", linkedin: "", instagram: "" },
     ],
   },
 };
+
+const DEPARTMENT_PATTERNS = [
+  { justify: "justify-start md:pl-16", offsetEven: "md:-mt-2", offsetOdd: "md:mt-6" },
+  { justify: "justify-end md:pr-16", offsetEven: "md:mt-4", offsetOdd: "md:-mt-4" },
+  { justify: "justify-center", offsetEven: "md:-mt-6", offsetOdd: "md:mt-2" },
+  { justify: "justify-start md:pl-8", offsetEven: "md:mt-2", offsetOdd: "md:-mt-6" },
+  { justify: "justify-end md:pr-24", offsetEven: "md:-mt-4", offsetOdd: "md:mt-4" },
+];
 
 export default function Team() {
   useEffect(() => {
@@ -69,9 +82,9 @@ export default function Team() {
         
         {/* President Section */}
         {teamData.presidents.length > 0 && (
-          <div className="flex flex-wrap justify-center items-center gap-x-12">
+          <div className="w-full flex flex-wrap justify-start md:pl-25 items-center gap-x-12">
             {teamData.presidents.map((member, idx) => (
-              <div key={member.fullName} className={idx % 2 !== 0 ? "md:mt-8" : "md:-mt-4"}>
+              <div key={member.fullName} className={idx % 2 !== 1 ? "md:mt-2" : "md:-mt-4"}>
                 <MemberInfo stats={member} />
               </div>
             ))}
@@ -80,9 +93,9 @@ export default function Team() {
 
         {/* Executive Section */}
         {teamData.executives.length > 0 && (
-          <div className="flex flex-wrap justify-center items-center gap-x-12">
+          <div className="w-full flex flex-wrap justify-center items-center gap-x-12">
             {teamData.executives.map((member, idx) => (
-              <div key={member.fullName} className={idx % 2 !== 0 ? "md:mt-8" : "md:-mt-4"}>
+              <div key={member.fullName} className={idx % 2 !== 1 ? "md:mt-2" : "md:-mt-4"}>
                 <MemberInfo stats={member} />
               </div>
             ))}
@@ -90,25 +103,33 @@ export default function Team() {
         )}
 
         {/*Officer Section */}
-        {DEPARTMENT_ORDER.map((deptName) => {
-          const members = teamData.officersByDepartment[deptName];
+        {DEPARTMENT_ORDER
+          .filter((deptName) => {
+            const members = teamData.officersByDepartment[deptName];
+            return members && members.length > 0;
+          })
+          .map((deptName, deptIdx) => {
+            const members = teamData.officersByDepartment[deptName]!;
 
-          // Skip rendering section if department has no members
-          if (!members || members.length === 0) return null;
+            // Gets spot pattern for active row index (0, 1, 2, 3...)
+            const pattern = DEPARTMENT_PATTERNS[deptIdx % DEPARTMENT_PATTERNS.length];
 
-          return (
-            <div key={deptName} className="w-full flex flex-col items-center">
-              {/* Department Row Container */}
-              <div className="flex flex-wrap justify-center items-center gap-x-12">
-                {members.map((member, idx) => (
-                  <div key={member.fullName} className={idx % 2 !== 0 ? "md:mt-8" : "md:-mt-4"}>
-                    <MemberInfo stats={member} />
-                  </div>
-                ))}
+            return (
+              <div key={deptName} className="w-full flex flex-col items-center">
+                <div className={`w-full flex flex-wrap items-center gap-x-12 ${pattern.justify}`}>
+                  {members.map((member, idx) => {
+                    const cardOffset = idx % 2 === 0 ? pattern.offsetEven : pattern.offsetOdd;
+
+                    return (
+                      <div key={member.fullName} className={cardOffset}>
+                        <MemberInfo stats={member} />
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
 
       </div>
     </>
