@@ -121,7 +121,7 @@ export default function Navbar() {
               <motion.span
                 animate={isOpen ? { rotate: -45, y: -10 } : { rotate: 0, y: 0 }}
                 className="w-8 h-1 bg-accent1-primary block"
-              />
+              /> 
             </button>
           </motion.div>
         </div>

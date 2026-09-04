@@ -2,6 +2,7 @@ import EventImage from "../assets/events_photo.jpg";
 
 export const events = [
     {
+        id: 1,
         eventName: "Jalinan Raya",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DWPgAxmky6q/?img_index=1",
@@ -12,6 +13,7 @@ export const events = [
         page: 1,
     },
     {
+        id: 2,
         eventName: "Bersatu Trials",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DV7o4eZmPHH/?img_index=1",
@@ -22,6 +24,7 @@ export const events = [
         page: 1,
     },
     {
+        id: 3,
         eventName: "Clash of UMSA",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
@@ -32,6 +35,7 @@ export const events = [
         page: 1,
     },
     {
+        id: 4,
         eventName: "Clash of UMSA",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
@@ -42,6 +46,7 @@ export const events = [
         page: 1,
     },
     {
+        id: 5,
         eventName: "Clash of UMSA 2026",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
@@ -52,6 +57,7 @@ export const events = [
         page: 1,
     },
     {
+        id: 6,
         eventName: "Clash of UMSA 2025",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
@@ -62,6 +68,7 @@ export const events = [
         page: 1,
     },
     {
+        id: 7,
         eventName: "Clash of UMSA 2024",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
@@ -72,6 +79,7 @@ export const events = [
         page: 1,
     },
     {
+        id: 8,
         eventName: "Clash of UMSA 2023",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
@@ -82,6 +90,7 @@ export const events = [
         page: 1,
     },
     {
+        id: 9,
         eventName: "Clash of UMSA 2022",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
@@ -92,6 +101,7 @@ export const events = [
         page: 1,
     },
     {
+        id: 10,
         eventName: "Clash of UMSA 21",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
@@ -102,6 +112,7 @@ export const events = [
         page: 1,
     },
     {
+        id: 11,
         eventName: "Clash of UMSA 20",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
@@ -112,6 +123,7 @@ export const events = [
         page: 1,
     },
     {
+        id: 12,
         eventName: "Clash of UMSA 19",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
@@ -122,6 +134,7 @@ export const events = [
         page: 1,
     },
     {
+        id: 13,
         eventName: "Clash of UMSA 18",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
@@ -132,6 +145,7 @@ export const events = [
         page: 1,
     },
     {
+        id: 14,
         eventName: "Clash of UMSA 17",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
@@ -142,6 +156,7 @@ export const events = [
         page: 1,
     },
     {
+        id: 15,
         eventName: "Clash of UMSA 16",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
@@ -152,6 +167,7 @@ export const events = [
         page: 1,
     },
     {
+        id: 16,
         eventName: "Clash of UMSA 15",
         eventImage: EventImage,
         eventLink: "https://www.instagram.com/p/DVrOmhNk_kI/",
