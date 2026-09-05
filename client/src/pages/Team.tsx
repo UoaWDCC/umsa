@@ -1,5 +1,11 @@
 import MemberInfo from "../components/MemberInfo";
 import { useEffect } from "react";
+import glassesSvg from "../assets/team/glasses.svg";
+import rPenSvg from "../assets/team/redpen.svg";
+import bPenSvg from "../assets/team/bluepen.svg"
+import noteSvg from "../assets/team/note.svg";
+import rEraserSvg from "../assets/team/rederaser.svg";
+import bEraserSvg from "../assets/team/blueeraser.svg";
 
 const DEPARTMENT_ORDER = [
   "Marketing",
@@ -80,6 +86,37 @@ export default function Team() {
       </div>
       <div className="flex flex-col items-center gap-y-16 max-w-6xl mx-auto">
         
+        <img
+          src={glassesSvg}
+          alt=""
+          className="hidden lg:block absolute top-60 right-4 z-0 pointer-events-none"
+        />
+        <img
+          src={rPenSvg}
+          alt=""
+          className="hidden lg:block absolute top-160 right-4 z-0 pointer-events-none"
+        />
+        <img
+          src={bPenSvg}
+          alt=""
+          className="hidden lg:block absolute top-190 right-18 z-0 pointer-events-none"
+        />
+        <img
+          src={noteSvg}
+          alt=""
+          className="hidden lg:block absolute top-320 left-0 z-0 pointer-events-none"
+        />
+        <img
+          src={rEraserSvg}
+          alt=""
+          className="hidden lg:block absolute top-320 right-18 z-0 pointer-events-none"
+        />
+        <img
+          src={bEraserSvg}
+          alt=""
+          className="hidden lg:block absolute top-320 right-18 z-0 pointer-events-none"
+        />
+
         {/* President Section */}
         {teamData.presidents.length > 0 && (
           <div className="w-full flex flex-wrap justify-start md:pl-25 items-center gap-x-12">
