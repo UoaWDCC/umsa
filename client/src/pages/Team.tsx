@@ -67,11 +67,11 @@ const teamData: TeamData = {
 };
 
 const DEPARTMENT_PATTERNS = [
-  { justify: "justify-start md:pl-16", offsetEven: "md:-mt-2", offsetOdd: "md:mt-6" },
-  { justify: "justify-end md:pr-16", offsetEven: "md:mt-4", offsetOdd: "md:-mt-4" },
-  { justify: "justify-center", offsetEven: "md:-mt-6", offsetOdd: "md:mt-2" },
-  { justify: "justify-start md:pl-8", offsetEven: "md:mt-2", offsetOdd: "md:-mt-6" },
-  { justify: "justify-end md:pr-24", offsetEven: "md:-mt-4", offsetOdd: "md:mt-4" },
+  { justify: "justify-start md:pl-30", offsetEven: "md:-mt-2", offsetOdd: "md:mt-6" },
+  { justify: "justify-end md:pr-50", offsetEven: "md:mt-4", offsetOdd: "md:-mt-4" },
+  { justify: "justify-end md:pr-20", offsetEven: "md:-mt-6", offsetOdd: "md:mt-2" },
+  { justify: "justify-start md:pl-70", offsetEven: "md:mt-2", offsetOdd: "md:-mt-6" },
+  { justify: "justify-end md:pr-70", offsetEven: "md:-mt-4", offsetOdd: "md:mt-4" },
 ];
 
 export default function Team() {
@@ -109,12 +109,12 @@ export default function Team() {
         <img
           src={rEraserSvg}
           alt=""
-          className="hidden lg:block absolute top-320 right-18 z-0 pointer-events-none"
+          className="hidden lg:block absolute top-550 right-18 z-0 pointer-events-none"
         />
         <img
           src={bEraserSvg}
           alt=""
-          className="hidden lg:block absolute top-320 right-18 z-0 pointer-events-none"
+          className="hidden lg:block absolute top-530 right-50 z-0 pointer-events-none"
         />
 
         {/* President Section */}
@@ -130,7 +130,7 @@ export default function Team() {
 
         {/* Executive Section */}
         {teamData.executives.length > 0 && (
-          <div className="w-full flex flex-wrap justify-center items-center gap-x-12">
+          <div className="w-full flex flex-wrap justify-start md:pl-60 items-center gap-x-12">
             {teamData.executives.map((member, idx) => (
               <div key={member.fullName} className={idx % 2 !== 1 ? "md:mt-2" : "md:-mt-4"}>
                 <MemberInfo stats={member} />
