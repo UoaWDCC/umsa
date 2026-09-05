@@ -80,6 +80,16 @@ const DEPARTMENT_PATTERNS = [
   { justify: "justify-end md:pr-70", offsetEven: "md:-mt-4 -rotate-4", offsetOdd: "md:mt-4 rotate-6" },
 ];
 
+export const DEPARTMENT_BG_COLORS: Record<typeof DEPARTMENT_ORDER[number], string> = {
+  presidents: "bg-[var(--color-accent1-secondary)]",
+  executives: "bg-blue-400",
+  marketing: "bg-red-350",
+  publicRelations: "bg-red-600",
+  social: "bg-gray-500",
+  cultural: "bg-gray-700",
+  sports: "bg-[var(--color-accent1-primary)]",
+};
+
 export default function Team() {
   useEffect(() => {
     document.title = "Meet the Team | UMSA";
@@ -102,6 +112,7 @@ export default function Team() {
 
             // Gets spot pattern for active row index (0, 1, 2, 3...)
             const pattern = DEPARTMENT_PATTERNS[deptIdx % DEPARTMENT_PATTERNS.length];
+            const bgColor = DEPARTMENT_BG_COLORS[deptName] || "bg-[var(--color-accent1-primary)]";
 
             return (
               <div key={deptName} className="w-full flex flex-col items-center">
@@ -111,7 +122,7 @@ export default function Team() {
 
                     return (
                       <div key={member.fullName} className={cardOffset}>
-                        <MemberInfo stats={member} />
+                        <MemberInfo stats={member} bgColor={bgColor}/>
                       </div>
                     );
                   })}
