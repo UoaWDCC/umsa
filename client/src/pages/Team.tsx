@@ -8,11 +8,13 @@ import rEraserSvg from "../assets/team/rederaser.svg";
 import bEraserSvg from "../assets/team/blueeraser.svg";
 
 const DEPARTMENT_ORDER = [
-  "Marketing",
-  "PublicRelations",
-  "Social",
-  "Cultural",
-  "Sports",
+  "presidents",
+  "executives",
+  "marketing",
+  "publicRelations",
+  "social",
+  "cultural",
+  "sports",
 ] as const;
 
 export type DepartmentName = (typeof DEPARTMENT_ORDER)[number];
@@ -29,7 +31,11 @@ type Member = {
 type TeamData = {
   presidents: Member[];
   executives: Member[];
-  officersByDepartment: Partial<Record<DepartmentName, Member[]>>;
+  sports: Member[];
+  marketing: Member[];
+  social: Member[];
+  cultural: Member[];
+  publicRelations: Member[];
 };
 
 const teamData: TeamData = {
@@ -41,32 +47,32 @@ const teamData: TeamData = {
     { fullName: "Person 1", role: "Secretary", img: "...", linkedin: "", instagram: "" },
     { fullName: "Person 2", role: "Treasurer", img: "...", linkedin: "", instagram: "" },
   ],
-  officersByDepartment: {
-    Sports: [
-      { fullName: "PERSON 5", role: "Sports Officer", img: "...", linkedin: "", instagram: "" },
-      { fullName: "PERSON 6", role: "Sports Officer", img: "...", linkedin: "", instagram: "" },
-    ],
-    Marketing: [
-      { fullName: "Person 3", role: "Marketing Officer", img: "...", linkedin: "", instagram: "" },
-      { fullName: "Person 3", role: "Marketing Officer", img: "...", linkedin: "", instagram: "" },
-      { fullName: "Person 3", role: "Marketing Officer", img: "...", linkedin: "", instagram: "" },
-    ],
-    Social: [
-      { fullName: "Person 4", role: "Social Officer", img: "...", linkedin: "", instagram: "" },
-      { fullName: "Person 4", role: "Social Officer", img: "...", linkedin: "", instagram: "" },
-    ],
-    Cultural: [
-      { fullName: "Person ", role: "Cultrual Officer", img: "...", linkedin: "", instagram: "" },
-      { fullName: "Person ", role: "Cultrual Officer", img: "...", linkedin: "", instagram: "" },
-    ],
-    PublicRelations: [
-      { fullName: "Person 4", role: "Public Relation Officer", img: "...", linkedin: "", instagram: "" },
-      { fullName: "Person 4", role: "Public Relation Officer", img: "...", linkedin: "", instagram: "" },
-    ],
-  },
+  sports: [
+    { fullName: "PERSON 5", role: "Sports Officer", img: "...", linkedin: "", instagram: "" },
+    { fullName: "PERSON 6", role: "Sports Officer", img: "...", linkedin: "", instagram: "" },
+  ],
+  marketing: [
+    { fullName: "Person 3", role: "Marketing Officer", img: "...", linkedin: "", instagram: "" },
+    { fullName: "Person 3", role: "Marketing Officer", img: "...", linkedin: "", instagram: "" },
+    { fullName: "Person 3", role: "Marketing Officer", img: "...", linkedin: "", instagram: "" },
+  ],
+  social: [
+    { fullName: "Person 4", role: "Social Officer", img: "...", linkedin: "", instagram: "" },
+    { fullName: "Person 4", role: "Social Officer", img: "...", linkedin: "", instagram: "" },
+  ],
+  cultural: [
+    { fullName: "Person ", role: "Cultrual Officer", img: "...", linkedin: "", instagram: "" },
+    { fullName: "Person ", role: "Cultrual Officer", img: "...", linkedin: "", instagram: "" },
+  ],
+  publicRelations: [
+    { fullName: "Person 4", role: "Public Relation Officer", img: "...", linkedin: "", instagram: "" },
+    { fullName: "Person 4", role: "Public Relation Officer", img: "...", linkedin: "", instagram: "" },
+  ],
 };
 
 const DEPARTMENT_PATTERNS = [
+  { justify: "justify-start md:pl-25", offsetEven: "md:-mt-2", offsetOdd: "md:mt-4"},
+  { justify: "justify-start md:pl-60", offsetEven: "md:-mt-2", offsetOdd: "md:mt-4"},
   { justify: "justify-start md:pl-30", offsetEven: "md:-mt-2", offsetOdd: "md:mt-6" },
   { justify: "justify-end md:pr-50", offsetEven: "md:mt-4", offsetOdd: "md:-mt-4" },
   { justify: "justify-end md:pr-20", offsetEven: "md:-mt-6", offsetOdd: "md:mt-2" },
@@ -85,7 +91,35 @@ export default function Team() {
         <h1 className="text-8xl font-heading font-bold mb-8 text-accent1-primary">Meet the <span className="text-accent2-primary">Team</span></h1>
       </div>
       <div className="flex flex-col items-center gap-y-16 max-w-6xl mx-auto">
-        
+
+        {DEPARTMENT_ORDER
+          .filter((deptName) => {
+            const members = teamData[deptName];
+            return members && members.length > 0;
+          })
+          .map((deptName, deptIdx) => {
+            const members = teamData[deptName]!;
+
+            // Gets spot pattern for active row index (0, 1, 2, 3...)
+            const pattern = DEPARTMENT_PATTERNS[deptIdx % DEPARTMENT_PATTERNS.length];
+
+            return (
+              <div key={deptName} className="w-full flex flex-col items-center">
+                <div className={`w-full flex flex-wrap items-center gap-x-12 ${pattern.justify}`}>
+                  {members.map((member, idx) => {
+                    const cardOffset = idx % 2 === 0 ? pattern.offsetEven : pattern.offsetOdd;
+
+                    return (
+                      <div key={member.fullName} className={cardOffset}>
+                        <MemberInfo stats={member} />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+
         <img
           src={glassesSvg}
           alt=""
@@ -116,58 +150,6 @@ export default function Team() {
           alt=""
           className="hidden lg:block absolute top-530 right-50 z-0 pointer-events-none"
         />
-
-        {/* President Section */}
-        {teamData.presidents.length > 0 && (
-          <div className="w-full flex flex-wrap justify-start md:pl-25 items-center gap-x-12">
-            {teamData.presidents.map((member, idx) => (
-              <div key={member.fullName} className={idx % 2 !== 1 ? "md:mt-2" : "md:-mt-4"}>
-                <MemberInfo stats={member} />
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Executive Section */}
-        {teamData.executives.length > 0 && (
-          <div className="w-full flex flex-wrap justify-start md:pl-60 items-center gap-x-12">
-            {teamData.executives.map((member, idx) => (
-              <div key={member.fullName} className={idx % 2 !== 1 ? "md:mt-2" : "md:-mt-4"}>
-                <MemberInfo stats={member} />
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/*Officer Section */}
-        {DEPARTMENT_ORDER
-          .filter((deptName) => {
-            const members = teamData.officersByDepartment[deptName];
-            return members && members.length > 0;
-          })
-          .map((deptName, deptIdx) => {
-            const members = teamData.officersByDepartment[deptName]!;
-
-            // Gets spot pattern for active row index (0, 1, 2, 3...)
-            const pattern = DEPARTMENT_PATTERNS[deptIdx % DEPARTMENT_PATTERNS.length];
-
-            return (
-              <div key={deptName} className="w-full flex flex-col items-center">
-                <div className={`w-full flex flex-wrap items-center gap-x-12 ${pattern.justify}`}>
-                  {members.map((member, idx) => {
-                    const cardOffset = idx % 2 === 0 ? pattern.offsetEven : pattern.offsetOdd;
-
-                    return (
-                      <div key={member.fullName} className={cardOffset}>
-                        <MemberInfo stats={member} />
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
-
       </div>
     </>
   );
