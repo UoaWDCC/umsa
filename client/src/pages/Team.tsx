@@ -71,13 +71,13 @@ const teamData: TeamData = {
 };
 
 const DEPARTMENT_PATTERNS = [
-  { justify: "justify-start md:pl-25", offsetEven: "md:-mt-2", offsetOdd: "md:mt-4"},
-  { justify: "justify-start md:pl-60", offsetEven: "md:-mt-2", offsetOdd: "md:mt-4"},
-  { justify: "justify-start md:pl-30", offsetEven: "md:-mt-2", offsetOdd: "md:mt-6" },
-  { justify: "justify-end md:pr-50", offsetEven: "md:mt-4", offsetOdd: "md:-mt-4" },
-  { justify: "justify-end md:pr-20", offsetEven: "md:-mt-6", offsetOdd: "md:mt-2" },
-  { justify: "justify-start md:pl-70", offsetEven: "md:mt-2", offsetOdd: "md:-mt-6" },
-  { justify: "justify-end md:pr-70", offsetEven: "md:-mt-4", offsetOdd: "md:mt-4" },
+  { justify: "justify-start md:pl-25", offsetEven: "md:-mt-2 -rotate-4", offsetOdd: "md:mt-4 rotate-4"},
+  { justify: "justify-start md:pl-60", offsetEven: "md:-mt-2 -rotate-4", offsetOdd: "md:mt-4 rotate-4"},
+  { justify: "justify-start md:pl-30", offsetEven: "md:-mt-2 -rotate-6", offsetOdd: "md:mt-6 rotate-4" },
+  { justify: "justify-end md:pr-50", offsetEven: "md:mt-4 -rotate-2", offsetOdd: "md:-mt-4 rotate-1" },
+  { justify: "justify-end md:pr-20", offsetEven: "md:-mt-6 -rotate-4", offsetOdd: "md:mt-2 rotate-4" },
+  { justify: "justify-start md:pl-70", offsetEven: "md:mt-2 -rotate-4", offsetOdd: "md:-mt-6 rotate-6" },
+  { justify: "justify-end md:pr-70", offsetEven: "md:-mt-4 -rotate-4", offsetOdd: "md:mt-4 rotate-6" },
 ];
 
 export default function Team() {
