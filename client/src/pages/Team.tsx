@@ -7,7 +7,7 @@ import noteSvg from "../assets/team/note.svg";
 import rEraserSvg from "../assets/team/rederaser.svg";
 import bEraserSvg from "../assets/team/blueeraser.svg";
 
-const DEPARTMENT_ORDER = [
+const COMMITTEE_ORDER = [
   "presidents",
   "executives",
   "marketing",
@@ -17,7 +17,7 @@ const DEPARTMENT_ORDER = [
   "sports",
 ] as const;
 
-export type DepartmentName = (typeof DEPARTMENT_ORDER)[number];
+export type CommitteeName = (typeof COMMITTEE_ORDER)[number];
 
 type Member = {
   // _id: string;
@@ -26,51 +26,41 @@ type Member = {
   img: string;
   linkedin: string;
   instagram: string;
+  committee: CommitteeName;
 };
 
-type TeamData = {
-  presidents: Member[];
-  executives: Member[];
-  sports: Member[];
-  marketing: Member[];
-  social: Member[];
-  cultural: Member[];
-  publicRelations: Member[];
-};
+const teamData: Member[] = [
+  // Presidents
+  { fullName: "Chester Ow Yong", role: "President", img: "...", linkedin: "", instagram: "", committee: "presidents" },
+  { fullName: "Joie Ting", role: "Vice President", img: "...", linkedin: "", instagram: "", committee: "presidents" },
 
-const teamData: TeamData = {
-  presidents: [
-    { fullName: "Chester Ow Yong", role: "President", img: "...", linkedin: "", instagram: "" },
-    { fullName: "Joie Ting", role: "Vice President", img: "...", linkedin: "", instagram: "" },
-  ],
-  executives: [
-    { fullName: "Person 1", role: "Secretary", img: "...", linkedin: "", instagram: "" },
-    { fullName: "Person 2", role: "Treasurer", img: "...", linkedin: "", instagram: "" },
-  ],
-  sports: [
-    { fullName: "PERSON 5", role: "Sports Officer", img: "...", linkedin: "", instagram: "" },
-    { fullName: "PERSON 6", role: "Sports Officer", img: "...", linkedin: "", instagram: "" },
-  ],
-  marketing: [
-    { fullName: "Person 3", role: "Marketing Officer", img: "...", linkedin: "", instagram: "" },
-    { fullName: "Person 3", role: "Marketing Officer", img: "...", linkedin: "", instagram: "" },
-    { fullName: "Person 3", role: "Marketing Officer", img: "...", linkedin: "", instagram: "" },
-  ],
-  social: [
-    { fullName: "Person 4", role: "Social Officer", img: "...", linkedin: "", instagram: "" },
-    { fullName: "Person 4", role: "Social Officer", img: "...", linkedin: "", instagram: "" },
-  ],
-  cultural: [
-    { fullName: "Person ", role: "Cultrual Officer", img: "...", linkedin: "", instagram: "" },
-    { fullName: "Person ", role: "Cultrual Officer", img: "...", linkedin: "", instagram: "" },
-  ],
-  publicRelations: [
-    { fullName: "Person 4", role: "Public Relation Officer", img: "...", linkedin: "", instagram: "" },
-    { fullName: "Person 4", role: "Public Relation Officer", img: "...", linkedin: "", instagram: "" },
-  ],
-};
+  // Executives
+  { fullName: "Person 1", role: "Secretary", img: "...", linkedin: "", instagram: "", committee: "executives" },
+  { fullName: "Person 2", role: "Treasurer", img: "...", linkedin: "", instagram: "", committee: "executives" },
 
-const DEPARTMENT_PATTERNS = [
+  // Marketing
+  { fullName: "Person 3", role: "Marketing Officer", img: "...", linkedin: "", instagram: "", committee: "marketing" },
+  { fullName: "Person 3", role: "Marketing Officer", img: "...", linkedin: "", instagram: "", committee: "marketing" },
+  { fullName: "Person 3", role: "Marketing Officer", img: "...", linkedin: "", instagram: "", committee: "marketing" },
+
+  // Public Relations
+  { fullName: "Person 4", role: "Public Relations Officer", img: "...", linkedin: "", instagram: "", committee: "publicRelations" },
+  { fullName: "Person 4", role: "Public Relations Officer", img: "...", linkedin: "", instagram: "", committee: "publicRelations" },
+
+  // Social
+  { fullName: "Person 4", role: "Social Officer", img: "...", linkedin: "", instagram: "", committee: "social" },
+  { fullName: "Person 4", role: "Social Officer", img: "...", linkedin: "", instagram: "", committee: "social" },
+
+  // Cultural
+  { fullName: "Person 7", role: "Cultural Officer", img: "...", linkedin: "", instagram: "", committee: "cultural" },
+  { fullName: "Person 8", role: "Cultural Officer", img: "...", linkedin: "", instagram: "", committee: "cultural" },
+
+  // Sports
+  { fullName: "Person 5", role: "Sports Officer", img: "...", linkedin: "", instagram: "", committee: "sports" },
+  { fullName: "Person 6", role: "Sports Officer", img: "...", linkedin: "", instagram: "", committee: "sports" },
+];
+
+const COMMITTEE_PATTERNS = [
   { justify: "justify-start md:pl-25", offsetEven: "md:-mt-2 -rotate-4", offsetOdd: "md:mt-4 rotate-4"},
   { justify: "justify-start md:pl-60", offsetEven: "md:-mt-2 -rotate-4", offsetOdd: "md:mt-4 rotate-4"},
   { justify: "justify-start md:pl-30", offsetEven: "md:-mt-2 -rotate-6", offsetOdd: "md:mt-6 rotate-4" },
@@ -80,7 +70,7 @@ const DEPARTMENT_PATTERNS = [
   { justify: "justify-end md:pr-70", offsetEven: "md:-mt-4 -rotate-4", offsetOdd: "md:mt-4 rotate-6" },
 ];
 
-export const DEPARTMENT_BG_COLORS: Record<typeof DEPARTMENT_ORDER[number], string> = {
+export const COMMITTEE_BG_COLORS: Record<typeof COMMITTEE_ORDER[number], string> = {
   presidents: "bg-[var(--color-accent1-secondary)]",
   executives: "bg-blue-400",
   marketing: "bg-red-350",
@@ -102,34 +92,53 @@ export default function Team() {
       </div>
       <div className="flex flex-col items-center gap-y-16 max-w-6xl mx-auto">
 
-        {DEPARTMENT_ORDER
-          .filter((deptName) => {
-            const members = teamData[deptName];
-            return members && members.length > 0;
-          })
-          .map((deptName, deptIdx) => {
-            const members = teamData[deptName]!;
+        {COMMITTEE_ORDER
+  .filter((committeeName) => {
+    const members = teamData.filter(
+      (member) => member.committee === committeeName
+    );
 
-            // Gets spot pattern for active row index (0, 1, 2, 3...)
-            const pattern = DEPARTMENT_PATTERNS[deptIdx % DEPARTMENT_PATTERNS.length];
-            const bgColor = DEPARTMENT_BG_COLORS[deptName] || "bg-[var(--color-accent1-primary)]";
+    return members.length > 0;
+  })
+  .map((committeeName, committeeIdx) => {
+    const members = teamData.filter(
+      (member) => member.committee === committeeName
+    );
 
-            return (
-              <div key={deptName} className="w-full flex flex-col items-center">
-                <div className={`w-full flex flex-wrap items-center gap-x-12 ${pattern.justify}`}>
-                  {members.map((member, idx) => {
-                    const cardOffset = idx % 2 === 0 ? pattern.offsetEven : pattern.offsetOdd;
+    // Gets spot pattern for active row index (0, 1, 2, 3...)
+    const pattern =
+      COMMITTEE_PATTERNS[
+        committeeIdx % COMMITTEE_PATTERNS.length
+      ];
 
-                    return (
-                      <div key={member.fullName} className={cardOffset}>
-                        <MemberInfo stats={member} bgColor={bgColor}/>
-                      </div>
-                    );
-                  })}
-                </div>
+    const bgColor =
+      COMMITTEE_BG_COLORS[committeeName] ||
+      "bg-[var(--color-accent1-primary)]";
+
+    return (
+            <div
+              key={committeeName}
+              className="w-full flex flex-col items-center"
+            >
+              <div className={`w-full flex flex-wrap items-center gap-x-12 ${pattern.justify}`}>
+                {members.map((member, idx) => {
+                  const cardOffset = idx % 2 === 0 ? pattern.offsetEven : pattern.offsetOdd;
+                  return (
+                    <div
+                      key={member.fullName}
+                      className={cardOffset}
+                    >
+                      <MemberInfo
+                        stats={member}
+                        bgColor={bgColor}
+                      />
+                    </div>
+                  );
+                })}
               </div>
-            );
-          })}
+            </div>
+          );
+        })}
 
         <img
           src={glassesSvg}
