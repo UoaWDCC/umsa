@@ -3,8 +3,8 @@
 ## 
 
 **adding new admin**
--> fills out a form 
--> sends email to you to create account
+-> fills out a form ✅
+-> sends email to you to create account 
 -> email has link with unique token (token valid for x amount of time)
 -> sign-up page (email address alr filled out)
 -> user fills out the password

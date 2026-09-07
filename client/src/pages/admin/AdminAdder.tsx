@@ -25,10 +25,11 @@ const createEmail = async (formData: EmailFormData) => {
 export default function AdminAdder() {
   const queryClient = useQueryClient();
 
+  // hard coded link and subject for now
   const [formValues, setFormValues] = useState<EmailFormData>({
     to: '',
-    subject: '',
-    message: '',
+    subject: 'UMSA Admin Adder Request',
+    message: 'https://www.linkedin.com/in/terrence-wu-5657a0376/',
   });
 
   const mutation = useMutation({
@@ -72,32 +73,10 @@ export default function AdminAdder() {
           />
         </div>
 
-        <div>
-          <input
-            type="text"
-            value={formValues.subject}
-            placeholder="Subject:"
-            onChange={handleChange}
-            name="subject"
-            className="bg-gray-500 pl-5 pr-15 py-2 rounded-xl"
-          />
-        </div>
-
-        <div>
-          <textarea
-            value={formValues.message}
-            placeholder="Message:"
-            onChange={handleChange}
-            name="message"
-            className="bg-gray-500 pl-5 pr-15 py-2 rounded-xl"
-            required
-          />
-        </div>
-
         <button
           type="submit"
           disabled={mutation.isPending}
-          className="bg-accent1-primary p-3 px-10 rounded-2xl"
+          className="bg-accent1-primary p-3 px-10 mt-5 rounded-2xl"
         >
           {mutation.isPending ? 'Sending...' : 'Submit'}
         </button>
