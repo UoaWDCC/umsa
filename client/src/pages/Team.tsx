@@ -97,14 +97,18 @@ export default function Team() {
 
   return (
     <>
+      
+      <div className="md:text-left text-center mb-20">
+          <h1 className="text-[clamp(2.9375rem,8vw,6rem)] font-heading font-bold mb-8 text-accent1-primary">Meet the <span className="text-accent2-primary">Team</span></h1>
+      </div>
       {/* MOBILE VIEW */}
-      <div className="text-left">
-          <h1 className="text-8xl font-heading font-bold mb-8 text-accent1-primary">Meet the <span className="text-accent2-primary">Team</span></h1>
-        </div>
-        <div className="md:hidden overflow-x-auto -mx-4 px-4 pt-2 scale-85">
-        <div className={`w-full flex flex-wrap items-center gap-x-5`}>
+      <div className="md:hidden overflow-x-hidden w-full py-4">
+        <div className="w-full flex flex-wrap items-center justify-center gap-[4cqw] sm:gap-6">
           {allMembers.map((member, idx) => (
-            <div key={member.fullName + member.role + idx} className={`mb-5 ${["-rotate-2", "rotate-3", "-rotate-4", "rotate-2"][idx % 4]}`}>
+            <div 
+              key={member.fullName + member.role + idx} 
+              className={`mb-5 transition-transform ${["-rotate-2", "rotate-3", "-rotate-4", "rotate-2"][idx % 4]}`}
+            >
               <MemberInfo stats={member} bgColor={member.bgColor} />
             </div>
           ))}
