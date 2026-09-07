@@ -66,8 +66,8 @@ const COMMITTEE_PATTERNS = [
   { justify: "justify-start md:pl-30", offsetEven: "md:-mt-2 -rotate-6", offsetOdd: "md:mt-6 rotate-4" },
   { justify: "justify-end md:pr-50", offsetEven: "md:mt-4 -rotate-2", offsetOdd: "md:-mt-4 rotate-1" },
   { justify: "justify-end md:pr-20", offsetEven: "md:-mt-6 -rotate-4", offsetOdd: "md:mt-2 rotate-4" },
-  { justify: "justify-start md:pl-70", offsetEven: "md:mt-2 -rotate-4", offsetOdd: "md:-mt-6 rotate-6" },
-  { justify: "justify-end md:pr-70", offsetEven: "md:-mt-4 -rotate-4", offsetOdd: "md:mt-4 rotate-6" },
+  { justify: "justify-end md:pr-100", offsetEven: "md:mt-2 -rotate-4", offsetOdd: "md:-mt-6 rotate-6" },
+  { justify: "justify-start md:pl-100", offsetEven: "md:-mt-4 -rotate-4", offsetOdd: "md:mt-4 rotate-6" },
 ];
 
 export const COMMITTEE_BG_COLORS: Record<typeof COMMITTEE_ORDER[number], string> = {
@@ -87,6 +87,38 @@ export default function Team() {
 
   return (
     <>
+    <img
+          src={glassesSvg}
+          alt=""
+          className="hidden md:block absolute top-60 right-4 z-0 pointer-events-none"
+        />
+        <img
+          src={rPenSvg}
+          alt=""
+          className="hidden md:block absolute top-160 right-4 z-0 pointer-events-none"
+        />
+        <img
+          src={bPenSvg}
+          alt=""
+          className="hidden md:block absolute top-190 right-18 z-0 pointer-events-none"
+        />
+        <img
+          src={noteSvg}
+          alt=""
+          className="hidden md:block absolute top-320 left-0 z-0 pointer-events-none"
+        />
+        <img
+          src={rEraserSvg}
+          alt=""
+          className="hidden md:block absolute top-550 right-18 z-0 pointer-events-none"
+        />
+        <img
+          src={bEraserSvg}
+          alt=""
+          className="hidden md:block absolute top-530 right-50 z-0 pointer-events-none"
+        />
+        
+
       <div className="text-left">
         <h1 className="text-8xl font-heading font-bold mb-8 text-accent1-primary">Meet the <span className="text-accent2-primary">Team</span></h1>
       </div>
@@ -140,37 +172,19 @@ export default function Team() {
           );
         })}
 
-        <img
-          src={glassesSvg}
-          alt=""
-          className="hidden lg:block absolute top-60 right-4 z-0 pointer-events-none"
-        />
-        <img
-          src={rPenSvg}
-          alt=""
-          className="hidden lg:block absolute top-160 right-4 z-0 pointer-events-none"
-        />
-        <img
-          src={bPenSvg}
-          alt=""
-          className="hidden lg:block absolute top-190 right-18 z-0 pointer-events-none"
-        />
-        <img
-          src={noteSvg}
-          alt=""
-          className="hidden lg:block absolute top-320 left-0 z-0 pointer-events-none"
-        />
-        <img
-          src={rEraserSvg}
-          alt=""
-          className="hidden lg:block absolute top-550 right-18 z-0 pointer-events-none"
-        />
-        <img
-          src={bEraserSvg}
-          alt=""
-          className="hidden lg:block absolute top-530 right-50 z-0 pointer-events-none"
-        />
       </div>
+      <p className="
+        font-heading text-accent1-primary text-center
+        relative mx-auto mt-16 mb-8 text-2xl
+
+        [@media(min-width:1215px)]:absolute
+        [@media(min-width:1215px)]:left-20
+        [@media(min-width:1215px)]:top-650
+        [@media(min-width:1215px)]:mx-0
+        [@media(min-width:1215px)]:mt-0
+        [@media(min-width:1215px)]:mb-0
+        [@media(min-width:1215px)]:text-left
+        "><span className="text-accent2-primary">UMSA</span> 2026 <br />Committee</p>
     </>
   );
 }
