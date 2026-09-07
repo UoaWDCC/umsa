@@ -61,13 +61,13 @@ const teamData: Member[] = [
 ];
 
 const COMMITTEE_PATTERNS = [
-  { justify: "justify-start md:pl-25", offsetEven: "md:-mt-2 -rotate-4", offsetOdd: "md:mt-4 rotate-4"},
-  { justify: "justify-start md:pl-60", offsetEven: "md:-mt-2 -rotate-4", offsetOdd: "md:mt-4 rotate-4"},
-  { justify: "justify-start md:pl-30", offsetEven: "md:-mt-2 -rotate-6", offsetOdd: "md:mt-6 rotate-4" },
-  { justify: "justify-end md:pr-50", offsetEven: "md:mt-4 -rotate-2", offsetOdd: "md:-mt-4 rotate-1" },
-  { justify: "justify-end md:pr-20", offsetEven: "md:-mt-6 -rotate-4", offsetOdd: "md:mt-2 rotate-4" },
-  { justify: "justify-end md:pr-100", offsetEven: "md:mt-2 -rotate-4", offsetOdd: "md:-mt-6 rotate-6" },
-  { justify: "justify-start md:pl-100", offsetEven: "md:-mt-4 -rotate-4", offsetOdd: "md:mt-4 rotate-6" },
+  { justify: "md:justify-start md:pl-25", offsetEven: "md:-mt-2 -rotate-4", offsetOdd: "md:mt-4 rotate-4"},
+  { justify: "md:justify-start md:pl-60", offsetEven: "md:-mt-2 -rotate-4", offsetOdd: "md:mt-4 rotate-4"},
+  { justify: "md:justify-start md:pl-30", offsetEven: "md:-mt-2 -rotate-6", offsetOdd: "md:mt-6 rotate-4" },
+  { justify: "md:justify-end md:pr-50", offsetEven: "md:mt-4 -rotate-2", offsetOdd: "md:-mt-4 rotate-1" },
+  { justify: "md:justify-end md:pr-20", offsetEven: "md:-mt-6 -rotate-4", offsetOdd: "md:mt-2 rotate-4" },
+  { justify: "md:justify-end md:pr-100", offsetEven: "md:mt-2 -rotate-4", offsetOdd: "md:-mt-6 rotate-6" },
+  { justify: "md:justify-start md:pl-100", offsetEven: "md:-mt-4 -rotate-4", offsetOdd: "md:mt-4 rotate-6" },
 ];
 
 export const COMMITTEE_BG_COLORS: Record<typeof COMMITTEE_ORDER[number], string> = {
@@ -80,48 +80,68 @@ export const COMMITTEE_BG_COLORS: Record<typeof COMMITTEE_ORDER[number], string>
   sports: "bg-[var(--color-accent1-primary)]",
 };
 
+
+
 export default function Team() {
   useEffect(() => {
     document.title = "Meet the Team | UMSA";
   }, []);
+
+  const allMembers = COMMITTEE_ORDER.flatMap((committeeName) => {
+  const bgColor =
+    COMMITTEE_BG_COLORS[committeeName] || "bg-[var(--color-accent1-primary)]";
+  return teamData
+    .filter((m) => m.committee === committeeName)
+    .map((m) => ({ ...m, bgColor }));
+  });
 
   return (
     <>
     <img
           src={glassesSvg}
           alt=""
-          className="hidden md:block absolute top-60 right-4 z-0 pointer-events-none"
+          className="hidden [@media(min-width:1215px)]:block absolute top-60 right-4 z-0 pointer-events-none"
         />
         <img
           src={rPenSvg}
           alt=""
-          className="hidden md:block absolute top-160 right-4 z-0 pointer-events-none"
+          className="hidden [@media(min-width:1215px)]:block absolute top-160 right-4 z-0 pointer-events-none"
         />
         <img
           src={bPenSvg}
           alt=""
-          className="hidden md:block absolute top-190 right-18 z-0 pointer-events-none"
+          className="hidden [@media(min-width:1215px)]:block absolute top-190 right-18 z-0 pointer-events-none"
         />
         <img
           src={noteSvg}
           alt=""
-          className="hidden md:block absolute top-320 left-0 z-0 pointer-events-none"
+          className="hidden [@media(min-width:1215px)]:block absolute top-320 left-0 z-0 pointer-events-none"
         />
         <img
           src={rEraserSvg}
           alt=""
-          className="hidden md:block absolute top-550 right-18 z-0 pointer-events-none"
+          className="hidden [@media(min-width:1215px)]:block absolute top-550 right-18 z-0 pointer-events-none"
         />
         <img
           src={bEraserSvg}
           alt=""
-          className="hidden md:block absolute top-530 right-50 z-0 pointer-events-none"
+          className="hidden [@media(min-width:1215px)]:block absolute top-530 right-50 z-0 pointer-events-none"
         />
         
 
       <div className="text-left">
         <h1 className="text-8xl font-heading font-bold mb-8 text-accent1-primary">Meet the <span className="text-accent2-primary">Team</span></h1>
       </div>
+
+      <div className="md:hidden overflow-x-auto -mx-4 px-4 pt-2 scale-85">
+      <div className={`w-full flex flex-wrap items-center gap-x-5`}>
+        {allMembers.map((member, idx) => (
+          <div key={member.fullName + member.role + idx} className={`mb-5 ${["-rotate-2", "rotate-3", "-rotate-4", "rotate-2"][idx % 4]}`}>
+            <MemberInfo stats={member} bgColor={member.bgColor} />
+          </div>
+        ))}
+      </div>
+    </div>
       <div className="flex flex-col items-center gap-y-16 max-w-6xl mx-auto">
 
         {COMMITTEE_ORDER
@@ -150,9 +170,9 @@ export default function Team() {
     return (
             <div
               key={committeeName}
-              className="w-full flex flex-col items-center"
+              className="hidden md:w-full md:flex md:flex-col md:items-center"
             >
-              <div className={`w-full flex flex-wrap items-center gap-x-12 ${pattern.justify}`}>
+              <div className={`hidden md:w-full md:flex md:flex-wrap md:items-center md:gap-x-12 ${pattern.justify}`}>
                 {members.map((member, idx) => {
                   const cardOffset = idx % 2 === 0 ? pattern.offsetEven : pattern.offsetOdd;
                   return (
