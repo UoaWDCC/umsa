@@ -34,7 +34,8 @@ export default function AdminAdder() {
   const mutation = useMutation({
     mutationFn: createEmail,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['userProfile'] });
+      // lowkey just for the future when we have admin list
+      queryClient.invalidateQueries({ queryKey: ['AdminList'] });
       alert('Terrence is the GOAT');
     },
     onError: () => {
