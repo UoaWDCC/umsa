@@ -97,11 +97,27 @@ export default function Team() {
 
   return (
     <>
-    <img
-          src={glassesSvg}
-          alt=""
-          className="hidden [@media(min-width:1215px)]:block absolute top-60 right-4 z-0 pointer-events-none"
-        />
+      {/* MOBILE VIEW */}
+      <div className="text-left">
+          <h1 className="text-8xl font-heading font-bold mb-8 text-accent1-primary">Meet the <span className="text-accent2-primary">Team</span></h1>
+        </div>
+        <div className="md:hidden overflow-x-auto -mx-4 px-4 pt-2 scale-85">
+        <div className={`w-full flex flex-wrap items-center gap-x-5`}>
+          {allMembers.map((member, idx) => (
+            <div key={member.fullName + member.role + idx} className={`mb-5 ${["-rotate-2", "rotate-3", "-rotate-4", "rotate-2"][idx % 4]}`}>
+              <MemberInfo stats={member} bgColor={member.bgColor} />
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* DESKTOP VIEW */}
+      <div>
+        {/* DECORATIONS */}
+        <img
+              src={glassesSvg}
+              alt=""
+              className="hidden [@media(min-width:1215px)]:block absolute top-60 right-4 z-0 pointer-events-none"
+            />
         <img
           src={rPenSvg}
           alt=""
@@ -127,84 +143,67 @@ export default function Team() {
           alt=""
           className="hidden [@media(min-width:1215px)]:block absolute top-530 right-50 z-0 pointer-events-none"
         />
-        
 
-      <div className="text-left">
-        <h1 className="text-8xl font-heading font-bold mb-8 text-accent1-primary">Meet the <span className="text-accent2-primary">Team</span></h1>
-      </div>
+        {/* CARD */}
+        <div className="flex flex-col items-center gap-y-16 max-w-6xl mx-auto">
 
-      <div className="md:hidden overflow-x-auto -mx-4 px-4 pt-2 scale-85">
-      <div className={`w-full flex flex-wrap items-center gap-x-5`}>
-        {allMembers.map((member, idx) => (
-          <div key={member.fullName + member.role + idx} className={`mb-5 ${["-rotate-2", "rotate-3", "-rotate-4", "rotate-2"][idx % 4]}`}>
-            <MemberInfo stats={member} bgColor={member.bgColor} />
-          </div>
-        ))}
-      </div>
-    </div>
-      <div className="flex flex-col items-center gap-y-16 max-w-6xl mx-auto">
+          {COMMITTEE_ORDER.filter((committeeName) => {
+              const members = teamData.filter(
+                (member) => member.committee === committeeName
+              );
+                return members.length > 0;
+            }).map((committeeName, committeeIdx) => {
+              const members = teamData.filter(
+                (member) => member.committee === committeeName
+              );
+            
+            const pattern = COMMITTEE_PATTERNS[committeeIdx % COMMITTEE_PATTERNS.length];
+            const bgColor = COMMITTEE_BG_COLORS[committeeName] || "bg-[var(--color-accent1-primary)]";
 
-        {COMMITTEE_ORDER
-  .filter((committeeName) => {
-    const members = teamData.filter(
-      (member) => member.committee === committeeName
-    );
-
-    return members.length > 0;
-  })
-  .map((committeeName, committeeIdx) => {
-    const members = teamData.filter(
-      (member) => member.committee === committeeName
-    );
-
-    // Gets spot pattern for active row index (0, 1, 2, 3...)
-    const pattern =
-      COMMITTEE_PATTERNS[
-        committeeIdx % COMMITTEE_PATTERNS.length
-      ];
-
-    const bgColor =
-      COMMITTEE_BG_COLORS[committeeName] ||
-      "bg-[var(--color-accent1-primary)]";
-
-    return (
-            <div
-              key={committeeName}
-              className="hidden md:w-full md:flex md:flex-col md:items-center"
-            >
-              <div className={`hidden md:w-full md:flex md:flex-wrap md:items-center md:gap-x-12 ${pattern.justify}`}>
-                {members.map((member, idx) => {
-                  const cardOffset = idx % 2 === 0 ? pattern.offsetEven : pattern.offsetOdd;
-                  return (
-                    <div
-                      key={member.fullName}
-                      className={cardOffset}
-                    >
-                      <MemberInfo
-                        stats={member}
-                        bgColor={bgColor}
-                      />
-                    </div>
-                  );
-                })}
+            return (
+              <div
+                key={committeeName}
+                className="hidden md:w-full md:flex md:flex-col md:items-center"
+              >
+                <div className={`hidden md:w-full md:flex md:flex-wrap md:items-center md:gap-x-12 ${pattern.justify}`}>
+                  {members.map((member, idx) => {
+                    const cardOffset = idx % 2 === 0 ? pattern.offsetEven : pattern.offsetOdd;
+                    return (
+                      <div
+                        key={member.fullName}
+                        className={cardOffset}
+                      >
+                        <MemberInfo
+                          stats={member}
+                          bgColor={bgColor}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
 
+        </div>
+
+        <p 
+        className="
+          font-heading text-accent1-primary text-center
+          relative mx-auto mt-16 mb-8 text-2xl
+
+          [@media(min-width:1215px)]:absolute
+          [@media(min-width:1215px)]:left-20
+          [@media(min-width:1215px)]:top-650
+          [@media(min-width:1215px)]:mx-0
+          [@media(min-width:1215px)]:mt-0
+          [@media(min-width:1215px)]:mb-0
+          [@media(min-width:1215px)]:text-left
+          ">
+            <span className="text-accent2-primary">UMSA</span> 2026 <br />Committee
+        </p>
       </div>
-      <p className="
-        font-heading text-accent1-primary text-center
-        relative mx-auto mt-16 mb-8 text-2xl
-
-        [@media(min-width:1215px)]:absolute
-        [@media(min-width:1215px)]:left-20
-        [@media(min-width:1215px)]:top-650
-        [@media(min-width:1215px)]:mx-0
-        [@media(min-width:1215px)]:mt-0
-        [@media(min-width:1215px)]:mb-0
-        [@media(min-width:1215px)]:text-left
-        "><span className="text-accent2-primary">UMSA</span> 2026 <br />Committee</p>
     </>
   );
 }
+
