@@ -25,14 +25,20 @@ type Member = {
   role: string;
   img: string;
   linkedin: string;
-  instagram: string;
+  instagram?: string;
+  degree?: string;
+  ethnicity?: string;
+  mbti?: string;
+  favouriteArtist?: string;
+  quote?: string;
   committee: CommitteeName;
 };
 
 const teamData: Member[] = [
   // Presidents
   { fullName: "Chester Ow Yong", role: "President", img: "...", linkedin: "", instagram: "", committee: "presidents" },
-  { fullName: "Joie Ting", role: "Vice President", img: "...", linkedin: "", instagram: "", committee: "presidents" },
+  { fullName: "Joie Ting", role: "Vice President", img: "...", linkedin: "", instagram: "joi.eee", committee: "presidents",
+  degree: "Design", ethnicity: "Malaysian Chinese", mbti: "ESTP-A", favouriteArtist: "Daniel Caesar", quote: "Life is hard, so I decided to become xmm in UMSA" },
 
   // Executives
   { fullName: "Person 1", role: "Secretary", img: "...", linkedin: "", instagram: "", committee: "executives" },
@@ -107,7 +113,7 @@ export default function Team() {
           {allMembers.map((member, idx) => (
             <div 
               key={member.fullName + member.role + idx} 
-              className={`mb-5 transition-transform ${["-rotate-2", "rotate-3", "-rotate-4", "rotate-2"][idx % 4]}`}
+              className={`mb-5 group transition-transform duration-300 hover:rotate-0 ${["-rotate-2", "rotate-3", "-rotate-4", "rotate-2"][idx % 4]} `}
             >
               <MemberInfo stats={member} bgColor={member.bgColor} />
             </div>
@@ -175,7 +181,7 @@ export default function Team() {
                     return (
                       <div
                         key={member.fullName}
-                        className={cardOffset}
+                        className={`group transition-transform duration-300 hover:rotate-0 hover:z-10 ${cardOffset}`}
                       >
                         <MemberInfo
                           stats={member}
