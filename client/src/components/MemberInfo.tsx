@@ -5,7 +5,6 @@ type MemberInfo = {
   img: string;
   fullName: string;
   role: string;
-  linkedin?: string;
   instagram?: string;
   ethnicity?: string;
   degree?: string;

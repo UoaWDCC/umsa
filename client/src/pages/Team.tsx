@@ -24,7 +24,6 @@ type Member = {
   fullName: string;
   role: string;
   img: string;
-  linkedin: string;
   instagram?: string;
   degree?: string;
   ethnicity?: string;
@@ -36,34 +35,34 @@ type Member = {
 
 const teamData: Member[] = [
   // Presidents
-  { fullName: "Chester Ow Yong", role: "President", img: "...", linkedin: "", instagram: "", committee: "presidents" },
-  { fullName: "Joie Ting", role: "Vice President", img: "...", linkedin: "", instagram: "joi.eee", committee: "presidents",
+  { fullName: "Chester Ow Yong", role: "President",degree: "Design", mbti: "ESTP-A", img: "...", instagram: "", committee: "presidents" },
+  { fullName: "Joie Ting", role: "Vice President", img: "...", instagram: "joi.eee", committee: "presidents",
   degree: "Design", ethnicity: "Malaysian Chinese", mbti: "ESTP-A", favouriteArtist: "Daniel Caesar", quote: "Life is hard, so I decided to become xmm in UMSA" },
 
   // Executives
-  { fullName: "Person 1", role: "Secretary", img: "...", linkedin: "", instagram: "", committee: "executives" },
-  { fullName: "Person 2", role: "Treasurer", img: "...", linkedin: "", instagram: "", committee: "executives" },
+  { fullName: "Person 1", role: "Secretary", img: "...",  instagram: "", committee: "executives" },
+  { fullName: "Person 2", role: "Treasurer", img: "...",  instagram: "", committee: "executives" },
 
   // Marketing
-  { fullName: "Person 3", role: "Marketing Officer", img: "...", linkedin: "", instagram: "", committee: "marketing" },
-  { fullName: "Person 3", role: "Marketing Officer", img: "...", linkedin: "", instagram: "", committee: "marketing" },
-  { fullName: "Person 3", role: "Marketing Officer", img: "...", linkedin: "", instagram: "", committee: "marketing" },
+  { fullName: "Person 3", role: "Marketing Officer", img: "...", instagram: "", committee: "marketing" },
+  { fullName: "Person 3", role: "Marketing Officer", img: "...", instagram: "", committee: "marketing" },
+  { fullName: "Person 3", role: "Marketing Officer", img: "...", instagram: "", committee: "marketing" },
 
   // Public Relations
-  { fullName: "Person 4", role: "Public Relations Officer", img: "...", linkedin: "", instagram: "", committee: "publicRelations" },
-  { fullName: "Person 4", role: "Public Relations Officer", img: "...", linkedin: "", instagram: "", committee: "publicRelations" },
+  { fullName: "Person 4", role: "Public Relations Officer", img: "...", instagram: "", committee: "publicRelations" },
+  { fullName: "Person 4", role: "Public Relations Officer", img: "...", instagram: "", committee: "publicRelations" },
 
   // Social
-  { fullName: "Person 4", role: "Social Officer", img: "...", linkedin: "", instagram: "", committee: "social" },
-  { fullName: "Person 4", role: "Social Officer", img: "...", linkedin: "", instagram: "", committee: "social" },
+  { fullName: "Person 4", role: "Social Officer", img: "...", instagram: "", committee: "social" },
+  { fullName: "Person 4", role: "Social Officer", img: "...", instagram: "", committee: "social" },
 
   // Cultural
-  { fullName: "Person 7", role: "Cultural Officer", img: "...", linkedin: "", instagram: "", committee: "cultural" },
-  { fullName: "Person 8", role: "Cultural Officer", img: "...", linkedin: "", instagram: "", committee: "cultural" },
+  { fullName: "Person 7", role: "Cultural Officer", img: "...", instagram: "", committee: "cultural" },
+  { fullName: "Person 8", role: "Cultural Officer", img: "...", instagram: "", committee: "cultural" },
 
   // Sports
-  { fullName: "Person 5", role: "Sports Officer", img: "...", linkedin: "", instagram: "", committee: "sports" },
-  { fullName: "Person 6", role: "Sports Officer", img: "...", linkedin: "", instagram: "", committee: "sports" },
+  { fullName: "Person 5", role: "Sports Officer", img: "...", instagram: "", committee: "sports" },
+  { fullName: "Person 6", role: "Sports Officer", img: "...", instagram: "", committee: "sports" },
 ];
 
 const COMMITTEE_PATTERNS = [
