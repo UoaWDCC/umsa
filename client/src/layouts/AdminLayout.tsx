@@ -3,6 +3,7 @@ import { useLogout, useMe } from "../hooks/useAuth";
 
 // Adding an admin page = one entry here + one route in main.tsx.
 const MENU = [{ to: "/admin/home-content", label: "Homepage text" }];
+const ImageUpload = [{ to: "/admin/image-upload", label: "Image Upload(temp)" }];//remove later
 
 export default function AdminLayout() {
   const { data: me, isPending } = useMe();
@@ -40,6 +41,20 @@ export default function AdminLayout() {
             >
               {item.label}
             </NavLink>
+          ))}
+          {ImageUpload.map((item) => (//remve later from here
+            <NavLink
+              key={item.to}
+              to={item.to}
+              className={({ isActive }) =>
+                `rounded-lg px-3 py-2 text-sm transition ${isActive
+                  ? "bg-blue-500 text-white"
+                  : "text-gray-400 hover:bg-gray-800 hover:text-white"
+                }`
+              }
+            >
+              {item.label}
+            </NavLink>//to the line below
           ))}
         </nav>
         <button
