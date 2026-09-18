@@ -20,7 +20,7 @@ type Props = {
 
 export default function MemberInfo({ stats, bgColor = "bg-[var(--color-accent1-primary)]" }: Props) {
   return (
-    <div className={` flex flex-col items-center rounded-[10px] ${bgColor} p-3 shadow-[10px_10px_0px_0px_rgba(0,0,0,0.2)] w-52 aspect-3/4`}>
+    <div className={`relative flex flex-col items-center rounded-[10px] ${bgColor} p-3 shadow-[10px_10px_0px_0px_rgba(0,0,0,0.2)] w-52 aspect-3/4`}>
       {/* Prehover */}
       <div className={`transition-opacity duration-300 group-hover:opacity-0`}>
         <img className="w-45 h-40 rounded-[10px] object-cover" src={stats.img} />
