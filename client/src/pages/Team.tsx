@@ -179,7 +179,7 @@ export default function Team() {
                     const cardOffset = idx % 2 === 0 ? pattern.offsetEven : pattern.offsetOdd;
                     return (
                       <div
-                        key={member.fullName}
+                        key={member.fullName + member.role + idx}
                         className={`group transition-transform duration-300 hover:rotate-0 hover:z-10 ${cardOffset}`}
                       >
                         <MemberInfo
