@@ -6,7 +6,7 @@ import { createSecureToken } from "../utils/token.js"
 const router = express.Router();
 
 router.post("/send", async (req: Request, res: Response) => {
-  const { to, subject, message } = req.body;
+  const { to, subject} = req.body;
   const rawToken = await createSecureToken(to)
 
   const url = new URL("http://localhost:5173/")
