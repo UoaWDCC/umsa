@@ -2,7 +2,6 @@ import "dotenv/config";
 
 import connectDB from "./db/connection.js";
 import app from "./src/app.js";
-import { createSecureToken } from "./src/utils/token.js"
 
 // entry point for starting the back-end server
 
@@ -15,7 +14,6 @@ if (process.env.NODE_ENV === "production" && !process.env.JWT_SECRET) {
 const PORT = process.env.PORT || 5050;
 
 connectDB();
-console.log(await createSecureToken("test-user"))
 
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
