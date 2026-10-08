@@ -31,8 +31,14 @@ export const EventSchema = z.object({
     imagePublicId: z
     .string()
     .trim()
-    .optional()
+    .optional(),
 
+    link: z
+    .string()
+    .trim()
+    .url("Link must be a valid URL")
+    .optional()
+    .or(z.literal("")),
   
 });
 
