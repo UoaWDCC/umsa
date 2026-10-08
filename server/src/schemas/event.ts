@@ -25,6 +25,7 @@ export const EventSchema = z.object({
     imageUrl: z
     .string()
     .trim()
+    .url("Link must be a valid URL")
     .max(500, "imageUrl is too long (500 characters max)")
     .optional(),
 
