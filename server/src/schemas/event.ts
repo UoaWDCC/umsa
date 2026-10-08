@@ -25,7 +25,7 @@ export const EventSchema = z.object({
     imageUrl: z
     .string()
     .trim()
-    .max(65, "Link is too long (65 characters max)")
+    .max(500, "imageUrl is too long (500 characters max)")
     .optional(),
 
     imagePublicId: z
