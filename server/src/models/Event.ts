@@ -5,9 +5,9 @@ export interface IEventDocument extends Document {
   startsAt: Date;
   description: string;
   tag: string;
-  link: string;
-  imageUrl: string;
-  imagePublicId: string;
+  link?: string;
+  imageUrl?: string;
+  imagePublicId?: string;
 }
 
 const EventSchema = new Schema<IEventDocument>(
