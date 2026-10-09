@@ -40,4 +40,24 @@ router.put("/:id", requireAdmin, validate(EventSchema), async (req: Request, res
     }
 });
 
+router.delete("/:id", requireAdmin, async (req: Request, res:Response) => {
+    try {
+        const { id } = req.params;
+
+        if (!mongoose.isValidObjectId(id)) {
+        return sendError(res, 400, "BAD_REQUEST", "Invalid event id");
+        }
+
+        const event = await Events.findByIdAndDelete(id);
+
+        if (!event) {
+        return sendError(res, 404, "NOT_FOUND", "Event not found");
+        }
+
+        res.status(204).send();
+    } catch {
+        sendError(res, 500, "INTERNAL_ERROR", "Unable to delete event");
+    }
+});
+
 export default router;
