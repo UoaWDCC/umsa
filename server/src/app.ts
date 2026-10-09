@@ -4,6 +4,7 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import healthRoutes from "./routes/health.js";
 import contentRoutes from "./routes/content.js";
+import eventsRoutes from "./routes/events.js";
 import adminAuthRoutes from "./routes/admin/auth.js";
 import adminContentRoutes from "./routes/admin/content.js";
 import adminEventsRoutes from "./routes/admin/events.js";
@@ -38,7 +39,7 @@ app.use("/api/admin/auth", adminAuthRoutes);
 // every /api/admin/* route below requires a logged-in admin account
 app.use("/api/admin", requireAdmin);
 app.use("/api/admin/content", adminContentRoutes);
-
+app.use("/api/events", eventsRoutes);
 app.use("/api/admin/events", adminEventsRoutes);
 // fallbacks
 app.use(notFound);
