@@ -6,6 +6,7 @@ import healthRoutes from "./routes/health.js";
 import contentRoutes from "./routes/content.js";
 import adminAuthRoutes from "./routes/admin/auth.js";
 import adminContentRoutes from "./routes/admin/content.js";
+import adminEventsRoutes from "./routes/admin/events.js";
 import { apiRateLimit } from "./middleware/rateLimit.js";
 import { requireAdmin } from "./middleware/requireAdmin.js";
 import { notFound } from "./middleware/notFound.js";
@@ -38,6 +39,7 @@ app.use("/api/admin/auth", adminAuthRoutes);
 app.use("/api/admin", requireAdmin);
 app.use("/api/admin/content", adminContentRoutes);
 
+app.use("/api/admin/events", adminEventsRoutes);
 // fallbacks
 app.use(notFound);
 app.use(errorHandler);
