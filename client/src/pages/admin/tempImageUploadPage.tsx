@@ -6,7 +6,7 @@ export default function TempImageUploadPage() {
 
   return (
     <div className="p-10">
-      <h1>Test Upload</h1>
+      <label className="flex flex-col gap-2 text-sm text-gray-300">Image Upload</label>
       <ImageUploadField value={value} onChange={setValue} folder="umsa/gallery" />
     </div>
   );

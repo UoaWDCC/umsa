@@ -44,15 +44,14 @@ export function ImageUploadField({ value, onChange, folder }: Props) {
   }
 
   return (
-    <div className="bg-accent1-secondary flex flex-col items-center gap-3 p-4 rounded-lg max-w-[600px] mx-auto">
-      <p>Image Upload</p>
+    <div className="border-2 border-solid border-white bg-transparent flex flex-col items-center gap-3 p-4 rounded-2xl max-w-[600px] mx-auto">
 
       <input
         type="file"
         accept="image/jpeg,image/png,image/webp"
         onChange={handleFileChange}
         disabled={upload.isPending}
-        className="bg-accent2-primary max-w-full"
+        className="bg-blue-300 max-w-full"
       />
 
       {previewUrl && (
@@ -66,7 +65,7 @@ export function ImageUploadField({ value, onChange, folder }: Props) {
       )}
 
       {value && (
-        <div className="w-full text-xs text-black break-all text-center">
+        <div className="w-full text-xs text-white break-all text-center">
           <p className="w-full min-w-0 truncate">{value.url}</p>
           <p className="w-full min-w-0 truncate">{value.publicId}</p>
         </div>
