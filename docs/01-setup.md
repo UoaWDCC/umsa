@@ -20,9 +20,9 @@ All of these live in `server/.env`, which is gitignored.
 |---|---|---|---|
 | `ATLAS_URI` | **yes** | none — connect fails and the process exits 1 | MongoDB Atlas connection string. |
 | `JWT_SECRET` | prod only | `"dev-only-secret-change-me"` | Signs session tokens. The server **refuses to boot** in production without it (`server/server.ts`), so a forgotten secret fails loudly instead of silently using the public default. |
-| `CLOUDINARY_CLOUD_NAME` | not yet used | none | Cloudinary account identifier — reserved for an upcoming image upload feature, not yet wired into `src/`. |
-| `CLOUDINARY_API_KEY` | not yet used | none | Cloudinary API key — same upcoming feature. |
-| `CLOUDINARY_API_SECRET` | not yet used | none | Cloudinary API secret — same upcoming feature. |
+| `CLOUDINARY_CLOUD_NAME` | for uploads | none | Cloudinary account identifier. All three `CLOUDINARY_*` vars are read by `POST /api/admin/uploads/signature`; without them that endpoint returns 500. |
+| `CLOUDINARY_API_KEY` | for uploads | none | Cloudinary API key. Returned to the browser with the upload signature — it is a public value. |
+| `CLOUDINARY_API_SECRET` | for uploads | none | Cloudinary API secret. Used server-side to sign uploads; never sent to the browser. |
 
 
 ## Troubleshooting
