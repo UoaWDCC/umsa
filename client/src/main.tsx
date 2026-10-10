@@ -35,6 +35,9 @@ import AdminLayout from "./layouts/AdminLayout";
 import AdminLogin from "./pages/admin/Login";
 import HomeContentEditor from "./pages/admin/HomeContentEditor";
 import AdminAdder from "./pages/admin/AdminAdder";
+import CreateAdminAccount from "./pages/admin/CreateAdminAccount";
+import pageLoader from "./pages/admin/CreateAdminAccountLoader"
+
 
 {
   /* here's where we set up all our routing */
@@ -59,6 +62,7 @@ const router = createBrowserRouter([
       { path: "contact", element: <Contact /> },
       { path: "sponsors", element: <Sponsors /> },
       { path: "about", element: <About /> },
+      { path: "create-admin-account", element: <CreateAdminAccount />, loader: pageLoader}
     ],
   },
   /* admin routes live OUTSIDE RootLayout so they don't get the public navbar/footer */
@@ -72,10 +76,12 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Navigate to="/admin/home-content" replace /> },
       { path: "home-content", element: <HomeContentEditor /> },
-      { path: "admin-adder", element: <AdminAdder />}
+      { path: "admin-adder", element: <AdminAdder />},
     ],
   },
 ]);
+
+
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { retry: 1 } },

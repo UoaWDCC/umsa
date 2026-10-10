@@ -5,7 +5,8 @@
 **adding new admin**
 -> fills out a form ✅
 -> sends email to you to create account ✅
--> email has link with unique token (token valid for x amount of time) 
+-> email has link with unique token (token valid for x amount of time) ✅ 
+-> check that the token is valid against the token stored in db ✅
 -> sign-up page (email address alr filled out)
 -> user fills out the password
 
