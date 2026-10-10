@@ -25,9 +25,17 @@ export const signUpload = (folder:string) => {
 //  verify that sent and generated signature match, therefore nothing was tempered
 
 
-export const destroyAsset = (publicId:string) => {
+export const destroyAsset = (publicId: string) => {
+    // the SDK has no global config set, so configure it before the call
+    // (signUpload doesn't need this: api_sign_request is a pure hash function)
+    const { cloudName, apiKey, apiSecret } = cloudinaryConfig();
+    v2.config({
+        cloud_name: cloudName,
+        api_key: apiKey,
+        api_secret: apiSecret,
+    });
     return v2.uploader.destroy(publicId);
 };
 // ^when destroyAsset is called with the publicId
-//  it passes that publicId straight to destroy function from v2 cloudinary
+//  it configures the SDK with our credentials and passes the publicId to destroy
 //  let cloudinary know what to delete
