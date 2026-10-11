@@ -34,6 +34,7 @@ import Alex from "./pages/project-team/Alex";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminLogin from "./pages/admin/Login";
 import HomeContentEditor from "./pages/admin/HomeContentEditor";
+import TempImageUploadPage from "./pages/admin/tempImageUploadPage";//remove later
 
 {
   /* here's where we set up all our routing */
@@ -71,6 +72,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Navigate to="/admin/home-content" replace /> },
       { path: "home-content", element: <HomeContentEditor /> },
+      { path: "image-upload", element: <TempImageUploadPage /> },//remove later
     ],
   },
 ]);

@@ -83,6 +83,27 @@ trimmed, unknown keys stripped.
 `200` with the saved values. Uses `findOneAndUpdate({}, …, { upsert: true })`, so it creates the
 singleton on first save.
 
+## Admin — uploads
+
+### `POST /api/admin/uploads/signature`
+Body validated by `uploadSignatureSchema` — `folder` must be exactly one of `"umsa/gallery"`,
+`"umsa/team"`, `"umsa/events"`, `"umsa/branding"`.
+
+```json
+{ "folder": "umsa/gallery" }
+```
+
+`200` with a short-lived Cloudinary upload signature:
+
+```json
+{ "signature": "…", "timestamp": 1730000000, "folder": "umsa/gallery", "cloudName": "…", "apiKey": "…" }
+```
+
+The browser uses this to upload the file **directly to Cloudinary** — the API never sees the
+bytes. Only the public API key and the derived signature come back; `CLOUDINARY_API_SECRET`
+never leaves the server. Returns `500 INTERNAL_ERROR` if the `CLOUDINARY_*` env vars are
+missing, and `401` when logged out like every other `/api/admin/*` route.
+
 ## Behaviours that surprise people
 
 - **`/api/admin/*` returns 401, not 404, for routes that don't exist** when you're logged out.
@@ -95,6 +116,6 @@ singleton on first save.
 
 ## Endpoints that do not exist yet
 
-Anything for events, gallery, team members, theme, logos or uploads. Each is designed in
+Anything for events, gallery, team members, theme or logos. Each is designed in
 [blueprints/](blueprints/) — including its exact URL — so that when you build one, the URL is
 already agreed and the frontend can be written against it in parallel.

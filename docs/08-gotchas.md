@@ -28,7 +28,7 @@
 
 - **`server/dist/` is stale build output. Never read it, never import from it.** It's gitignored
   and rebuilt by `pnpm build`. It matters because it contains a *much larger* feature set —
-  Cloudinary uploads, developer CRUD, admin settings, password reset tokens — that has **no
+  developer CRUD, admin settings, password reset tokens — that has **no
   TypeScript source in this branch**. Someone browsing `dist/` will confidently document features
   that do not exist. The blueprints point at it deliberately in a couple of places as a *reference
   for how it was done before*; that's the only legitimate use.
