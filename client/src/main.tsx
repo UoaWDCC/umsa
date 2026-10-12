@@ -20,14 +20,7 @@ import About from "./pages/About";
 
 {
   /* project team imports */
-}
-import Pruna from "./pages/project-team/Pruna";
-import Alanna from "./pages/project-team/Alanna";
-import Tadiwa from "./pages/project-team/Tadiwa";
-import Terrence from "./pages/project-team/Terrence";
-import Alex from "./pages/project-team/Alex";
 
-{
   /* here's where we set up all our routing */
 }
 const router = createBrowserRouter([
