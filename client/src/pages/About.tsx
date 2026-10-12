@@ -70,9 +70,9 @@ export default function About() {
             {/* ---------- banner ---------- */}
       <img src={banner} alt="Welcome to UMSA" className="block h-auto w-full" />
       {/* clouds are positioned against the page edges so they bleed off like in Figma */}
-      <img src={cloudPink} alt="" className="absolute z-0" style={{ right: 56, top: 15 }} />
+      <img src={cloudPink} alt="" className="absolute z-0" style={{ right: 56, top: 160 }} />
       <img src={cloudPurple} alt="" className="absolute left-0 z-0" style={{ top: 745 }} />
-      <img src={cloudPinkB} alt="" className="absolute z-0" style={{ right: 0, top: 30 }} />
+      <img src={cloudPinkB} alt="" className="absolute z-0" style={{ right: 0, top: 179 }} />
       <div className="relative z-10 pb-24">
         {/* header: left-aligned like Figma */}
         <h1
