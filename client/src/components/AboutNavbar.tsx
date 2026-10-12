@@ -14,9 +14,9 @@ const links = [
 export default function AboutNavbar() {
   return (
     <header
-      className="flex h-[55px] items-center justify-between px-6 lg:px-16"
-      style={{ backgroundColor: "#F9F9FB" }}
-    >
+  className="relative z-20 flex h-[55px] items-center justify-between px-6 lg:px-16"
+  style={{ backgroundColor: "#F9F9FB" }}
+    >   
       <Link to="/" aria-label="UMSA home" className="shrink-0">
         <img src={mascot} alt="UMSA" className="h-10 w-auto" />
       </Link>
@@ -27,7 +27,7 @@ export default function AboutNavbar() {
             key={to}
             to={to}
             end={end}
-            className={({ isActive }) =>
+            className={({ isActive }: { isActive: boolean }) =>
               `text-xs md:text-xl ${isActive ? "underline underline-offset-4" : ""}`
             }
             style={{ fontFamily: FONT, color: BLUE, letterSpacing: "2px" }}
