@@ -1,6 +1,5 @@
-
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { MEMBERSHIP_FORM_URL } from "../lib/siteLinks";
 import mascot from "../assets/about-us/mascot.png";
 import squiggle from "../assets/about-us/squiggle.svg";
 import dashed from "../assets/about-us/Vector 88.svg";
@@ -142,12 +141,14 @@ export default function About() {
         <p className={`mt-12 text-2xl ${HEADING}`}>A home away from home.</p>
       </div>
       <div className="mt-8 text-center">
-        <Link
-          to="/sign-up"
+        <a
+          href={MEMBERSHIP_FORM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex rounded-full bg-accent2-primary px-6 py-3 font-heading text-sm text-white"
         >
           Join UMSA
-        </Link>
+        </a>
       </div>
     </section>
   );
