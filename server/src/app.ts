@@ -14,6 +14,9 @@ import { errorHandler } from "./middleware/errorHandler.js";
 
 // splitting
 
+import { publicCollections, adminCollections } from "./routes/collections.js";
+import { publicSubmissions, adminSubmissions } from "./routes/submissions.js";
+
 const app = express();
 
 app.set("trust proxy", 1);
@@ -33,10 +36,14 @@ app.use("/api/health", healthRoutes);
 
 // endpoints -- add new endpoints below
 app.use("/api/content", contentRoutes);
+app.use("/api", publicCollections);
+app.use("/api", publicSubmissions);
 
 app.use("/api/admin/auth", adminAuthRoutes);
 // every /api/admin/* route below requires a logged-in admin account
 app.use("/api/admin", requireAdmin);
+app.use("/api/admin", adminCollections);
+app.use("/api/admin", adminSubmissions);
 app.use("/api/admin/content", adminContentRoutes);
 app.use("/api/admin/uploads", adminUploadRoutes);
 

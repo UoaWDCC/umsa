@@ -4,7 +4,7 @@ const connectDB = async (): Promise<void> => {
   const uri = process.env.ATLAS_URI || "";
 
   try {
-    await mongoose.connect(uri);
+    await mongoose.connect(uri, { dbName: process.env.MONGODB_DB_NAME });
     console.log("is the db connected?: yes");
   } catch (err) {
     console.error("is the db connected?: no", err);
