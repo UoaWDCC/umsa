@@ -61,7 +61,7 @@ function Hero({ heading, subtitle }: { heading: string; subtitle: string }) {
         style={{ containerType: "inline-size" }}
       >
         <motion.h1
-          className="text-center text-[min(7.4cqw,5.5rem)] leading-[0.95] whitespace-nowrap"
+          className="text-center text-[min(7.4cqw,5.5rem)] leading-[1.1] break-words"
           initial={reduced ? { opacity: 0 } : { opacity: 0, y: 36 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -70,7 +70,7 @@ function Hero({ heading, subtitle }: { heading: string; subtitle: string }) {
           <span className="text-accent2-primary">{tail}</span>
         </motion.h1>
 
-        <div className="relative mt-2">
+        <div className="relative mt-2 flex flex-col items-center gap-4 md:block">
           <motion.img
             src={mascotSit}
             alt=""
@@ -88,8 +88,8 @@ function Hero({ heading, subtitle }: { heading: string; subtitle: string }) {
           />
 
           <motion.p
-            className="absolute top-0 right-0 max-w-[15rem] text-right font-heading text-[10px]
-              leading-[2] tracking-[0.22em] text-red-150 uppercase md:text-sm"
+            className="max-w-[20rem] text-center md:absolute md:top-0 md:right-0 md:max-w-[15rem] md:text-right font-heading text-[10px]
+              leading-[2] tracking-[0.22em] text-accent2-primary uppercase md:text-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -98,8 +98,8 @@ function Hero({ heading, subtitle }: { heading: string; subtitle: string }) {
           </motion.p>
 
           <motion.p
-            className="absolute bottom-0 left-0 max-w-[15rem] font-heading text-[9px] leading-[2]
-              tracking-[0.18em] text-red-150 uppercase md:text-[11px]"
+            className="max-w-[20rem] text-center md:absolute md:bottom-0 md:left-0 md:max-w-[15rem] md:text-left font-heading text-[9px] leading-[2]
+              tracking-[0.18em] text-accent2-primary uppercase md:text-[11px]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.55 }}
