@@ -1,59 +1,66 @@
-import FAQItem from "../components/FAQItem";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { FiChevronDown } from "react-icons/fi";
+import PageHeader from "../components/ui/PageHeader";
+import Reveal from "../components/ui/Reveal";
+import { useFaqs } from "../hooks/useSiteData";
 
-export default function FrequentAskedQuestions() {
+export default function FAQ() {
   useEffect(() => {
     document.title = "FAQ | UMSA";
   }, []);
 
+  const { data: faqs, isPending, isError } = useFaqs();
+  const [openId, setOpenId] = useState<string | null>(null);
+
   return (
     <>
-      <h1 className="text-3xl font-bold mb-8">Frequently Asked Questions</h1>
+      <PageHeader title="Frequently Asked" accent="Questions" />
 
-      <div className="columns-1 md:columns-2 gap-8">
-        <FAQItem
-          stats={{
-            question: "Does it cost to join UMSA?",
-            answer:
-              "The price to join UMSA is $8 - for both new and returning members.",
-          }}
-        />
-        <FAQItem
-          stats={{
-            question: "How do I become a member of UMSA?",
-            answer:
-              "Shoot an e-mail to our helpful communication officers at comm.umsanz@gmail.com and we will be more the merrier to help you get things sorted out. You can also sign up online! Simply click on this link, and follow the step-by-step guide, and you're good to go! During the first week of every new semester, catch our booth at the University of Auckland's club expo.",
-          }}
-        />
-        <FAQItem
-          stats={{
-            question: "I'm not Malaysian, can I still join?",
-            answer:
-              "The more the merrier! You do not have to be a Malaysian to join the UMSA family. We happily welcome people from all cultures and backgrounds.",
-          }}
-        />
-        <FAQItem
-          stats={{
-            question: "I'm not Malaysian, can I still join?",
-            answer:
-              "The more the merrier! You do not have to be a Malaysian to join the UMSA family. We happily welcome people from all cultures and backgrounds.",
-          }}
-        />
-        <FAQItem
-          stats={{
-            question: "I'm not a UOA student, can I still join?",
-            answer:
-              "Absolutely! In fact, invite any other friends outside of the University of Auckland to join the family as well!",
-          }}
-        />
-        <FAQItem
-          stats={{
-            question:
-              "How do I find out or keep myself updated on UMSA's events?",
-            answer:
-              "Make sure to follow our social media platforms! Keep yourself updated by checking UMSA's website, Facebook and Instagram constantly. We will be updating you with up-coming events, opportunities and what is going on with the community.",
-          }}
-        />
+      <div className="mx-auto max-w-2xl px-6 pb-10">
+        {isPending && (
+          <p className="text-center text-sm text-foreground-secondary">Loading…</p>
+        )}
+
+        {isError && <p role="alert" className="text-center text-accent2-primary">Unable to load FAQs. Please try again.</p>}
+        <div className="space-y-3">
+          {(faqs ?? []).map((faq, i) => {
+            const open = openId === faq.id;
+            return (
+              <Reveal key={faq.id} delay={i * 0.06}>
+                <div className="overflow-hidden rounded-2xl border border-gray-150 bg-white">
+                  <button
+                    onClick={() => setOpenId(open ? null : faq.id)}
+                    aria-expanded={open}
+                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+                  >
+                    <span className="font-heading text-sm text-accent1-primary">
+                      {faq.question}
+                    </span>
+                    <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.25 }}>
+                      <FiChevronDown className="text-accent2-primary" size={18} />
+                    </motion.span>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {open && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                      >
+                        <p className="px-5 pb-5 text-sm leading-relaxed text-foreground-secondary">
+                          {faq.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
       </div>
     </>
   );
