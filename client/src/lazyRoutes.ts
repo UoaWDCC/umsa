@@ -1,10 +1,5 @@
 import { lazy } from "react";
 
-/* Routes that are never part of a visitor's first paint, split out of the main
-   bundle. The old assignment pages under `project-team/` matter most: between
-   them they pull in around 10MB of images that nothing on the public site
-   links to, and eagerly bundling those was most of the load-time stutter. */
-
 export const Pruna = lazy(() => import("./pages/project-team/Pruna"));
 export const Alanna = lazy(() => import("./pages/project-team/Alanna"));
 export const Tadiwa = lazy(() => import("./pages/project-team/Tadiwa"));

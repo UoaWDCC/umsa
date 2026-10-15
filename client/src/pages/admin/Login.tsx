@@ -79,7 +79,6 @@ export default function AdminLogin() {
           </p>
         )}
 
-
       </motion.form>
     </div>
   );

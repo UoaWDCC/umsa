@@ -16,7 +16,6 @@ import mascotSit from "./assets/icons/umsa_sit.png";
 import mascotCap from "./assets/icons/umsa_cool.png";
 import heroPhoto from "./assets/humans.png";
 
-// shown while the content request is in flight, and if it ever fails
 const DEFAULTS = {
   heading: "WELCOME TO UMSA",
   subtitle: "The union of Malaysian students in Auckland.",
@@ -25,10 +24,6 @@ const DEFAULTS = {
   introVideoUrl: "",
 };
 
-/* Hero, as the home frame draws it: the heading runs the full width on ONE line,
-   "WELCOME TO" blue and "UMSA" red; the mascot sits under it, centred and
-   overlapping; the union line is right-aligned in pale pink and the affiliation
-   line sits bottom-left in the same pink. */
 const HERO_FOOT =
   "Non-profit Malaysian student-run club affiliated with the University of Auckland, New Zealand.";
 
@@ -37,7 +32,6 @@ function Hero({ heading, subtitle }: { heading: string; subtitle: string }) {
   const { scrollY } = useScroll();
   const mascotY = useTransform(scrollY, [0, 600], [0, reduced ? 0 : 70]);
 
-  // the design splits the heading so the last word lands in red
   const words = heading.split(" ");
   const lead = words.slice(0, -1).join(" ");
   const tail = words.at(-1) ?? "";
@@ -76,8 +70,6 @@ function Hero({ heading, subtitle }: { heading: string; subtitle: string }) {
           <span className="text-accent2-primary">{tail}</span>
         </motion.h1>
 
-        {/* mascot centred under the heading, with the two pale pink lines set
-            against the right and left margins as the frame has them */}
         <div className="relative mt-2">
           <motion.img
             src={mascotSit}
@@ -138,7 +130,6 @@ export default function App() {
     <>
       <Hero heading={content.heading} subtitle={content.subtitle} />
 
-      {/* full-bleed photo band */}
       <Reveal from="scale">
         <Photo
           src={heroPhoto}
@@ -161,7 +152,6 @@ export default function App() {
         </section>
       )}
 
-      {/* WHAT IS UMSA? — centred, mascot beneath the copy */}
       <section className="relative bg-blue-50 px-6 py-16 text-center">
         <div className="relative mx-auto max-w-2xl">
           <Reveal>
@@ -221,7 +211,6 @@ export default function App() {
         />
       </section>
 
-      {/* Executive-team call to action adapted from nryuzl's PR #55. */}
       <section className="mx-auto max-w-4xl px-6 py-16 text-center">
         <h2 className="text-3xl text-accent1-primary md:text-5xl">
           Meet the Exec Team
@@ -234,7 +223,6 @@ export default function App() {
         </Link>
       </section>
 
-      {/* OUR EVENTS carousel */}
       <section className="relative overflow-hidden px-6 py-16">
         <div className="mx-auto max-w-4xl">
           <div className="relative mb-10 flex items-center justify-center gap-4">

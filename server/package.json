@@ -8,8 +8,7 @@
     "dev": "tsx watch server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "seed:admin": "tsx scripts/seed-admin.ts",
-    "test:integration": "tsx tests/integration.ts"
+    "seed:admin": "tsx scripts/seed-admin.ts"
   },
   "keywords": [],
   "author": "",

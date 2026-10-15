@@ -1,8 +1,4 @@
-/* The camera illustration from the PHOTOS frame. Every rect, circle and curve
-   below is copied verbatim out of `assets/frames/PHOTOS.svg` — page coordinates
-   and all — so the proportions are the file's, not an approximation. The one
-   change is the body's hard offset shadow: Figma exports it as an feOffset
-   filter, and it is cheaper here as a second rect drawn 10 left / 20 down. */
+
 export default function Camera({ className = "" }: { className?: string }) {
   return (
     <svg

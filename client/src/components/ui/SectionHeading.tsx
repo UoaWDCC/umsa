@@ -2,16 +2,14 @@ import { motion, useReducedMotion } from "motion/react";
 import { Star } from "./Decor";
 
 type Props = {
-  /** Plain first half of the heading */
+
   children: string;
-  /** Second half, rendered in red */
+
   accent?: string;
   align?: "left" | "center";
   className?: string;
 };
 
-/** The two-tone display heading used at the top of every section. Each word
-    lifts in on its own tiny delay. */
 export default function SectionHeading({
   children,
   accent,

@@ -3,8 +3,6 @@ import { isAxiosError } from "axios";
 import { api } from "../lib/api";
 import { ME_KEY } from "./useAuth";
 
-// Every collection behaves the same way, so list + CRUD is generated once here
-// rather than written out per resource.
 export type Collection = "members" | "events" | "sponsors" | "gallery" | "faqs";
 
 export const collectionKey = (name: Collection) => [name] as const;
@@ -21,7 +19,7 @@ function useInvalidate(name: Collection) {
   return {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: collectionKey(name) }),
     onError: (err: unknown) => {
-      // session died mid-edit -> null the auth cache so AdminLayout redirects
+
       if (isAxiosError(err) && err.response?.status === 401) {
         queryClient.setQueryData(ME_KEY, null);
       }

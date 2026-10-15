@@ -22,6 +22,10 @@ presidents, executives, marketing, publicRelations, social, cultural, sports, ot
 Older records without a committee remain visible under Other. Homepage video URLs must
 be HTTPS YouTube embed URLs, and an empty URL hides the video.
 
-Contact and membership submissions are not API endpoints: contact opens an email draft,
-and membership goes to the confirmed Google Form. `/api/contact`, `/api/membership` and
+`POST /api/contact` accepts name, email and message. It sends plain-text email through
+Resend to umsa@projects.wdcc.co.nz and sets reply_to to the visitor's email. It returns
+200 only after Resend accepts the email. Missing configuration returns 503; provider
+errors return 502. Requests are limited to five per IP per 15 minutes.
+
+Membership uses the confirmed Google Form; `/api/membership` and
 `/api/admin/submissions` are not available.

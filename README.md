@@ -1,40 +1,32 @@
 # UMSA website
 
-The redesigned React frontend connects to the Express/MongoDB backend from
-UoaWDCC/umsa at ef7883ee79d0df7f3ce97943ba26b27f8417e45c (verified 15 October 2026).
+React, TypeScript, Express and MongoDB.
 
-## Local setup
+## Setup
 
-Use Node 22.12+ and pnpm. Run `pnpm install`, copy `server/.env.example` to
-`server/.env`, fill the server-only values, then run `pnpm dev`.
-The Vite frontend proxies `/api` to port 5051 (set `API_PROXY_TARGET` to override). `pnpm build` builds both workspaces.
-The development frontend may select the next free port; use the URL in its output.
+Use Node 22 and pnpm. Copy `server/.env.example` to `server/.env` and fill in the values.
 
-## Data and access
+```sh
+pnpm install
+pnpm dev
+```
 
-Public pages load homepage text, team, events, sponsors, gallery and FAQs from MongoDB.
-Only authenticated admins can create, edit or delete content, or sign Cloudinary uploads.
-Images can be uploaded or specified by HTTPS URL. Content survives reloads and server restarts.
-No fictional prototype records are imported. Add approved content in `/admin`.
+Vite prints the frontend URL. The local API runs on port 5051.
 
-Admin authentication uses existing MongoDB AdminUser accounts and HTTP-only cookies.
-To bootstrap an account, explicitly set ADMIN_EMAIL and a strong ADMIN_PASSWORD, then run
-`pnpm --filter server seed:admin`. This updates that account's password; never run it casually.
-The prototype password is no longer a built-in login.
+```sh
+pnpm build
+pnpm lint
+```
 
-Contact opens a draft in the visitor's email app addressed to umsa@projects.wdcc.co.nz.
-Visitors review and send that draft themselves. Membership links to the confirmed Google Form.
-No messages or membership details are stored in a website inbox. The supplied Resend key was
-rejected during configuration checking; website-originated email sending is not enabled.
 
-## Hosting
+## Content management
 
-Surge only hosts static files and cannot run this backend. The previous Surge deployment
-has not been changed. The Docker/nginx configuration serves the built frontend and `/api`
-together on internal port 5050 (set PORT=5050 for Docker). Configure ATLAS_URI, JWT_SECRET and Cloudinary variables on the server;
-never prefix secrets with VITE_. Set CLIENT_ORIGIN to the HTTPS website origin.
+Open `/admin` directly to sign in and edit homepage text, team members, events,
+sponsors, gallery photos and FAQs. Image uploads use Cloudinary.
 
-## Open PR contributions
+Contact sends email through Resend to `umsa@projects.wdcc.co.nz`.
+Set `RESEND_API_KEY` and `CONTACT_FROM_EMAIL` using a verified sender.
+Membership is managed through the linked Google Form.
 
-See `docs/pr-integration.md` for the six incorporated PRs, author credits, reviewed revisions and adaptations.
-Committee is editable under Team members; Homepage text includes an optional YouTube embed URL.
+See [setup](docs/01-setup.md), [API reference](docs/05-api-reference.md)
+and [contributors](docs/contributors.md).

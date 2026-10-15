@@ -1,6 +1,4 @@
-/* Self-hosted so the first paint does not wait on two extra origins
-   (fonts.googleapis.com for the CSS, then fonts.gstatic.com for the files).
-   Latin subset only — the rest were never used. */
+
 
 @font-face {
   font-family: "Caveat";

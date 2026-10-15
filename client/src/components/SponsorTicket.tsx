@@ -6,25 +6,16 @@ import type { Sponsor } from "../types/content";
 type Props = {
   sponsor: Sponsor;
   index: number;
-  /** inside an open region stack — the stack drives the entrance, not the card */
+
   stacked?: boolean;
 };
 
-/* The ticket silhouette — 829 x 266 with a 49px semicircular notch bitten out
-   of each long edge at mid height — lives in index.css as the `ticket-clip`
-   polygon, sampled from the SPONSORS frame path. */
-
-// Body colours cycle blue → red → ink down each stack, as the frame does.
 const SKINS = [
   { body: "bg-blue-700", accent: "text-red-350", perf: "border-blue-300" },
   { body: "bg-red-600", accent: "text-blue-900", perf: "border-gray-100" },
   { body: "bg-gray-900", accent: "text-red-350", perf: "border-blue-300" },
 ];
 
-/* One flat ticket per deal. A back-plate and its slide-out used to live here,
-   but once the suburbs became an accordion that second layer just made the page
-   noisy — so the fine print is printed under the offer instead. The card keeps
-   the frame's proportions as a floor and grows for a long set of conditions. */
 export default function SponsorTicket({ sponsor, index, stacked = false }: Props) {
   const reduced = useReducedMotion();
   const skin = SKINS[index % SKINS.length];
@@ -56,7 +47,7 @@ export default function SponsorTicket({ sponsor, index, stacked = false }: Props
         className={`ticket-clip relative flex min-h-[32.1cqw] w-full items-center
           gap-[4cqw] px-[14%] py-[5cqw] ${skin.body}`}
       >
-        {/* perforation lines, a tenth in from each end */}
+
         <span
           aria-hidden
           className={`absolute top-[8%] bottom-[8%] left-[9.6%] border-l-2 border-dashed ${skin.perf}`}
@@ -80,7 +71,6 @@ export default function SponsorTicket({ sponsor, index, stacked = false }: Props
           )}
         </div>
 
-        {/* the white logo tile the Review Two board puts on every ticket */}
         <span
           className="flex h-[17cqw] w-[17cqw] shrink-0 items-center justify-center rounded-[2cqw]
             bg-white p-[1.4cqw]"

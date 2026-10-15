@@ -8,8 +8,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "test:pr-ui": "node scripts/check-pr-ui.mjs"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",

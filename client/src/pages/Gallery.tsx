@@ -9,13 +9,9 @@ import { StarTrio } from "../components/ui/Decor";
 import { useGallery } from "../hooks/useSiteData";
 import type { GalleryItem } from "../types/content";
 
-/* Polaroid proportions come straight from the PHOTOS frame: a 550 x 373 card
-   with the photo inset 35px at the sides, 43.5px at the top and 114.5px at the
-   bottom — the deep margin the handwritten caption sits in. */
 const CARD = "rounded-[10px] bg-gray-50";
 const SHADOW = "shadow-[6px_10px_0_rgba(0,0,0,0.25)]";
 
-// the scatter angles Figma uses, in frame order; the wall cycles through them
 const TILTS = [0.8, -6.5, -6.35, 2.56, -16.23, 9.26, -8.95, 6, -8.95, -8.95];
 
 function Polaroid({
@@ -48,8 +44,7 @@ function Polaroid({
       }}
       whileHover={reduced ? undefined : { rotate: 0, scale: 1.05, zIndex: 20 }}
     >
-      {/* padding is a share of the card, so it has to be measured in container
-          units — percentage padding would resolve against the wall instead */}
+
       <div className="px-[6.4cqw] pt-[11.7cqw] pb-[7cqw]">
         <Photo
           src={item.src}
@@ -70,7 +65,7 @@ export default function Gallery() {
   }, []);
 
   const { data: items, isPending, isError } = useGallery();
-  // past events link straight to their album, e.g. /gallery?album=Sports%20Day
+
   const [params, setParams] = useSearchParams();
   const album = params.get("album") ?? "All";
   const setAlbum = (name: string) =>
@@ -86,7 +81,6 @@ export default function Gallery() {
     (i) => album === "All" || i.album === album,
   );
 
-  // Escape closes the lightbox
   useEffect(() => {
     if (!active) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setActive(null);
@@ -135,8 +129,6 @@ export default function Gallery() {
           </p>
         )}
 
-        {/* the pile: polaroids overlap rather than sit in a grid, and the camera
-            lies across them from off the left edge */}
         <div className="relative mt-14">
           <Camera className="absolute top-[20%] -left-[27%] z-0 hidden w-[54%] md:block" />
 
@@ -179,10 +171,7 @@ export default function Gallery() {
             </button>
 
             <motion.figure
-              /* hugs the photo rather than filling the overlay: a full-width
-                 box leaves transparent letterbox space beside the image that
-                 still swallows clicks, so "click outside to close" would only
-                 work well past the edges of the picture */
+
               className="flex max-w-5xl flex-col items-center"
               initial={reduced ? { opacity: 0 } : { opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}

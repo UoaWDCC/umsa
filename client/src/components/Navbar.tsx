@@ -6,8 +6,6 @@ import { AnimatePresence, motion } from "motion/react";
 import { FiChevronDown, FiMenu, FiX } from "react-icons/fi";
 import logo from "../assets/brand/umsa-logo.png";
 
-/* The design groups the three "about the club" pages behind one ABOUT item that
-   opens a panel; everything else stays top level. */
 const ABOUT_MENU = [
   { to: "/about", label: "About Us" },
   { to: "/contact", label: "Contact" },
@@ -24,9 +22,6 @@ const LINKS = [
 const LINK_BASE =
   "font-heading text-[13px] tracking-[0.12em] uppercase transition-colors";
 
-/* The ABOUT item. The trigger is a real link to /about — hovering or tabbing
-   into it opens the panel of sub-pages, so a click still goes somewhere useful
-   and touch users get the same pages from the burger menu. */
 function AboutMenu() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();

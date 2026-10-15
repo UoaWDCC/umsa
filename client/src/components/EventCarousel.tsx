@@ -1,4 +1,4 @@
-// Adapted from Twu1738's UoaWDCC/umsa PR #61; data comes from the real API.
+
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import rightArrow from "../assets/right_arrow.svg";

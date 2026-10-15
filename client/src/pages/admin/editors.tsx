@@ -1,4 +1,4 @@
-// Thin configuration over the generic CollectionEditor — one export per resource.
+
 import CollectionEditor, { type Field } from "./CollectionEditor";
 import {
   EVENT_TAGS,

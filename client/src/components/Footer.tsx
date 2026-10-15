@@ -3,10 +3,6 @@ import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import logo from "../assets/about-us/badge.svg";
 import footerWave from "../assets/about-us/Vector 27.svg";
 
-/* The footer in every frame is one torn-top blue band, 269 tall on a 1440 page:
-   a right-aligned link column, the crest centred, then a left-aligned link
-   column with the three social circles sitting under it. No wordmark, no
-   tagline, no rule — the frames have none of those. */
 const LEFT_LINKS = [
   { to: "/about", label: "About Us" },
   { to: "/sponsors", label: "Sponsors" },

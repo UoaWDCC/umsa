@@ -1,4 +1,4 @@
-// Adapted from nryuzl's UoaWDCC/umsa PR #56.
+
 import { useLayoutEffect, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
 import { useLocation } from "react-router-dom";

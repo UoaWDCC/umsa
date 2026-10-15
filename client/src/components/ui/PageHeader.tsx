@@ -3,7 +3,6 @@ import { Sparkle, Star } from "./Decor";
 
 type Props = { title: string; accent?: string; blurb?: string };
 
-/** Shared masthead for every inner page. */
 export default function PageHeader({ title, accent, blurb }: Props) {
   return (
     <section className="relative mx-auto max-w-6xl px-6 pt-14 pb-8 text-center">

@@ -7,13 +7,6 @@ import { UMSA_LINKTREE, type EventRecord } from "../types/content";
 
 type Props = { event: EventRecord & { isDone: boolean }; index: number };
 
-/* The card silhouette — an 825 x 301 band with a V notched down through the top
-   edge and up through the bottom edge a fifth of the way in, and a six-tooth
-   sawtooth right edge — lives in index.css as the `event-clip` polygon. */
-/* Two copies of that silhouette: the body, and a second card behind it. Both
-   cast a hard, unblurred offset shadow — those two shadows are what read as the
-   red and blue rules under every card. The pair is always {pink over red,
-   lavender over blue}; only which one is on top alternates down the page. */
 const PINK = {
   fill: "bg-red-50",
   ink: "text-accent2-primary",
@@ -48,7 +41,6 @@ export default function EventBanner({ event, index }: Props) {
  const reduced = useReducedMotion();
   const [open, setOpen] = useState(false);
 
-  // tints alternate by position down the page, not by whether the event has passed
   const warm = index % 2 === 0;
   const body = warm ? PINK : LILAC;
   const plate = warm ? LILAC : PINK;
@@ -62,7 +54,7 @@ export default function EventBanner({ event, index }: Props) {
 
   return (
     <motion.article
-      // warm cards sit left, cool cards step in from the right
+
       className={`relative w-full md:w-[86%] ${open ? "z-20" : "z-0"} ${warm ? "md:mr-auto" : "md:ml-auto"}`}
       style={{ containerType: "inline-size" }}
       initial={reduced ? { opacity: 0 } : { opacity: 0, x: warm ? -28 : 28 }}
@@ -72,8 +64,7 @@ export default function EventBanner({ event, index }: Props) {
       onHoverStart={() => setOpen(true)}
       onHoverEnd={() => setOpen(false)}
     >
-      {/* The card behind isn't decoration — the design slides it out on hover to
-          show where and when the event is. At rest only its edge shows. */}
+
       <motion.div
         className="absolute inset-0"
         style={{ filter: plate.shadow, x: "-1.8%" }}
@@ -122,14 +113,10 @@ export default function EventBanner({ event, index }: Props) {
             tone={warm ? "red" : "blue"}
           />
 
-          {/* title over pill, centred on the card so a long name pushes the
-              pill down instead of running into it */}
           <div className="absolute top-1/2 left-[24.7%] flex w-[40%] -translate-y-1/2 flex-col
             items-start gap-[2.2cqw]">
             <h3 className={`text-[4.6cqw] leading-[1.05] ${body.ink}`}>{event.eventName}</h3>
 
-            {/* an event you can still go to takes a sign-up; one that has been
-                and gone sends you to its photo album instead */}
             {event.isDone ? (
               <Link
                 to={event.album ? `/gallery?album=${encodeURIComponent(event.album)}` : "/gallery"}

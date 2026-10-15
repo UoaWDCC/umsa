@@ -1,10 +1,4 @@
-/* Every shape below is copied verbatim out of `assets/frames/ABOUT.svg`, in the
-   frame's own 1440 x 1922 coordinate system: the two red clouds and the
-   periwinkle one, the winding red arrow (Figma exports it as an outlined shape,
-   arrowhead included), the pink dashed line that echoes it, the three big
-   sparkles pinned to the curve's inflections, and the four small stars that
-   flank the CULTURE and COMMUNITY headings. Nothing here is redrawn, so the
-   copy sits in the gaps the designer left for it. */
+
 export default function AboutDecor({ className = "" }: { className?: string }) {
   return (
     <svg

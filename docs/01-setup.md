@@ -12,10 +12,8 @@ An account can be deliberately bootstrapped with ADMIN_EMAIL and ADMIN_PASSWORD
 that account's password and should not be run as an ordinary startup step.
 
 Cloudinary's three environment variables are needed for image uploads.
-Contact opens an email draft addressed to umsa@projects.wdcc.co.nz; membership uses
-the official Google Form. There is no admin inbox, local membership database or automatic
-email sending. RESEND_API_KEY is currently unused.
+Contact sends through Resend to umsa@projects.wdcc.co.nz. Set RESEND_API_KEY and
+CONTACT_FROM_EMAIL to a verified sender address. Membership uses the official Google Form.
+There is no admin inbox or local membership database.
 
-Checks: `pnpm build`, `pnpm --filter client test:pr-ui`, and
-`pnpm --filter server test:integration`. Integration tests create and remove only a
-uniquely named test database; they do not seed or change production content.
+Checks: `pnpm build` and `pnpm lint`.

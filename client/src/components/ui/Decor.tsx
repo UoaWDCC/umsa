@@ -1,9 +1,5 @@
 import { motion } from "motion/react";
 
-// Path data below is exported verbatim from the Figma file's icon set
-// (Vector 90, Vector 38, Vector 43) — not redrawn by hand. Only the fill is
-// parameterised so one shape can serve every tint used in the design.
-
 type Tone = "blue" | "red" | "light" | "lilac" | "pink" | "cream";
 
 const TONES: Record<Tone, string> = {
@@ -27,7 +23,6 @@ const spinProps = (spin: boolean, duration: number) =>
     ? { animate: { rotate: 360 }, transition: { duration, repeat: Infinity, ease: "linear" as const } }
     : {};
 
-/** Figma "Vector 90" — the tall eight-point sparkle. */
 export function Sparkle({ className = "", size, tone = "blue", spin = false }: Props) {
   return (
     <motion.svg
@@ -47,8 +42,6 @@ export function Sparkle({ className = "", size, tone = "blue", spin = false }: P
   );
 }
 
-/** Figma "Vector 38" — the chunky organic star. Its art extends past the frame,
-    so the viewBox is widened to -15..85 to avoid clipping the points. */
 export function Star({ className = "", size, tone = "red", spin = false }: Props) {
   return (
     <motion.svg
@@ -68,7 +61,6 @@ export function Star({ className = "", size, tone = "red", spin = false }: Props
   );
 }
 
-/** Figma "Vector 43" — the dense many-point burst behind event card titles. */
 export function Starburst({ className = "", size, tone = "blue" }: Props) {
   return (
     <svg
@@ -87,7 +79,6 @@ export function Starburst({ className = "", size, tone = "blue" }: Props) {
   );
 }
 
-/** Lobed cloud along the bottom of the home page. */
 export function Cloud({ className = "", tone = "blue" }: Props) {
   return (
     <svg
@@ -105,7 +96,6 @@ export function Cloud({ className = "", tone = "blue" }: Props) {
   );
 }
 
-/** Blue-over-red zigzag rule under the event cards. */
 export function Zigzag({ className = "", tone = "blue" }: Props) {
   return (
     <svg
@@ -125,8 +115,6 @@ export function Zigzag({ className = "", tone = "blue" }: Props) {
   );
 }
 
-/** The red / lavender / pink star trio that sits beside every page heading.
-    All three are the same Figma star in the file's three tints. */
 export function StarTrio({ className = "", size = 40 }: { className?: string; size?: number }) {
   return (
     <div className={`flex shrink-0 items-center gap-3 ${className}`}>
@@ -137,7 +125,6 @@ export function StarTrio({ className = "", size = 40 }: { className?: string; si
   );
 }
 
-/** The three pale sparkles that follow the "UMSA 2026 …" sign-off. */
 export function SparkleTrio({ className = "", size = 22 }: { className?: string; size?: number }) {
   return (
     <div className={`flex shrink-0 items-center gap-2 ${className}`}>
@@ -148,8 +135,6 @@ export function SparkleTrio({ className = "", size = 22 }: { className?: string;
   );
 }
 
-/** The small red outline star the CONTACT frame scatters down its left edge.
-    Copied out of the frame export, stroke and all. */
 export function OutlineStar({ className = "", size = 26 }: { className?: string; size?: number }) {
   return (
     <svg

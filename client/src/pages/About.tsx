@@ -1,4 +1,4 @@
-// Adapted from Minahil-S55's UoaWDCC/umsa PR #65.
+
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import mascot from "../assets/about-us/mascot.png";

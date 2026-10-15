@@ -2,18 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Fresh filenames on purpose: browsers cache favicons hard and keep
-         serving the old one when the path is unchanged. -->
+
     <link rel="icon" type="image/png" sizes="32x32" href="/icon-umsa-32.png" />
     <link rel="icon" type="image/png" sizes="64x64" href="/icon-umsa-64.png" />
     <link rel="icon" type="image/svg+xml" href="/icon-umsa.svg" />
     <link rel="apple-touch-icon" href="/icon-umsa-180.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-      /* Painted from the HTML itself, so it is up before any JS or webfont
-         arrives — the app shell and the blocking display font both land behind
-         it instead of flashing in front of the user. Inline on purpose: a
-         separate stylesheet would be one more round trip before it shows. */
+
       #boot {
         position: fixed;
         inset: 0;
@@ -34,7 +30,7 @@
         #boot svg { animation: none; opacity: 1; }
       }
     </style>
-    <!-- the two faces the first screen paints with; the rest arrive as needed -->
+
     <link rel="preload" as="font" type="font/woff2" href="/fonts/sekuya-400.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-400.woff2" crossorigin />
     <title>UMSA</title>

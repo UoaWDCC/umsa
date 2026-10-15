@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-// client-side copy for instant validation
 export const homeContentSchema = z.object({
   introVideoUrl: z
     .union([

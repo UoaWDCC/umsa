@@ -7,7 +7,6 @@ import { Star } from "../components/ui/Decor";
 import { useEvents } from "../hooks/useEvents";
 import { EVENT_TAGS } from "../types/content";
 
-/** The red / lavender / pink trio centred under each events heading. */
 function StarRow() {
   return (
     <div className="mt-4 flex items-center justify-center gap-3">
@@ -30,7 +29,6 @@ export default function Events() {
   const [tag, setTag] = useState<string>("All");
   const [page, setPage] = useState(1);
 
-  // "done" is always derived from the date, never trusted from the record
   const { upcoming, past } = useMemo(() => {
     const now = new Date();
     const decorated = (events ?? [])

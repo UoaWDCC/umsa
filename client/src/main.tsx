@@ -96,14 +96,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   </React.StrictMode>,
 );
 
-/* The boot screen holds until the first screenful is genuinely ready: React has
-   painted, the blocking display font has resolved, and the images actually in
-   view have decoded. Waiting on fonts alone was the gap — the screen lifted and
-   then the photos arrived one by one, which is what read as a rough first load.
-
-   Every wait is capped. A loading screen that outstays the thing it is hiding is
-   worse than the pop it was covering, so nothing here can hold the page for more
-   than a beat, and a slow image or font is simply left to arrive behind it. */
 const CAP_FONTS = 900;
 const CAP_IMAGES = 1200;
 
@@ -116,11 +108,10 @@ function dismissBoot() {
   if (!boot) return;
   boot.classList.add("is-done");
   boot.addEventListener("transitionend", () => boot.remove(), { once: true });
-  // belt and braces if the transition never fires (reduced motion, hidden tab)
+
   setTimeout(() => boot.remove(), 800);
 }
 
-/** Images intersecting the first viewport — the only ones whose pop is visible. */
 function imagesInView() {
   const pending = [...document.querySelectorAll("img")]
     .filter((img) => {

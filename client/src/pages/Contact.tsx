@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { api, apiErrorMessage } from "../lib/api";
 import { motion } from "motion/react";
 import type { IconType } from "react-icons";
 import { FiMail } from "react-icons/fi";
@@ -7,11 +8,8 @@ import Reveal from "../components/ui/Reveal";
 import Button from "../components/ui/Button";
 import { OutlineStar, StarTrio } from "../components/ui/Decor";
 
-type Status = "idle" | "draft";
+type Status = "idle" | "sending" | "sent";
 
-/* The CONTACT frame is one 800 x 404 white card, corner radius 40, holding four
-   rows on a 77px pitch: a 48px round icon badge — red on the first row, blue on
-   the rest — then a small uppercase label above the value. */
 type Row = {
   label: string;
   value: string;
@@ -60,14 +58,19 @@ export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<Status>("idle");
 
-  const submit = (e: React.FormEvent) => {
+  const [error, setError] = useState("");
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`UMSA enquiry from ${form.name}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nReply email: ${form.email}\n\n${form.message}`,
-    );
-    window.location.href = `mailto:umsa@projects.wdcc.co.nz?subject=${subject}&body=${body}`;
-    setStatus("draft");
+    setStatus("sending");
+    setError("");
+    try {
+      await api.post("/contact", form);
+      setStatus("sent");
+      setForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      setError(apiErrorMessage(err));
+      setStatus("idle");
+    }
   };
 
   return (
@@ -83,7 +86,6 @@ export default function Contact() {
         </Reveal>
 
         <div className="relative mt-10">
-          {/* the three outline stars running down the left margin */}
           <div className="absolute top-10 -left-2 hidden flex-col gap-6 lg:flex">
             <OutlineStar />
             <OutlineStar />
@@ -121,7 +123,6 @@ export default function Contact() {
           </Reveal>
         </div>
 
-        {/* "REACH OUT!" sits right-aligned, with the star trio to its left */}
         <Reveal>
           <div className="mt-24 flex items-center justify-end gap-8">
             <StarTrio className="hidden sm:flex" size={34} />
@@ -156,15 +157,22 @@ export default function Contact() {
               onChange={(e) => setForm({ ...form, message: e.target.value })}
             />
 
-            <Button type="submit">Open email draft</Button>
+            <Button type="submit" disabled={status === "sending"}>
+              {status === "sending" ? "Sending…" : "Send message"}
+            </Button>
+            {error && (
+              <p role="alert" className="text-sm text-accent2-primary">
+                {error}
+              </p>
+            )}
 
-            {status === "draft" && (
+            {status === "sent" && (
               <motion.p
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="flex items-center gap-2 text-sm text-accent1-primary"
               >
-                <FiMail /> Review and send the draft in your email app.
+                <FiMail /> Message sent. Thanks for getting in touch.
               </motion.p>
             )}
           </form>

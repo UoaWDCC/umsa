@@ -3,13 +3,6 @@ import doodle1 from "../assets/brand/note-doodle-1.png";
 import doodle2 from "../assets/brand/note-doodle-2.png";
 import doodle3 from "../assets/brand/note-doodle-3.png";
 
-/* Every shape in this file is copied verbatim out of `assets/frames/TEAM.svg`,
-   in the frame's own 1440 x 3183 coordinate system — each object just gets a
-   viewBox cropped to its own bounds so it can be placed independently. The
-   doodles on the pad are the frame's embedded bitmaps, extracted to PNG. */
-
-/** The chunky blue reading glasses: two arms behind, one frame with the lenses
-    knocked out of it in front. */
 export function Glasses({ className = "" }: { className?: string }) {
   return (
     <svg aria-hidden viewBox="940 318 436 200" className={`pointer-events-none ${className}`} fill="none">
@@ -20,7 +13,6 @@ export function Glasses({ className = "" }: { className?: string }) {
   );
 }
 
-/** The red and blue pens lying across the board, nibs and all. */
 export function Pens({ className = "" }: { className?: string }) {
   return (
     <svg aria-hidden viewBox="1180 688 250 402" className={`pointer-events-none ${className}`} fill="none">
@@ -32,7 +24,6 @@ export function Pens({ className = "" }: { className?: string }) {
   );
 }
 
-/** Two erasers, each a grey block with a coloured sleeve and a star stamp. */
 export function Erasers({ className = "" }: { className?: string }) {
   return (
     <svg aria-hidden viewBox="1105 2225 290 245" className={`pointer-events-none ${className}`} fill="none">
@@ -58,12 +49,6 @@ export function Erasers({ className = "" }: { className?: string }) {
   );
 }
 
-/* The NOTE pad: a 475 x 658 grey block tilted 11.5 degrees about its top-left
-   corner, which throws its real bounds out to x -9..588 / y 1404..2144 — the
-   viewBox has to cover that plus the -8/+10 shadow, or the pad reads as a
-   clipped wedge rather than a rectangle. Then the embossed NOTE
-   wordmark, three doodle stickers, and a white label with "umsa" scrawled over
-   three ruled lines. */
 export function NotePad({ className = "" }: { className?: string }) {
   const reduced = useReducedMotion();
   return (
@@ -93,7 +78,6 @@ export function NotePad({ className = "" }: { className?: string }) {
       <line x1="301.834" y1="1990.87" x2="511.493" y2="1947.99" stroke="#ADABBA" strokeWidth="4" />
       <line x1="309.449" y1="2028.1" x2="519.108" y2="1985.22" stroke="#ADABBA" strokeWidth="4" />
 
-      {/* "umsa", handwritten */}
       <g stroke="#4F4FE3" strokeWidth="4" fill="none">
         <path d="M342.809 1993.7C342.809 1993.7 361.104 2018.62 371.844 2009.42C381.966 2000.75 364.987 1979.79 364.987 1979.79" />
         <path d="M392.026 1995.64C392.026 1995.64 367.259 1980.16 374.376 1969.69C382.672 1957.48 396.208 1974.34 396.208 1974.34C396.208 1974.34 380.364 1954.13 394.62 1948.89C406.241 1944.61 414.797 1967.17 414.797 1967.17" />

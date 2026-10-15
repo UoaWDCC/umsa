@@ -1,10 +1,5 @@
 import { motion, useReducedMotion } from "motion/react";
 
-/* The pale dashed curve that weaves behind the event cards, copied verbatim out
-   of `assets/frames/EVENTS.svg`. In the frame it runs from x 159 to 1349 down
-   the full 2910-tall page, so it is stretched to whatever height the list
-   happens to be; `vector-effect` keeps the stroke an even weight while that
-   happens, and the dashes are the frame's own 40/80/120/160 rhythm. */
 export default function EventTrail({ className = "" }: { className?: string }) {
   const reduced = useReducedMotion();
 
@@ -22,9 +17,7 @@ export default function EventTrail({ className = "" }: { className?: string }) {
         strokeWidth="20"
         strokeDasharray="40 80 120 160"
         vectorEffect="non-scaling-stroke"
-        /* Opacity only. Animating `pathLength` would draw the line on, but
-           motion implements that by rewriting strokeDasharray — which wipes out
-           the frame's own 40/80/120/160 dash rhythm and leaves a solid hairline. */
+
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0 }}

@@ -29,7 +29,7 @@ export type Member = {
   id: string;
   fullName: string;
   role: string;
-  /** the Figma photo wells are empty, so a member without a photo just gets one */
+
   img?: string;
   instagram: string;
   degree: string;
@@ -45,10 +45,10 @@ export type EventRecord = {
   eventImage: string;
   eventLink: string;
   eventDescription: string;
-  eventDate: string; // ISO date — "done" is derived from this, never stored
+  eventDate: string;
   eventTag: EventTag;
   location: string;
-  /** gallery album to send people to once the event has been and gone */
+
   album?: string;
 };
 
@@ -63,17 +63,16 @@ export type Region = (typeof REGIONS)[number];
 export type Sponsor = {
   id: string;
   name: string;
-  /** the headline that goes on the ticket, e.g. "15% OFF" */
+
   offer: string;
-  /** the conditions, shown when the ticket is opened; optional */
+
   detail?: string;
-  /** left empty rather than guessed — an unverified link is worse than none */
+
   url?: string;
   instagram?: string;
-  /** decorative demo logo — see DEMO_LOGOS */
+
   logo?: string;
-  /* PLACEHOLDER. Nobody has confirmed which suburb these businesses trade in;
-     these were assigned to demo the grouping and are editable in the admin. */
+
   region: Region;
 };
 

@@ -2,9 +2,6 @@
 @import "./fonts.css";
 @import "./tokens.css";
 
-/* The design is light-themed throughout — white/off-white paper, blue + red ink.
-   There is deliberately no dark mode; the Figma file doesn't define one. */
-
 :root {
   color-scheme: light;
   font: 16px/1.6 var(--font-sans);
@@ -29,10 +26,6 @@ h3 {
   text-transform: uppercase;
 }
 
-/* Tailwind v4's preflight resets buttons to `cursor: default`. Everything that
-   is a button in this app is a real click target — region headers, filters,
-   pagination, the burger menu, the admin actions — so the pointer goes back on
-   globally rather than being remembered per component. */
 @layer base {
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -41,15 +34,11 @@ h3 {
   }
 }
 
-/* Display headings in the design are half blue / half red. The red half is
-   marked up as <em> so the two-tone works with any wrapping. */
 .two-tone em {
   font-style: normal;
   color: var(--color-accent2-primary);
 }
 
-/* Near-white paper. The Figma pages are essentially white — the tint is only
-   just perceptible, so it must stay very low opacity. */
 @utility paper {
   background:
     radial-gradient(circle at 10% 0%, color-mix(in srgb, var(--color-accent2-secondary) 22%, transparent) 0, transparent 34%),
@@ -57,25 +46,14 @@ h3 {
     var(--color-background-primary);
 }
 
-/* The sponsor ticket silhouette, sampled from the SPONSORS frame path into a
-   plain polygon. It was an SVG `clip-path: url(#…)` per ticket, which forces a
-   separate clipping pass on every one of them every frame — with a dozen
-   animating at once that is what made the accordion stutter. */
 @utility ticket-clip {
   clip-path: polygon(0.00% 33.40%,0.00% 0.00%,100.00% 0.00%,100.00% 33.40%,99.56% 34.06%,98.47% 35.93%,97.05% 38.81%,95.63% 42.54%,94.54% 46.93%,94.10% 51.80%,94.54% 56.70%,95.63% 61.10%,97.05% 64.83%,98.47% 67.70%,99.56% 69.55%,100.00% 70.20%,100.00% 100.00%,0.00% 100.00%,0.00% 70.20%,0.44% 69.55%,1.53% 67.70%,2.95% 64.82%,4.37% 61.10%,5.46% 56.70%,5.90% 51.80%,5.46% 46.93%,4.37% 42.54%,2.95% 38.81%,1.53% 35.93%,0.44% 34.06%,0.00% 33.40%);
 }
 
-/* The event card silhouette — the frame path is all straight segments, so it
-   maps to a polygon one-for-one. Same reason as the ticket: an SVG clip-path
-   reference per card is far more expensive to composite than this. */
 @utility event-clip {
   clip-path: polygon(12.36% 0.29%,0.31% 0.00%,0.00% 96.23%,12.05% 96.52%,15.75% 85.53%,19.39% 96.70%,99.69% 100.00%,96.68% 83.88%,99.80% 67.91%,96.78% 51.80%,99.90% 35.83%,96.89% 19.72%,100.00% 3.77%,19.70% 0.47%,16.00% 11.46%);
 }
 
-/* The torn top edge, taken from the footer band in the frame exports (a 1440 x
-   269 shape whose teeth occupy the top ~35px). The x positions are per-cent so
-   the edge stretches with the viewport; the y positions stay in pixels so the
-   teeth keep their real depth instead of scaling with the footer's height. */
 @utility torn-top {
   clip-path: polygon(
     0.00% 35.4px,
@@ -129,8 +107,6 @@ h3 {
   );
 }
 
-/* Respect users who don't want motion — motion/react reads this too, but the
-   CSS marquee needs its own opt-out. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -141,7 +117,6 @@ h3 {
   }
 }
 
-/* PR #56 marquee loop. */
 @keyframes umsa-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .umsa-marquee-track:hover, .umsa-marquee-track:focus-within { animation-play-state: paused !important; }
 @media (prefers-reduced-motion: reduce) { .umsa-marquee-track { animation: none !important; } }

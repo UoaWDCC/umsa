@@ -86,7 +86,7 @@ export default function AdminLayout() {
 
   return (
     <div className="min-h-screen bg-background-secondary lg:flex">
-      {/* mobile bar: the sidebar collapses behind it below lg */}
+
       <div className="flex items-center justify-between border-b border-gray-150 bg-white px-4 py-3 lg:hidden">
         <span className="flex items-center gap-2">
           <img src={logo} alt="" className="h-8 w-8 object-contain" />

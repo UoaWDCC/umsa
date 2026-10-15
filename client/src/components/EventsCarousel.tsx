@@ -10,11 +10,11 @@ export function EventsCarousel() {
     const maxIndex = Math.max(0, events.length - VISIBLE);
 
     // hardcoded opacity values
-    const opacityLevel = ["opacity-70", "opacity-100", "opacity-70"]; 
+    const opacityLevel = ["opacity-70", "opacity-100", "opacity-70"];
 
     // shifts the cards left/right
     const shiftRight = () => setIndex((i) => Math.min(i + 1, maxIndex));
-    const shiftLeft = () => setIndex((i) => Math.max(i - 1, 0)); 
+    const shiftLeft = () => setIndex((i) => Math.max(i - 1, 0));
 
     // takes 3 events from the list of events
     const visibleEvents = events.slice(index, index + VISIBLE)

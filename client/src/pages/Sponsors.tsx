@@ -6,11 +6,6 @@ import SponsorTicket from "../components/SponsorTicket";
 import { useSponsors } from "../hooks/useSiteData";
 import { REGIONS, type Region, type Sponsor } from "../types/content";
 
-/* The Review Two board stacks the deals under the suburb they're in: one big
-   region ticket with a SEE ALL badge, and opening it slides the region's own
-   tickets out underneath. That is what this page does — the region ticket is
-   the same silhouette at full width, and its stack expands in place. */
-
 const REGION_SKIN = [
   { body: "bg-blue-700", plate: "bg-red-600", accent: "text-red-350", perf: "border-blue-300" },
   { body: "bg-red-600", plate: "bg-gray-900", accent: "text-blue-900", perf: "border-gray-100" },
@@ -47,7 +42,7 @@ function RegionTicket({
       viewport={{ once: true, amount: 0 }}
       transition={{ duration: 0.45, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
     >
-      {/* the plate that peeks out behind, tilted the other way */}
+
       <motion.div
         className="absolute inset-0"
         style={{ filter: HARD_SHADOW }}
@@ -101,7 +96,7 @@ export default function Sponsors() {
   const reduced = useReducedMotion();
   const { data: sponsors, isPending, isError } = useSponsors();
   const [query, setQuery] = useState("");
-  // every region starts shut, so the page opens as just the four covers
+
   const [openRegion, setOpenRegion] = useState<Region | null>(null);
 
   const matches = useMemo(() => {
@@ -115,7 +110,6 @@ export default function Sponsors() {
     );
   }, [sponsors, query]);
 
-  // searching cuts across the regions, so it drops the accordion entirely
   const searching = query.trim().length > 0;
 
   const byRegion = useMemo(() => {
@@ -192,23 +186,10 @@ export default function Sponsors() {
                         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                         className="overflow-hidden"
                       >
-                        {/* A stack of paper sliding apart. Each ticket starts
-                            tucked a full card-height up — directly behind the
-                            one above it — and drops out from under it, with the
-                            z-order descending so it really is underneath. The
-                            travel is one card either way, which keeps it crisp:
-                            an earlier version started every card on the pile at
-                            slot 0, so the twelfth had to cross 3200px and
-                            arrived long after the container had finished
-                            opening, which is what made it feel broken. */}
+
                         <motion.div
                           className="mt-10 ml-[6%] flex flex-col gap-10 md:ml-[10%]"
-                          /* The stagger has to be much shorter than a card's
-                             own travel or the first one lands before the last
-                             one leaves, and it reads as a queue of arrivals
-                             rather than one spread. At 12 ms across twelve
-                             cards the whole set is in flight together and it
-                             lands as a single gesture. */
+
                           variants={{
                             open: { transition: { staggerChildren: 0.012 } },
                             shut: { transition: { staggerChildren: 0.01, staggerDirection: -1 } },
@@ -220,7 +201,7 @@ export default function Sponsors() {
                           {list.map((sponsor, j) => (
                             <motion.div
                               key={sponsor.id}
-                              // each card sits under the one above it
+
                               style={{ zIndex: list.length - j }}
                               variants={
                                 reduced

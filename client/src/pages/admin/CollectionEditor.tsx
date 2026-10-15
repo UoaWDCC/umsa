@@ -25,7 +25,7 @@ type Props = {
   collection: Collection;
   title: string;
   fields: Field[];
-  /** how to label each row in the list */
+
   primary: string;
   secondary?: string;
   thumb?: string;
