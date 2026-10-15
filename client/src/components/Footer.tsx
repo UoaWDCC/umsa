@@ -1,54 +1,89 @@
-import { Link } from 'react-router-dom';
-import { FaInstagram, FaFacebook, FaLinkedin } from "react-icons/fa";
-import umsa2  from "../assets/icons/umsa2.png";
-import footerWave from "../assets/footerwave.png";
+import { Link } from "react-router-dom";
+import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+import logo from "../assets/about-us/badge.svg";
+import footerWave from "../assets/about-us/Vector 27.svg";
+
+/* The footer in every frame is one torn-top blue band, 269 tall on a 1440 page:
+   a right-aligned link column, the crest centred, then a left-aligned link
+   column with the three social circles sitting under it. No wordmark, no
+   tagline, no rule — the frames have none of those. */
+const LEFT_LINKS = [
+  { to: "/about", label: "About Us" },
+  { to: "/sponsors", label: "Sponsors" },
+  { to: "/events", label: "Our Events" },
+  { to: "/team", label: "Meet the Team" },
+];
+
+const RIGHT_LINKS = [
+  { to: "/gallery", label: "Photos" },
+  { to: "/contact", label: "Contact Us" },
+];
+
+const SOCIALS = [
+  { href: "https://www.facebook.com/", Icon: FaFacebookF, label: "Facebook" },
+  { href: "https://www.instagram.com/", Icon: FaInstagram, label: "Instagram" },
+  { href: "https://twitter.com/", Icon: FaTwitter, label: "Twitter" },
+];
+
+const LINK =
+  "block font-heading text-[13px] tracking-[0.1em] uppercase transition-opacity " +
+  "hover:opacity-70 md:text-base";
 
 export default function Footer() {
-    const footerLinkClass = "text-gray-400 text-white hover:text-gray-200 cursor-pointer"
-
-    return (
-        <>
-        {/* Footer elements */}
-        <nav className='py-4 min-h-50 gap-4 flex flex-row justify-around bg-cover bg-top'
-        style={{backgroundImage: `url(${footerWave})`}}>
-
-            {/* Main footer content */}
-            <div className='flex flex-row gap-18 mx-6 mt-12 text-sm'>
-                {/* Page Navigation */}
-                <div className='flex flex-col text-right'>
-                    <Link to="/" className={footerLinkClass}>About Us</Link>
-                    <Link to="/Sponsors" className={footerLinkClass}>Sponsors</Link>
-                    <Link to="/Events" className={footerLinkClass}>Our Events</Link>
-                    <Link to="/Team" className={footerLinkClass}>Meet the Team</Link>
-                </div>
-
-                <img src={umsa2} className="size-30 relative -top-8"/>
-
-                {/* Events Navigation */}
-                <div className='flex flex-col text-left'>
-                    <Link to="/Gallery" className={footerLinkClass}>Photos</Link>
-                    <Link to="/Contact" className={footerLinkClass}>Contact Us</Link>
-                
-
-                {/* External Links */}
-                <div className='flex flex-row gap-4 items-center ml-auto mt-2 mr-13'>
-                    <a href="https://www.instagram.com/umsanz/" target="_blank" rel="noopener noreferrer">
-                        <FaInstagram className="text-3xl text-grey-300 hover:text-white" />
-                    </a>
-                    <a href="https://www.facebook.com/umsanz/" target="_blank" rel="noopener noreferrer">
-                        <FaFacebook className="text-3xl text-grey-300 hover:text-white" />
-                    </a>
-
-                    {/* THIS ISJ UST A PLACEHOLDER CUZ THEY DONT HAVE A TWITTER AND IT LOOKS BAD WITHOUT
-                    A THIRD ICON */}
-                    <a href="https://www.facebook.com/umsanz/" target="_blank" rel="noopener noreferrer">
-                        <FaLinkedin className="text-3xl text-grey-300 hover:text-white" />
-                    </a>
-
-                </div>
-                </div>
-            </div>
+  return (
+    <footer className="relative mt-24 bg-accent1-primary pt-12 pb-14 text-white">
+      <img
+        src={footerWave}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-full h-10 w-full object-cover object-top"
+      />
+      <div
+        className="mx-auto grid max-w-5xl items-center gap-8 px-6
+          md:grid-cols-[1fr_auto_1fr] md:gap-12"
+      >
+        <nav className="space-y-2 md:justify-self-end md:text-right">
+          {LEFT_LINKS.map((link) => (
+            <Link key={link.to} to={link.to} className={LINK}>
+              {link.label}
+            </Link>
+          ))}
         </nav>
-        </>
-    )
+
+        <Link
+          to="/"
+          aria-label="UMSA home"
+          className="justify-self-start md:justify-self-center"
+        >
+          <img src={logo} alt="" className="w-28 md:w-40" />
+        </Link>
+
+        <div className="space-y-2">
+          <nav className="space-y-2">
+            {RIGHT_LINKS.map((link) => (
+              <Link key={link.to} to={link.to} className={LINK}>
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="flex gap-4 pt-3">
+            {SOCIALS.map(({ href, Icon, label }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white
+                  text-accent1-primary transition-transform hover:scale-110 md:h-11 md:w-11"
+              >
+                <Icon size={18} />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 }
