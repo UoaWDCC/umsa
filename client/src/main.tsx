@@ -22,6 +22,7 @@ import Contact from "./pages/Contact";
 import Sponsors from "./pages/Sponsors";
 import FAQ from "./pages/Frequent-Asked-Question";
 import About from "./pages/About";
+import NotFound from "./pages/NotFound";
 
 {
   /* project team imports */
@@ -62,6 +63,7 @@ const router = createBrowserRouter([
       { path: "contact", element: <Contact /> },
       { path: "sponsors", element: <Sponsors /> },
       { path: "about", element: <About /> },
+      { path: "*", element: <NotFound /> },
     ],
   },
   /* admin routes live OUTSIDE RootLayout so they don't get the public navbar/footer */
