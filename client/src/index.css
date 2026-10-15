@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "./tokens.css";
 
+@theme {
+  --font-sekuya: 'Sekuya', serif;
+}
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -66,4 +70,23 @@
 
 body {
   margin: 0;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
 }
