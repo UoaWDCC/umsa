@@ -1,121 +1,29 @@
-# 5. API reference
+# API reference
 
-Every endpoint that exists today. This is a lookup table — for the *why*, read
-[03-backend-reference.md](03-backend-reference.md).
+All paths are relative to `/api`. Validation failures return 400; errors use
+`{ error: { code, message } }`. Protected routes require the HTTP-only admin session cookie.
 
-Base URL is `/api` in both environments (see [02-architecture.md](02-architecture.md)). Direct
-access in dev is `http://localhost:5050`.
+| Method | Path | Access | Purpose |
+| --- | --- | --- | --- |
+| GET | /health | Public | Process health; does not probe MongoDB |
+| GET | /content/home | Public | Heading, subtitle, aboutHeading, aboutBody, optional introVideoUrl |
+| GET | /members, /events, /sponsors, /gallery, /faqs | Public | List saved collection records with stable id fields |
+| POST | /admin/auth/login | Public | Validate account password and set session cookie |
+| GET | /admin/auth/me | Admin | Read the current account email |
+| POST | /admin/auth/logout | Public | Clear session cookie |
+| PUT | /admin/content/home | Admin | Save validated homepage fields |
+| POST | /admin/members, /admin/events, /admin/sponsors, /admin/gallery, /admin/faqs | Admin | Create a validated record |
+| PUT | /admin/{collection}/{id} | Admin | Replace a record's editable fields |
+| DELETE | /admin/{collection}/{id} | Admin | Delete a record |
+| POST | /admin/uploads/signature | Admin | Sign upload to an allowed Cloudinary folder |
+| POST | /contact | Public | Save name, email and message |
+| POST | /membership | Public | Save name, email and university year for committee review |
+| GET | /admin/submissions | Admin | Latest 200 contact/membership requests |
 
-All routes are rate limited to 300 requests / 15 min / IP.
+Collection schemas are in `server/src/schemas/collections.ts`. Member committee values:
+presidents, executives, marketing, publicRelations, social, cultural, sports, other.
+Older records without a committee remain visible under Other. Homepage video URLs must
+be HTTPS YouTube embed URLs, and an empty URL hides the video.
 
-## Error shape
-
-Every error, from every endpoint:
-
-```json
-{ "error": { "code": "VALIDATION_ERROR", "message": "Heading is required" } }
-```
-
-| Code | Status |
-|---|---|
-| `VALIDATION_ERROR` | 400 — zod rejected the body |
-| `BAD_REQUEST` | 400 — malformed input zod didn't cover |
-| `UNAUTHORIZED` | 401 — missing, expired or orphaned session |
-| `NOT_FOUND` | 404 — no such document, or no such route |
-| `INTERNAL_ERROR` | 500 — something threw |
-
-## Public
-
-### `GET /api/health`
-No auth. No database access, so it stays 200 even when Mongo is down.
-
-```json
-{ "status": "ok", "service": "umsa-api" }
-```
-
-### `GET /api/content/home`
-No auth. Returns the homepage welcome block. **Falls back to `HOME_DEFAULTS`** when no document
-has ever been saved, so the site works against an empty database and needs no seeding.
-
-```json
-{ "heading": "Welcome to Project UMSA!", "subtitle": "to get started, …" }
-```
-
-## Admin — auth
-
-Mounted **above** `requireAdmin`, because you have to reach login while logged out.
-
-### `POST /api/admin/auth/login`
-Body validated by `loginSchema`:
-
-```json
-{ "email": "umsa@projects.wdcc.co.nz", "password": "umsa" }
-```
-
-`200 { "email": "…" }` and sets the `umsa_admin` cookie. The token is **never** in the response
-body.
-
-`401 UNAUTHORIZED "Incorrect email or password"` — identical for unknown email and wrong
-password, on purpose.
-
-### `POST /api/admin/auth/logout`
-No auth required, no body. Clears the cookie. `200 { "ok": true }`.
-
-### `GET /api/admin/auth/me`
-`requireAdmin` applied per-route. `200 { "email": "…" }` or `401`.
-
-The client treats a 401 here as the *logged-out state*, not an error — see
-[04-auth.md](04-auth.md).
-
-## Admin — content
-
-Everything below is mounted **under** `app.use("/api/admin", requireAdmin)` and returns `401`
-without a valid session.
-
-### `PUT /api/admin/content/home`
-Body validated by `homeContentSchema` — `heading` 1–200 chars, `subtitle` 1–500 chars, both
-trimmed, unknown keys stripped.
-
-```json
-{ "heading": "Selamat datang", "subtitle": "UMSA 2026" }
-```
-
-`200` with the saved values. Uses `findOneAndUpdate({}, …, { upsert: true })`, so it creates the
-singleton on first save.
-
-## Admin — uploads
-
-### `POST /api/admin/uploads/signature`
-Body validated by `uploadSignatureSchema` — `folder` must be exactly one of `"umsa/gallery"`,
-`"umsa/team"`, `"umsa/events"`, `"umsa/branding"`.
-
-```json
-{ "folder": "umsa/gallery" }
-```
-
-`200` with a short-lived Cloudinary upload signature:
-
-```json
-{ "signature": "…", "timestamp": 1730000000, "folder": "umsa/gallery", "cloudName": "…", "apiKey": "…" }
-```
-
-The browser uses this to upload the file **directly to Cloudinary** — the API never sees the
-bytes. Only the public API key and the derived signature come back; `CLOUDINARY_API_SECRET`
-never leaves the server. Returns `500 INTERNAL_ERROR` if the `CLOUDINARY_*` env vars are
-missing, and `401` when logged out like every other `/api/admin/*` route.
-
-## Behaviours that surprise people
-
-- **`/api/admin/*` returns 401, not 404, for routes that don't exist** when you're logged out.
-  The guard runs before routing can miss. Log in and you'll get the 404 you expected.
-- **`GET /api/content/home` never 404s.** Empty database returns defaults.
-- **Sending no body to a validated endpoint gives 400, not 500.** Express 5 leaves `req.body`
-  undefined; `validate` handles it with `req.body ?? {}` and reports the missing fields.
-- **The health check lies about the database.** It doesn't touch Mongo. A green
-  `/api/health` means "Node is up", nothing more.
-
-## Endpoints that do not exist yet
-
-Anything for events, gallery, team members, theme or logos. Each is designed in
-[blueprints/](blueprints/) — including its exact URL — so that when you build one, the URL is
-already agreed and the frontend can be written against it in parallel.
+Public submissions are limited to 10 per 15 minutes per IP; all API routes also share
+the upstream global rate limit. No email is sent by submission endpoints.
