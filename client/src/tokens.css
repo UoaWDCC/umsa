@@ -1,7 +1,6 @@
 @theme {
   /* Font tokens */
   --font-sans: "Inter", system-ui, sans-serif;
-  --font-sekuya: "Sekuya", serif;
   --font-heading: "Sekuya", system-ui, sans-serif;
   --font-display: "Sekuya", system-ui, serif;
 
@@ -24,46 +23,46 @@
 
   /* And also... standard color primitives for UMSA Project (see: Figma) */
 
-  --color-gray-900: #17161d;
-  --color-gray-800: #2e2b3b;
+  --color-gray-900: #17161D;
+  --color-gray-800: #2E2B3B;
   --color-gray-700: #474554;
-  --color-gray-600: #5f5c70;
-  --color-gray-500: #79758a;
-  --color-gray-400: #928fa3;
-  --color-gray-300: #adabba;
-  --color-gray-250: #bab8c7;
-  --color-gray-200: #c8c6d2;
-  --color-gray-150: #d5d3de;
-  --color-gray-100: #e3e2e9;
-  --color-gray-50: #f1f0f4;
-  --color-gray-20: #f9f9fb;
-  --color-gray-10: #fcfcfd;
+  --color-gray-600: #5F5C70;
+  --color-gray-500: #79758A;
+  --color-gray-400: #928FA3;
+  --color-gray-300: #ADABBA;
+  --color-gray-250: #BAB8C7;
+  --color-gray-200: #C8C6D2;
+  --color-gray-150: #D5D3DE;
+  --color-gray-100: #E3E2E9;
+  --color-gray-50: #F1F0F4;
+  --color-gray-20: #F9F9FB;
+  --color-gray-10: #FCFCFD;
 
   --color-red-900: #330000;
   --color-red-800: #660000;
   --color-red-700: #990000;
-  --color-red-600: #cc0000;
-  --color-red-500: #ff0000;
-  --color-red-400: #ff3333;
-  --color-red-350: #ff5252;
-  --color-red-300: #ff5252;
-  --color-red-250: #ff8080;
-  --color-red-200: #ff9999;
-  --color-red-150: #ffb2b2;
-  --color-red-100: #ffcccc;
-  --color-red-50: #ffe5e5;
+  --color-red-600: #CC0000;
+  --color-red-500: #FF0000;
+  --color-red-400: #FF3333;
+  --color-red-350: #FF5252;
+  --color-red-300: #FF5252;
+  --color-red-250: #FF8080;
+  --color-red-200: #FF9999;
+  --color-red-150: #FFB2B2;
+  --color-red-100: #FFCCCC;
+  --color-red-50: #FFE5E5;
 
-  --color-blue-900: #07072c;
-  --color-blue-800: #0e0e58;
+  --color-blue-900: #07072C;
+  --color-blue-800: #0E0E58;
   --color-blue-700: #151584;
-  --color-blue-600: #1c1cb0;
-  --color-blue-500: #2727dc;
-  --color-blue-400: #4f4fe3;
-  --color-blue-350: #6565e6;
-  --color-blue-300: #7b7bea;
-  --color-blue-250: #9191ed;
-  --color-blue-200: #a7a7f1;
-  --color-blue-150: #bdbdf4;
-  --color-blue-100: #d3d3f8;
-  --color-blue-50: #e9e9fb;
+  --color-blue-600: #1C1CB0;
+  --color-blue-500: #2727DC;
+  --color-blue-400: #4F4FE3;
+  --color-blue-350: #6565E6;
+  --color-blue-300: #7B7BEA;
+  --color-blue-250: #9191ED;
+  --color-blue-200: #A7A7F1;
+  --color-blue-150: #BDBDF4;
+  --color-blue-100: #D3D3F8;
+  --color-blue-50: #E9E9FB;
 }
