@@ -1,110 +1,268 @@
-// import { useHomeContent } from "./hooks/useHomeContent";
-// import type { HomeContentValues } from "./schemas/content";
-import { EventsCarousel } from "./components/EventsCarousel";
-import { NavLink } from "react-router-dom";
-import umsa_sit from "./assets/icons/umsa_sit.png";
-import umsa_cool from "./assets/icons/umsa_cool.png";
-import sun from "./assets/icons/sun.svg"
-import redstar from "./assets/stars/fullredstar.png"
-import whitestar from "./assets/stars/white_star.svg"
-import pinkstar from "./assets/stars/pinkstar1111.svg"
-import bluestar from "./assets/stars/bluestar1111.svg"
-import redstar_right from "./assets/stars/redstar_right.svg"
-import bluestar_left from "./assets/stars/bluestar_left.svg"
-import pinkstar_right from "./assets/stars/pinkstar_right.svg"
-import humans from "./assets/humans.png"
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "motion/react";
+import { useHomeContent } from "./hooks/useHomeContent";
+import { useEvents } from "./hooks/useEvents";
+import { Cloud, Sparkle, Star } from "./components/ui/Decor";
+import Reveal from "./components/ui/Reveal";
+import Photo from "./components/ui/Photo";
+import EventCarousel from "./components/EventCarousel";
+import mascotSit from "./assets/icons/umsa_sit.png";
+import mascotCap from "./assets/icons/umsa_cool.png";
+import heroPhoto from "./assets/humans.png";
 
-// exemplar CMS default data -> shown when data does not exist / API is down 
-// const DEFAULTS: HomeContentValues = {
-//   heading: "Welcome to Project UMSA!",
-//   subtitle: "to get started, go to the project team section and have a look :)",
-// };
+// shown while the content request is in flight, and if it ever fails
+const DEFAULTS = {
+  heading: "WELCOME TO UMSA",
+  subtitle: "The union of Malaysian students in Auckland.",
+  aboutHeading: "WHAT IS UMSA?",
+  aboutBody: "",
+  introVideoUrl: "",
+};
 
-function App() {
-  // const { data } = useHomeContent();
-  // const content = data ?? DEFAULTS;
+/* Hero, as the home frame draws it: the heading runs the full width on ONE line,
+   "WELCOME TO" blue and "UMSA" red; the mascot sits under it, centred and
+   overlapping; the union line is right-aligned in pale pink and the affiliation
+   line sits bottom-left in the same pink. */
+const HERO_FOOT =
+  "Non-profit Malaysian student-run club affiliated with the University of Auckland, New Zealand.";
 
+function Hero({ heading, subtitle }: { heading: string; subtitle: string }) {
+  const reduced = useReducedMotion();
+  const { scrollY } = useScroll();
+  const mascotY = useTransform(scrollY, [0, 600], [0, reduced ? 0 : 70]);
+
+  // the design splits the heading so the last word lands in red
+  const words = heading.split(" ");
+  const lead = words.slice(0, -1).join(" ");
+  const tail = words.at(-1) ?? "";
 
   return (
-    <div className="flex flex-col items-center overflow-x-hidden">
-    
-    {/* big welcome to umsa + text */}
-    <div className="w-full">
-      <p className="w-full gap-3 text-[5.82rem] text-accent1-primary">Welcome to <span className="text-red-300">UMSA</span></p>
-      <p className="mr-2.5 mb-2.5 text-red-200 text-right">The Union of Malaysian</p>
-      <p className="mr-2.5 text-red-200 text-right">Students in Auckalnd</p>
-    </div>
+    <section className="relative overflow-hidden px-6 pt-10 pb-6">
+      <Star
+        className="absolute top-24 left-[3%] z-0"
+        size={92}
+        tone="red"
+        spin
+      />
+      <Sparkle
+        className="absolute top-16 right-[6%] z-0"
+        size={64}
+        tone="pink"
+      />
+      <Sparkle
+        className="absolute top-44 right-[16%] z-0 hidden md:block"
+        size={38}
+        tone="blue"
+        spin
+      />
 
-    {/* umsa sitting cat thing */}
-    <div>
-      <img src={umsa_sit} className="mb-[3.5vw] -mt-[3vw] w-[clamp(20rem,10vw,10rem)]"/>
-    </div>
+      <div
+        className="relative mx-auto max-w-7xl"
+        style={{ containerType: "inline-size" }}
+      >
+        <motion.h1
+          className="text-center text-[min(7.4cqw,5.5rem)] leading-[0.95] whitespace-nowrap"
+          initial={reduced ? { opacity: 0 } : { opacity: 0, y: 36 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <span className="text-accent1-primary">{lead} </span>
+          <span className="text-accent2-primary">{tail}</span>
+        </motion.h1>
 
-    {/* star decorations */}
-    <div className="relative w-full h-[clamp(4rem,10vw,40rem)]">
-      <img src={redstar} className="absolute left-[0%] bottom-50 h-[clamp(9rem,22vw,17rem)] w-auto"/>
-      <img src={pinkstar} className="absolute left-[6%] bottom-37 h-[clamp(4rem,10vw,10rem)] w-auto"/>
-      <img src={bluestar} className="absolute right-[10%] bottom-37 h-[clamp(4rem,10vw,10rem)] w-auto"/>
-      <img src={pinkstar} className="absolute right-[-4%] -top-full bottom-37 h-[clamp(6rem,30vw,20rem)] w-auto"/>
-    </div>
+        {/* mascot centred under the heading, with the two pale pink lines set
+            against the right and left margins as the frame has them */}
+        <div className="relative mt-2">
+          <motion.img
+            src={mascotSit}
+            alt=""
+            style={{ y: mascotY }}
+            className="pointer-events-none mx-auto w-32 sm:w-44 md:w-60"
+            initial={
+              reduced ? { opacity: 0 } : { opacity: 0, scale: 0.8, rotate: -8 }
+            }
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{
+              duration: 0.7,
+              delay: 0.15,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          />
 
-    {/* text right above image */}
-    <div className="w-full gap-2">
-      <p className="text-red-150 text-left text-sm gap-2">Non-Profit Malaysian</p>
-      <p className="text-red-150 text-left text-sm gap-2">Student-Run Club Affiliated With</p>
-      <p className="text-red-150 text-left text-sm gap-2">The University of Auckland New Zealand</p>
-    </div>
-    
-    {/* human group photo */}
-    <div className="w-full items-center mt-10">
-      <img src={humans} className="w-full"/>
-    </div>
+          <motion.p
+            className="absolute top-0 right-0 max-w-[15rem] text-right font-heading text-[10px]
+              leading-[2] tracking-[0.22em] text-red-150 uppercase md:text-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            {subtitle}
+          </motion.p>
 
-    {/* read more section */}
-    <div className="flex flex-col w-full min-h-100 bg-blue-50">
-      <div className="flex flex-row w-full">
-        <p className="text-left text-[5.82rem]">What is UMSA?</p>
-        <img src={redstar_right}/>
-        <img src={bluestar_left}/>
-        <img src={pinkstar_right}/>
+          <motion.p
+            className="absolute bottom-0 left-0 max-w-[15rem] font-heading text-[9px] leading-[2]
+              tracking-[0.18em] text-red-150 uppercase md:text-[11px]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.55 }}
+          >
+            {HERO_FOOT}
+          </motion.p>
+        </div>
       </div>
-      <p className="text-right text-2xl">Lorem ipsum dolor sit amet, 
-      consectetur adipiscing elit. Vivamus fermentum, sapien</p>
-      <img src={umsa_cool} className="w-[40vh] self-center"/>
-
-      {/* im sorry this is so long 😭 */}
-      <NavLink to="/About" className="flex items-center gap-2w-fit self-center -mt-24
-       bg-accent2-primary rounded-3xl px-6 py-4 text-white whitespace-nowrap">
-      <img src={sun} className="max-w-[3vh] mr-1.5"/>Read More</NavLink>
-     
-
-      <div className="flex flex-row ml-10">
-        <img src={whitestar} className="max-h-20 mb-10"/>
-        <img src={whitestar} className="max-h-20 mb-10"/>
-        <img src={whitestar} className="max-h-20 mb-10"/>
-      </div>
-    </div>
-
-    {/* our events section */}
-    <div className="flex flex-col w-full gap-7 mb-3">
-      <div className="flex flex-wrap items-center gap-2 w-full">
-        <img src={redstar_right} className="max-h-17"/>
-        <img src={bluestar_left} className="max-h-22"/>
-        <img src={pinkstar_right} className="max-h-22"/>
-        <p className="text-right text-[clamp(2.25rem,7vw,5.82rem)] text-accent2-primary">Our Events</p>
-      </div>
-      <EventsCarousel/>
-    </div>
-
-    {/* home page content -- removed it for now for miltestone 2 showcase */}
-    {/* <div className="min-h-150">
-      <h1 className="text-4xl mt-7 font-bold text-blue-500">{content.heading}</h1>
-      <div className="text-sm mt-3 text-blue-400">
-        <p>{content.subtitle}</p>
-      </div>
-    </div> */}
-
-    </div>
+    </section>
   );
 }
-export default App;
+
+export default function App() {
+  const { data } = useHomeContent();
+  const { data: events } = useEvents();
+  const content = { ...DEFAULTS, ...(data ?? {}) };
+
+  useEffect(() => {
+    document.title = "UMSA — Home";
+  }, []);
+
+  const upcoming = (events ?? [])
+    .map((e) => ({ ...e, isDone: new Date(e.eventDate) < new Date() }))
+    .filter((e) => !e.isDone)
+    .sort((a, b) => +new Date(a.eventDate) - +new Date(b.eventDate));
+
+  return (
+    <>
+      <Hero heading={content.heading} subtitle={content.subtitle} />
+
+      {/* full-bleed photo band */}
+      <Reveal from="scale">
+        <Photo
+          src={heroPhoto}
+          alt="UMSA members on the lawn"
+          priority
+          className="h-56 w-full bg-blue-50 object-cover md:h-96"
+        />
+      </Reveal>
+
+      {content.introVideoUrl && (
+        <section className="mx-auto max-w-4xl px-6 py-12">
+          <iframe
+            src={content.introVideoUrl}
+            title="UMSA introduction"
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="strict-origin-when-cross-origin"
+            className="aspect-video w-full rounded-xl border-0"
+          />
+        </section>
+      )}
+
+      {/* WHAT IS UMSA? — centred, mascot beneath the copy */}
+      <section className="relative bg-blue-50 px-6 py-16 text-center">
+        <div className="relative mx-auto max-w-2xl">
+          <Reveal>
+            <h2 className="relative inline-block text-4xl text-accent1-primary md:text-5xl">
+              {content.aboutHeading}
+              <Star
+                className="absolute -top-2 -right-12 hidden md:block"
+                size={26}
+                tone="red"
+                spin
+              />
+              <Sparkle
+                className="absolute top-4 -right-24 hidden md:block"
+                size={22}
+                tone="blue"
+              />
+            </h2>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <p className="mx-auto mt-5 max-w-xl font-heading text-sm leading-relaxed tracking-wide text-accent1-primary uppercase md:text-base">
+              {content.aboutBody}
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.2}>
+            <motion.img
+              src={mascotCap}
+              alt=""
+              className="mx-auto mt-8 w-28 md:w-36"
+              whileHover={{ rotate: [0, -6, 6, 0] }}
+              transition={{ duration: 0.6 }}
+            />
+          </Reveal>
+
+          <Reveal delay={0.25}>
+            <a
+              href="/about"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent2-primary px-6 py-2.5
+                font-heading text-[11px] tracking-[0.16em] text-white uppercase
+                transition-transform hover:scale-105"
+            >
+              <Star size={13} tone="cream" /> Read more
+            </a>
+          </Reveal>
+        </div>
+
+        <Sparkle
+          className="absolute bottom-8 left-[8%] hidden md:block"
+          size={26}
+          tone="light"
+        />
+        <Sparkle
+          className="absolute bottom-16 left-[16%] hidden md:block"
+          size={18}
+          tone="light"
+        />
+      </section>
+
+      {/* Executive-team call to action adapted from nryuzl's PR #55. */}
+      <section className="mx-auto max-w-4xl px-6 py-16 text-center">
+        <h2 className="text-3xl text-accent1-primary md:text-5xl">
+          Meet the Exec Team
+        </h2>
+        <Link
+          to="/team"
+          className="mt-6 inline-flex rounded-full bg-accent1-primary px-6 py-3 font-heading text-sm text-white"
+        >
+          Meet the Team →
+        </Link>
+      </section>
+
+      {/* OUR EVENTS carousel */}
+      <section className="relative overflow-hidden px-6 py-16">
+        <div className="mx-auto max-w-4xl">
+          <div className="relative mb-10 flex items-center justify-center gap-4">
+            <Sparkle className="hidden md:block" size={26} tone="pink" />
+            <Sparkle className="hidden md:block" size={22} tone="blue" />
+            <Star className="hidden md:block" size={26} tone="red" spin />
+            <h2 className="text-4xl text-accent2-primary md:text-5xl">
+              Our Events
+            </h2>
+          </div>
+
+          <EventCarousel events={upcoming} />
+
+          <div className="mt-10 text-center">
+            <a
+              href="/events"
+              className="inline-flex items-center gap-2 rounded-full bg-accent1-primary px-6 py-2.5
+                font-heading text-[11px] tracking-[0.16em] text-white uppercase
+                transition-transform hover:scale-105"
+            >
+              <Star size={13} tone="cream" /> See more events
+            </a>
+          </div>
+        </div>
+
+        <Cloud className="absolute -bottom-4 -left-16 w-80" tone="red" />
+        <Cloud className="absolute -bottom-6 -right-16 w-96" tone="light" />
+      </section>
+    </>
+  );
+}
