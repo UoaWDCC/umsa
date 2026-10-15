@@ -5,10 +5,9 @@ import Footer from '../components/Footer';
 
 export default function RootLayout() {
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen bg-gray-50 text-blue-400">
       <Navbar />
-      <Marquee />
-      <main className="w-full px-4 py-8">
+      <main className="w-full">
         <ScrollRestoration />
         <Outlet />
       </main>

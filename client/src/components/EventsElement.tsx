@@ -2,6 +2,7 @@
   /* types for events variables */
 }
 type EventsElement = {
+  id: number;
   eventName: string;
   eventImage: string;
   eventLink: string;

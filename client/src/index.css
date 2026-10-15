@@ -18,11 +18,11 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
-  --heading: "Sekuya", system-ui, "Segoe UI", Roboto, sans-serif;
+  --sans: Sekuya, system-ui, "Segoe UI", sans-serif;
+  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
-  font: 18px/145% var(--sans);
+  font: normal 400 20px/normal var(--sans);
   letter-spacing: 0.18px;
   color-scheme: light dark;
   color: var(--text);
@@ -45,7 +45,7 @@
     --border: #2e303a;
     --code-bg: #1f2028;
     --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-bg: rgba(219, 214, 224, 0.15);
     --accent-border: rgba(192, 132, 252, 0.5);
     --social-bg: rgba(47, 48, 58, 0.5);
     --shadow:
