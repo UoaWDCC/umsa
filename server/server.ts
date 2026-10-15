@@ -13,8 +13,11 @@ if (process.env.NODE_ENV === "production" && !process.env.JWT_SECRET) {
 
 const PORT = process.env.PORT || 5050;
 
-connectDB();
+await connectDB();
 
-app.listen(PORT, () => {
-  console.log(`server is running on port ${PORT}`);
+const server = app.listen(PORT);
+server.once("listening", () => console.log(`server is running on port ${PORT}`));
+server.on("error", (error: NodeJS.ErrnoException) => {
+  console.error(`Unable to start API on port ${PORT}: ${error.code}`);
+  process.exit(1);
 });

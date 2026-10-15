@@ -6,20 +6,30 @@ import { sendError } from "../../utils/apiError.js";
 
 const router = Router();
 
-router.put("/home", validate(homeContentSchema), async (req: Request, res: Response) => {
-  try {
-    const { heading, subtitle } = req.body as HomeContentInput;
+router.put(
+  "/home",
+  validate(homeContentSchema),
+  async (req: Request, res: Response) => {
+    try {
+      const values = req.body as HomeContentInput;
 
-    const doc = await HomeContent.findOneAndUpdate(
-      {},
-      { heading, subtitle },
-      { new: true, upsert: true },
-    );
+      const doc = await HomeContent.findOneAndUpdate(
+        {},
+        { $set: values },
+        { returnDocument: "after", upsert: true },
+      );
 
-    res.json({ heading: doc.heading, subtitle: doc.subtitle });
-  } catch {
-    sendError(res, 500, "INTERNAL_ERROR", "Unable to save home content");
-  }
-});
+      res.json({
+        heading: doc.heading,
+        subtitle: doc.subtitle,
+        aboutHeading: doc.aboutHeading,
+        aboutBody: doc.aboutBody,
+        introVideoUrl: doc.introVideoUrl ?? "",
+      });
+    } catch {
+      sendError(res, 500, "INTERNAL_ERROR", "Unable to save home content");
+    }
+  },
+);
 
 export default router;
