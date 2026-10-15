@@ -17,14 +17,17 @@ import Team from "./pages/Team";
 import Contact from "./pages/Contact";
 import Sponsors from "./pages/Sponsors";
 import FAQ from "./pages/Frequent-Asked-Question";
-import About from "./pages/About";
+import HomePage from "./pages/HomePage";
 
-{/* project team imports */}
-import _Pruna from "./pages/project-team/Pruna"
-import _Alanna from './pages/project-team/Alanna'
-import _Tadiwa from './pages/project-team/Tadiwa'
-import _Terrence from './pages/project-team/Terrence'
-import _Alex from './pages/project-team/Alex'
+{
+  /* project team imports */
+}
+import Pruna from "./pages/project-team/Pruna";
+import Alanna from "./pages/project-team/Alanna";
+import Tadiwa from "./pages/project-team/Tadiwa";
+import Terrence from "./pages/project-team/Terrence";
+import Alex from "./pages/project-team/Alex";
+import About from "./pages/About";
 
 {
   /* admin (CMS) imports */
@@ -56,6 +59,12 @@ const router = createBrowserRouter([
       { path: "faq", element: <FAQ /> },
       { path: "contact", element: <Contact /> },
       { path: "sponsors", element: <Sponsors /> },
+
+      { path: "alanna", element: <Alanna /> },
+      { path: "tadiwa", element: <Tadiwa /> },
+      { path: "terrence", element: <Terrence /> },
+      { path: "pruna", element: <Pruna /> },
+      { path: "alex", element: <Alex /> },
       { path: "about", element: <About /> },
     ],
   },
