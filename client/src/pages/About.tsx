@@ -1,6 +1,63 @@
 import { useEffect } from "react";
-import flagphoto from "../assets/about-us/flag.png";
-import statuephoto from "../assets/about-us/statue.jpg";
+import { Link } from "react-router-dom";
+import mascot from "../assets/about-us/mascot.png";
+import squiggle from "../assets/about-us/squiggle.svg";
+import dashed from "../assets/about-us/Vector 88.svg";
+import AboutNavbar from "../components/AboutNavbar";
+
+// Stars and clouds
+import starBlue from "../assets/about-us/Vector 87.svg";
+import starAbove from "../assets/about-us/Vector 42.svg";
+import starRed from "../assets/about-us/Vector 73.svg";
+import starPinkA from "../assets/about-us/Vector 74.svg";
+import starPinkB from "../assets/about-us/Vector 36.svg";
+import starLavender from "../assets/about-us/Vector 89.svg";
+import cloudPink from "../assets/about-us/Vector 66.svg";
+import cloudPurple from "../assets/about-us/Vector 78.svg";
+import cloudPinkB from "../assets/about-us/Vector 67.svg";
+import footerWave from "../assets/about-us/Vector 27.svg";
+import badge from "../assets/about-us/badge.svg";
+import socialIcons from "../assets/about-us/social-icons.svg";
+import banner from "../assets/about-us/banner.svg";
+// TODO: swap Archivo Black for Sekuya once the font file is available
+const DISPLAY = "'Sekuya', sans-serif";
+const BLUE = "#2727DC";
+const RED = "#FF5252";
+
+const headingStyle = {
+  color: BLUE,
+  fontFamily: DISPLAY,
+  fontSize: "48px",
+  lineHeight: "50px",
+  letterSpacing: "4.8px",
+} as const;
+
+const bodyStyle = {
+  color: BLUE,
+  fontFamily: DISPLAY,
+  fontSize: "16px",
+  lineHeight: "30px",
+  letterSpacing: "1.6px",
+  textAlign: "justify",
+} as const;
+
+// small star beside a heading, shown at its natural Figma size
+function Star({ src }: { src: string }) {
+  return <img src={src} alt="" aria-hidden="true" className="shrink-0" />;
+}
+
+// big star placed by its CENTER point on the canvas, natural Figma size
+function BigStar({ src, x, y }: { src: string; x: number; y: number }) {
+  return (
+    <img
+      src={src}
+      alt=""
+      aria-hidden="true"
+      className="absolute z-10"
+      style={{ left: x, top: y, transform: "translate(-50%, -50%)" }}
+    />
+  );
+}
 
 export default function About() {
   useEffect(() => {
@@ -8,109 +65,140 @@ export default function About() {
   }, []);
 
   return (
-    <div className="mx-auto px-10 py-8" style={{ color: "white" }}>
-      {/*header*/}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-2">UMSA</h1>
-        <p className="opacity-60">Welcome to the UMSA about us page</p>
-      </div>
+    <div className="relative bg-white overflow-hidden">
+      <AboutNavbar />
+            {/* ---------- banner ---------- */}
+      <img src={banner} alt="Welcome to UMSA" className="block h-auto w-full" />
+      {/* clouds are positioned against the page edges so they bleed off like in Figma */}
+      <img src={cloudPink} alt="" className="absolute z-0" style={{ right: 56, top: 160 }} />
+      <img src={cloudPurple} alt="" className="absolute left-0 z-0" style={{ top: 745 }} />
+      <img src={cloudPinkB} alt="" className="absolute z-0" style={{ right: 0, top: 179 }} />
+      <div className="relative z-10 pb-24">
+        {/* header: left-aligned like Figma */}
+        <h1
+          className="pl-9 pt-10 text-left uppercase"
+          style={{ fontFamily: DISPLAY, fontSize: "96px", lineHeight: "90px" }}
+        >
+          <span style={{ color: BLUE }}>about </span>
+          <span style={{ color: RED }}>us...</span>
+        </h1>
 
-      {/*history */}
+        {/* squiggle + text blocks share one fixed-size canvas so coordinates line up */}
+        <div className="relative mx-auto mt-6" style={{ width: 1140, height: 1260 }}>
+          {/* dashed line: sits inside the S-curve, behind the solid squiggle */}
+          <img src={dashed} alt="" className="absolute z-0" style={{ left: 17, top: 158 }} />
 
-      <div className="border border-white p-6 rounded-lg mb-8">
-        <h2 className="text-2xl font-bold mb-2">History</h2>
-        <p className="opacity-80 text-sm leading-relaxed">
-          Evidence of modern human habitation in Malaysia dates back 40,000
-          years.[41] In the Malay Peninsula, the first inhabitants are thought
-          to be Negritos.[42][43] Areas of Malaysia participated in the Maritime
-          Jade Road between 2000 BC to 1000 AD.[44][45][46][47] Traders and
-          settlers from India and China arrived as early as the first century
-          AD, establishing trading ports and coastal towns in the second and
-          third centuries. Their presence resulted in strong Indian and Chinese
-          influences on the local cultures, and the people of the Malay
-          Peninsula adopted the religions of Hinduism and Buddhism. Sanskrit
-          inscriptions appear as early as the fourth or fifth century.[48] The
-          Kingdom of Langkasuka arose around the second century in the northern
-          area of the Malay Peninsula, lasting until about the 15th century.[36]
-          Between the 7th and 13th centuries, much of the southern Malay
-          Peninsula was part of the maritime Srivijayan empire. By the 13th and
-          the 14th century, the Majapahit empire had successfully wrested
-          control over most of the peninsula and the Malay Archipelago from
-          Srivijaya.[49] In the early 15th century, Parameswara, a runaway king
-          of the former Kingdom of Singapura linked to the old Srivijayan court,
-          founded the Malacca Sultanate.[50] The spread of Islam increased
-          following Parameswaras conversion to that religion. Malacca was an
-          important commercial centre during this time, attracting trade from
-          around the region.[51]
-        </p>
-      </div>
-      <div className="flex gap-8 mb-12">
-        {/*vison and purpose*/}
-        <div className="flex-1 flex flex-col">
-          <div className="h-70 overflow-hidden rounded-t-lg">
-            <img src={statuephoto} className="w-full h-full object-cover" />
-          </div>
-          <div className="border border-white p-6 rounded-b-lg flex-1">
-            <h2 className="text-2xl font-bold mb-2">Vision</h2>
-            <p className="opacity-80 text-sm leading-relaxed">
-              Malaysia is the 66th largest country by total land area, with a
-              total area of 330,803 km2 (127,724 sq mi).[10] West Malaysia
-              shares land borders with Thailand, while East Malaysia shares land
-              borders with Indonesia and Brunei.[18] Singapore is separated from
-              the West by the Straits of Johor and is linked to it by a narrow
-              causeway and a bridge. The country also shares maritime boundaries
-              with Indonesia, Vietnam[179] and the Philippines.[180] The land
-              borders are defined in large part by geological features such as
-              the Perlis River, the Golok River and the Pagalayan Canal, whilst
-              some of the maritime boundaries are the subject of ongoing
-              contention.[18] Brunei forms what is almost an enclave in
-              Malaysia,[181] with the state of Sarawak dividing it into two
-              parts. Malaysia is the only country with territory on both the
-              Asian mainland and the Malay Archipelago.[182] The Strait of
-              Malacca, lying between Sumatra and Peninsular Malaysia, is one of
-              the most important thoroughfares in global commerce, carrying 40%
-              of the worls trade.[183] The southernmost point of mainland Asia
-              is located at Tanjung Piai, in the state of Johor.[184]
+          <img
+            src={squiggle}
+            alt=""
+            className="absolute left-0 z-0"
+            style={{ top: 110, width: 1140, height: 1022 }}
+          />
+
+          {/* mascot: bigger, tilted, covers the start of the line */}
+          <img
+            src={mascot}
+            alt="UMSA mascot"
+            className="absolute z-10"
+            style={{ left: -110, top: 20, width: 230, transform: "rotate(-10deg)" }}
+          />
+
+          {/* CULTURE */}
+          <div className="absolute z-10" style={{ left: 0, top: 258, width: 573 }}>
+            <div className="flex items-center justify-between">
+              <Star src={starRed} />
+              <h2 className="uppercase" style={headingStyle}>Culture</h2>
+              <Star src={starPinkA} />
+            </div>
+            <p className="uppercase mt-4" style={bodyStyle}>
+              Connecting Malaysians across campus, our club celebrates Malaysian culture, fosters
+              friendships, and creates a welcoming space for all students.
             </p>
           </div>
-        </div>
 
-        <div className="flex-1 flex flex-col">
-          <div className="h-70 overflow-hidden rounded-t-lg">
-            <img src={flagphoto} className="w-full h-full object-cover" />
-          </div>
-          <div className="border border-white p-6 rounded-b-lg flex-1">
-            <h2 className="text-2xl font-bold mb-2">Purpose</h2>
-            <p className="opacity-80 text-sm leading-relaxed">
-              Malaysia[d] is a country in Southeast Asia. A federal
-              constitutional monarchy, it consists of 13 states and three
-              federal territories, separated by the South China Sea into two
-              regions: Peninsular Malaysia on Mainland Southeast Asia and East
-              Malaysia on the island of Borneo. Peninsular Malaysia shares land
-              and maritime borders with Thailand, as well as maritime borders
-              with Singapore, Vietnam, and Indonesia; East Malaysia shares land
-              borders with Brunei and Indonesia, and maritime borders with the
-              Philippines and Vietnam. Kuala Lumpur is the countrys national
-              capital, largest city, and the seat of the legislative branch of
-              the federal government, while Putrajaya is the federal
-              administrative capital, representing the seat of both the
-              executive branch and the judicial branch of the federal
-              government. With a population of over 34 million, it is the worlds
-              42nd-most populous country. The country has its origins in the
-              Malay king{" "}
+          {/* COMMUNITY: stars sit outside the text block */}
+          <div className="absolute z-10" style={{ left: 559, top: 698, width: 558 }}>
+            <div className="-mx-14 flex items-center justify-between">
+              <Star src={starLavender} />
+              <h2 className="uppercase" style={headingStyle}>Community</h2>
+              <Star src={starPinkB} />
+            </div>
+            <p className="uppercase mt-4" style={bodyStyle}>
+              From cultural events to social gatherings, we bring a piece of home to your university
+              life. Sign up below to join our club today!
             </p>
           </div>
+
+          {/* big blue stars, placed by center point */}
+          <BigStar src={starBlue} x={587} y={195} />
+          <BigStar src={starAbove} x={884} y={575} />
+          <BigStar src={starBlue} x={418} y={1063} />
+
+          {/* CTA line */}
+          <p
+            className="absolute z-10 uppercase whitespace-nowrap text-center"
+            style={{ ...headingStyle, left: -23, width: 1055, top: 1190 }}
+          >
+            A home away from home.
+          </p>
         </div>
       </div>
 
-      {/*link*/}
+            {/* ---------- wave footer ---------- */}
+      <div className="relative">
+        {/* Figma's blue jagged shape, stretched to full page width */}
+        <img src={footerWave} alt="" className="block w-full h-auto" />
 
-      <div className="flex justify-center mb-8">
-        <a href="https://github.com/UoaWDCC/umsa/tree/tadiwa/about-us-page/">
-          <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-            Meet the Team
-          </button>
-        </a>
+        {/* footer content sits on top of the shape */}
+        <div className="absolute inset-0 flex items-center justify-between mx-auto max-w-[1140px] px-10 pt-10 text-white">
+          <nav
+            className="flex flex-col gap-3 text-right uppercase"
+            style={{ fontFamily: DISPLAY, fontSize: "20px", letterSpacing: "1.2px" }}
+          >
+            <Link to="/About">About Us</Link>
+            <Link to="/Sponsors">Sponsors</Link>
+            <Link to="/Events">Our Events</Link>
+            <Link to="/Team">Meet the Team</Link>
+          </nav>
+
+          <img src={badge} alt="UMSA 2026 logo" className="w-44" />
+
+          <div className="flex flex-col items-start gap-4 text-left">
+          <nav
+              className="flex flex-col gap-3 text-left capitalize"
+              style={{ fontFamily: DISPLAY, fontSize: "20px", letterSpacing: "1.2px" }}
+            >
+              <Link to="/Gallery">Photos</Link>
+              <Link to="/Contact">Contact Us</Link>
+            </nav>
+            <div className="relative inline-block">
+  <img src={socialIcons} alt="" className="block h-10 w-auto" />
+
+  {/* invisible links laid over each third of the image */}
+  <a
+    href="#"
+    aria-label="Facebook"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="absolute left-0 top-0 h-full w-1/3"
+  />
+  <a
+    href="#"
+    aria-label="Instagram"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="absolute left-1/3 top-0 h-full w-1/3"
+  />
+  <a
+    href="#"
+    aria-label="Twitter"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="absolute left-2/3 top-0 h-full w-1/3"
+  />
+</div>
+          </div>
+        </div>
       </div>
     </div>
   );
