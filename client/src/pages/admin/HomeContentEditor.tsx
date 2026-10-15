@@ -58,6 +58,15 @@ export default function HomeContentEditor() {
         onSubmit={onSubmit}
         className="flex flex-col gap-4 rounded-2xl border border-gray-150 bg-white p-5 sm:p-6"
       >
+        {Object.keys(errors).length > 0 && (
+          <p
+            role="alert"
+            className="rounded-lg bg-red-50 px-3 py-2 text-sm text-accent2-primary"
+          >
+            Please correct the highlighted fields before saving. All text fields
+            are required.
+          </p>
+        )}
         {FIELDS.map((field) => (
           <label key={field.name} className="flex flex-col gap-1.5">
             <span className="text-xs font-semibold tracking-wide text-foreground-secondary uppercase">
@@ -67,10 +76,15 @@ export default function HomeContentEditor() {
               <textarea
                 {...register(field.name)}
                 rows={field.rows}
+                aria-invalid={Boolean(errors[field.name])}
                 className={INPUT}
               />
             ) : (
-              <input {...register(field.name)} className={INPUT} />
+              <input
+                {...register(field.name)}
+                aria-invalid={Boolean(errors[field.name])}
+                className={INPUT}
+              />
             )}
             {errors[field.name] && (
               <p className="text-xs text-accent2-primary">
@@ -91,12 +105,18 @@ export default function HomeContentEditor() {
         </button>
 
         {save.isSuccess && (
-          <p className="rounded-lg bg-blue-50 px-3 py-2 text-sm text-accent1-primary">
+          <p
+            role="status"
+            className="rounded-lg bg-blue-50 px-3 py-2 text-sm text-accent1-primary"
+          >
             Saved — check the homepage.
           </p>
         )}
         {save.isError && (
-          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-accent2-primary">
+          <p
+            role="alert"
+            className="rounded-lg bg-red-50 px-3 py-2 text-sm text-accent2-primary"
+          >
             {apiErrorMessage(save.error)}
           </p>
         )}
