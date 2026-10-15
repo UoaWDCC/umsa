@@ -1,3 +1,4 @@
+import { MEMBERSHIP_FORM_URL } from "../lib/siteLinks";
 import { Link, NavLink } from "react-router-dom";
 import mascot from "../assets/about-us/mascot.png";
 
@@ -14,8 +15,8 @@ const links = [
 export default function AboutNavbar() {
   return (
     <header
-  className="relative z-20 flex h-[55px] items-center justify-between px-6 lg:px-16"
-  style={{ backgroundColor: "#F9F9FB" }}
+      className="relative z-20 flex h-[55px] items-center justify-between px-6 lg:px-16"
+      style={{ backgroundColor: "#F9F9FB" }}
     >
       <Link to="/" aria-label="UMSA home" className="shrink-0">
         <img src={mascot} alt="UMSA" className="h-10 w-auto" />
@@ -37,9 +38,10 @@ export default function AboutNavbar() {
         ))}
       </nav>
 
-      {/* TODO: there is no login page yet, so this points at sign-up */}
-      <Link
-        to="/sign-up"
+      <a
+        href={MEMBERSHIP_FORM_URL}
+        target="_blank"
+        rel="noopener noreferrer"
         className="flex h-9 w-[136px] shrink-0 items-center justify-center rounded-[15px] text-lg"
         style={{
           backgroundColor: "#FF5252",
@@ -49,8 +51,8 @@ export default function AboutNavbar() {
           boxShadow: "4px 4px 0 #990000",
         }}
       >
-        login
-      </Link>
+        Sign up
+      </a>
     </header>
   );
 }

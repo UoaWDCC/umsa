@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 
 export default function RootLayout() {
   const location = useLocation();
+  const isAbout = location.pathname.toLowerCase() === "/about";
 
   useEffect(() => {
     document.getElementById("main")?.focus({ preventScroll: true });
@@ -12,7 +13,7 @@ export default function RootLayout() {
 
   return (
     <div className="paper flex min-h-screen flex-col">
-      <Navbar />
+      {!isAbout && <Navbar />}
 
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         <Suspense fallback={null}>
@@ -20,7 +21,7 @@ export default function RootLayout() {
         </Suspense>
       </main>
 
-      <Footer />
+      {!isAbout && <Footer />}
       <ScrollRestoration />
     </div>
   );
