@@ -15,9 +15,9 @@ export default function Page({ element,currentPage }: Props) {
     return(
         <>
         {/* onClick calls the setterFunction for that page */}
-        <button onClick={() => element.setterFunction(element.page)} 
+        <button onClick={() => element.setterFunction(element.page)}
             className={
-                `w-fit text-sm text-gray-400 hover:text-white cursor-pointer 
+                `w-fit text-sm text-gray-400 hover:text-white cursor-pointer
                 ${element.page == currentPage ? "text-white font-bold" : ""}`
             }>
             {element.page}

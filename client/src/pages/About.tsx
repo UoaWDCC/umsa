@@ -1,117 +1,155 @@
 import { useEffect } from "react";
-import flagphoto from "../assets/about-us/flag.png";
-import statuephoto from "../assets/about-us/statue.jpg";
+import { MEMBERSHIP_FORM_URL } from "../lib/siteLinks";
+import mascot from "../assets/about-us/mascot.png";
+import squiggle from "../assets/about-us/squiggle.svg";
+import dashed from "../assets/about-us/Vector 88.svg";
+import starBlue from "../assets/about-us/Vector 87.svg";
+import starAbove from "../assets/about-us/Vector 42.svg";
+import starRed from "../assets/about-us/Vector 73.svg";
+import starPinkA from "../assets/about-us/Vector 74.svg";
+import starPinkB from "../assets/about-us/Vector 36.svg";
+import starLavender from "../assets/about-us/Vector 89.svg";
+import cloudPink from "../assets/about-us/Vector 66.svg";
+import cloudPurple from "../assets/about-us/Vector 78.svg";
+import cloudPinkB from "../assets/about-us/Vector 67.svg";
 
+const PILLARS = [
+  {
+    title: "Culture",
+    body: "Connecting Malaysians across campus, our club celebrates Malaysian culture, fosters friendships, and creates a welcoming space for all students.",
+  },
+  {
+    title: "Community",
+    body: "From cultural events to social gatherings, we bring a piece of home to your university life. Sign up below to join our club today!",
+  },
+];
+const HEADING = "font-heading uppercase text-accent1-primary";
+function BigStar({ src, x, y }: { src: string; x: number; y: number }) {
+  return (
+    <img
+      src={src}
+      alt=""
+      aria-hidden="true"
+      className="absolute z-10 w-[10cqw] -translate-x-1/2 -translate-y-1/2"
+      style={{ left: `${x / 11.4}cqw`, top: `${y / 11.4}cqw` }}
+    />
+  );
+}
 export default function About() {
   useEffect(() => {
-    document.title = "About | gotUMSA";
+    document.title = "About | UMSA";
   }, []);
-
   return (
-    <div className="mx-auto px-10 py-8" style={{ color: "white" }}>
-      {/*header*/}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-2">UMSA</h1>
-        <p className="opacity-60">Welcome to the UMSA about us page</p>
-      </div>
-
-      {/*history */}
-
-      <div className="border border-white p-6 rounded-lg mb-8">
-        <h2 className="text-2xl font-bold mb-2">History</h2>
-        <p className="opacity-80 text-sm leading-relaxed">
-          Evidence of modern human habitation in Malaysia dates back 40,000
-          years.[41] In the Malay Peninsula, the first inhabitants are thought
-          to be Negritos.[42][43] Areas of Malaysia participated in the Maritime
-          Jade Road between 2000 BC to 1000 AD.[44][45][46][47] Traders and
-          settlers from India and China arrived as early as the first century
-          AD, establishing trading ports and coastal towns in the second and
-          third centuries. Their presence resulted in strong Indian and Chinese
-          influences on the local cultures, and the people of the Malay
-          Peninsula adopted the religions of Hinduism and Buddhism. Sanskrit
-          inscriptions appear as early as the fourth or fifth century.[48] The
-          Kingdom of Langkasuka arose around the second century in the northern
-          area of the Malay Peninsula, lasting until about the 15th century.[36]
-          Between the 7th and 13th centuries, much of the southern Malay
-          Peninsula was part of the maritime Srivijayan empire. By the 13th and
-          the 14th century, the Majapahit empire had successfully wrested
-          control over most of the peninsula and the Malay Archipelago from
-          Srivijaya.[49] In the early 15th century, Parameswara, a runaway king
-          of the former Kingdom of Singapura linked to the old Srivijayan court,
-          founded the Malacca Sultanate.[50] The spread of Islam increased
-          following Parameswaras conversion to that religion. Malacca was an
-          important commercial centre during this time, attracting trade from
-          around the region.[51]
+    <section className="relative overflow-hidden px-6 pt-10 pb-16">
+      <h1
+        className={`mx-auto max-w-7xl text-5xl leading-none sm:text-7xl ${HEADING}`}
+      >
+        About <span className="text-accent2-primary">Us…</span>
+      </h1>
+      <div
+        className="relative mx-auto mt-6 hidden aspect-[1140/1320] w-full max-w-[1140px] md:block"
+        style={{ containerType: "inline-size" }}
+      >
+        <img
+          src={cloudPink}
+          alt=""
+          className="absolute right-[5%] top-[2%] w-[23%]"
+        />
+        <img
+          src={cloudPinkB}
+          alt=""
+          className="absolute -right-[12%] top-[4%] w-[30%]"
+        />
+        <img
+          src={cloudPurple}
+          alt=""
+          className="absolute -left-[12%] top-[48%] w-[25%]"
+        />
+        <img
+          src={dashed}
+          alt=""
+          className="absolute left-[1.49%] top-[11.97%] w-[98%]"
+        />
+        <img
+          src={squiggle}
+          alt=""
+          className="absolute left-0 top-[8.33%] h-[77.42%] w-full"
+        />
+        <img
+          src={mascot}
+          alt="UMSA mascot"
+          className="absolute -left-[4%] top-[1.5%] z-10 w-[20%] -rotate-[10deg]"
+        />
+        <div className="absolute left-0 top-[19.55%] z-10 w-[50.26%]">
+          <div className="flex items-center justify-between gap-3">
+            <img src={starRed} alt="" className="w-[6cqw]" />
+            <h2 className={`text-[4.21cqw] leading-none ${HEADING}`}>
+              {PILLARS[0].title}
+            </h2>
+            <img src={starPinkA} alt="" className="w-[6cqw]" />
+          </div>
+          <p
+            className={`mt-[1.4cqw] text-justify text-[1.4cqw] leading-[1.875] tracking-[0.14cqw] ${HEADING}`}
+          >
+            {PILLARS[0].body}
+          </p>
+        </div>
+        <div className="absolute left-[49.04%] top-[52.88%] z-10 w-[48.95%]">
+          <div className="flex items-center justify-between gap-3">
+            <img src={starLavender} alt="" className="w-[6cqw]" />
+            <h2 className={`text-[4.21cqw] leading-none ${HEADING}`}>
+              {PILLARS[1].title}
+            </h2>
+            <img src={starPinkB} alt="" className="w-[6cqw]" />
+          </div>
+          <p
+            className={`mt-[1.4cqw] text-justify text-[1.4cqw] leading-[1.875] tracking-[0.14cqw] ${HEADING}`}
+          >
+            {PILLARS[1].body}
+          </p>
+        </div>
+        <BigStar src={starBlue} x={587} y={195} />
+        <BigStar src={starAbove} x={884} y={575} />
+        <BigStar src={starBlue} x={418} y={1063} />
+        <p
+          className={`absolute inset-x-0 top-[90.15%] text-center text-[4.21cqw] ${HEADING}`}
+        >
+          A home away from home.
         </p>
       </div>
-      <div className="flex gap-8 mb-12">
-        {/*vison and purpose*/}
-        <div className="flex-1 flex flex-col">
-          <div className="h-70 overflow-hidden rounded-t-lg">
-            <img src={statuephoto} className="w-full h-full object-cover" />
-          </div>
-          <div className="border border-white p-6 rounded-b-lg flex-1">
-            <h2 className="text-2xl font-bold mb-2">Vision</h2>
-            <p className="opacity-80 text-sm leading-relaxed">
-              Malaysia is the 66th largest country by total land area, with a
-              total area of 330,803 km2 (127,724 sq mi).[10] West Malaysia
-              shares land borders with Thailand, while East Malaysia shares land
-              borders with Indonesia and Brunei.[18] Singapore is separated from
-              the West by the Straits of Johor and is linked to it by a narrow
-              causeway and a bridge. The country also shares maritime boundaries
-              with Indonesia, Vietnam[179] and the Philippines.[180] The land
-              borders are defined in large part by geological features such as
-              the Perlis River, the Golok River and the Pagalayan Canal, whilst
-              some of the maritime boundaries are the subject of ongoing
-              contention.[18] Brunei forms what is almost an enclave in
-              Malaysia,[181] with the state of Sarawak dividing it into two
-              parts. Malaysia is the only country with territory on both the
-              Asian mainland and the Malay Archipelago.[182] The Strait of
-              Malacca, lying between Sumatra and Peninsular Malaysia, is one of
-              the most important thoroughfares in global commerce, carrying 40%
-              of the worls trade.[183] The southernmost point of mainland Asia
-              is located at Tanjung Piai, in the state of Johor.[184]
+      <div className="mx-auto max-w-lg md:hidden">
+        <img
+          src={mascot}
+          alt="UMSA mascot"
+          className="mt-8 w-28 -rotate-[10deg]"
+        />
+        {PILLARS.map((pillar, i) => (
+          <div key={pillar.title} className="mt-10">
+            <div className="flex items-center gap-4">
+              <img
+                src={i === 0 ? starRed : starLavender}
+                alt=""
+                className="w-10"
+              />
+              <h2 className={`text-3xl ${HEADING}`}>{pillar.title}</h2>
+            </div>
+            <p className="mt-4 text-base leading-relaxed text-accent1-primary">
+              {pillar.body}
             </p>
           </div>
-        </div>
-
-        <div className="flex-1 flex flex-col">
-          <div className="h-70 overflow-hidden rounded-t-lg">
-            <img src={flagphoto} className="w-full h-full object-cover" />
-          </div>
-          <div className="border border-white p-6 rounded-b-lg flex-1">
-            <h2 className="text-2xl font-bold mb-2">Purpose</h2>
-            <p className="opacity-80 text-sm leading-relaxed">
-              Malaysia[d] is a country in Southeast Asia. A federal
-              constitutional monarchy, it consists of 13 states and three
-              federal territories, separated by the South China Sea into two
-              regions: Peninsular Malaysia on Mainland Southeast Asia and East
-              Malaysia on the island of Borneo. Peninsular Malaysia shares land
-              and maritime borders with Thailand, as well as maritime borders
-              with Singapore, Vietnam, and Indonesia; East Malaysia shares land
-              borders with Brunei and Indonesia, and maritime borders with the
-              Philippines and Vietnam. Kuala Lumpur is the countrys national
-              capital, largest city, and the seat of the legislative branch of
-              the federal government, while Putrajaya is the federal
-              administrative capital, representing the seat of both the
-              executive branch and the judicial branch of the federal
-              government. With a population of over 34 million, it is the worlds
-              42nd-most populous country. The country has its origins in the
-              Malay king{" "}
-            </p>
-          </div>
-        </div>
+        ))}
+        <p className={`mt-12 text-2xl ${HEADING}`}>A home away from home.</p>
       </div>
-
-      {/*link*/}
-
-      <div className="flex justify-center mb-8">
-        <a href="https://github.com/UoaWDCC/umsa/tree/tadiwa/about-us-page/">
-          <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-            Meet the Team
-          </button>
+      <div className="mt-8 text-center">
+        <a
+          href={MEMBERSHIP_FORM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex rounded-full bg-accent2-primary px-6 py-3 font-heading text-sm text-white"
+        >
+          Join UMSA
         </a>
       </div>
-    </div>
+    </section>
   );
 }

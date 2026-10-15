@@ -33,7 +33,7 @@ export default function Alanna() {
               className="col-span-1 object-cover md:mb-0 mb-5 h-full rounded-2xl"
             />
 
-            {/* here's where components come in - we use a pre built stats component, 
+            {/* here's where components come in - we use a pre built stats component,
                 and just fill in the props (stats). check /components/StatsTable.tsx to see how it works! */}
             <div className="col-span-2 max-w-md bg-pink-900 p-6 rounded-lg">
               <MemberStatsTable

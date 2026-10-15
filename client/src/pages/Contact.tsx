@@ -1,112 +1,183 @@
-import { useState } from "react";
-import { FaInstagram, FaFacebook, FaEnvelope } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { api, apiErrorMessage } from "../lib/api";
+import { motion } from "motion/react";
+import type { IconType } from "react-icons";
+import { FiMail } from "react-icons/fi";
+import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
+import Reveal from "../components/ui/Reveal";
+import Button from "../components/ui/Button";
+import { OutlineStar, StarTrio } from "../components/ui/Decor";
+
+type Status = "idle" | "sending" | "sent";
+
+type Row = {
+  label: string;
+  value: string;
+  href: string;
+  Icon: IconType;
+  red?: boolean;
+};
+
+const ROWS: Row[] = [
+  {
+    label: "Email",
+    value: "umsa@projects.wdcc.co.nz",
+    href: "mailto:umsa@projects.wdcc.co.nz",
+    Icon: FiMail,
+    red: true,
+  },
+  {
+    label: "Instagram",
+    value: "@umsa.auckland",
+    href: "https://www.instagram.com/",
+    Icon: FaInstagram,
+  },
+  {
+    label: "Facebook",
+    value: "UMSA Auckland",
+    href: "https://www.facebook.com/",
+    Icon: FaFacebookF,
+  },
+  {
+    label: "TikTok",
+    value: "@umsa.auckland",
+    href: "https://www.tiktok.com/",
+    Icon: FaTiktok,
+  },
+];
+
+const FIELD =
+  "w-full rounded-xl border border-gray-150 bg-white px-4 py-3 text-sm outline-none " +
+  "transition-colors focus:border-accent1-primary";
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [status, setStatus] = useState("");
+  useEffect(() => {
+    document.title = "Contact | UMSA";
+  }, []);
 
-  const handleSubmit = async () => {
-    setStatus("Sending");
-    const res = await fetch("https://formspree.io/f/xvzlqwkg", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-    if (res.ok) {
-      setStatus("Message sent!");
-      setFormData({ name: "", email: "", message: "" });
-    } else {
-      setStatus("Error sending message.");
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<Status>("idle");
+
+  const [error, setError] = useState("");
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("sending");
+    setError("");
+    try {
+      await api.post("/contact", form);
+      setStatus("sent");
+      setForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      setError(apiErrorMessage(err));
+      setStatus("idle");
     }
   };
+
   return (
-    <>
-      <div className="bg-[#000000] w-full p-10 items-center justify-center rounded-lg">
-        <h1 className="text-4xl font-bold text-white">Contact us</h1>
-        <p className="text-white font-bold text-center mt-10">
-          Have questions or want to get in touch? We&apos;d love to hear from
-          you!
-        </p>
-        <p className="text-white text-center mt-5">
-          Fill out the form below or reach out to us on social media.<br></br>We
-          look forward to connecting with you! (｡˃ ᵕ ˂ )⸝♡
-        </p>
-      </div>
+    <section className="relative overflow-hidden px-6 pt-12 pb-16">
+      <div className="mx-auto max-w-6xl">
+        <Reveal from="left">
+          <div className="flex items-center justify-between gap-6">
+            <h1 className="text-4xl text-accent1-primary sm:text-5xl md:text-7xl">
+              Get in Touch
+            </h1>
+            <StarTrio className="hidden sm:flex" />
+          </div>
+        </Reveal>
 
-      <div className="flex flex-col gap-5 max-w-2xl mx-auto mt-1 px-8">
-        <input
-          type="text"
-          placeholder="Enter your Name"
-          value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="bg-transparent border-2 border-blue rounded-2xl px-6 py-4 text-white placeholder-gray-400 outline-none focus:border-blue-300 transition"
-        />
-        <input
-          type="email"
-          placeholder="Enter your Email"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="bg-transparent border-2 border-blue rounded-2xl px-6 py-4 text-white placeholder-gray-400 outline-none focus:border-blue-300 transition"
-        />
-        <textarea
-          placeholder="Enter your Message"
-          rows={5}
-          value={formData.message}
-          onChange={(e) =>
-            setFormData({ ...formData, message: e.target.value })
-          }
-          className="bg-transparent border-2 border-blue rounded-2xl px-6 py-5 text-white placeholder-gray-400 outline-none focus:border-blue-300 transition"
-        />
-        <button
-          onClick={handleSubmit}
-          className="bg-blue-300 text-black font-bold py-3 px-6 rounded-full hover:bg-pink-400 transition"
-        >
-          Send Message
-        </button>
-        {status === "sending" && <p className="text-gray-400">Sending...</p>}
-        {status === "success" && (
-          <p className="text-green-400">Message sent!</p>
-        )}
-        {status === "error" && (
-          <p className="text-red-400">
-            Something went wrong, please try again.
-          </p>
-        )}
-      </div>
+        <div className="relative mt-10">
+          <div className="absolute top-10 -left-2 hidden flex-col gap-6 lg:flex">
+            <OutlineStar />
+            <OutlineStar />
+            <OutlineStar />
+          </div>
 
-      <div>
-        <h1 className="text-3xl mt-10 mb-5 font-bold italic text-center">
-          Find us online! (╭ರ_•́)~
-        </h1>
+          <Reveal>
+            <ul className="mx-auto max-w-3xl rounded-[40px] bg-white px-8 py-10 shadow-[0_20px_20px_rgba(0,0,0,0.05)] md:px-14">
+              {ROWS.map(({ label, value, href, Icon, red }) => (
+                <li key={label} className="flex items-center gap-5 py-3.5">
+                  <span
+                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full
+                      text-white ${red ? "bg-accent2-primary" : "bg-accent1-primary"}`}
+                  >
+                    <Icon size={20} />
+                  </span>
 
-        <div className="flex justify-center gap-4 mt-4">
-          <a
-            href="https://www.instagram.com/umsanz/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaInstagram className="text-3xl text-blue-300 hover:text-white" />
-          </a>
-
-          <a
-            href="https://www.facebook.com/umsanz/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaFacebook className="text-3xl text-blue-300 hover:text-white" />
-          </a>
-
-          <a href="mailto:minahil12323@gmail.com?subject=Contact%20from%20website">
-            <FaEnvelope className="text-3xl text-blue-300 hover:text-white" />
-          </a>
+                  <div className="min-w-0">
+                    <p className="font-heading text-[11px] tracking-[0.18em] text-accent1-primary uppercase">
+                      {label}
+                    </p>
+                    <a
+                      href={href}
+                      target={href.startsWith("http") ? "_blank" : undefined}
+                      rel="noopener noreferrer"
+                      className="font-heading text-lg break-words text-accent1-primary uppercase
+                        transition-opacity hover:opacity-70 md:text-2xl"
+                    >
+                      {value}
+                    </a>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
+
+        <Reveal>
+          <div className="mt-24 flex items-center justify-end gap-8">
+            <StarTrio className="hidden sm:flex" size={34} />
+            <h2 className="text-4xl text-accent1-primary md:text-6xl">
+              Reach Out!
+            </h2>
+          </div>
+        </Reveal>
+
+        <Reveal from="right">
+          <form onSubmit={submit} className="mt-8 ml-auto max-w-xl space-y-3">
+            <input
+              className={FIELD}
+              placeholder="Your name"
+              required
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+            />
+            <input
+              className={FIELD}
+              type="email"
+              placeholder="Your email"
+              required
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+            />
+            <textarea
+              className={`${FIELD} min-h-32 resize-y`}
+              placeholder="Your message"
+              required
+              value={form.message}
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
+            />
+
+            <Button type="submit" disabled={status === "sending"}>
+              {status === "sending" ? "Sending…" : "Send message"}
+            </Button>
+            {error && (
+              <p role="alert" className="text-sm text-accent2-primary">
+                {error}
+              </p>
+            )}
+
+            {status === "sent" && (
+              <motion.p
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center gap-2 text-sm text-accent1-primary"
+              >
+                <FiMail /> Message sent. Thanks for getting in touch.
+              </motion.p>
+            )}
+          </form>
+        </Reveal>
       </div>
-    </>
+    </section>
   );
 }

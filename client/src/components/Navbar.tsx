@@ -1,155 +1,229 @@
-import { Link, NavLink } from "react-router-dom";
-import { useState } from "react";
-import { motion } from "motion/react";
+import { MEMBERSHIP_FORM_URL } from "../lib/siteLinks";
+import Marquee from "./Marquee";
+import { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "motion/react";
+import { FiChevronDown, FiMenu, FiX } from "react-icons/fi";
+import logo from "../assets/brand/umsa-logo.png";
+
+const ABOUT_MENU = [
+  { to: "/about", label: "About Us" },
+  { to: "/contact", label: "Contact" },
+  { to: "/team", label: "Our Team" },
+];
+
+const LINKS = [
+  { to: "/", label: "Home", end: true },
+  { to: "/events", label: "Events" },
+  { to: "/sponsors", label: "Sponsors" },
+  { to: "/gallery", label: "Photos" },
+];
+
+const LINK_BASE =
+  "font-heading text-[13px] tracking-[0.12em] uppercase transition-colors";
+
+function AboutMenu() {
+  const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
+  const active = ABOUT_MENU.some((item) => pathname === item.to);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onFocus={() => setOpen(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) setOpen(false);
+      }}
+    >
+      <NavLink
+        to="/about"
+        onClick={() => setOpen(false)}
+        aria-expanded={open}
+        aria-haspopup="menu"
+        className={`relative flex items-center gap-1 ${LINK_BASE} ${
+          active
+            ? "text-accent2-primary"
+            : "text-accent1-primary hover:text-accent2-primary"
+        }`}
+      >
+        About
+        <FiChevronDown
+          size={13}
+          className={`transition-transform ${open ? "rotate-180" : ""}`}
+        />
+        {active && (
+          <motion.span
+            layoutId="nav-underline"
+            className="absolute -bottom-1.5 left-0 h-0.5 w-full bg-accent2-primary"
+          />
+        )}
+      </NavLink>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            role="menu"
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.16, ease: "easeOut" }}
+            className="absolute top-full left-1/2 z-50 w-44 -translate-x-1/2 rounded-lg
+              bg-background-secondary py-2 shadow-[0_10px_24px_rgba(0,0,0,0.14)]"
+            style={{ marginTop: 8 }}
+          >
+            {ABOUT_MENU.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                role="menuitem"
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  `block px-5 py-2.5 ${LINK_BASE} ${
+                    isActive
+                      ? "text-accent2-primary"
+                      : "text-accent1-primary hover:text-accent2-primary"
+                  }`
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsOpen((prev) => !prev);
-  };
-
-  const closeDropdown = () => {
-    setIsOpen(false);
-  };
+  const [open, setOpen] = useState(false);
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `transition-colors hover:text-white ${
-      isActive ? "text-white font-semibold" : "text-gray-400"
+    `relative ${LINK_BASE} ${
+      isActive
+        ? "text-accent2-primary"
+        : "text-accent1-primary hover:text-accent2-primary"
     }`;
 
   return (
-    <nav className="mx-6 py-4">
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
-        <Link to="/" className="text-xl font-bold tracking-tight">
-          UMSA
-        </Link>
+    <header className="sticky top-0 z-50">
+      <nav className="border-b-2 border-accent1-primary bg-background-primary">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-2">
+          <Link to="/" aria-label="UMSA home" className="shrink-0">
+            <img src={logo} alt="UMSA" className="h-10 w-10 object-contain" />
+          </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-6 text-sm">
-          <NavLink to="/" end className={linkClass}>
-            Home
-          </NavLink>
-          <NavLink to="/About" className={linkClass}>
-            About
-          </NavLink>
-          <NavLink to="/Events" className={linkClass}>
-            Events
-          </NavLink>
-          <NavLink to="/sign-up" className={linkClass}>
-            Sign Up
-          </NavLink>
-          <NavLink to="/Contact" className={linkClass}>
-            Contact
-          </NavLink>
-          <NavLink to="/Team" className={linkClass}>
-            Team
-          </NavLink>
-          <NavLink to="/Sponsors" className={linkClass}>
-            Sponsors
-          </NavLink>
-          <NavLink to="/Gallery" className={linkClass}>
-            Gallery
-          </NavLink>
-          <NavLink to="/faq" className={linkClass}>
-            FAQ
-          </NavLink>
-          <NavLink to="/project-team" className={linkClass}>
-            Project Team
-          </NavLink>
-
-          <a
-            href="https://forms.gle/CQoE2nsZ9sGCWZqW8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-1 rounded-full bg-blue-400 hover:bg-blue-700 hover:scale-110 transition-transform duration-100 text-white font-bold"
-          >
-            Sign Up
-          </a>
-        </div>
-
-        {/* Mobile menu button */}
-        <div className="md:hidden">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <button
-              type="button"
-              onClick={toggleDropdown}
-              className="flex flex-col gap-1.5 p-2 text-white"
-              aria-label="Toggle navigation menu"
-            >
-              <motion.span
-                animate={isOpen ? { rotate: 45, y: 10 } : { rotate: 0, y: 0 }}
-                className="w-8 h-1 bg-white block"
-              />
-
-              <motion.span
-                animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-                className="w-8 h-1 bg-white block"
-              />
-
-              <motion.span
-                animate={isOpen ? { rotate: -45, y: -10 } : { rotate: 0, y: 0 }}
-                className="w-8 h-1 bg-white block"
-              />
-            </button>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Mobile dropdown */}
-      {isOpen && (
-        <div className="md:hidden absolute mt-2 left-0 w-full rounded-md bg-gray-900 ring-black ring-opacity-5 focus:outline-none">
-          <div className="flex flex-col px-8 py-10 gap-2 text-left whitespace-nowrap">
-            <NavLink to="/" end className={linkClass} onClick={closeDropdown}>
-              Home
-            </NavLink>
-            <NavLink to="/About" className={linkClass} onClick={closeDropdown}>
-              About
-            </NavLink>
-            <NavLink to="/Events" className={linkClass} onClick={closeDropdown}>
-              Events
-            </NavLink>
-            <NavLink to="/sign-up" className={linkClass} onClick={closeDropdown}>
-              Sign Up
-            </NavLink>
-            <NavLink to="/Contact" className={linkClass} onClick={closeDropdown}>
-              Contact
-            </NavLink>
-            <NavLink to="/Team" className={linkClass} onClick={closeDropdown}>
-              Team
-            </NavLink>
-            <NavLink to="/Sponsors" className={linkClass} onClick={closeDropdown}>
-              Sponsors
-            </NavLink>
-            <NavLink to="/Gallery" className={linkClass} onClick={closeDropdown}>
-              Gallery
-            </NavLink>
-            <NavLink to="/faq" className={linkClass} onClick={closeDropdown}>
-              FAQ
-            </NavLink>
-            <NavLink
-              to="/project-team"
-              className={linkClass}
-              onClick={closeDropdown}
-            >
-              Project Team
+          <div className="hidden items-center gap-7 lg:flex">
+            <NavLink to="/" end className={linkClass}>
+              {({ isActive }) => (
+                <>
+                  Home
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute -bottom-1.5 left-0 h-0.5 w-full bg-accent2-primary"
+                    />
+                  )}
+                </>
+              )}
             </NavLink>
 
+            <AboutMenu />
+
+            {LINKS.filter((l) => l.to !== "/").map((link) => (
+              <NavLink key={link.to} to={link.to} className={linkClass}>
+                {({ isActive }) => (
+                  <>
+                    {link.label}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-underline"
+                        className="absolute -bottom-1.5 left-0 h-0.5 w-full bg-accent2-primary"
+                      />
+                    )}
+                  </>
+                )}
+              </NavLink>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3">
             <a
-              href="https://forms.gle/CQoE2nsZ9sGCWZqW8"
+              href={MEMBERSHIP_FORM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-fit px-4 py-1 mt-2 rounded-full bg-blue-400 hover:bg-blue-700 hover:scale-110 transition-transform duration-100 text-white font-bold"
+              className="hidden rounded-full border-2 border-red-600 bg-accent2-primary px-5 py-1.5
+                font-heading text-xs tracking-[0.12em] text-white uppercase
+                shadow-[2px_2px_0_0_var(--color-red-600)] transition-transform
+                hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none sm:block"
             >
-              Sign Up
+              Sign up
             </a>
+            <button
+              onClick={() => setOpen((v) => !v)}
+              className="text-accent1-primary lg:hidden"
+              aria-label={open ? "Close menu" : "Open menu"}
+            >
+              {open ? <FiX size={22} /> : <FiMenu size={22} />}
+            </button>
           </div>
         </div>
-      )}
-    </nav>
+
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="overflow-hidden lg:hidden"
+            >
+              <div className="flex flex-col gap-1 px-5 pb-4">
+                <NavLink
+                  to="/"
+                  end
+                  onClick={() => setOpen(false)}
+                  className={`py-2 ${LINK_BASE} text-accent1-primary`}
+                >
+                  Home
+                </NavLink>
+                {ABOUT_MENU.concat(LINKS.filter((l) => l.to !== "/")).map(
+                  (link) => (
+                    <NavLink
+                      key={link.to}
+                      to={link.to}
+                      onClick={() => setOpen(false)}
+                      className={`py-2 ${LINK_BASE} text-accent1-primary`}
+                    >
+                      {link.label}
+                    </NavLink>
+                  ),
+                )}
+                <a
+                  href={MEMBERSHIP_FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                  className={`py-2 ${LINK_BASE} text-accent2-primary sm:hidden`}
+                >
+                  Sign up
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+
+      <Marquee />
+    </header>
   );
 }

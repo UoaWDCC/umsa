@@ -2,14 +2,48 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-umsa-32.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/icon-umsa-64.png" />
+    <link rel="icon" type="image/svg+xml" href="/icon-umsa.svg" />
+    <link rel="apple-touch-icon" href="/icon-umsa-180.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sekuya:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <title>client</title>
+    <style>
+
+      #boot {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+        background: #f9f9fb;
+        transition: opacity 0.35s ease;
+      }
+      #boot[hidden] { display: none; }
+      #boot.is-done { opacity: 0; pointer-events: none; }
+      #boot svg { width: 54px; height: 54px; animation: boot-pulse 1.1s ease-in-out infinite; }
+      @keyframes boot-pulse {
+        0%, 100% { transform: scale(0.82); opacity: 0.45; }
+        50%      { transform: scale(1);    opacity: 1; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #boot svg { animation: none; opacity: 1; }
+      }
+    </style>
+
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/sekuya-400.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-400.woff2" crossorigin />
+    <title>UMSA</title>
   </head>
   <body>
+    <div id="boot">
+      <svg viewBox="0 0 100 100" aria-label="Loading" role="img">
+        <path
+          d="M50 2c5 30 16 44 48 48-32 4-43 18-48 48-5-30-16-44-48-48 32-4 43-18 48-48z"
+          fill="#2727DC"
+        />
+      </svg>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

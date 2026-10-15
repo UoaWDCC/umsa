@@ -42,7 +42,7 @@ feature you were given, because it's the piece everything visual depends on.
 | Admin login, session, logout | Done. One admin account, created by a seed script. |
 | Homepage heading + subtitle | Done, end to end. This is the reference implementation. |
 | Events, gallery, team, sponsors, FAQ, about copy | Hardcoded in `client/src/pages/*.tsx`. Not in the database. |
-| Image uploads | Signing endpoint done (`POST /api/admin/uploads/signature`). No feature stores an image yet. See the blueprint. |
+| Image uploads | Does not exist. No upload endpoint, no storage. See the blueprint. |
 | Theme colours, fonts, logo | Static CSS in `client/src/tokens.css` and imported assets. Not editable. |
 | Tests | No automated suite — small team, small app, not the point of this project. Run the app and click through the change before merging to `main`, since `main` deploys straight to Fly. |
 

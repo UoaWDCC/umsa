@@ -4,6 +4,7 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import healthRoutes from "./routes/health.js";
 import contentRoutes from "./routes/content.js";
+import contactRoutes from "./routes/contact.js";
 import adminAuthRoutes from "./routes/admin/auth.js";
 import adminContentRoutes from "./routes/admin/content.js";
 import adminUploadRoutes from "./routes/admin/uploads.js";
@@ -13,6 +14,8 @@ import { notFound } from "./middleware/notFound.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 
 // splitting
+
+import { publicCollections, adminCollections } from "./routes/collections.js";
 
 const app = express();
 
@@ -33,10 +36,13 @@ app.use("/api/health", healthRoutes);
 
 // endpoints -- add new endpoints below
 app.use("/api/content", contentRoutes);
+app.use("/api/contact", contactRoutes);
+app.use("/api", publicCollections);
 
 app.use("/api/admin/auth", adminAuthRoutes);
 // every /api/admin/* route below requires a logged-in admin account
 app.use("/api/admin", requireAdmin);
+app.use("/api/admin", adminCollections);
 app.use("/api/admin/content", adminContentRoutes);
 app.use("/api/admin/uploads", adminUploadRoutes);
 
