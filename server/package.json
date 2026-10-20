@@ -7,8 +7,7 @@
     "preinstall": "npx --yes only-allow pnpm",
     "dev": "tsx watch server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
-    "seed:admin": "tsx scripts/seed-admin.ts"
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",

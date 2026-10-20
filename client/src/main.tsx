@@ -13,7 +13,6 @@ import "./index.css";
 {
   /* page imports */
 }
-import ProjectTeam from "./pages/Project-Team";
 import Events from "./pages/Events";
 import SignUp from "./pages/SignUp";
 import Gallery from "./pages/Gallery";
@@ -24,23 +23,15 @@ import FAQ from "./pages/Frequent-Asked-Question";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
-{
-  /* project team imports */
-}
 import {
   AdminLayout,
   AdminLogin,
-  Alanna,
-  Alex,
   EventsEditor,
   FaqEditor,
   GalleryEditor,
   HomeContentEditor,
-  Pruna,
   SponsorsEditor,
-  Tadiwa,
   TeamEditor,
-  Terrence,
 } from "./lazyRoutes";
 
 const router = createBrowserRouter([
@@ -51,12 +42,6 @@ const router = createBrowserRouter([
       { index: true, element: <App /> },
       { path: "events", element: <Events /> },
       { path: "team", element: <Team /> },
-      { path: "project-team", element: <ProjectTeam /> },
-      { path: "alanna", element: <Alanna /> },
-      { path: "alex", element: <Alex /> },
-      { path: "pruna", element: <Pruna /> },
-      { path: "tadiwa", element: <Tadiwa /> },
-      { path: "terrence", element: <Terrence /> },
       { path: "sign-up", element: <SignUp /> },
       { path: "gallery", element: <Gallery /> },
       { path: "faq", element: <FAQ /> },
@@ -136,7 +121,6 @@ const fontsReady = document.fonts
   : Promise.resolve();
 
 fontsReady
-  // one frame so React has laid out and the images above the fold exist
   .then(
     () =>
       new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))),
