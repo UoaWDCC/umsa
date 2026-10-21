@@ -30,4 +30,6 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 
-CMD sh -c "nginx && cd /app/server && node dist/server.js"
+WORKDIR /app/server
+
+CMD ["sh", "start.sh"]
