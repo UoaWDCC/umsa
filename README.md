@@ -1,32 +1,44 @@
-# UMSA website
+# selamat datang! :malaysia:
 
-React, TypeScript, Express and MongoDB.
+this is the repo for wdcc's project umsa 2026 !!
 
-## Setup
+## a bit about the project
 
-Use Node 22 and pnpm. Copy `server/.env.example` to `server/.env` and fill in the values.
+this is a full-stack react, node, express & mongodb, written in typescript with a vite front end & tailwindcss for ui styling :)
 
-```sh
-pnpm install
-pnpm dev
-```
+## getting started
 
-Vite prints the frontend URL. The local API runs on port 5051.
+### prerequisites
 
-```sh
-pnpm build
-pnpm lint
-```
+- install git [here](https://git-scm.com/downloads)
+- install node [here](https://nodejs.org/en/download)
 
+### running the project
 
-## Content management
+- git clone
+- cd umsa
+- npm install -g pnpm
+- pnpm install
+- pnpm dev
 
-Open `/admin` directly to sign in and edit homepage text, team members, events,
-sponsors, gallery photos and FAQs. Image uploads use Cloudinary.
+### other scripts
 
-Contact sends email through Resend to `umsa@projects.wdcc.co.nz`.
-Set `RESEND_API_KEY` and `CONTACT_FROM_EMAIL` using a verified sender.
-Membership is managed through the linked Google Form.
+to lint: pnpm lint
+to build: pnpm build
 
-See [setup](docs/01-setup.md), [API reference](docs/05-api-reference.md)
-and [contributors](docs/contributors.md).
+## team members
+
+| name                     | role            | fuel                                          | quote                                                                                          |
+| ------------------------ | --------------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| hannah santiago          | project manager |                                               |                                                                                                |
+| alanna santoso           | tech lead       | jasmine milk tea 70 sugar less ice            | _"hi!"_                                                                                        |
+| koutaro yumimi           | tech overlord   | ethiopian natural                             | _"studying is doubting your own potential"_                                                    |
+| matthew ren              | project manager |                                               |                                                                                                |
+| nicholars garcia-scholtz | tech exec       |                                               |                                                                                                |
+| amy yan                  | designer        |                                               | _"meow"_                                                                                       |
+| andrew qiu               | designer        | charlies tea osmanthus oolong 30 sugar no ice | _"i am just a designer~"_                                                                      |
+| terrence wu              | developer       | oolong milk tea 30 sugar little ice           | _"hardstuck bronze in league for 6 years (BUT IM GETTING OUT THIS YEAR IM BRONZE 3 44LP NOW)"_ |
+| alex lee                 | developer       | pink monster                                  | "DAH" -pinkpanteress                                                                           |
+| eric zheng               | developer       | dirty matcha latte                            | "disaster-"                                                                                    |
+| jacky chen               | developer       | purple rice yoghurt                           | _"i make a lot of typos"_                                                                      |
+| pruna lee                | developer       | coconut redbull                               | _"i love food"_                                                                                |
