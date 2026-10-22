@@ -16,14 +16,6 @@ import mascotSit from "./assets/icons/umsa_sit.png";
 import mascotCap from "./assets/icons/umsa_cool.png";
 import heroPhoto from "./assets/humans.png";
 
-const DEFAULTS = {
-  heading: "WELCOME TO UMSA",
-  subtitle: "The union of Malaysian students in Auckland.",
-  aboutHeading: "WHAT IS UMSA?",
-  aboutBody: "",
-  introVideoUrl: "",
-};
-
 const HERO_FOOT =
   "Non-profit Malaysian student-run club affiliated with the University of Auckland, New Zealand.";
 
@@ -113,13 +105,45 @@ function Hero({ heading, subtitle }: { heading: string; subtitle: string }) {
 }
 
 export default function App() {
-  const { data } = useHomeContent();
-  const { data: events } = useEvents();
-  const content = { ...DEFAULTS, ...(data ?? {}) };
+  const { data: content, isPending, isFetching, refetch } = useHomeContent();
+  const {
+    data: events,
+    isPending: eventsPending,
+    isError: eventsError,
+    refetch: refetchEvents,
+    isFetching: eventsFetching,
+  } = useEvents();
 
   useEffect(() => {
     document.title = "UMSA — Home";
   }, []);
+
+  if (isPending) {
+    return (
+      <section
+        className="mx-auto max-w-4xl px-6 py-20 text-center"
+        role="status"
+      >
+        Loading homepage…
+      </section>
+    );
+  }
+
+  if (!content) {
+    return (
+      <section className="mx-auto max-w-4xl px-6 py-20 text-center">
+        <p role="alert">We couldn’t load the homepage. Please try again.</p>
+        <button
+          type="button"
+          onClick={() => void refetch()}
+          disabled={isFetching}
+          className="mt-4 rounded-full bg-accent1-primary px-6 py-3 text-white disabled:opacity-50"
+        >
+          {isFetching ? "Loading…" : "Try again"}
+        </button>
+      </section>
+    );
+  }
 
   const upcoming = (events ?? [])
     .map((e) => ({ ...e, isDone: new Date(e.eventDate) < new Date() }))
@@ -234,7 +258,23 @@ export default function App() {
             </h2>
           </div>
 
-          <EventCarousel events={upcoming} />
+          {eventsPending ? (
+            <p role="status">Loading events…</p>
+          ) : eventsError && !events ? (
+            <div>
+              <p role="alert">We couldn’t load the events.</p>
+              <button
+                type="button"
+                onClick={() => void refetchEvents()}
+                disabled={eventsFetching}
+                className="mt-3 underline disabled:opacity-50"
+              >
+                {eventsFetching ? "Loading…" : "Try again"}
+              </button>
+            </div>
+          ) : (
+            <EventCarousel events={upcoming} />
+          )}
 
           <div className="mt-10 text-center">
             <a

@@ -31,6 +31,10 @@ app.use(
 );
 app.use(express.json({ limit: process.env.JSON_BODY_LIMIT || "1mb" }));
 app.use(cookieParser());
+app.use("/api", (_req, res, next) => {
+  res.set("Cache-Control", "no-store");
+  next();
+});
 app.use("/api", apiRateLimit);
 app.use("/api/health", healthRoutes);
 

@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { isAxiosError } from "axios";
-import { api } from "../lib/api";
+import { api, publicReadOptions } from "../lib/api";
 import { ME_KEY } from "./useAuth";
 
 export type Collection = "members" | "events" | "sponsors" | "gallery" | "faqs";
@@ -9,17 +9,19 @@ export const collectionKey = (name: Collection) => [name] as const;
 
 export function useCollection<T>(name: Collection) {
   return useQuery({
+    ...publicReadOptions,
     queryKey: collectionKey(name),
-    queryFn: () => api.get<T[]>(`/${name}`).then((res) => res.data),
+    queryFn: ({ signal }) =>
+      api.get<T[]>(`/${name}`, { timeout: 10000, signal }).then((res) => res.data),
   });
 }
 
 function useInvalidate(name: Collection) {
   const queryClient = useQueryClient();
   return {
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: collectionKey(name) }),
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: collectionKey(name) }),
     onError: (err: unknown) => {
-
       if (isAxiosError(err) && err.response?.status === 401) {
         queryClient.setQueryData(ME_KEY, null);
       }
@@ -45,7 +47,8 @@ export function useUpdate<T extends { id: string }>(name: Collection) {
 
 export function useRemove(name: Collection) {
   return useMutation({
-    mutationFn: (id: string) => api.delete(`/admin/${name}/${id}`).then((res) => res.data),
+    mutationFn: (id: string) =>
+      api.delete(`/admin/${name}/${id}`).then((res) => res.data),
     ...useInvalidate(name),
   });
 }
