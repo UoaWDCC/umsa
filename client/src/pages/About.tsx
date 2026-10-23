@@ -172,29 +172,28 @@ export default function About() {
               <Link to="/Contact">Contact Us</Link>
             </nav>
             <div className="relative inline-block">
-  <img src={socialIcons} alt="" className="block h-10 w-auto" />
+  <img
+    src={socialIcons}
+    alt=""
+    className="block h-10 w-auto"
+    style={{ clipPath: "inset(0 33.33% 0 0)" }}
+  />
 
-  {/* invisible links laid over each third of the image */}
+  {/* invisible links laid over each of the two remaining icons */}
+  {/* TODO: confirm these are UMSA's real accounts */}
   <a
-    href="#"
-    aria-label="Facebook"
+    href="https://www.facebook.com/umsanz/"
+    aria-label="UMSA on Facebook"
     target="_blank"
     rel="noopener noreferrer"
     className="absolute left-0 top-0 h-full w-1/3"
   />
   <a
-    href="#"
-    aria-label="Instagram"
+    href="https://www.instagram.com/umsanz/"
+    aria-label="UMSA on Instagram"
     target="_blank"
     rel="noopener noreferrer"
     className="absolute left-1/3 top-0 h-full w-1/3"
-  />
-  <a
-    href="#"
-    aria-label="Twitter"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="absolute left-2/3 top-0 h-full w-1/3"
   />
 </div>
           </div>
