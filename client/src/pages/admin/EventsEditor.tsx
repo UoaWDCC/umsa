@@ -10,6 +10,8 @@ export default function EventsEditor() {
     const [startsAt, setStartsAt ] = useState("");
     const [description, setDescription ] = useState("");
     const [tag, setTag ] = useState("");
+    const [link, setLink] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
 
     if (isLoading) return <p>Loading events...</p>;
     if (isError) return <p>Could not load events.</p>;
@@ -21,6 +23,8 @@ export default function EventsEditor() {
         description,
         tag,
         startsAt: new Date(startsAt),
+        link: link || undefined,
+        imageUrl: imageUrl || undefined,
     });
     }
 
@@ -31,6 +35,8 @@ export default function EventsEditor() {
         <input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
         <input type="datetime-local" value={startsAt} onChange={(e) => setStartsAt(e.target.value)} />
         <input placeholder="Tag" value={tag} onChange={(e) => setTag(e.target.value)} />
+        <input placeholder="Link (https://...)" value={link} onChange={(e) => setLink(e.target.value)} />
+        <input placeholder="Image URL" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
         <textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
         <button type="submit">Save event</button>
         </form>
@@ -40,6 +46,7 @@ export default function EventsEditor() {
         <div key={event._id}>
             <span>{event.name}</span>{" "}
             <span>{new Date(event.startsAt).toLocaleDateString("en-NZ")}</span>{" "}
+            <img src={event.imageUrl}></img>
             <button
             onClick={() => {
                 if (window.confirm("Delete this event?")) {
