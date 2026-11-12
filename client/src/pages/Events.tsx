@@ -16,12 +16,17 @@ export default function Events() {
   const [activeTag, setActiveTag] = useState("All");
   const [activePage, setActivePage] = useState(1);
   const [pageGroupOffset, setPageGroupOffset] = useState(0);
+  const [now, setNow] = useState(() => Date.now());
+
+  useEffect(() => {
+      const id = setInterval(() => setNow(Date.now()), 60_000);
+      return () => clearInterval(id);
+    }, []);
 
   if (isLoading) return <p className="text-center my-10">Loading events...</p>;
   if (isError) return <p className="text-center my-10">Could not load events.</p>;
 
   // Convert server data into the shape this page uses
-  const now = Date.now();
   const processedEvents = events.map((event) => ({
     eventName: event.name,
     eventDate: new Date(event.startsAt),
