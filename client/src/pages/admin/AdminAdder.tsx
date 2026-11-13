@@ -11,13 +11,13 @@ interface EmailFormData {
 }
 
 const createEmail = async (formData: EmailFormData) => {
-  const info = await fetch('/api/email/send', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+  const info = await fetch("/api/admin/email/send", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(formData),
-  })
+  });
 
-  if (!info.ok) throw new Error('Failed to send email');
+  if (!info.ok) throw new Error("Failed to send email");
   return info.json();
 };
 
@@ -27,25 +27,25 @@ export default function AdminAdder() {
 
   // hard coded link and subject for now
   const [formValues, setFormValues] = useState<EmailFormData>({
-    to: '',
-    subject: 'UMSA Admin Adder Request',
-    message: 'https://www.linkedin.com/in/terrence-wu-5657a0376/',
+    to: "",
+    subject: "UMSA Admin Adder Request",
+    message: "https://www.linkedin.com/in/terrence-wu-5657a0376/",
   });
 
   const mutation = useMutation({
     mutationFn: createEmail,
     onSuccess: () => {
       // lowkey just for the future when we have admin list
-      queryClient.invalidateQueries({ queryKey: ['AdminList'] });
-      alert('Terrence is the GOAT');
+      queryClient.invalidateQueries({ queryKey: ["AdminList"] });
+      alert("Terrence is the GOAT");
     },
     onError: () => {
-      alert('Terrence sucks at coding (but hes goated at TFT)');
+      alert("Terrence sucks at coding (but hes goated at TFT)");
     },
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormValues((prev) => ({ ...prev, [name]: value }));
@@ -78,7 +78,7 @@ export default function AdminAdder() {
           disabled={mutation.isPending}
           className="bg-accent1-primary p-3 px-10 mt-5 rounded-2xl"
         >
-          {mutation.isPending ? 'Sending...' : 'Submit'}
+          {mutation.isPending ? "Sending..." : "Submit"}
         </button>
       </form>
     </div>

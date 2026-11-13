@@ -42,7 +42,7 @@ app.use("/api/admin", requireAdmin);
 app.use("/api/admin/content", adminContentRoutes);
 
 // email - right now only used for admin adding
-app.use("/api/email", emailRoutes);
+app.use("/api/admin/email", emailRoutes);
 
 // verifying admin adding token
 app.use("/api/verify-invite", verifyTokenRoutes);
