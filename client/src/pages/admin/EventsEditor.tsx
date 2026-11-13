@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useEvents, useDeleteEvent, useCreateEvent, useUpdateEvent, type EventRecord } from "../../hooks/useEvents";
-
+import { useEvents, useDeleteEvent, useCreateEvent, useUpdateEvent } from "../../hooks/useEvents";
+import type { EventRecord } from "../../types/content";
 
 export default function EventsEditor() {
     const { data: events = [], isLoading, isError } = useEvents();
@@ -22,16 +22,18 @@ export default function EventsEditor() {
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         const data = {
-            name,
-            description,
-            tag,
-            startsAt: new Date(startsAt),
-            link: link || undefined,
-            imageUrl: imageUrl || undefined,
+            eventName: name,
+            eventDate: startsAt.slice(0, 10), // keeps only YYYY-MM-DD
+            eventDescription: description,
+            eventTag: tag,
+            eventLink: link,
+            eventImage: imageUrl,
+            location: "",
+            album: "",
         };
 
         if (editingId) {
-            updateEvent.mutate({ id: editingId, data }, { onSuccess: resetForm });
+            updateEvent.mutate({ id: editingId, ...data }, { onSuccess: resetForm });
         } else {
             createEvent.mutate(data, { onSuccess: resetForm });
         }
@@ -39,14 +41,14 @@ export default function EventsEditor() {
 
     
     function startEdit(event: EventRecord) {
-        setEditingId(event._id);
-        setName(event.name);
-        setDescription(event.description);
-        setTag(event.tag);
+        setEditingId(event.id);
+        setName(event.eventName);
+        setDescription(event.eventDescription);
+        setTag(event.eventTag);
         // datetime-local needs "YYYY-MM-DDTHH:mm" in local time
-        setStartsAt(toLocalInput(event.startsAt));
-        setLink(event.link ?? "");
-        setImageUrl(event.imageUrl ?? "");
+        setStartsAt(event.eventDate);
+        setLink(event.eventLink ?? "");
+        setImageUrl(event.eventImage ?? "");
     }
 
     function resetForm() {
@@ -59,18 +61,12 @@ export default function EventsEditor() {
         setImageUrl("");
     }
 
-    function toLocalInput(iso: string) {
-  const d = new Date(iso);
-  const pad = (n: number) => String(n).padStart(2, "0");
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
-}
-
     return (
     <div>
         <h1>Events</h1>
         <form onSubmit={handleSubmit}>
         <input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-        <input type="datetime-local" value={startsAt} onChange={(e) => setStartsAt(e.target.value)} />
+        <input type="date" value={startsAt} onChange={(e) => setStartsAt(e.target.value)} />
         <input placeholder="Tag" value={tag} onChange={(e) => setTag(e.target.value)} />
         <input placeholder="Link (https://...)" value={link} onChange={(e) => setLink(e.target.value)} />
         <input placeholder="Image URL" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
@@ -86,15 +82,15 @@ export default function EventsEditor() {
         {events.length === 0 && <p>No events yet.</p>}
 
         {events.map((event) => (
-        <div key={event._id}>
-            <span>{event.name}</span>{" "}
-            <span>{new Date(event.startsAt).toLocaleDateString("en-NZ")}</span>{" "}
-            {event.imageUrl && <img src={event.imageUrl} alt={event.name} width={60} />}
+        <div key={event.id}>
+            <span>{event.eventName}</span>{" "}
+            <span>{event.eventDate}</span>{" "}
+            {event.eventImage && <img src={event.eventImage} alt={event.eventName} width={60} />}
             <button onClick={() => startEdit(event)}>Edit</button>
             <button
             onClick={() => {
                 if (window.confirm("Delete this event?")) {
-                deleteEvent.mutate(event._id);
+                deleteEvent.mutate(event.id);
                 }
             }}
             >
