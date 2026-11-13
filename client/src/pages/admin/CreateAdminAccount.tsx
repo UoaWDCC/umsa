@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 interface ICreateAdmin {
@@ -19,6 +20,10 @@ export default function CreateAdminAccount() {
   const params = new URLSearchParams(window.location.search);
   const rawToken = params.get("token");
 
+  // feedback shown under the form after submitting
+  const [message, setMessage] = useState("");
+  const [isError, setIsError] = useState(false);
+
   const createAdmin = async (data: ICreateAdmin) => {
     try {
       const response = await fetch("/api/invite/accept", {
@@ -31,8 +36,14 @@ export default function CreateAdminAccount() {
         const error = await response.json();
         throw new Error(error.error);
       }
+
+      setIsError(false);
+      setMessage("Account created! You can now log in.");
     } catch (error) {
-      console.log(error);
+      setIsError(true);
+      setMessage(
+        error instanceof Error ? error.message : "Something went wrong",
+      );
     }
   };
 
@@ -60,6 +71,8 @@ export default function CreateAdminAccount() {
                   value: passwordRegex,
                   message: "Invalid password format",
                 },
+                // old server message is stale once the password changes
+                onChange: () => setMessage(""),
               })}
               style={{ borderColor: errors.password ? "red" : "initial" }}
             />
@@ -72,6 +85,10 @@ export default function CreateAdminAccount() {
           <button className="px-4 py-3 text-xl rounded-lg bg-gray-700">
             Submit
           </button>
+
+          {message && (
+            <p style={{ color: isError ? "red" : "green" }}>{message}</p>
+          )}
         </form>
       </div>
     </>
