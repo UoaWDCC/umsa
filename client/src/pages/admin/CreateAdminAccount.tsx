@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 
 interface ICreateAdmin {
-  email: string;
   password: string;
 }
 
@@ -17,11 +16,24 @@ export default function CreateAdminAccount() {
     formState: { errors },
   } = useForm<ICreateAdmin>();
 
-  //   const params = new URLSearchParams(window.location.search);
-  // const rawToken = params.get('token');
+  const params = new URLSearchParams(window.location.search);
+  const rawToken = params.get("token");
 
-  const createAdmin = (data: ICreateAdmin) => {
-    console.log(data);
+  const createAdmin = async (data: ICreateAdmin) => {
+    try {
+      const response = await fetch("/api/invite/accept", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ rawToken, password: data.password }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -49,7 +61,7 @@ export default function CreateAdminAccount() {
                   message: "Invalid password format",
                 },
               })}
-              style={{ borderColor: errors.password ? "initial" : "red" }}
+              style={{ borderColor: errors.password ? "red" : "initial" }}
             />
           </div>
 
