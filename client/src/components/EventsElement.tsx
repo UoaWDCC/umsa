@@ -29,7 +29,7 @@ export default function EventsInfo({ element }: Props) {
         href={element.eventLink}
         target="_blank"
         rel="noopener noreferrer"
-        className={`flex flex-col h-full w-full cursor-pointer rounded-lg p-5 
+        className={`flex flex-col h-full w-full cursor-pointer rounded-lg p-5
                 ${element.eventIsDone ? "bg-gray-700 opacity-50" : "bg-gray-900 hover:bg-gray-800 transition-all duration-300 hover:scale-105"}`}
       >
         <h1 className="font-bold text-xl mb-2">{element.eventName}</h1>

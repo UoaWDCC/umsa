@@ -1,148 +1,158 @@
-import { useEffect, useState } from "react";
-import EventsInfo from "../components/EventsElement";
-import EventImage from "../assets/about-us/Copy of UMSA_Guitar.png";
-import Page from "../components/EventsPageButton";
+import { useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import EventBanner from "../components/EventBanner";
+import EventTrail from "../components/EventTrail";
+import Reveal from "../components/ui/Reveal";
+import { Star } from "../components/ui/Decor";
 import { useEvents } from "../hooks/useEvents";
+import { EVENT_TAGS } from "../types/content";
 
-const maxItemPage = 6;
-const pagesPerGroup = 5;
+function StarRow() {
+  return (
+    <div className="mt-4 flex items-center justify-center gap-3">
+      <Star size={20} tone="red" />
+      <Star size={20} tone="light" />
+      <Star size={20} tone="pink" />
+    </div>
+  );
+}
+
+const PER_PAGE = 4;
+const FILTERS = ["All", ...EVENT_TAGS] as const;
 
 export default function Events() {
   useEffect(() => {
     document.title = "Events | UMSA";
   }, []);
 
-  const { data: events = [], isLoading, isError } = useEvents();
-  const [activeTag, setActiveTag] = useState("All");
-  const [activePage, setActivePage] = useState(1);
-  const [pageGroupOffset, setPageGroupOffset] = useState(0);
-  const [now, setNow] = useState(() => Date.now());
+  const { data: events, isPending, isError } = useEvents();
+  const [tag, setTag] = useState<string>("All");
+  const [page, setPage] = useState(1);
 
-  useEffect(() => {
-      const id = setInterval(() => setNow(Date.now()), 60_000);
-      return () => clearInterval(id);
-    }, []);
+  const { upcoming, past } = useMemo(() => {
+    const now = new Date();
+    const decorated = (events ?? [])
+      .map((e) => ({ ...e, isDone: new Date(e.eventDate) < now }))
+      .filter((e) => tag === "All" || e.eventTag === tag);
 
-  if (isLoading) return <p className="text-center my-10">Loading events...</p>;
-  if (isError) return <p className="text-center my-10">Could not load events.</p>;
+    return {
+      upcoming: decorated
+        .filter((e) => !e.isDone)
+        .sort((a, b) => +new Date(a.eventDate) - +new Date(b.eventDate)),
+      past: decorated
+        .filter((e) => e.isDone)
+        .sort((a, b) => +new Date(b.eventDate) - +new Date(a.eventDate)),
+    };
+  }, [events, tag]);
 
-  // Convert server data into the shape this page uses
-  const processedEvents = events.map((event) => ({
-    eventName: event.name,
-    eventDate: new Date(event.startsAt),
-    eventImage: event.imageUrl || EventImage,
-    eventLink: event.link ?? '',
-    eventDescription: event.description,
-    eventTag: event.tag,
-    eventIsDone: new Date(event.startsAt).getTime() < now,
-    _id: event._id,
-  }));
-
-  // Upcoming: soonest first
-  const upcomingEvents = processedEvents
-    .filter((event) => !event.eventIsDone)
-    .sort((a, b) => a.eventDate.getTime() - b.eventDate.getTime());
-
-  // Past: newest first (as the server sends them), split into pages
-  const pastEventsGrouped = processedEvents
-    .filter((event) => event.eventIsDone)
-    .map((event, index) => ({
-      ...event,
-      page: Math.floor(index / maxItemPage) + 1,
-    }));
-
-  const filteredUpcomingEvents =
-    activeTag === "All"
-      ? upcomingEvents
-      : upcomingEvents.filter((event) => event.eventTag === activeTag);
-  const filteredPastEvents =
-    activeTag === "All"
-      ? pastEventsGrouped
-      : pastEventsGrouped.filter((event) => event.eventTag === activeTag);
-
-  const filteredPageNum = Math.max(
-    1,
-    Math.ceil(filteredPastEvents.length / maxItemPage),
-  );
-  const currentPage = Math.min(activePage, filteredPageNum);
-  const filteredPastEventsPage = filteredPastEvents.filter(
-    (event) => event.page === currentPage,
-  );
-  const pageButtons = Array.from({ length: filteredPageNum }, (_, index) => ({
-    page: index + 1,
-    setterFunction: (page: number) => setActivePage(page),
-  }));
-
-  const handleTagChange = (tag: string) => {
-    setActiveTag(tag);
-    setActivePage(1);
-    setPageGroupOffset(0);
-  };
-
-  const startIndex = pageGroupOffset * pagesPerGroup;
-  const visiblePages = pageButtons.slice(startIndex, startIndex + pagesPerGroup);
-  const hasNextGroup = startIndex + pagesPerGroup < pageButtons.length;
-  const hasPrevGroup = pageGroupOffset > 0;
+  const pageCount = Math.max(1, Math.ceil(past.length / PER_PAGE));
+  const currentPage = Math.min(page, pageCount);
+  const pastOnPage = past.slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE);
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center">
-        <div className="flex flex-col w-4/5" id="upcoming-events-section">
-          <h1 className="text-3xl font-bold my-6">Upcoming Events</h1>
-        </div>
-        <div className="flex flex-wrap-reverse justify-end w-4/5 mb-3 gap-4">
-          <button onClick={() => handleTagChange("All")}
-            className={`w-fit text-sm text-gray-400 hover:text-white cursor-pointer ${activeTag === "All" ? "text-white font-bold" : ""}`}>
-            all
-          </button>
-          <button onClick={() => handleTagChange("Social")}
-            className={`w-fit text-sm text-gray-400 hover:text-white cursor-pointer ${activeTag === "Social" ? "text-white font-bold" : ""}`}>
-            social
-          </button>
-          <button onClick={() => handleTagChange("Competition")}
-            className={`w-fit text-sm text-gray-400 hover:text-white cursor-pointer ${activeTag === "Competition" ? "text-white font-bold" : ""}`}>
-            competition
-          </button>
-        </div>
+      <Reveal>
+        <header className="mx-auto max-w-6xl px-6 pt-12 pb-6 text-center">
+          <h1 className="text-4xl md:text-6xl">
+            <span className="text-accent2-primary">Upcoming </span>
+            <span className="text-accent1-primary">Events</span>
+          </h1>
+          <StarRow />
+        </header>
+      </Reveal>
 
-        {/* grid only containing upcoming events */}
-        <div className="w-4/5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredUpcomingEvents.map((upcomingEvent) => (
-            <EventsInfo key={upcomingEvent._id} element={upcomingEvent} />
+      <div className="relative mx-auto max-w-6xl px-6">
+        <EventTrail className="absolute inset-x-0 top-0 z-0 h-full w-full" />
+        <div className="mb-8 flex flex-wrap justify-center gap-2">
+          {FILTERS.map((option) => (
+            <button
+              key={option}
+              onClick={() => {
+                setTag(option);
+                setPage(1);
+              }}
+              className={`rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wide
+                transition-colors ${
+                  tag === option
+                    ? "bg-accent1-primary text-white"
+                    : "bg-background-tertiary text-foreground-secondary hover:bg-blue-100"
+                }`}
+            >
+              {option}
+            </button>
           ))}
         </div>
 
-        <div className="my-8"></div>
+        {isPending && (
+          <p className="text-center text-sm text-foreground-secondary">Loading events…</p>
+        )}
+        {isError && (
+          <p className="text-center text-sm text-foreground-secondary">
+            Couldn&apos;t load events.
+          </p>
+        )}
 
-        <div className="flex flex-col w-4/5" id="past-events-section">
-          <h1 className="text-3xl font-bold my-6">Past Events</h1>
-        </div>
-
-        {/* grid only containing past events, for the current page */}
-        <div className="w-4/5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredPastEventsPage.map((pastEvent) => (
-            <EventsInfo key={pastEvent._id} element={pastEvent} />
-          ))}
-        </div>
-
-        <div className="flex flex-wrap justify-center w-4/5 mt-4 mb-4 gap-4">
-          <div className="flex flex-row gap-4">
-            {hasPrevGroup && (
-              <button onClick={() => setPageGroupOffset(pageGroupOffset - 1)}
-                className="text-gray-400 hover:text-white">
-                &lt;
-              </button>
-            )}
-            {visiblePages.map((button) => (
-              <Page key={button.page} element={button} currentPage={currentPage} />
+        <div className="relative z-10 space-y-20 md:space-y-32">
+          <AnimatePresence mode="popLayout">
+            {upcoming.map((event, i) => (
+              <motion.div key={event.id} layout exit={{ opacity: 0, scale: 0.96 }}>
+                <EventBanner event={event} index={i} />
+              </motion.div>
             ))}
-            {hasNextGroup && (
-              <button onClick={() => setPageGroupOffset(pageGroupOffset + 1)}
-                className="text-gray-400 hover:text-white">
-                &gt;
-              </button>
+          </AnimatePresence>
+
+          {!isPending && upcoming.length === 0 && (
+            <p className="text-center text-sm text-foreground-secondary">
+              No upcoming events in this category.
+            </p>
+          )}
+        </div>
+
+        <div id="past" className="scroll-mt-28 pt-20">
+          <div className="mb-8 text-center">
+            <Reveal>
+              <h2 className="text-4xl md:text-6xl">
+                <span className="text-accent1-primary">Past </span>
+                <span className="text-accent2-primary">Events</span>
+              </h2>
+              <StarRow />
+            </Reveal>
+          </div>
+
+          <div className="relative z-10 space-y-20 md:space-y-32">
+            <AnimatePresence mode="popLayout">
+              {pastOnPage.map((event, i) => (
+                <motion.div key={event.id} layout exit={{ opacity: 0, scale: 0.96 }}>
+                  <EventBanner event={event} index={i} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+
+            {!isPending && past.length === 0 && (
+              <p className="text-center text-sm text-foreground-secondary">
+                No past events in this category.
+              </p>
             )}
           </div>
+
+          {pageCount > 1 && (
+            <div className="mt-28 flex justify-center gap-2 md:mt-32">
+              {Array.from({ length: pageCount }, (_, i) => i + 1).map((n) => (
+                <button
+                  key={n}
+                  onClick={() => setPage(n)}
+                  aria-current={n === currentPage ? "page" : undefined}
+                  className={`h-9 w-9 rounded-full text-sm font-semibold transition-colors ${
+                    n === currentPage
+                      ? "bg-accent2-primary text-white"
+                      : "bg-background-tertiary text-foreground-secondary hover:bg-red-100"
+                  }`}
+                >
+                  {n}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </>

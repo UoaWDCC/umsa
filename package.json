@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "preinstall": "pnpm exec only-allow pnpm",
+    "preinstall": "npx --yes only-allow pnpm",
     "dev": "concurrently --names \"SERVER,CLIENT\" -c \"blue,red\" \"pnpm --filter server dev\" \"pnpm --filter client dev\"",
     "build": "pnpm --filter server build && pnpm --filter client build",
     "start": "node server/dist/server.js",
