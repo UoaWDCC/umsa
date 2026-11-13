@@ -1,61 +1,67 @@
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 
 interface ICreateAdmin {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 }
 
 export default function CreateAdminAccount() {
-    // requires at least 1 special character, digit and letter
-    // mininmum length of 10 characters
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{10,}$/;
+  // requires at least 1 special character, digit and letter
+  // mininmum length of 10 characters
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{10,}$/;
 
-    const {
-        register, 
-        handleSubmit,
-        // reset,
-        formState: { errors }
-    } = useForm<ICreateAdmin>();
+  const {
+    register,
+    handleSubmit,
+    // reset,
+    formState: { errors },
+  } = useForm<ICreateAdmin>();
 
-    // const params = new URLSearchParams(window.location.search);
-    // const rawToken = params.get('token');
+  //   const params = new URLSearchParams(window.location.search);
+  // const rawToken = params.get('token');
 
+  const createAdmin = (data: ICreateAdmin) => {
+    console.log(data);
+  };
 
-    const createAdmin =  (data: ICreateAdmin) => {
-        console.log(data)
-    }
-
-    return (
-        <>
-     <div className="max-w-2xl mx-auto ">
+  return (
+    <>
+      <div className="max-w-2xl mx-auto ">
         <h1 className="text-2xl font-bold mb-5">Set a Password:</h1>
-        <h2 className='text-xl mb-5'>Requirements: At least 1 letter, digit and special character and at least 10 characters</h2>
+        <h2 className="text-xl mb-5">
+          Requirements: At least 1 letter, digit and special character and at
+          least 10 characters
+        </h2>
 
-        <form onSubmit={handleSubmit(createAdmin)} className="flex flex-col gap-3"> 
-            <div>
-            <input 
-                type="password"
-                placeholder="Password: "
-                className="px-4 py-3 rounded-lg text-xl bg-gray-700"
-                {... register("password", 
-                    {required: "Password is required", 
-                    pattern: {value: passwordRegex, message: "Invalid password format"
+        <form
+          onSubmit={handleSubmit(createAdmin)}
+          className="flex flex-col gap-3"
+        >
+          <div>
+            <input
+              type="password"
+              placeholder="Password: "
+              className="px-4 py-3 rounded-lg text-xl bg-gray-700"
+              {...register("password", {
+                required: "Password is required",
+                pattern: {
+                  value: passwordRegex,
+                  message: "Invalid password format",
+                },
+              })}
+              style={{ borderColor: errors.password ? "initial" : "red" }}
+            />
+          </div>
 
-                    }})}
-                style={{borderColor: errors.password ? 'initial' : 'red'}}
+          {errors.password && (
+            <p style={{ color: "red" }}>Please enter a valid Password.</p>
+          )}
 
-                />
-            </div>
-
-            {errors.password && <p style={{ color: 'red' }}>Please enter a valid Password.</p>}
-            
-            <button className="px-4 py-3 text-xl rounded-lg bg-gray-700">
-                Submit
-            </button>
-
+          <button className="px-4 py-3 text-xl rounded-lg bg-gray-700">
+            Submit
+          </button>
         </form>
-    </div>
-        
-        </>
-    )
+      </div>
+    </>
+  );
 }
