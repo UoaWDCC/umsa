@@ -28,7 +28,7 @@ const memberFields: Field[] = [
 
 const eventFields: Field[] = [
   { name: "eventName", label: "Event name" },
-  { name: "eventDate", label: "Date", type: "date" },
+  { name: "eventDate", label: "Date & Time ", type: "datetime-local" },
   { name: "eventTag", label: "Category", type: "select", options: EVENT_TAGS },
   { name: "location", label: "Location" },
   { name: "album", label: "Photo album (past events)" },

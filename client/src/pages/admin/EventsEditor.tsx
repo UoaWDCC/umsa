@@ -23,7 +23,7 @@ export default function EventsEditor() {
         e.preventDefault();
         const data = {
             eventName: name,
-            eventDate: startsAt.slice(0, 10), // keeps only YYYY-MM-DD
+            eventDate: new Date(startsAt).toISOString(), 
             eventDescription: description,
             eventTag: tag,
             eventLink: link,
@@ -39,14 +39,18 @@ export default function EventsEditor() {
         }
     }
 
-    
+    function toLocalInput(iso: string) {
+        const d = new Date(iso);
+        const pad = (n: number) => String(n).padStart(2, "0");
+        return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    }
     function startEdit(event: EventRecord) {
         setEditingId(event.id);
         setName(event.eventName);
         setDescription(event.eventDescription);
         setTag(event.eventTag);
         // datetime-local needs "YYYY-MM-DDTHH:mm" in local time
-        setStartsAt(event.eventDate);
+        setStartsAt(toLocalInput(event.eventDate));
         setLink(event.eventLink ?? "");
         setImageUrl(event.eventImage ?? "");
     }
@@ -66,7 +70,7 @@ export default function EventsEditor() {
         <h1>Events</h1>
         <form onSubmit={handleSubmit}>
         <input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-        <input type="date" value={startsAt} onChange={(e) => setStartsAt(e.target.value)} />
+        <input type="datetime-local" value={startsAt} onChange={(e) => setStartsAt(e.target.value)} />
         <input placeholder="Tag" value={tag} onChange={(e) => setTag(e.target.value)} />
         <input placeholder="Link (https://...)" value={link} onChange={(e) => setLink(e.target.value)} />
         <input placeholder="Image URL" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
@@ -81,10 +85,13 @@ export default function EventsEditor() {
    )}
         {events.length === 0 && <p>No events yet.</p>}
 
-        {events.map((event) => (
+        {events.map((event) => {
+            const start = new Date(event.eventDate);
+        return (
         <div key={event.id}>
             <span>{event.eventName}</span>{" "}
-            <span>{event.eventDate}</span>{" "}
+            <span>{start.toLocaleDateString("en-NZ", { weekday: "short", day: "numeric", month: "short", year: "numeric" })}</span>{" "}
+            <span>{start.toLocaleTimeString("en-NZ", { hour: "numeric", minute: "2-digit", hour12: true })}</span>{" "}
             {event.eventImage && <img src={event.eventImage} alt={event.eventName} width={60} />}
             <button onClick={() => startEdit(event)}>Edit</button>
             <button
@@ -97,7 +104,8 @@ export default function EventsEditor() {
             Delete
             </button>
         </div>
-        ))}
+        );
+    })}
     </div>
     );
 }

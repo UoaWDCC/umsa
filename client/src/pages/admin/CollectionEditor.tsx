@@ -14,7 +14,7 @@ import { apiErrorMessage } from "../../lib/api";
 export type Field = {
   name: string;
   label: string;
-  type?: "text" | "textarea" | "date" | "select" | "image";
+  type?: "text" | "textarea" | "datetime-local" | "select" | "image";
   options?: readonly string[];
   optionLabels?: Record<string, string>;
 };
@@ -47,6 +47,32 @@ function emptyDraft(fields: Field[]): Record<string, unknown> {
   );
 }
 
+function toPayload(values: Record<string, unknown>, fields: Field[]) {
+  const out: Record<string, unknown> = { ...values };
+  for (const f of fields) {
+    const v = out[f.name];
+    if (f.type === "datetime-local" && typeof v === "string" && v) {
+      out[f.name] = new Date(v).toISOString();
+    }
+  }
+  return out;
+}
+
+function formatValue(value: unknown, field?: Field): string {
+  if (field?.type === "datetime-local" && typeof value === "string" && value) {
+    return new Date(value).toLocaleString("en-NZ", {
+      weekday: "short",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+  }
+  return String(value ?? "");
+}
+
 export default function CollectionEditor({
   collection,
   title,
@@ -68,6 +94,7 @@ export default function CollectionEditor({
   const [editingId, setEditingId] = useState<string | null>(null);
   const [error, setError] = useState("");
   const [uploading, setUploading] = useState(false);
+  const secondaryField = fields.find((f) => f.name === secondary);
 
   const openNew = () => {
     setEditingId(null);
@@ -92,9 +119,10 @@ export default function CollectionEditor({
     if (!draft) return;
     setError("");
     try {
+      const payload = toPayload(draft, fields) as Row;
       if (editingId)
-        await update.mutateAsync({ ...draft, id: editingId } as Row);
-      else await create.mutateAsync(draft as Row);
+        await update.mutateAsync({ ...payload, id: editingId } as Row);
+      else await create.mutateAsync(payload);
       setDraft(null);
     } catch (err) {
       setError(apiErrorMessage(err));
@@ -172,7 +200,7 @@ export default function CollectionEditor({
               </p>
               {secondary && (
                 <p className="truncate text-xs text-foreground-secondary">
-                  {String(row[secondary] ?? "")}
+                  {formatValue(row[secondary], secondaryField)}
                 </p>
               )}
             </div>
@@ -299,7 +327,7 @@ export default function CollectionEditor({
                     ) : (
                       <input
                         className={INPUT}
-                        type={field.type === "date" ? "date" : "text"}
+                        type={field.type === "datetime-local" ? "datetime-local" : "text"}
                         value={String(draft[field.name] ?? "")}
                         onChange={(e) =>
                           setDraft({ ...draft, [field.name]: e.target.value })
