@@ -18,6 +18,13 @@ router.post("/accept", async (req: Request, res: Response) => {
   try {
     const tokenDoc = await tokenValidator(rawToken);
     const email = tokenDoc.user_id;
+
+    if (await AdminUser.findOne({ email: email })) {
+      return res
+        .status(409)
+        .json({ error: "Duplicate Email - Email already exists as an Admin" });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     await AdminUser.insertOne({
