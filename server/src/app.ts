@@ -7,12 +7,12 @@ import contentRoutes from "./routes/content.js";
 import adminAuthRoutes from "./routes/admin/auth.js";
 import adminContentRoutes from "./routes/admin/content.js";
 import emailRoutes from "./routes/email.js";
-import verifyTokenRoutes from "./routes/admin/verify-token.js"
+import verifyTokenRoutes from "./routes/admin/verify-token.js";
+import adminCreateRoutes from "./routes/admin/admin-create.js";
 import { apiRateLimit } from "./middleware/rateLimit.js";
 import { requireAdmin } from "./middleware/requireAdmin.js";
 import { notFound } from "./middleware/notFound.js";
 import { errorHandler } from "./middleware/errorHandler.js";
-
 
 // splitting
 
@@ -45,7 +45,10 @@ app.use("/api/admin/content", adminContentRoutes);
 app.use("/api/email", emailRoutes);
 
 // verifying admin adding token
-app.use("/api/verify-invite", verifyTokenRoutes)
+app.use("/api/verify-invite", verifyTokenRoutes);
+
+// creates new admin
+app.use("/api/invite", adminCreateRoutes);
 
 // fallbacks
 app.use(notFound);

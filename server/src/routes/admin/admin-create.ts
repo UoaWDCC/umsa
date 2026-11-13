@@ -5,7 +5,7 @@ import AdminUser from "../../models/AdminUser.js";
 
 const router = Router();
 
-router.post("/temporary", async (req: Request, res: Response) => {
+router.post("/accept", async (req: Request, res: Response) => {
   const { rawToken, password } = req.body as {
     rawToken?: string;
     password?: string;
