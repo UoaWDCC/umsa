@@ -32,16 +32,16 @@ export default function Events() {
   const { upcoming, past } = useMemo(() => {
     const now = new Date();
     const decorated = (events ?? [])
-      .map((e) => ({ ...e, isDone: new Date(e.startsAt) < now }))
-      .filter((e) => tag === "All" || e.tag === tag);
+      .map((e) => ({ ...e, isDone: new Date(e.eventDate) < now }))
+      .filter((e) => tag === "All" || e.eventTag === tag);
 
     return {
       upcoming: decorated
         .filter((e) => !e.isDone)
-        .sort((a, b) => +new Date(a.startsAt) - +new Date(b.startsAt)),
+        .sort((a, b) => +new Date(a.eventDate) - +new Date(b.eventDate)),
       past: decorated
         .filter((e) => e.isDone)
-        .sort((a, b) => +new Date(b.startsAt) - +new Date(a.startsAt)),
+        .sort((a, b) => +new Date(b.eventDate) - +new Date(a.eventDate)),
     };
   }, [events, tag]);
 
