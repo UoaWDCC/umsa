@@ -58,7 +58,7 @@ export default function AdminAdder() {
 
   return (
     <>
-      <div className="max-w-2xl flex flex-col">
+      <div className=" flex flex-col pb-10 border-b-2 w-full">
         <h1 className="text-2xl font-bold mb-5">Add a New Admin</h1>
 
         <form onSubmit={handleSubmit}>

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 interface AdminList {
-  id: string;
   email: string;
 }
 export default function AdminList() {
@@ -17,13 +16,19 @@ export default function AdminList() {
 
   return (
     <>
-      <div className="flex px-5 gap-10 flex-wrap justify-center">
-        {data.map((admin, index) => (
-          <div>
-            <p>{index}</p>
-            <p>{admin.email}</p>
-          </div>
-        ))}
+      <div className="flex flex-col items-center bt">
+        <p className="mt-10 text-2xl">List of Admins:</p>
+        <div className=" mt-10 border-2 flex-wrap justify-center w-full max-w-100">
+          {data.map((admin, index) => (
+            <div
+              key={index}
+              className="flex flex-row gap-5 bg-accent1-secondary border p-4"
+            >
+              <p>{index + 1}</p>
+              <p>{admin.email}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
