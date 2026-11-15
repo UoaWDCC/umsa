@@ -1,4 +1,4 @@
-import { Router, Request, Response } from "express";
+import { Router, Response } from "express";
 import AdminUser from "../../models/AdminUser.js";
 
 const router = Router();
