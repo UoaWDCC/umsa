@@ -9,6 +9,7 @@ import adminContentRoutes from "./routes/admin/content.js";
 import emailRoutes from "./routes/email.js";
 import verifyTokenRoutes from "./routes/admin/verify-token.js";
 import adminCreateRoutes from "./routes/admin/admin-create.js";
+import adminListRoutes from "./routes/admin/admin-list.js";
 import { apiRateLimit } from "./middleware/rateLimit.js";
 import { requireAdmin } from "./middleware/requireAdmin.js";
 import { notFound } from "./middleware/notFound.js";
@@ -40,6 +41,7 @@ app.use("/api/admin/auth", adminAuthRoutes);
 // every /api/admin/* route below requires a logged-in admin account
 app.use("/api/admin", requireAdmin);
 app.use("/api/admin/content", adminContentRoutes);
+app.use("/api/admin/admin-list", adminListRoutes);
 
 // email - right now only used for admin adding
 app.use("/api/admin/email", emailRoutes);
