@@ -1,6 +1,6 @@
 // template for future CMS pages:
 // -> read with a query, prefill the form using react-hook-form, write with mutation
-
+import AdminList from "../../components/AdminList";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 
@@ -57,30 +57,34 @@ export default function AdminAdder() {
   };
 
   return (
-    <div className="max-w-2xl flex flex-col">
-      <h1 className="text-2xl font-bold mb-5">Add a New Admin</h1>
+    <>
+      <div className="max-w-2xl flex flex-col">
+        <h1 className="text-2xl font-bold mb-5">Add a New Admin</h1>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="email"
-            value={formValues.to}
-            placeholder="Email:"
-            onChange={handleChange}
-            name="to"
-            className="bg-gray-500 pl-5 pr-15 py-2 rounded-xl"
-            required
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <input
+              type="email"
+              value={formValues.to}
+              placeholder="Email:"
+              onChange={handleChange}
+              name="to"
+              className="bg-gray-500 pl-5 pr-15 py-2 rounded-xl"
+              required
+            />
+          </div>
 
-        <button
-          type="submit"
-          disabled={mutation.isPending}
-          className="bg-accent1-primary p-3 px-10 mt-5 rounded-2xl"
-        >
-          {mutation.isPending ? "Sending..." : "Submit"}
-        </button>
-      </form>
-    </div>
+          <button
+            type="submit"
+            disabled={mutation.isPending}
+            className="bg-accent1-primary p-3 px-10 mt-5 rounded-2xl"
+          >
+            {mutation.isPending ? "Sending..." : "Submit"}
+          </button>
+        </form>
+      </div>
+
+      <AdminList />
+    </>
   );
 }

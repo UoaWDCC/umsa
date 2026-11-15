@@ -1,17 +1,19 @@
 ## Taken from the bottom of 06-admin-accounts.md
 
-## 
+##
 
 **adding new admin**
 -> fills out a form ✅
 -> sends email to you to create account ✅
--> email has link with unique token (token valid for x amount of time) ✅ 
+-> email has link with unique token (token valid for x amount of time) ✅
 -> check that the token is valid against the token stored in db ✅
--> sign-up page (email address alr filled out)
--> user fills out the password
+-> sign-up page (email address alr filled out) ✅
+-> user fills out the password ✅
 
 ## Definition of done
+
 **Part A + B:**
+
 - [ ] An admin can add a second admin who can then log in.
 - [ ] The admin list never includes `passwordHash` — check the raw network response.
 - [ ] Deleting the last admin returns `400` and does not delete.
@@ -22,6 +24,7 @@
       section of [../04-auth.md](../04-auth.md) updated.
 
 **Part C:**
+
 - [ ] A reset link arrives, works once, and is rejected after expiry.
 - [ ] `POST /forgot-password` returns `200` for an unknown email.
 - [ ] `RESEND_API_KEY` documented in `server/.env.example`, with the dev console fallback working
