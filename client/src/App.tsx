@@ -8,6 +8,8 @@ import {
 } from "motion/react";
 import { useHomeContent } from "./hooks/useHomeContent";
 import { useEvents } from "./hooks/useEvents";
+import { useMembers } from "./hooks/useMembers";
+import { COMMITTEE_ORDER } from "./types/content";
 import { Cloud, Sparkle, Star } from "./components/ui/Decor";
 import Reveal from "./components/ui/Reveal";
 import Photo from "./components/ui/Photo";
@@ -102,6 +104,82 @@ function Hero({ heading, subtitle }: { heading: string; subtitle: string }) {
           </motion.p>
         </div>
       </div>
+    </section>
+  );
+}
+
+const TILTS = ["-rotate-6", "rotate-3", "-rotate-2", "rotate-6"];
+
+function TeamPreview() {
+  const { data: members } = useMembers();
+  const rank = (committee?: string) => {
+    const i = COMMITTEE_ORDER.indexOf(
+      (committee ?? "other") as (typeof COMMITTEE_ORDER)[number],
+    );
+    return i === -1 ? COMMITTEE_ORDER.length : i;
+  };
+  const faces = (members ?? [])
+    .filter((m) => m.img)
+    .sort((a, b) => rank(a.committee) - rank(b.committee))
+    .slice(0, 4);
+
+  return (
+    <section className="relative overflow-hidden px-6 py-16 text-center md:py-20">
+      <Reveal>
+        <h2 className="text-4xl leading-[1.1] text-balance text-accent1-primary md:text-6xl">
+          Meet the <span className="text-accent2-primary">Exec Team</span>
+        </h2>
+      </Reveal>
+
+      {faces.length > 0 && (
+        <ul className="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-4 sm:gap-6">
+          {faces.map((member, i) => (
+            <li
+              key={member.id}
+              className={`w-28 rounded-md bg-white p-2 pb-3 shadow-md transition-transform hover:rotate-0 sm:w-36 ${TILTS[i % TILTS.length]}`}
+            >
+              <img
+                src={member.img}
+                alt=""
+                loading="lazy"
+                className="aspect-square w-full rounded-sm object-cover"
+              />
+              <p
+                title={member.fullName}
+                className="mt-2 truncate font-heading text-[10px] tracking-wide text-accent1-primary uppercase"
+              >
+                {member.fullName}
+              </p>
+              <p className="truncate text-[11px] text-foreground-secondary">
+                {member.role}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <Reveal delay={0.15}>
+        <Link
+          to="/team"
+          className="mt-10 inline-flex items-center gap-2 rounded-full bg-accent1-primary px-6 py-2.5
+            font-heading text-[11px] tracking-[0.16em] text-white uppercase
+            transition-transform hover:scale-105"
+        >
+          <Star size={13} tone="cream" /> Meet the team
+        </Link>
+      </Reveal>
+
+      <Sparkle
+        className="absolute top-12 right-[8%] hidden md:block"
+        size={34}
+        tone="pink"
+      />
+      <Star
+        className="absolute bottom-14 left-[10%] hidden md:block"
+        size={28}
+        tone="red"
+        spin
+      />
     </section>
   );
 }
@@ -233,17 +311,7 @@ export default function App() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-6 py-16 text-center">
-        <h2 className="text-3xl text-accent1-primary md:text-5xl">
-          Meet the Exec Team
-        </h2>
-        <Link
-          to="/team"
-          className="mt-6 inline-flex rounded-full bg-accent1-primary px-6 py-3 font-heading text-sm text-white"
-        >
-          Meet the Team →
-        </Link>
-      </section>
+      <TeamPreview />
 
       <section className="relative overflow-hidden px-6 py-16">
         <div className="mx-auto max-w-4xl">
