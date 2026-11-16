@@ -31,7 +31,7 @@ function Hero({ heading, subtitle }: { heading: string; subtitle: string }) {
   return (
     <section className="relative overflow-hidden px-6 pt-10 pb-6">
       <Star
-        className="absolute top-24 left-[3%] z-0"
+        className="absolute top-24 left-[3%] z-0 hidden md:block"
         size={92}
         tone="red"
         spin
@@ -178,63 +178,59 @@ export default function App() {
         </section>
       )}
 
-      <section className="relative bg-blue-50 px-6 py-16 text-center">
-        <div className="relative mx-auto max-w-2xl">
+      <section className="relative overflow-hidden bg-blue-50 px-6 py-16 md:py-20">
+        <div className="relative mx-auto max-w-5xl text-center md:text-left">
           <Reveal>
-            <h2 className="relative inline-block text-4xl text-accent1-primary md:text-5xl">
-              {content.aboutHeading}
-              <Star
-                className="absolute -top-2 -right-12 hidden md:block"
-                size={26}
-                tone="red"
-                spin
-              />
-              <Sparkle
-                className="absolute top-4 -right-24 hidden md:block"
-                size={22}
-                tone="blue"
-              />
-            </h2>
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 md:justify-start">
+              <h2 className="text-4xl leading-[1.1] text-balance break-words text-accent1-primary md:text-6xl">
+                {content.aboutHeading}
+              </h2>
+              <div className="hidden items-center gap-3 md:flex">
+                <Star size={30} tone="red" spin />
+                <Sparkle size={30} tone="light" />
+                <Sparkle size={30} tone="pink" />
+              </div>
+            </div>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <p className="mx-auto mt-5 max-w-xl font-heading text-sm leading-relaxed tracking-wide text-accent1-primary uppercase md:text-base">
+            <p
+              className="mx-auto mt-5 max-w-3xl font-heading text-sm leading-relaxed tracking-wide break-words
+                whitespace-pre-line text-accent1-secondary uppercase md:mr-0 md:text-right md:text-lg"
+            >
               {content.aboutBody}
             </p>
           </Reveal>
 
-          <Reveal delay={0.2}>
-            <motion.img
-              src={mascotCap}
-              alt=""
-              className="mx-auto mt-8 w-28 md:w-36"
-              whileHover={{ rotate: [0, -6, 6, 0] }}
-              transition={{ duration: 0.6 }}
-            />
-          </Reveal>
+          <div className="mt-8 flex flex-col items-center">
+            <Reveal delay={0.2}>
+              <motion.img
+                src={mascotCap}
+                alt=""
+                className="w-32 md:w-44"
+                whileHover={{ rotate: [0, -6, 6, 0] }}
+                transition={{ duration: 0.6 }}
+              />
+            </Reveal>
 
-          <Reveal delay={0.25}>
-            <a
-              href="/about"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent2-primary px-6 py-2.5
-                font-heading text-[11px] tracking-[0.16em] text-white uppercase
-                transition-transform hover:scale-105"
-            >
-              <Star size={13} tone="cream" /> Read more
-            </a>
-          </Reveal>
+            <Reveal delay={0.25}>
+              <Link
+                to="/about"
+                className="relative z-10 -mt-3 inline-flex items-center gap-2 rounded-full bg-accent2-primary px-6 py-2.5
+                  font-heading text-[11px] tracking-[0.16em] text-white uppercase
+                  transition-transform hover:scale-105"
+              >
+                <Star size={13} tone="cream" /> Read more
+              </Link>
+            </Reveal>
+          </div>
         </div>
 
-        <Sparkle
-          className="absolute bottom-8 left-[8%] hidden md:block"
-          size={26}
-          tone="light"
-        />
-        <Sparkle
-          className="absolute bottom-16 left-[16%] hidden md:block"
-          size={18}
-          tone="light"
-        />
+        <div className="absolute bottom-10 left-[6%] hidden gap-4 md:flex">
+          <Sparkle size={30} tone="cream" />
+          <Sparkle size={30} tone="cream" />
+          <Sparkle size={30} tone="cream" />
+        </div>
       </section>
 
       <section className="mx-auto max-w-4xl px-6 py-16 text-center">
