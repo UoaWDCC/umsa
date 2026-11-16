@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
+import { useLogout, useMe } from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 interface AdminList {
   email: string;
 }
 export default function AdminList() {
+  const user = useMe().data;
+  const logout = useLogout();
+  const navigate = useNavigate();
+
   const [data, setData] = useState<AdminList[]>([]);
   const [message, setMessage] = useState("");
   const [isError, setError] = useState(false);
@@ -26,9 +32,13 @@ export default function AdminList() {
     if (!response.ok) {
       setMessage(body.error.message);
       setError(true);
+    } else if (admin.email == user?.email) {
+      logout.mutate();
+      navigate("/");
     } else {
       setMessage(body.message);
       getAdminList();
+      setError(false);
     }
   };
 
@@ -51,13 +61,12 @@ export default function AdminList() {
               >
                 Delete
               </button>
-
-              {message && (
-                <p style={{ color: isError ? "red" : "green" }}>{message}</p>
-              )}
             </div>
           ))}
         </div>
+        {message && (
+          <p style={{ color: isError ? "red" : "green" }}>{message}</p>
+        )}
       </div>
     </>
   );
