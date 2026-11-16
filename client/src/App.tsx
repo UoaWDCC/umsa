@@ -313,21 +313,25 @@ export default function App() {
 
       <TeamPreview />
 
-      <section className="relative overflow-hidden px-6 py-16">
-        <div className="mx-auto max-w-4xl">
-          <div className="relative mb-10 flex items-center justify-center gap-4">
-            <Sparkle className="hidden md:block" size={26} tone="pink" />
-            <Sparkle className="hidden md:block" size={22} tone="blue" />
-            <Star className="hidden md:block" size={26} tone="red" spin />
-            <h2 className="text-4xl text-accent2-primary md:text-5xl">
+      <section className="relative overflow-hidden px-6 pt-16 pb-32 md:pb-40">
+        <div className="mx-auto max-w-5xl">
+          <div className="relative mb-10 flex items-center justify-center gap-4 md:justify-between">
+            <div className="hidden items-center gap-3 md:flex">
+              <Sparkle size={30} tone="pink" />
+              <Sparkle size={30} tone="light" />
+              <Star size={30} tone="red" spin />
+            </div>
+            <h2 className="text-center text-4xl text-accent2-primary md:text-right md:text-6xl">
               Our Events
             </h2>
           </div>
 
           {eventsPending ? (
-            <p role="status">Loading events…</p>
+            <p role="status" className="text-center">
+              Loading events…
+            </p>
           ) : eventsError && !events ? (
-            <div>
+            <div className="text-center">
               <p role="alert">We couldn’t load the events.</p>
               <button
                 type="button"
@@ -342,20 +346,26 @@ export default function App() {
             <EventCarousel events={upcoming} />
           )}
 
-          <div className="mt-10 text-center">
-            <a
-              href="/events"
-              className="inline-flex items-center gap-2 rounded-full bg-accent1-primary px-6 py-2.5
+          <div className="relative z-10 mt-10 text-center">
+            <Link
+              to="/events"
+              className="inline-flex items-center gap-2 rounded-full bg-accent1-secondary px-6 py-2.5
                 font-heading text-[11px] tracking-[0.16em] text-white uppercase
                 transition-transform hover:scale-105"
             >
               <Star size={13} tone="cream" /> See more events
-            </a>
+            </Link>
           </div>
         </div>
 
-        <Cloud className="absolute -bottom-4 -left-16 w-80" tone="red" />
-        <Cloud className="absolute -bottom-6 -right-16 w-96" tone="light" />
+        <Cloud
+          className="absolute -bottom-4 -left-16 w-56 md:w-80"
+          tone="red"
+        />
+        <Cloud
+          className="absolute -right-16 -bottom-6 w-64 md:w-96"
+          tone="light"
+        />
       </section>
     </>
   );

@@ -1,17 +1,35 @@
-
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import rightArrow from "../assets/right_arrow.svg";
 import leftArrow from "../assets/left_arrow.svg";
 import type { EventRecord } from "../types/content";
 
-const VISIBLE = 3;
+const WIDE_QUERY = "(min-width: 640px)";
+
+function subscribe(onChange: () => void) {
+  const media = window.matchMedia(WIDE_QUERY);
+  media.addEventListener("change", onChange);
+  return () => media.removeEventListener("change", onChange);
+}
+
+// 3 cards side by side from the sm breakpoint, one at a time on phones
+function useVisibleCount() {
+  const wide = useSyncExternalStore(
+    subscribe,
+    () => window.matchMedia(WIDE_QUERY).matches,
+    () => true,
+  );
+  return wide ? 3 : 1;
+}
+
 export default function EventCarousel({ events }: { events: EventRecord[] }) {
   const [position, setPosition] = useState(0);
   const reduced = useReducedMotion();
-  const maxIndex = Math.max(0, events.length - VISIBLE);
+  const visible = useVisibleCount();
+  const maxIndex = Math.max(0, events.length - visible);
   const index = Math.min(position, maxIndex);
-  const visibleEvents = events.slice(index, index + VISIBLE);
+  const visibleEvents = events.slice(index, index + visible);
+  const featured = visibleEvents.length === 3 ? 1 : 0;
   if (!events.length)
     return (
       <p className="text-center text-sm text-foreground-secondary">
@@ -39,7 +57,7 @@ export default function EventCarousel({ events }: { events: EventRecord[] }) {
             className="mx-auto block w-full max-w-56"
             initial={reduced ? false : { opacity: 0, y: 12 }}
             animate={{
-              opacity: counter === 1 || visibleEvents.length === 1 ? 1 : 0.7,
+              opacity: counter === featured ? 1 : 0.7,
               y: 0,
             }}
             whileHover={reduced ? undefined : { opacity: 1, scale: 1.03 }}
@@ -57,7 +75,13 @@ export default function EventCarousel({ events }: { events: EventRecord[] }) {
                 aria-hidden="true"
               />
             )}
-            <p className="mt-3 font-heading text-sm text-accent1-primary">
+            <p
+              className={`mt-3 line-clamp-2 text-center font-heading text-sm break-words ${
+                counter === featured
+                  ? "text-accent1-primary"
+                  : "text-accent1-secondary"
+              }`}
+            >
               {event.eventName}
             </p>
           </motion.a>
