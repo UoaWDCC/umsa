@@ -15,7 +15,13 @@ export default function AdminList() {
   const [isError, setError] = useState(false);
   const getAdminList = async () => {
     const response = await fetch("/api/admin/admin-list");
-    setData(await response.json());
+    if (!response.ok) {
+      const body = await response.json();
+      setMessage(body.error.message);
+      setError(true);
+    } else {
+      setData(await response.json());
+    }
   };
   useEffect(() => {
     getAdminList();
