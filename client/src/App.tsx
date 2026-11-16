@@ -24,7 +24,7 @@ function Hero({ heading, subtitle }: { heading: string; subtitle: string }) {
   const { scrollY } = useScroll();
   const mascotY = useTransform(scrollY, [0, 600], [0, reduced ? 0 : 70]);
 
-  const words = heading.split(" ");
+  const words = heading.trim().split(/\s+/);
   const lead = words.slice(0, -1).join(" ");
   const tail = words.at(-1) ?? "";
 
@@ -37,12 +37,12 @@ function Hero({ heading, subtitle }: { heading: string; subtitle: string }) {
         spin
       />
       <Sparkle
-        className="absolute top-16 right-[6%] z-0"
+        className="absolute right-[3%] bottom-4 z-0 hidden md:block"
         size={64}
         tone="pink"
       />
       <Sparkle
-        className="absolute top-44 right-[16%] z-0 hidden md:block"
+        className="absolute right-[14%] bottom-16 z-0 hidden md:block"
         size={38}
         tone="blue"
         spin
@@ -53,21 +53,21 @@ function Hero({ heading, subtitle }: { heading: string; subtitle: string }) {
         style={{ containerType: "inline-size" }}
       >
         <motion.h1
-          className="text-center text-[min(7.4cqw,5.5rem)] leading-[1.1] break-words"
+          className="text-center text-[min(6.4cqw,5.5rem)] leading-[1.1] text-balance break-words"
           initial={reduced ? { opacity: 0 } : { opacity: 0, y: 36 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="text-accent1-primary">{lead} </span>
+          {lead && <span className="text-accent1-primary">{lead} </span>}
           <span className="text-accent2-primary">{tail}</span>
         </motion.h1>
 
-        <div className="relative mt-2 flex flex-col items-center gap-4 md:block">
+        <div className="relative mt-2 flex flex-col items-center gap-4 md:grid md:grid-cols-[1fr_auto_1fr] md:items-stretch md:gap-6">
           <motion.img
             src={mascotSit}
             alt=""
             style={{ y: mascotY }}
-            className="pointer-events-none mx-auto w-32 sm:w-44 md:w-60"
+            className="pointer-events-none mx-auto w-32 sm:w-44 md:col-start-2 md:row-start-1 md:w-60"
             initial={
               reduced ? { opacity: 0 } : { opacity: 0, scale: 0.8, rotate: -8 }
             }
@@ -80,8 +80,9 @@ function Hero({ heading, subtitle }: { heading: string; subtitle: string }) {
           />
 
           <motion.p
-            className="max-w-[20rem] text-center md:absolute md:top-0 md:right-0 md:max-w-[15rem] md:text-right font-heading text-[10px]
-              leading-[2] tracking-[0.22em] text-accent2-primary uppercase md:text-sm"
+            className="max-w-[20rem] text-center font-heading text-[10px] leading-[2] tracking-[0.22em] break-words
+              text-red-200 uppercase md:col-start-3 md:row-start-1 md:max-w-[22rem] md:self-start md:justify-self-end
+              md:text-right md:text-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -90,8 +91,9 @@ function Hero({ heading, subtitle }: { heading: string; subtitle: string }) {
           </motion.p>
 
           <motion.p
-            className="max-w-[20rem] text-center md:absolute md:bottom-0 md:left-0 md:max-w-[15rem] md:text-left font-heading text-[9px] leading-[2]
-              tracking-[0.18em] text-accent2-primary uppercase md:text-[11px]"
+            className="max-w-[20rem] text-center font-heading text-[9px] leading-[2] tracking-[0.18em] text-red-200
+              uppercase md:col-start-1 md:row-start-1 md:max-w-[17rem] md:self-end md:justify-self-start md:text-left
+              md:text-[11px]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.55 }}
