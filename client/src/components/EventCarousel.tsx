@@ -33,7 +33,7 @@ export default function EventCarousel({ events }: { events: EventRecord[] }) {
   if (!events.length)
     return (
       <p className="text-center text-sm text-foreground-secondary">
-        Nothing scheduled right now — check back soon.
+        No events scheduled
       </p>
     );
   return (
