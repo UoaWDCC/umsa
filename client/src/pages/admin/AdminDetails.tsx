@@ -1,52 +1,13 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
-
-interface IPassword {
-  currentPassword: string;
-  newPassword: string;
-}
+import AdminPasswordForm from "../../components/AdminPasswordForm";
 
 export default function AdminDetails() {
   const params = useParams();
   const admin = params.adminEmail ?? "";
   const [passwordForm, setPasswordForm] = useState(false);
-  const [message, setMessage] = useState("");
-  const [isError, setIsError] = useState(false);
   const showForm = () => {
     setPasswordForm(true);
-  };
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IPassword>();
-
-  // requires at least 1 special character, digit and letter
-  // mininmum length of 10 characters
-  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{10,}$/;
-
-  const changePassword = async (data: IPassword) => {
-    // note to self: set up api route like this so in future
-    // other things can be changed using same router e.g. email
-    const response = await fetch("/api/admin/change/password", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        currentPassword: data.currentPassword,
-        newPassword: data.newPassword,
-      }),
-    });
-
-    const body = await response.json();
-
-    if (!response.ok) {
-      setIsError(true);
-      setMessage(body.error.message);
-    } else {
-      setIsError(false);
-      setMessage(body.message);
-    }
   };
 
   return (
@@ -63,54 +24,7 @@ export default function AdminDetails() {
             </button>
           )}
 
-          {passwordForm && (
-            <form
-              className="flex flex-col gap-5 mt-10 "
-              onSubmit={handleSubmit(changePassword)}
-            >
-              <input
-                type="password"
-                placeholder="Enter Current Password:"
-                className="bg-accent1-primary p-3"
-                {...register("currentPassword", {
-                  required: "The current password is required",
-                  pattern: {
-                    value: passwordRegex,
-                    message: "Invalid password format",
-                  },
-                  // old server message is stale once the password changes
-                  onChange: () => setMessage(""),
-                })}
-                style={{
-                  borderColor: errors.currentPassword ? "red" : "initial",
-                }}
-              />
-              <input
-                type="password"
-                placeholder="Enter New Password:"
-                className="bg-accent1-primary p-3"
-                {...register("newPassword", {
-                  required: "A new password is required",
-                  pattern: {
-                    value: passwordRegex,
-                    message: "Invalid password format",
-                  },
-                  // old server message is stale once the password changes
-                  onChange: () => setMessage(""),
-                })}
-                style={{
-                  borderColor: errors.newPassword ? "red" : "initial",
-                }}
-              />
-              <button className="bg-accent1-primary p-4 hover:cursor-pointer">
-                Submit
-              </button>
-            </form>
-          )}
-
-          {message && (
-            <p style={{ color: isError ? "red" : "green" }}>{message}</p>
-          )}
+          {passwordForm && <AdminPasswordForm />}
         </div>
       </div>
     </>
