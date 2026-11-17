@@ -25,7 +25,7 @@ router.post("/accept", async (req: Request, res: Response) => {
         .json({ error: "Duplicate Email - Email already exists as an Admin" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 12);
 
     await AdminUser.insertOne({
       email: email,
