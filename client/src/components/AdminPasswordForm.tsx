@@ -48,10 +48,14 @@ export default function AdminPasswordForm() {
         className="flex flex-col gap-5 mt-10 "
         onSubmit={handleSubmit(changePassword)}
       >
+        <p>
+          Requirements: At least 1 letter, digit and special character and at
+          least 10 characters
+        </p>
         <input
           type="password"
           placeholder="Enter Current Password:"
-          className="bg-accent1-primary p-3"
+          className="bg-accent1-primary p-3 border-2"
           {...register("currentPassword", {
             required: "The current password is required",
             pattern: {
@@ -68,7 +72,7 @@ export default function AdminPasswordForm() {
         <input
           type="password"
           placeholder="Enter New Password:"
-          className="bg-accent1-primary p-3"
+          className="bg-accent1-primary p-3 border-2"
           {...register("newPassword", {
             required: "A new password is required",
             pattern: {
@@ -87,9 +91,7 @@ export default function AdminPasswordForm() {
         </button>
       </form>
 
-      {message && (
-        <p style={{ color: isError ? "red" : "green" }}>{message}</p>
-      )}
+      {message && <p style={{ color: isError ? "red" : "green" }}>{message}</p>}
     </>
   );
 }
