@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import { resend } from "../utils/resend.js";
 import { createSecureToken } from "../utils/token.js";
+import { sendError } from "../utils/apiError.js";
 
 const router = express.Router();
 
@@ -20,7 +21,7 @@ router.post("/send", async (req: Request, res: Response) => {
   });
 
   if (error) {
-    return res.status(400).json({ error });
+    return sendError(res, 500, "INTERNAL_ERROR", "Unable to send invite email");
   }
 
   res.status(200).json({ data });
