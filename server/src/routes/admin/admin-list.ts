@@ -30,7 +30,7 @@ router.delete("/delete", async (req: Request, res: Response) => {
     if (adminCount == 1) {
       return sendError(
         res,
-        409,
+        400,
         "CONFLICT",
         "You cannot delete the last remaining Admin",
       );
