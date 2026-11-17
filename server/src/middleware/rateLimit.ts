@@ -10,7 +10,9 @@ export const apiRateLimit = rateLimit({
 });
 
 export const loginRateLimit = rateLimit({
-  windowMs: 15 * 60 * 1000,
+  // NOTE: CHANGE THIS TO 15 MINUTES LATER THIS IS
+  // JUST SO I CAN TEST RATE LIMITING WITHOUT BEING BANNED FOR 15 MINUTES
+  windowMs: 15,
   max: 10,
   standardHeaders: true,
   legacyHeaders: false,

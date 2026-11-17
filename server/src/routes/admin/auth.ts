@@ -15,6 +15,8 @@ import {
 } from "../../utils/adminSession.js";
 
 const router = Router();
+// dummy hash to throw off bad people >:)
+const dummyHash = bcrypt.hash("ILOVEPROJECTUMSA123!!", 12);
 
 router.post(
   "/login",
@@ -27,9 +29,13 @@ router.post(
       const user = await AdminUser.findOne({
         email: email.toLowerCase(),
       }).select("+passwordHash");
-      // Same message for unknown email and wrong password — never reveal which one it was
+      if (user === null) {
+        await bcrypt.compare(password, await dummyHash);
+      }
       const ok =
         user !== null && (await bcrypt.compare(password, user.passwordHash));
+
+      // Same message for unknown email and wrong password — never reveal which one it was
       if (!ok) {
         return sendError(
           res,
