@@ -41,6 +41,7 @@ import HomeContentEditor from "./pages/admin/HomeContentEditor";
 import AdminAdder from "./pages/admin/AdminEditor";
 import CreateAdminAccount from "./pages/admin/CreateAdminAccount";
 import pageLoader from "./pages/admin/CreateAdminAccountLoader";
+import AdminDetails from "./pages/admin/AdminDetails";
 
 {
   /* here's where we set up all our routing */
@@ -84,6 +85,8 @@ const router = createBrowserRouter([
       { index: true, element: <Navigate to="/admin/home-content" replace /> },
       { path: "home-content", element: <HomeContentEditor /> },
       { path: "admin-adder", element: <AdminAdder /> },
+      // dynamic routing for individual admin pages
+      { path: "admins/:adminEmail", element: <AdminDetails /> },
     ],
   },
 ]);
