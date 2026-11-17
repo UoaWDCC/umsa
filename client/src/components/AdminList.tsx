@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLogout, useMe } from "../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 interface AdminList {
   email: string;
@@ -54,9 +54,10 @@ export default function AdminList() {
         <p className="mt-10 text-2xl">List of Admins:</p>
         <div className=" mt-10 border-2 flex-wrap justify-center w-full max-w-100">
           {data.map((admin, index) => (
-            <div
+            <Link
+              to={`/admin/admins/${admin.email}`}
               key={index}
-              className="flex flex-row justify-between bg-accent1-secondary border p-4"
+              className="flex flex-row justify-between bg-accent1-secondary border p-4 hover:border-accent1-primary"
             >
               <p>{index + 1}</p>
               <p>{admin.email}</p>
@@ -67,7 +68,7 @@ export default function AdminList() {
               >
                 Delete
               </button>
-            </div>
+            </Link>
           ))}
         </div>
         {message && (
