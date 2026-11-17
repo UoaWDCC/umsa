@@ -143,3 +143,22 @@ Two lines, no auth work:
 
 Admin routes are **siblings** of the public `RootLayout` route, which is why admin pages don't
 inherit the public navbar and footer.
+
+## Known gaps
+
+Things that are deliberately unfinished or knowingly weak. Fix one → delete its line.
+
+- **Changing your password doesn't end your other sessions.** A JWT stays valid until it
+  expires (7 days), so a browser that was already logged in stays logged in. There's no "log out
+  everywhere" either — both need a token version field on `AdminUser`.
+- **No roles.** Every admin can delete every other admin, including themselves. The only
+  safeguard is that the last remaining admin can't be deleted.
+- **Password rules are client-side only.** The 10+ chars / letter / digit / special character
+  rule is checked in the forms, not by `PUT /change/password` or `POST /invite/accept`. Anyone
+  calling the API directly can set a weak password.
+- **The invite link is hard-coded to `http://localhost:5174`** in `server/src/routes/email.ts`,
+  and the sender is Resend's test address. Both need to come from env before production.
+- **The login rate limit is in memory.** It resets when the server restarts and isn't shared
+  between instances. Fine for one server; not for several.
+- **No forgot-password flow.** An admin who forgets their password needs another admin to
+  delete and re-invite them.
