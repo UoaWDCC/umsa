@@ -9,10 +9,10 @@ interface IPassword {
 
 export default function AdminDetails() {
   const params = useParams();
-  const admin = params.adminEmail;
+  const admin = params.adminEmail ?? "";
   const [passwordForm, setPasswordForm] = useState(false);
   const [message, setMessage] = useState("");
-  // const [isError, setIsError] = useState(false)
+  const [isError, setIsError] = useState(false);
   const showForm = () => {
     setPasswordForm(true);
   };
@@ -26,8 +26,27 @@ export default function AdminDetails() {
   // mininmum length of 10 characters
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{10,}$/;
 
-  const changePassword = async () => {
-    return;
+  const changePassword = async (data: IPassword) => {
+    // note to self: set up api route like this so in future
+    // other things can be changed using same router e.g. email
+    const response = await fetch("/api/admin/change/password", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        currentPassword: data.currentPassword,
+        newPassword: data.newPassword,
+      }),
+    });
+
+    const body = await response.json();
+
+    if (!response.ok) {
+      setIsError(true);
+      setMessage(body.error.message);
+    } else {
+      setIsError(false);
+      setMessage(body.message);
+    }
   };
 
   return (
