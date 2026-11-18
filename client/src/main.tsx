@@ -40,6 +40,7 @@ import AdminLogin from "./pages/admin/Login";
 import HomeContentEditor from "./pages/admin/HomeContentEditor";
 import AdminAdder from "./pages/admin/AdminEditor";
 import CreateAdminAccount from "./pages/admin/CreateAdminAccount";
+import ForgotPassword from "./pages/admin/ForgotPassword";
 import pageLoader from "./pages/admin/CreateAdminAccountLoader";
 import AdminDetails from "./pages/admin/AdminDetails";
 
@@ -71,6 +72,7 @@ const router = createBrowserRouter([
         element: <CreateAdminAccount />,
         loader: pageLoader,
       },
+      { path: "forgot-password", element: <ForgotPassword /> },
     ],
   },
   /* admin routes live OUTSIDE RootLayout so they don't get the public navbar/footer */
