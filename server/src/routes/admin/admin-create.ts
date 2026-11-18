@@ -17,7 +17,7 @@ router.post("/accept", async (req: Request, res: Response) => {
   }
 
   try {
-    const tokenDoc = await tokenValidator(rawToken);
+    const tokenDoc = await tokenValidator(rawToken, "create-admin-account");
     const email = tokenDoc.user_id;
 
     if (await AdminUser.findOne({ email: email })) {

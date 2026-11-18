@@ -5,11 +5,11 @@ import { sendError } from "../utils/apiError.js";
 
 const router = express.Router();
 
-router.post("/send", async (req: Request, res: Response) => {
+router.post("/", async (req: Request, res: Response) => {
   const { to, subject } = req.body;
-  const rawToken = await createSecureToken(to);
+  const rawToken = await createSecureToken(to, "create-admin-account");
 
-  const url = new URL("http://localhost:5174/create-admin-account");
+  const url = new URL("http://localhost:5173/create-admin-account");
   url.searchParams.set("token", rawToken);
 
   const { data, error } = await resend.emails.send({

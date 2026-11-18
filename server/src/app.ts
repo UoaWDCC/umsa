@@ -11,6 +11,7 @@ import verifyTokenRoutes from "./routes/admin/verify-token.js";
 import adminCreateRoutes from "./routes/admin/admin-create.js";
 import adminListRoutes from "./routes/admin/admin-list.js";
 import changeAdminDetailRoutes from "./routes/admin/change-details.js";
+import forgotPasswordRoute from "./routes/admin/forgot-password.js";
 import { apiRateLimit } from "./middleware/rateLimit.js";
 import { requireAdmin } from "./middleware/requireAdmin.js";
 import { notFound } from "./middleware/notFound.js";
@@ -45,14 +46,17 @@ app.use("/api/admin/content", adminContentRoutes);
 app.use("/api/admin/admin-list", adminListRoutes);
 app.use("/api/admin/change", changeAdminDetailRoutes);
 
-// email - right now only used for admin adding
-app.use("/api/admin/email", emailRoutes);
+// emails the admin invite link
+app.use("/api/admin/send-invite", emailRoutes);
 
 // verifying admin adding token
 app.use("/api/verify-invite", verifyTokenRoutes);
 
 // creates new admin
 app.use("/api/invite", adminCreateRoutes);
+
+// resets the password for an admin
+app.use("/api/send-password-change", forgotPasswordRoute);
 
 // fallbacks
 app.use(notFound);

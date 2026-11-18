@@ -11,7 +11,7 @@ interface EmailFormData {
 }
 
 const createEmail = async (formData: EmailFormData) => {
-  const info = await fetch("/api/admin/email/send", {
+  const info = await fetch("/api/admin/send-invite", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(formData),
