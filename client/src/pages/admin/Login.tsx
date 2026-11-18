@@ -4,6 +4,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { loginSchema, type LoginValues } from "../../schemas/auth";
 import { useLogin, useMe } from "../../hooks/useAuth";
 import { apiErrorMessage } from "../../lib/api";
+import AdminPasswordForm from "../../components/AdminPasswordForm";
+import { useState } from "react";
 
 export default function Login() {
   const { data: me, isPending } = useMe();
@@ -14,7 +16,7 @@ export default function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginValues>({ resolver: zodResolver(loginSchema) });
-
+  const [forgotPassword, setForgotPassword] = useState(false);
   if (isPending) {
     return (
       <div className="min-h-screen bg-gray-950 grid place-items-center text-gray-400">
@@ -31,10 +33,16 @@ export default function Login() {
     login.mutate(values, { onSuccess: () => navigate("/admin") }),
   );
 
+  const showForgotPassword = () => {
+    setForgotPassword(true);
+  };
+
   return (
     <div className="min-h-screen bg-gray-950 grid place-items-center px-4">
       <form onSubmit={onSubmit} className="w-full max-w-md flex flex-col gap-4">
-        <h1 className="text-3xl font-bold text-white text-center mb-4">UMSA Admin</h1>
+        <h1 className="text-3xl font-bold text-white text-center mb-4">
+          UMSA Admin
+        </h1>
 
         <input
           {...register("email")}
@@ -43,7 +51,9 @@ export default function Login() {
           autoComplete="email"
           className="bg-transparent border-2 rounded-2xl px-6 py-4 text-white placeholder-gray-400 outline-none focus:border-blue-300 transition"
         />
-        {errors.email && <p className="text-red-400 text-sm px-2">{errors.email.message}</p>}
+        {errors.email && (
+          <p className="text-red-400 text-sm px-2">{errors.email.message}</p>
+        )}
 
         <input
           {...register("password")}
@@ -64,15 +74,23 @@ export default function Login() {
           {login.isPending ? "Logging in…" : "Log in"}
         </button>
 
-        <button>
-
-
-        </button>
+        <button></button>
 
         {login.isError && (
-          <p className="text-red-400 text-center">{apiErrorMessage(login.error)}</p>
+          <p className="text-red-400 text-center">
+            {apiErrorMessage(login.error)}
+          </p>
         )}
       </form>
+
+      <div>
+        {!forgotPassword && (
+          <button onClick={showForgotPassword} className="hover:cursor-pointer">
+            Forgot Password
+          </button>
+        )}
+        {forgotPassword && <AdminPasswordForm />}
+      </div>
     </div>
   );
 }
