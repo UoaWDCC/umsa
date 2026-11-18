@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useForgotPassword } from "../hooks/useAuth";
+import { apiErrorMessage } from "../lib/api";
 
 interface IResetPassword {
   email: string;
@@ -11,15 +12,14 @@ export default function AdminForgotPassword() {
     handleSubmit,
     formState: { errors },
   } = useForm<IResetPassword>();
-  const [message, setMessage] = useState("");
-  //   const sendEmail = async () => {
-  //     const response = fetch("/a");
-  //   };
+
+  const password = useForgotPassword();
+
   return (
     <>
       <form
         className="mt-10 flex flex-col gap-5"
-        onSubmit={handleSubmit(() => setMessage("Sent!"))}
+        onSubmit={handleSubmit((values) => password.mutate({ to: values.email }))}
       >
         <p>Enter your email to reset your password</p>
         <input
@@ -29,13 +29,13 @@ export default function AdminForgotPassword() {
           {...register("email", {
             required:
               "To reset your password, please enter the email associated with the account.",
-            // old server message is stale once the email changes
-            onChange: () => setMessage(""),
           })}
         />
         <button className="bg-accent1-primary p-3">Submit</button>
-        {message && <p>{message}</p>}
-        {errors && <p>{errors.email?.message}</p>}
+        {password.isPending && <p>Sending...</p>}
+        {password.isSuccess && <p>{password.data.message}</p>}
+        {password.isError && <p>{apiErrorMessage(password.error)}</p>}
+        {errors.email && <p>{errors.email.message}</p>}
       </form>
     </>
   );
