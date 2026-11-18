@@ -131,9 +131,9 @@ from the body.
 The password format rule (10+ chars, a letter, a digit, a special character) is only checked
 on the client.
 
-### `POST /api/admin/email/send`
+### `POST /api/admin/send-invite`
 Sends an invite email via Resend. The email links to `/create-admin-account` with a one-time
-token.
+`create-admin-account` token.
 
 ```json
 { "to": "new-admin@example.com", "subject": "You've been invited to UMSA" }
@@ -143,17 +143,29 @@ token.
 
 `500 INTERNAL_ERROR "Unable to send invite email"` — Resend failed.
 
-The link's host is hard-coded to `http://localhost:5174`.
+The link's host is hard-coded to `http://localhost:5173`.
+
+## Tokens
+
+Invite and password-reset links both carry a one-time token. Each token is saved with a
+**type** (`scope` in the database): `create-admin-account` or `forgot-password`. Only the hash
+is stored, and every token expires after 30 minutes.
+
+Routes that *act* on a token (accept an invite, reset a password) have their type written into
+the code, so a reset token can't be used to create an account or the other way round. Only
+`verify-invite/token` takes the type from the request, because it only answers "is this link
+valid?" and changes nothing.
 
 ## Invites
 
 Public — the person accepting an invite isn't an admin yet.
 
-### `GET /api/verify-invite/token?token=…`
-Checks that an invite token exists, hasn't expired, and hasn't been used. The client calls it
-before showing the sign-up page.
+### `GET /api/verify-invite/token?type=…&token=…`
+Checks that a token exists, is the given `type`, hasn't expired, and hasn't been used. Used by
+both the sign-up page and the reset-password page before they render.
 
-`200 { "validToken": true }` or `401 UNAUTHORIZED "Token doesn't Exist or is Expired"`.
+`200 { "validToken": true }` or `401 UNAUTHORIZED "Token doesn't Exist or is Expired"` (also
+returned when `type` or `token` is missing or the type doesn't match).
 
 ### `POST /api/invite/accept`
 Creates the admin account and revokes the token, so the link only works once.
@@ -168,6 +180,45 @@ Creates the admin account and revokes the token, so the link only works once.
 - `409 CONFLICT` — that email is already an admin.
 - `401 UNAUTHORIZED "Token Expired"` — returned for *any* token failure (missing, expired or
   revoked).
+
+As with change-password, the password format rule is only checked on the client.
+
+## Password reset
+
+Public — the person resetting can't log in.
+
+### `POST /api/send-password-change`
+Emails a reset link to `/forgot-password` with a one-time `forgot-password` token, **if** the
+email belongs to an admin.
+
+```json
+{ "to": "admin@example.com" }
+```
+
+`200 { "message": "If that email has an admin account, a reset link has been sent." }` —
+the **same reply whether or not the email is an admin**, so this route can't be used to find
+out which emails are admins. Nothing is created or sent for a non-admin email.
+
+- `500 INTERNAL_ERROR` — Resend failed (only possible for a real admin).
+- `429 TOO_MANY_REQUESTS` — more than 5 requests in 15 minutes from one IP. Every request
+  counts, successful or not.
+
+The subject is set by the server. The link's host is hard-coded to `http://localhost:5173`.
+
+### `PUT /api/send-password-change/reset`
+Sets a new password using the token from the reset link, then revokes the token so the link
+only works once.
+
+```json
+{ "token": "…", "newPassword": "…" }
+```
+
+`200 { "message": "Successful! Try logging in again" }`.
+
+- `400 BAD_REQUEST "Missing Fields"` — `token` or `newPassword` missing.
+- `404 NOT_FOUND "Account not found"` — the token is valid but the admin was deleted since.
+- `400 UNAUTHORIZED "Unauthorized"` — returned for *any* token failure (missing, expired,
+  revoked or wrong type).
 
 As with change-password, the password format rule is only checked on the client.
 

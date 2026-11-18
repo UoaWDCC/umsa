@@ -12,7 +12,7 @@ server/
 │   ├── middleware/
 │   │   ├── requireAdmin.ts   the auth guard
 │   │   ├── validate.ts       zod body validation factory
-│   │   ├── rateLimit.ts      300 req / 15 min / IP
+│   │   ├── rateLimit.ts      general, login and password-reset limits
 │   │   ├── notFound.ts       404 fallback
 │   │   └── errorHandler.ts   500 fallback
 │   ├── models/               Mongoose schemas
@@ -225,5 +225,11 @@ brute-force backstop, not a tuned policy. `app.set("trust proxy", 1)` is what ma
 true behind nginx — without it, every visitor in production shares a single bucket and one
 enthusiastic user locks out the club.
 
-A dedicated, much stricter limiter on the login route is listed in
-[blueprints/06-admin-accounts.md](blueprints/06-admin-accounts.md).
+Two stricter limiters sit on top of that, each on one route:
+
+| Limiter | Route | Limit |
+|---|---|---|
+| `loginRateLimit` | `POST /api/admin/auth/login` | 10 **failed** attempts / 15 min / IP (successful logins don't count) |
+| `changePasswordLimit` | `POST /api/send-password-change` | 5 requests / 15 min / IP — every request counts, because the route always replies 200 |
+
+All three are in memory, so restarting the server clears them.

@@ -144,21 +144,39 @@ Two lines, no auth work:
 Admin routes are **siblings** of the public `RootLayout` route, which is why admin pages don't
 inherit the public navbar and footer.
 
+## Forgot password
+
+Self-service, from the login page — no other admin needed.
+
+1. **Request.** "Forgot Password" on `/admin/login` shows `AdminForgotPassword`, which sends
+   the email to `POST /api/send-password-change` (via `useForgotPassword`). If it's an admin,
+   the server emails a link to `/forgot-password?token=…`. The reply is the same either way.
+2. **Check the link.** `/forgot-password` has a loader (`ForgotPasswordLoader`) that asks
+   `verify-invite/token` whether the token is a valid `forgot-password` token. If not, it
+   redirects home before the page renders.
+3. **Reset.** The page (`pages/admin/ForgotPassword.tsx`) sends the token and new password to
+   `PUT /api/send-password-change/reset` (via `useResetPassword`), then navigates to
+   `/admin/login`.
+
+Both routes are mounted **before** `requireAdmin` in `app.ts`, because the person using them
+isn't logged in. The reset route only accepts `forgot-password` tokens — see "Tokens" in
+[05-api-reference.md](05-api-reference.md).
+
 ## Known gaps
 
 Things that are deliberately unfinished or knowingly weak. Fix one → delete its line.
 
-- **Changing your password doesn't end your other sessions.** A JWT stays valid until it
-  expires (7 days), so a browser that was already logged in stays logged in. There's no "log out
-  everywhere" either — both need a token version field on `AdminUser`.
+- **Changing or resetting your password doesn't end your other sessions.** A JWT stays valid
+  until it expires (7 days), so a browser that was already logged in stays logged in. There's
+  no "log out everywhere" either — both need a token version field on `AdminUser`.
 - **No roles.** Every admin can delete every other admin, including themselves. The only
   safeguard is that the last remaining admin can't be deleted.
 - **Password rules are client-side only.** The 10+ chars / letter / digit / special character
-  rule is checked in the forms, not by `PUT /change/password` or `POST /invite/accept`. Anyone
-  calling the API directly can set a weak password.
-- **The invite link is hard-coded to `http://localhost:5174`** in `server/src/routes/email.ts`,
-  and the sender is Resend's test address. Both need to come from env before production.
-- **The login rate limit is in memory.** It resets when the server restarts and isn't shared
+  rule is checked in the forms, not by `PUT /change/password`, `POST /invite/accept` or
+  `PUT /send-password-change/reset`. Anyone calling the API directly can set a weak password.
+- **The invite and reset links are hard-coded to `http://localhost:5173`** in
+  `server/src/routes/email.ts` and `server/src/routes/admin/forgot-password.ts`, and the sender
+  is Resend's test address (which only delivers to the Resend account owner's email). All of
+  this needs to come from env before production.
+- **The rate limits are in memory.** They reset when the server restarts and aren't shared
   between instances. Fine for one server; not for several.
-- **No forgot-password flow.** An admin who forgets their password needs another admin to
-  delete and re-invite them.
