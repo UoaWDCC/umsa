@@ -1,6 +1,6 @@
 import { redirect, type LoaderFunctionArgs } from "react-router-dom";
 
-export default async function pageLoader({ request }: LoaderFunctionArgs) {
+export default async function createAdminAccountLoader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const token = url.searchParams.get("token");
 

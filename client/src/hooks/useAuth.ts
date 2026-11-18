@@ -20,6 +20,11 @@ export interface message {
   message: string;
 }
 
+export interface ResetPasswordValues {
+  token: string;
+  newPassword: string;
+}
+
 export function useMe() {
   return useQuery({
     queryKey: ME_KEY,
@@ -62,6 +67,15 @@ export function useForgotPassword() {
     mutationFn: (values: forgotPassword) =>
       api
         .post<message>("/send-password-change", values)
+        .then((res) => res.data),
+  });
+}
+
+export function useResetPassword() {
+  return useMutation({
+    mutationFn: (values: ResetPasswordValues) =>
+      api
+        .put<message>("/send-password-change/reset", values)
         .then((res) => res.data),
   });
 }

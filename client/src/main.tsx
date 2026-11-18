@@ -41,8 +41,9 @@ import HomeContentEditor from "./pages/admin/HomeContentEditor";
 import AdminAdder from "./pages/admin/AdminEditor";
 import CreateAdminAccount from "./pages/admin/CreateAdminAccount";
 import ForgotPassword from "./pages/admin/ForgotPassword";
-import pageLoader from "./pages/admin/CreateAdminAccountLoader";
+import createAdminAccountLoader from "./pages/admin/CreateAdminAccountLoader";
 import AdminDetails from "./pages/admin/AdminDetails";
+import forgotPasswordLoader from "./pages/admin/ForgotPasswordLoader";
 
 {
   /* here's where we set up all our routing */
@@ -70,9 +71,13 @@ const router = createBrowserRouter([
       {
         path: "create-admin-account",
         element: <CreateAdminAccount />,
-        loader: pageLoader,
+        loader: createAdminAccountLoader,
       },
-      { path: "forgot-password", element: <ForgotPassword /> },
+      {
+        path: "forgot-password",
+        element: <ForgotPassword />,
+        loader: forgotPasswordLoader,
+      },
     ],
   },
   /* admin routes live OUTSIDE RootLayout so they don't get the public navbar/footer */

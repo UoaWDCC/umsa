@@ -12,14 +12,14 @@ export default function AdminForgotPassword() {
     handleSubmit,
     formState: { errors },
   } = useForm<IResetPassword>();
-
   const password = useForgotPassword();
-
   return (
     <>
       <form
         className="mt-10 flex flex-col gap-5"
-        onSubmit={handleSubmit((values) => password.mutate({ to: values.email }))}
+        onSubmit={handleSubmit((values) =>
+          password.mutate({ to: values.email }),
+        )}
       >
         <p>Enter your email to reset your password</p>
         <input
