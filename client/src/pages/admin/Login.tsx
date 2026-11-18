@@ -74,8 +74,6 @@ export default function Login() {
           {login.isPending ? "Logging in…" : "Log in"}
         </button>
 
-        <button></button>
-
         {login.isError && (
           <p className="text-red-400 text-center">
             {apiErrorMessage(login.error)}
