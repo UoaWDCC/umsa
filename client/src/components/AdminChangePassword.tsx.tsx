@@ -49,6 +49,9 @@ export default function AdminPasswordForm() {
         onSubmit={handleSubmit(changePassword)}
       >
         <p>
+          Enter your current password and the password you want to change it to
+        </p>
+        <p>
           Requirements: At least 1 letter, digit and special character and at
           least 10 characters
         </p>

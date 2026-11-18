@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useMe } from "../../hooks/useAuth";
-import AdminPasswordForm from "../../components/AdminPasswordForm";
+import AdminPasswordForm from "../../components/AdminChangePassword.tsx";
 
 export default function AdminDetails() {
   const params = useParams();
