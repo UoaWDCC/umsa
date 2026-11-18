@@ -5,10 +5,12 @@ import { sendError } from "../../utils/apiError.js";
 import AdminUser from "../../models/AdminUser.js";
 import bcrypt from "bcryptjs";
 import { tokenValidator } from "../../utils/tokenValidation.js";
+import { changePasswordLimit } from "../../middleware/rateLimit.js";
 
 const router = express.Router();
 
-router.post("/", async (req: Request, res: Response) => {
+// limited so nobody can spam someone's inbox with reset emails
+router.post("/", changePasswordLimit, async (req: Request, res: Response) => {
   const { to } = req.body;
   const url = new URL("http://localhost:5173/forgot-password");
 
