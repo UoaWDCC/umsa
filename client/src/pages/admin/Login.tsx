@@ -4,7 +4,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { loginSchema, type LoginValues } from "../../schemas/auth";
 import { useLogin, useMe } from "../../hooks/useAuth";
 import { apiErrorMessage } from "../../lib/api";
-import AdminPasswordForm from "../../components/AdminPasswordForm";
+import AdminForgotPassword from "../../components/AdminForgotPassword";
 import { useState } from "react";
 
 export default function Login() {
@@ -83,13 +83,13 @@ export default function Login() {
         )}
       </form>
 
-      <div>
+      <div className="w-full max-w-md">
         {!forgotPassword && (
           <button onClick={showForgotPassword} className="hover:cursor-pointer">
             Forgot Password
           </button>
         )}
-        {forgotPassword && <AdminPasswordForm />}
+        {forgotPassword && <AdminForgotPassword />}
       </div>
     </div>
   );
