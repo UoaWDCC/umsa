@@ -10,40 +10,50 @@ import { changePasswordLimit } from "../../middleware/rateLimit.js";
 const router = express.Router();
 
 // limited so nobody can spam someone's inbox with reset emails
-router.post("/", changePasswordLimit, async (req: Request, res: Response) => {
-  const { to } = req.body;
-  const url = new URL("http://localhost:5173/forgot-password");
+router.post(
+  "/forgot-password",
+  changePasswordLimit,
+  async (req: Request, res: Response) => {
+    const { to } = req.body;
+    const url = new URL("http://localhost:5173/admin/reset-password");
 
-  // same reply whether or not the email is an admin,
-  // so this route can't be used to find out which emails are admins
-  const genericReply = {
-    message: "If that email has an admin account, a reset link has been sent.",
-  };
+    // same reply whether or not the email is an admin,
+    // so this route can't be used to find out which emails are admins
+    const genericReply = {
+      message:
+        "If that email has an admin account, a reset link has been sent.",
+    };
 
-  const existingAdmin = await AdminUser.findOne({ email: to });
-  if (!existingAdmin) {
-    return res.status(200).json(genericReply);
-  }
+    const existingAdmin = await AdminUser.findOne({ email: to });
+    if (!existingAdmin) {
+      return res.status(200).json(genericReply);
+    }
 
-  const token = await createSecureToken(to, "forgot-password");
-  url.searchParams.set("token", token);
+    const token = await createSecureToken(to, "forgot-password");
+    url.searchParams.set("token", token);
 
-  const { error } = await resend.emails.send({
-    from: "Acme <onboarding@resend.dev>",
-    to,
-    subject: "UMSA Admin Password Reset",
-    html: `<a href="${url}">Reset Password</a>`,
-    replyTo: "umsa@projects.wdcc.co.nz",
-  });
+    const { error } = await resend.emails.send({
+      from: "Acme <onboarding@resend.dev>",
+      to,
+      subject: "UMSA Admin Password Reset",
+      html: `<a href="${url}">Reset Password</a>`,
+      replyTo: "umsa@projects.wdcc.co.nz",
+    });
 
-  if (error) {
-    return sendError(res, 500, "INTERNAL_ERROR", "Unable to send invite email");
-  }
+    if (error) {
+      return sendError(
+        res,
+        500,
+        "INTERNAL_ERROR",
+        "Unable to send invite email",
+      );
+    }
 
-  res.status(200).json(genericReply);
-});
+    res.status(200).json(genericReply);
+  },
+);
 
-router.put("/reset", async (req: Request, res: Response) => {
+router.post("/reset-password", async (req: Request, res: Response) => {
   const { newPassword, token } = req.body;
   if (!newPassword || !token) {
     return sendError(res, 400, "BAD_REQUEST", "Missing Fields");

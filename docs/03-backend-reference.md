@@ -230,6 +230,6 @@ Two stricter limiters sit on top of that, each on one route:
 | Limiter | Route | Limit |
 |---|---|---|
 | `loginRateLimit` | `POST /api/admin/auth/login` | 10 **failed** attempts / 15 min / IP (successful logins don't count) |
-| `changePasswordLimit` | `POST /api/send-password-change` | 5 requests / 15 min / IP — every request counts, because the route always replies 200 |
+| `changePasswordLimit` | `POST /api/admin/auth/forgot-password` | 5 requests / 15 min / IP — every request counts, because the route always replies 200 |
 
 All three are in memory, so restarting the server clears them.

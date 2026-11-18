@@ -22,7 +22,7 @@ export default function AdminPasswordForm() {
   const changePassword = async (data: IPassword) => {
     // note to self: set up api route like this so in future
     // other things can be changed using same router e.g. email
-    const response = await fetch("/api/admin/change/password", {
+    const response = await fetch("/api/admin/auth/password", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

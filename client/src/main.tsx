@@ -73,17 +73,18 @@ const router = createBrowserRouter([
         element: <CreateAdminAccount />,
         loader: createAdminAccountLoader,
       },
-      {
-        path: "forgot-password",
-        element: <ForgotPassword />,
-        loader: forgotPasswordLoader,
-      },
     ],
   },
   /* admin routes live OUTSIDE RootLayout so they don't get the public navbar/footer */
   {
     path: "/admin/login",
     element: <AdminLogin />,
+  },
+  // outside AdminLayout too: the person resetting their password isn't logged in
+  {
+    path: "/admin/reset-password",
+    element: <ForgotPassword />,
+    loader: forgotPasswordLoader,
   },
   {
     path: "/admin",

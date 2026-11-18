@@ -1,4 +1,5 @@
 import { Router, Request, Response } from "express";
+import { isValidObjectId } from "mongoose";
 import AdminUser from "../../models/AdminUser.js";
 import { sendError } from "../../utils/apiError.js";
 
@@ -10,18 +11,12 @@ router.get("/", async (_req, res: Response) => {
   return res.status(200).json(admins);
 });
 
-router.delete("/delete", async (req: Request, res: Response) => {
-  const { email } = req.body as {
-    email: string;
-  };
+router.delete("/:id", async (req: Request, res: Response) => {
+  const id = req.params.id;
 
-  if (!email) {
-    return sendError(
-      res,
-      400,
-      "BAD_REQUEST",
-      "Invalid Submission - provide an email please",
-    );
+  // a malformed id would make mongoose throw, so reject it up front
+  if (typeof id !== "string" || !isValidObjectId(id)) {
+    return sendError(res, 400, "BAD_REQUEST", "Invalid admin id");
   }
 
   try {
@@ -36,13 +31,15 @@ router.delete("/delete", async (req: Request, res: Response) => {
       );
     }
 
-    const result = await AdminUser.deleteOne({ email: email.toLowerCase() });
+    const deleted = await AdminUser.findByIdAndDelete(id);
 
-    if (result.deletedCount == 0) {
+    if (!deleted) {
       return sendError(res, 404, "NOT_FOUND", "Admin not found");
     }
 
-    return res.status(200).json({ message: `Successfully deleted ${email}` });
+    return res
+      .status(200)
+      .json({ message: `Successfully deleted ${deleted.email}` });
   } catch {
     return sendError(res, 500, "INTERNAL_ERROR", "Unable to delete admin");
   }

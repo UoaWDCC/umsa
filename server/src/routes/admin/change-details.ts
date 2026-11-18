@@ -2,10 +2,13 @@ import { Router, Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import AdminUser from "../../models/AdminUser.js";
 import { sendError } from "../../utils/apiError.js";
+import { requireAdmin } from "../../middleware/requireAdmin.js";
 
 const router = Router();
 
-router.put("/password", async (req: Request, res: Response) => {
+// mounted at /api/admin/auth, which is ABOVE the global guard (login has to work
+// logged-out), so this route needs requireAdmin itself
+router.put("/password", requireAdmin, async (req: Request, res: Response) => {
   const currentUser = res.locals.admin;
   const email = currentUser.email;
   const { currentPassword, newPassword } = req.body as {

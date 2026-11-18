@@ -94,7 +94,7 @@ singleton on first save.
 
 Also under `requireAdmin`.
 
-### `GET /api/admin/admin-list`
+### `GET /api/admin/settings/admins`
 Returns every admin. `passwordHash` is never included — the model hides it with
 `select: false`.
 
@@ -102,21 +102,18 @@ Returns every admin. `passwordHash` is never included — the model hides it wit
 [{ "_id": "…", "email": "umsa@projects.wdcc.co.nz", "createdAt": "…", "updatedAt": "…" }]
 ```
 
-### `DELETE /api/admin/admin-list/delete`
-Deletes an admin by email. Any admin can delete any admin, including themselves.
-
-```json
-{ "email": "someone@example.com" }
-```
+### `DELETE /api/admin/settings/admins/:id`
+Deletes an admin by `_id`. Any admin can delete any admin, including themselves.
 
 `200 { "message": "Successfully deleted …" }`.
 
-- `400 BAD_REQUEST` — no email in the body, or it's the last remaining admin (nothing is
+- `400 BAD_REQUEST` — the id isn't a valid id, or it's the last remaining admin (nothing is
   deleted).
-- `404 NOT_FOUND` — no admin with that email.
+- `404 NOT_FOUND` — no admin with that id.
 
-### `PUT /api/admin/change/password`
-Changes the **logged-in** admin's password. Who that is comes from the session cookie, never
+### `PUT /api/admin/auth/password`
+Mounted with the auth routes (above the global guard), so it has `requireAdmin` on the route
+itself. Changes the **logged-in** admin's password. Who that is comes from the session cookie, never
 from the body.
 
 ```json
@@ -185,10 +182,11 @@ As with change-password, the password format rule is only checked on the client.
 
 ## Password reset
 
-Public — the person resetting can't log in.
+Public — the person resetting can't log in. Both routes live under `/api/admin/auth`, mounted
+above the global guard alongside login.
 
-### `POST /api/send-password-change`
-Emails a reset link to `/forgot-password` with a one-time `forgot-password` token, **if** the
+### `POST /api/admin/auth/forgot-password`
+Emails a reset link to `/admin/reset-password` with a one-time `forgot-password` token, **if** the
 email belongs to an admin.
 
 ```json
@@ -205,7 +203,7 @@ out which emails are admins. Nothing is created or sent for a non-admin email.
 
 The subject is set by the server. The link's host is hard-coded to `http://localhost:5173`.
 
-### `PUT /api/send-password-change/reset`
+### `POST /api/admin/auth/reset-password`
 Sets a new password using the token from the reset link, then revokes the token so the link
 only works once.
 

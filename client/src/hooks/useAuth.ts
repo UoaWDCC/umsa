@@ -66,7 +66,7 @@ export function useForgotPassword() {
   return useMutation({
     mutationFn: (values: forgotPassword) =>
       api
-        .post<message>("/send-password-change", values)
+        .post<message>("/admin/auth/forgot-password", values)
         .then((res) => res.data),
   });
 }
@@ -75,7 +75,7 @@ export function useResetPassword() {
   return useMutation({
     mutationFn: (values: ResetPasswordValues) =>
       api
-        .put<message>("/send-password-change/reset", values)
+        .post<message>("/admin/auth/reset-password", values)
         .then((res) => res.data),
   });
 }

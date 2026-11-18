@@ -149,16 +149,16 @@ inherit the public navbar and footer.
 Self-service, from the login page — no other admin needed.
 
 1. **Request.** "Forgot Password" on `/admin/login` shows `AdminForgotPassword`, which sends
-   the email to `POST /api/send-password-change` (via `useForgotPassword`). If it's an admin,
-   the server emails a link to `/forgot-password?token=…`. The reply is the same either way.
-2. **Check the link.** `/forgot-password` has a loader (`ForgotPasswordLoader`) that asks
+   the email to `POST /api/admin/auth/forgot-password` (via `useForgotPassword`). If it's an admin,
+   the server emails a link to `/admin/reset-password?token=…`. The reply is the same either way.
+2. **Check the link.** `/admin/reset-password` has a loader (`ForgotPasswordLoader`) that asks
    `verify-invite/token` whether the token is a valid `forgot-password` token. If not, it
    redirects home before the page renders.
 3. **Reset.** The page (`pages/admin/ForgotPassword.tsx`) sends the token and new password to
-   `PUT /api/send-password-change/reset` (via `useResetPassword`), then navigates to
+   `POST /api/admin/auth/reset-password` (via `useResetPassword`), then navigates to
    `/admin/login`.
 
-Both routes are mounted **before** `requireAdmin` in `app.ts`, because the person using them
+Both routes are mounted under `/api/admin/auth`, **before** `requireAdmin` in `app.ts`, because the person using them
 isn't logged in. The reset route only accepts `forgot-password` tokens — see "Tokens" in
 [05-api-reference.md](05-api-reference.md).
 
@@ -172,8 +172,8 @@ Things that are deliberately unfinished or knowingly weak. Fix one → delete it
 - **No roles.** Every admin can delete every other admin, including themselves. The only
   safeguard is that the last remaining admin can't be deleted.
 - **Password rules are client-side only.** The 10+ chars / letter / digit / special character
-  rule is checked in the forms, not by `PUT /change/password`, `POST /invite/accept` or
-  `PUT /send-password-change/reset`. Anyone calling the API directly can set a weak password.
+  rule is checked in the forms, not by `PUT /admin/auth/password`, `POST /invite/accept` or
+  `POST /admin/auth/reset-password`. Anyone calling the API directly can set a weak password.
 - **The invite and reset links are hard-coded to `http://localhost:5173`** in
   `server/src/routes/email.ts` and `server/src/routes/admin/forgot-password.ts`, and the sender
   is Resend's test address (which only delivers to the Resend account owner's email). All of

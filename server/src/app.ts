@@ -39,12 +39,16 @@ app.use("/api/health", healthRoutes);
 // endpoints -- add new endpoints below
 app.use("/api/content", contentRoutes);
 
+// /api/admin/auth is above the guard. login, forgot-password and reset-password
+// must work logged-out; /me and /password add requireAdmin per route
 app.use("/api/admin/auth", adminAuthRoutes);
+app.use("/api/admin/auth", forgotPasswordRoute);
+app.use("/api/admin/auth", changeAdminDetailRoutes);
+
 // every /api/admin/* route below requires a logged-in admin account
 app.use("/api/admin", requireAdmin);
 app.use("/api/admin/content", adminContentRoutes);
-app.use("/api/admin/admin-list", adminListRoutes);
-app.use("/api/admin/change", changeAdminDetailRoutes);
+app.use("/api/admin/settings/admins", adminListRoutes);
 
 // emails the admin invite link
 app.use("/api/admin/send-invite", emailRoutes);
@@ -54,9 +58,6 @@ app.use("/api/verify-invite", verifyTokenRoutes);
 
 // creates new admin
 app.use("/api/invite", adminCreateRoutes);
-
-// resets the password for an admin
-app.use("/api/send-password-change", forgotPasswordRoute);
 
 // fallbacks
 app.use(notFound);

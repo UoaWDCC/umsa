@@ -3,6 +3,7 @@ import { useLogout, useMe } from "../hooks/useAuth";
 import { useNavigate, Link } from "react-router-dom";
 
 interface AdminList {
+  _id: string;
   email: string;
 }
 export default function AdminList() {
@@ -14,7 +15,7 @@ export default function AdminList() {
   const [message, setMessage] = useState("");
   const [isError, setError] = useState(false);
   const getAdminList = async () => {
-    const response = await fetch("/api/admin/admin-list");
+    const response = await fetch("/api/admin/settings/admins");
     if (!response.ok) {
       const body = await response.json();
       setMessage(body.error.message);
@@ -28,10 +29,8 @@ export default function AdminList() {
   }, []);
 
   const onClick = async (admin: AdminList) => {
-    const response = await fetch("/api/admin/admin-list/delete", {
+    const response = await fetch(`/api/admin/settings/admins/${admin._id}`, {
       method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: admin.email }),
     });
     const body = await response.json();
 
