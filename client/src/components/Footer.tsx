@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import logo from "../assets/about-us/badge.svg";
 import footerWave from "../assets/about-us/Vector 27.svg";
 
@@ -16,9 +16,8 @@ const RIGHT_LINKS = [
 ];
 
 const SOCIALS = [
-  { href: "https://www.facebook.com/", Icon: FaFacebookF, label: "Facebook" },
-  { href: "https://www.instagram.com/", Icon: FaInstagram, label: "Instagram" },
-  { href: "https://twitter.com/", Icon: FaTwitter, label: "Twitter" },
+  { href: "https://www.facebook.com/umsanz/", Icon: FaFacebookF, label: "Facebook" },
+  { href: "https://www.instagram.com/umsanz/", Icon: FaInstagram, label: "Instagram" },
 ];
 
 const LINK =
