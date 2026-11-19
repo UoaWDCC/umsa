@@ -1,8 +1,8 @@
-FROM node:20-alpine
+FROM node:22-alpine
 
 # Install nginx and pnpm
 RUN apk add --no-cache nginx
-RUN npm install -g pnpm
+RUN npm install -g pnpm@11.25.0
 
 WORKDIR /app
 
@@ -10,12 +10,12 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 # Copy workspace files
-COPY package.json pnpm-workspace.yaml ./
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 COPY server/package.json ./server/
 COPY client/package.json ./client/
 
 # Install all dependencies
-RUN pnpm install
+RUN pnpm install --frozen-lockfile
 
 # Copy source
 COPY server/ ./server/
@@ -30,4 +30,6 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 
-CMD sh -c "nginx && cd /app/server && node dist/server.js"
+WORKDIR /app/server
+
+CMD ["sh", "start.sh"]

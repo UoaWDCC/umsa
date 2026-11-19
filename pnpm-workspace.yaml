@@ -3,3 +3,5 @@ packages:
   - "client"
 onlyBuiltDependencies:
   - esbuild
+allowBuilds:
+  esbuild: true

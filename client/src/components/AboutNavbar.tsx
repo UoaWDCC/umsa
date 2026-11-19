@@ -16,7 +16,7 @@ export default function AboutNavbar() {
     <header
   className="relative z-20 flex h-[55px] items-center justify-between px-6 lg:px-16"
   style={{ backgroundColor: "#F9F9FB" }}
-    >   
+    >
       <Link to="/" aria-label="UMSA home" className="shrink-0">
         <img src={mascot} alt="UMSA" className="h-10 w-auto" />
       </Link>

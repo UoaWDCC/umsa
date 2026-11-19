@@ -29,12 +29,12 @@ to build: pnpm build
 ## team members
 
 | name                     | role            | fuel                                          | quote                                                                                          |
-| ------------------------ | --------------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------- | --- |
+| ------------------------ | --------------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | hannah santiago          | project manager |                                               |                                                                                                |
 | alanna santoso           | tech lead       | jasmine milk tea 70 sugar less ice            | _"hi!"_                                                                                        |
 | koutaro yumimi           | tech overlord   | ethiopian natural                             | _"studying is doubting your own potential"_                                                    |
-| matthew ren              | project manager |                                               |                                                                                                |     |
-| nicholars garcia-scholtz | tech exec       |                                               |                                                                                                |     |
+| matthew ren              | project manager |                                               |                                                                                                |
+| nicholars garcia-scholtz | tech exec       |                                               |                                                                                                |
 | amy yan                  | designer        |                                               | _"meow"_                                                                                       |
 | andrew qiu               | designer        | charlies tea osmanthus oolong 30 sugar no ice | _"i am just a designer~"_                                                                      |
 | terrence wu              | developer       | oolong milk tea 30 sugar little ice           | _"hardstuck bronze in league for 6 years (BUT IM GETTING OUT THIS YEAR IM BRONZE 3 44LP NOW)"_ |

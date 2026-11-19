@@ -1,75 +1,30 @@
-import { useState } from "react";
 import { useImageUpload } from "../../hooks/useImageUpload";
+import { apiErrorMessage } from "../../lib/api";
+import { useState } from "react";
 
-const MAX_BYTES = 5 * 1024 * 1024;
-const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
-
-type ImageValue = { url: string; publicId: string };
-
-type Props = {
-  value?: ImageValue;
-  onChange: (value: ImageValue) => void;
-  folder: string;
-};
-
-export function ImageUploadField({ value, onChange, folder }: Props) {
-  const [previewUrl, setPreviewUrl] = useState<string | undefined>(value?.url);
-  const [validationError, setValidationError] = useState<string | undefined>();
+type Props = { value: string; folder: string; onChange: (url: string) => void; onBusy: (busy: boolean) => void };
+export default function ImageUploadField({ value, folder, onChange, onBusy }: Props) {
   const upload = useImageUpload(folder);
-
-  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
+  const [error, setError] = useState("");
+  const choose = async (file?: File) => {
     if (!file) return;
-
-    if (file.size > MAX_BYTES) {
-      setValidationError("File is too large (max 5 MB)");
+    setError("");
+    if (file.size > 5 * 1024 * 1024 || !["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+      setError("Choose a JPEG, PNG or WebP image under 5 MB.");
       return;
     }
-    if (!ALLOWED_TYPES.includes(file.type)) {
-      setValidationError("Only JPEG, PNG or WebP images are allowed");
-      return;
-    }
-    setValidationError(undefined);
-
-    const localPreview = URL.createObjectURL(file);
-    setPreviewUrl(localPreview);
-
-    upload.mutate(file, {
-      onSuccess: (result) => {
-        URL.revokeObjectURL(localPreview);
-        setPreviewUrl(result.url);
-        onChange(result);
-      },
-    });
-  }
-
-  return (
-    <div className="border-2 border-solid border-white bg-transparent flex flex-col items-center gap-3 p-4 rounded-2xl max-w-[600px] mx-auto">
-
-      <input
-        type="file"
-        accept="image/jpeg,image/png,image/webp"
-        onChange={handleFileChange}
-        disabled={upload.isPending}
-        className="bg-blue-300 max-w-full"
-      />
-
-      {previewUrl && (
-        <img src={previewUrl} alt="Preview" className="w-full max-w-[600px] h-auto rounded" />
-      )}
-
-      {upload.isPending && <p>Uploading…</p>}
-      {validationError && <p className="text-red-600 text-sm text-center">{validationError}</p>}
-      {upload.isError && (
-        <p className="text-red-600 text-sm text-center">Upload failed. Please try again.</p>
-      )}
-
-      {value && (
-        <div className="w-full text-xs text-white break-all text-center">
-          <p className="w-full min-w-0 truncate">{value.url}</p>
-          <p className="w-full min-w-0 truncate">{value.publicId}</p>
-        </div>
-      )}
-    </div>
-  );
+    onBusy(true);
+    try { onChange((await upload.mutateAsync(file)).url); }
+    catch (err) { setError(apiErrorMessage(err)); }
+    finally { onBusy(false); }
+  };
+  return <div className="space-y-2">
+    <input type="url" aria-label="Image URL" value={value} onChange={e => onChange(e.target.value)}
+      className="w-full rounded-lg border border-gray-150 px-3 py-2 text-sm" placeholder="https://…" />
+    <input type="file" aria-label="Upload image" accept="image/jpeg,image/png,image/webp" disabled={upload.isPending}
+      onChange={e => void choose(e.target.files?.[0])} className="max-w-full text-sm" />
+    {value && <img src={value} alt="Selected image" className="h-24 w-24 rounded-lg object-cover" />}
+    {upload.isPending && <p className="text-sm">Uploading…</p>}
+    {error && <p role="alert" className="text-sm text-accent2-primary">{error}</p>}
+  </div>;
 }
