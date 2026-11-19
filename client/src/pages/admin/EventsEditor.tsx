@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEvents, useDeleteEvent, useCreateEvent, useUpdateEvent } from "../../hooks/useEvents";
-import type { EventRecord } from "../../types/content";
+import type { EventRecord, EventTag } from "../../types/content";
 
 export default function EventsEditor() {
     const { data: events = [], isLoading, isError } = useEvents();
@@ -10,7 +10,7 @@ export default function EventsEditor() {
     const [name, setName] = useState("");
     const [startsAt, setStartsAt ] = useState("");
     const [description, setDescription ] = useState("");
-    const [tag, setTag ] = useState("");
+    const [tag, setTag ] = useState<EventTag>("Social");
     const [link, setLink] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [editingId, setEditingId] = useState<string | null>(null);
@@ -59,7 +59,7 @@ export default function EventsEditor() {
         setEditingId(null);
         setName("");
         setDescription("");
-        setTag("");
+        setTag("Social");
         setStartsAt("");
         setLink("");
         setImageUrl("");
@@ -71,7 +71,11 @@ export default function EventsEditor() {
         <form onSubmit={handleSubmit}>
         <input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
         <input type="datetime-local" value={startsAt} onChange={(e) => setStartsAt(e.target.value)} />
-        <input placeholder="Tag" value={tag} onChange={(e) => setTag(e.target.value)} />
+        <select value={tag} onChange={(e) => setTag(e.target.value as EventTag)}>
+          <option value="Social">Social</option>
+          <option value="Competition">Competition</option>
+          <option value="Cultural">Cultural</option>
+        </select>
         <input placeholder="Link (https://...)" value={link} onChange={(e) => setLink(e.target.value)} />
         <input placeholder="Image URL" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
         <textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />

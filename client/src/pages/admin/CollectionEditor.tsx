@@ -47,6 +47,14 @@ function emptyDraft(fields: Field[]): Record<string, unknown> {
   );
 }
 
+function toLocalDateTime(value: unknown): string {
+  if (typeof value !== "string" || !value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  const pad = (part: number) => String(part).padStart(2, "0");
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+}
+
 function toPayload(values: Record<string, unknown>, fields: Field[]) {
   const out: Record<string, unknown> = { ...values };
   for (const f of fields) {
@@ -107,6 +115,11 @@ export default function CollectionEditor({
     setDraft({
       ...emptyDraft(fields),
       ...row,
+      ...Object.fromEntries(
+        fields
+          .filter((field) => field.type === "datetime-local")
+          .map((field) => [field.name, toLocalDateTime(row[field.name])]),
+      ),
       ...(collection === "members" && !row.committee
         ? { committee: "other" }
         : {}),
