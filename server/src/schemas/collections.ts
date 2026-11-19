@@ -13,7 +13,7 @@ const url = z
       ),
   ])
   .default("");
-const date = z.iso.date();
+const date = z.iso.datetime();
 
 export const collectionSchemas = {
   members: z.object({
