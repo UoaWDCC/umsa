@@ -1,79 +1,206 @@
 import MemberInfo from "../components/MemberInfo";
 import { useEffect } from "react";
+import glassesSvg from "../assets/team/glasses.svg";
+import rPenSvg from "../assets/team/redpen.svg";
+import bPenSvg from "../assets/team/bluepen.svg";
+import noteSvg from "../assets/team/note.svg";
+import rEraserSvg from "../assets/team/rederaser.svg";
+import bEraserSvg from "../assets/team/blueeraser.svg";
+
+import { useMembers } from "../hooks/useMembers";
+import { COMMITTEE_ORDER, type CommitteeName } from "../types/content";
+
+const COMMITTEE_PATTERNS = [
+  {
+    justify: "md:justify-start lg:pl-25",
+    offsetEven: "md:-mt-2 -rotate-4",
+    offsetOdd: "md:mt-4 rotate-4",
+  },
+  {
+    justify: "md:justify-start lg:pl-60",
+    offsetEven: "md:-mt-2 -rotate-4",
+    offsetOdd: "md:mt-4 rotate-4",
+  },
+  {
+    justify: "md:justify-start lg:pl-30",
+    offsetEven: "md:-mt-2 -rotate-6",
+    offsetOdd: "md:mt-6 rotate-4",
+  },
+  {
+    justify: "md:justify-end lg:pr-50",
+    offsetEven: "md:mt-4 -rotate-2",
+    offsetOdd: "md:-mt-4 rotate-1",
+  },
+  {
+    justify: "md:justify-end lg:pr-20",
+    offsetEven: "md:-mt-6 -rotate-4",
+    offsetOdd: "md:mt-2 rotate-4",
+  },
+  {
+    justify: "md:justify-end xl:pr-100",
+    offsetEven: "md:mt-2 -rotate-4",
+    offsetOdd: "md:-mt-6 rotate-6",
+  },
+  {
+    justify: "md:justify-start xl:pl-100",
+    offsetEven: "md:-mt-4 -rotate-4",
+    offsetOdd: "md:mt-4 rotate-6",
+  },
+];
+
+export const COMMITTEE_BG_COLORS: Record<
+  (typeof COMMITTEE_ORDER)[number],
+  string
+> = {
+  presidents: "bg-[var(--color-accent1-secondary)]",
+  executives: "bg-blue-400",
+  marketing: "bg-accent2-primary",
+  publicRelations: "bg-red-600",
+  social: "bg-gray-500",
+  cultural: "bg-gray-700",
+  sports: "bg-[var(--color-accent1-primary)]",
+  other: "bg-[var(--color-accent1-primary)]",
+};
 
 export default function Team() {
   useEffect(() => {
     document.title = "Meet the Team | UMSA";
   }, []);
 
-  return (
-    <>
-      <div>
-        <h1 className="text-3xl font-bold mb-8">Meet the Team</h1>
-      </div>
-      <h3 className="text-xl font-bold mb-4">Executive Section</h3>
-      <div className="flex flex-wrap gap-8 justify-center">
-        {/* Place MemberInfo components here */}
-        <MemberInfo
-          stats={{
-            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ-MDQnUa65wBv1XnRZxo9J1vIlljHLP87zA&s",
-            fullName: "tap on the screen",
-            role: "President",
-            linkedin: "https://www.linkedin.com/feed/",
-            instagram: "https://www.instagram.com/?hl=en",
-          }}
-        />
-        <MemberInfo
-          stats={{
-            img: "https://cdn.hswstatic.com/gif/hammer-1.jpg",
-            fullName: "this is not a drill",
-            role: "Vice President",
-            linkedin: "https://www.linkedin.com/feed/",
-            instagram: "https://www.instagram.com/?hl=en",
-          }}
-        />
-        <MemberInfo
-          stats={{
-            img: "https://cdn.hswstatic.com/gif/hammer-1.jpg",
-            fullName: "this is not a drill",
-            role: "Treasurer",
-            linkedin: "https://www.linkedin.com/feed/",
-            instagram: "https://www.instagram.com/?hl=en",
-          }}
-        />
-        <MemberInfo
-          stats={{
-            img: "https://cdn.hswstatic.com/gif/hammer-1.jpg",
-            fullName: "this is not a drill",
-            role: "Secretary",
-            linkedin: "https://www.linkedin.com/feed/",
-            instagram: "https://www.instagram.com/?hl=en",
-          }}
-        />
-      </div>
-      <h3 className="text-xl font-bold mb-4">Member Section</h3>
-      <div className="flex flex-wrap gap-8 justify-center">
-        {/* Place MemberInfo components here */}
+  const { data, isPending, isError } = useMembers();
+  const teamData = (data ?? []).map((member) => ({
+    ...member,
+    committee: member.committee ?? ("other" as CommitteeName),
+  }));
+  const allMembers = COMMITTEE_ORDER.flatMap((committeeName) => {
+    const bgColor =
+      COMMITTEE_BG_COLORS[committeeName] || "bg-[var(--color-accent1-primary)]";
+    return teamData
+      .filter((m) => m.committee === committeeName)
+      .map((m) => ({ ...m, bgColor }));
+  });
 
-        <MemberInfo
-          stats={{
-            img: "https://cdn.hswstatic.com/gif/hammer-1.jpg",
-            fullName: "this is not a drill",
-            role: "Member",
-            linkedin: "https://www.linkedin.com/feed/",
-            instagram: "https://www.instagram.com/?hl=en",
-          }}
-        />
-        <MemberInfo
-          stats={{
-            img: "https://cdn.hswstatic.com/gif/hammer-1.jpg",
-            fullName: "this is not a drill",
-            role: "Member",
-            linkedin: "https://www.linkedin.com/feed/",
-            instagram: "https://www.instagram.com/?hl=en",
-          }}
-        />
+  return (
+    <section className="relative mx-auto max-w-[1440px] overflow-hidden px-6 pt-10 pb-16">
+      <div className="md:text-left text-center mb-20">
+        <h1 className="text-[clamp(2.9375rem,8vw,6rem)] font-heading font-bold mb-8 text-accent1-primary">
+          Meet the <span className="text-accent2-primary">Team</span>
+        </h1>
       </div>
-    </>
+      {isPending && <p role="status">Loading the team…</p>}
+      {isError && (
+        <p role="alert">Unable to load the team. Please try again.</p>
+      )}
+      {!isPending && !isError && teamData.length === 0 && (
+        <p className="text-center text-foreground-secondary">
+          Team members will appear here once published.
+        </p>
+      )}
+      {/* MOBILE VIEW */}
+      <div className="md:hidden overflow-x-hidden w-full py-4">
+        <div className="w-full flex flex-wrap items-center justify-center gap-[4cqw] sm:gap-6">
+          {allMembers.map((member, idx) => (
+            <div
+              key={member.id}
+              className={`mb-5 group transition-transform duration-300 hover:rotate-0 ${["-rotate-2", "rotate-3", "-rotate-4", "rotate-2"][idx % 4]} `}
+            >
+              <MemberInfo stats={member} bgColor={member.bgColor} />
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* DESKTOP VIEW */}
+      <div className="relative">
+        {/* DECORATIONS */}
+        {teamData.length > 0 && (
+          <>
+            <img
+              src={glassesSvg}
+              alt=""
+              className="hidden [@media(min-width:1215px)]:block absolute top-60 right-4 z-0 pointer-events-none"
+            />
+            <img
+              src={rPenSvg}
+              alt=""
+              className="hidden [@media(min-width:1215px)]:block absolute top-160 right-4 z-0 pointer-events-none"
+            />
+            <img
+              src={bPenSvg}
+              alt=""
+              className="hidden [@media(min-width:1215px)]:block absolute top-190 right-18 z-0 pointer-events-none"
+            />
+            <img
+              src={noteSvg}
+              alt=""
+              className="hidden [@media(min-width:1215px)]:block absolute top-320 left-0 z-0 pointer-events-none"
+            />
+            <img
+              src={rEraserSvg}
+              alt=""
+              className="hidden [@media(min-width:1215px)]:block absolute top-550 right-18 z-0 pointer-events-none"
+            />
+            <img
+              src={bEraserSvg}
+              alt=""
+              className="hidden [@media(min-width:1215px)]:block absolute top-530 right-50 z-0 pointer-events-none"
+            />
+          </>
+        )}
+        {/* CARD */}
+        <div className="flex flex-col items-center gap-y-16 max-w-6xl mx-auto">
+          {COMMITTEE_ORDER.filter((committeeName) => {
+            const members = teamData.filter(
+              (member) => member.committee === committeeName,
+            );
+            return members.length > 0;
+          }).map((committeeName, committeeIdx) => {
+            const members = teamData.filter(
+              (member) => member.committee === committeeName,
+            );
+
+            const pattern =
+              COMMITTEE_PATTERNS[committeeIdx % COMMITTEE_PATTERNS.length];
+            const bgColor =
+              COMMITTEE_BG_COLORS[committeeName] ||
+              "bg-[var(--color-accent1-primary)]";
+
+            return (
+              <div
+                key={committeeName}
+                className="hidden md:w-full md:flex md:flex-col md:items-center"
+              >
+                <div
+                  className={`hidden md:w-full md:flex md:flex-wrap md:items-center md:gap-x-12 md:gap-y-10 ${pattern.justify}`}
+                >
+                  {members.map((member, idx) => {
+                    const cardOffset =
+                      idx % 2 === 0 ? pattern.offsetEven : pattern.offsetOdd;
+                    return (
+                      <div
+                        key={member.id}
+                        className={`group transition-transform duration-300 hover:rotate-0 hover:z-10 ${cardOffset}`}
+                      >
+                        <MemberInfo stats={member} bgColor={bgColor} />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <p
+          className="
+          font-heading text-accent1-primary text-center
+          relative mx-auto mt-16 mb-8 text-2xl
+
+          "
+        >
+          <span className="text-accent2-primary">UMSA</span> 2026 <br />
+          Committee
+        </p>
+      </div>
+    </section>
   );
 }

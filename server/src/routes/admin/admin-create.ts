@@ -1,3 +1,5 @@
+import { validate } from "../../middleware/validate.js";
+import { acceptInviteSchema } from "../../schemas/auth.js";
 import { tokenValidator } from "../../utils/tokenValidation.js";
 import { Router, Request, Response } from "express";
 import bcrypt from "bcryptjs";
@@ -6,7 +8,7 @@ import { sendError } from "../../utils/apiError.js";
 
 const router = Router();
 
-router.post("/accept", async (req: Request, res: Response) => {
+router.post("/accept", validate(acceptInviteSchema), async (req: Request, res: Response) => {
   const { rawToken, password } = req.body as {
     rawToken?: string;
     password?: string;

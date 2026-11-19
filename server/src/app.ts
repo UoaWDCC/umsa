@@ -4,6 +4,7 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import healthRoutes from "./routes/health.js";
 import contentRoutes from "./routes/content.js";
+import contactRoutes from "./routes/contact.js";
 import adminAuthRoutes from "./routes/admin/auth.js";
 import adminContentRoutes from "./routes/admin/content.js";
 import emailRoutes from "./routes/email.js";
@@ -12,12 +13,15 @@ import adminCreateRoutes from "./routes/admin/admin-create.js";
 import adminListRoutes from "./routes/admin/admin-list.js";
 import changeAdminDetailRoutes from "./routes/admin/change-details.js";
 import forgotPasswordRoute from "./routes/admin/forgot-password.js";
+import adminUploadRoutes from "./routes/admin/uploads.js";
 import { apiRateLimit } from "./middleware/rateLimit.js";
 import { requireAdmin } from "./middleware/requireAdmin.js";
 import { notFound } from "./middleware/notFound.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 
 // splitting
+
+import { publicCollections, adminCollections } from "./routes/collections.js";
 
 const app = express();
 
@@ -33,31 +37,30 @@ app.use(
 );
 app.use(express.json({ limit: process.env.JSON_BODY_LIMIT || "1mb" }));
 app.use(cookieParser());
+app.use("/api", (_req, res, next) => {
+  res.set("Cache-Control", "no-store");
+  next();
+});
 app.use("/api", apiRateLimit);
 app.use("/api/health", healthRoutes);
 
 // endpoints -- add new endpoints below
 app.use("/api/content", contentRoutes);
+app.use("/api/contact", contactRoutes);
+app.use("/api", publicCollections);
 
-// /api/admin/auth is above the guard. login, forgot-password and reset-password
-// must work logged-out; /me and /password add requireAdmin per route
 app.use("/api/admin/auth", adminAuthRoutes);
 app.use("/api/admin/auth", forgotPasswordRoute);
 app.use("/api/admin/auth", changeAdminDetailRoutes);
-
+app.use("/api/verify-invite", verifyTokenRoutes);
+app.use("/api/invite", adminCreateRoutes);
 // every /api/admin/* route below requires a logged-in admin account
 app.use("/api/admin", requireAdmin);
+app.use("/api/admin", adminCollections);
 app.use("/api/admin/content", adminContentRoutes);
+app.use("/api/admin/uploads", adminUploadRoutes);
 app.use("/api/admin/settings/admins", adminListRoutes);
-
-// emails the admin invite link
 app.use("/api/admin/send-invite", emailRoutes);
-
-// verifying admin adding token
-app.use("/api/verify-invite", verifyTokenRoutes);
-
-// creates new admin
-app.use("/api/invite", adminCreateRoutes);
 
 // fallbacks
 app.use(notFound);
