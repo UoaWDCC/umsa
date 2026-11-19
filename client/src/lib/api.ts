@@ -4,7 +4,13 @@ export const api = axios.create({ baseURL: "/api", withCredentials: true });
 
 export function apiErrorMessage(err: unknown): string {
   if (isAxiosError(err)) {
-    return err.response?.data?.error?.message ?? err.message;
+    if (!err.response) {
+      return "Couldn't reach the server. Check your connection and try again.";
+    }
+    return (
+      err.response.data?.error?.message ??
+      `Something went wrong (error ${err.response.status}). Please try again.`
+    );
   }
   return "Something went wrong";
 }
