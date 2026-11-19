@@ -34,6 +34,13 @@ import {
   TeamEditor,
 } from "./lazyRoutes";
 
+import AdminAdder from "./pages/admin/AdminEditor";
+import CreateAdminAccount from "./pages/admin/CreateAdminAccount";
+import ForgotPassword from "./pages/admin/ForgotPassword";
+import createAdminAccountLoader from "./pages/admin/CreateAdminAccountLoader";
+import AdminDetails from "./pages/admin/AdminDetails";
+import forgotPasswordLoader from "./pages/admin/ForgotPasswordLoader";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,6 +55,11 @@ const router = createBrowserRouter([
       { path: "contact", element: <Contact /> },
       { path: "sponsors", element: <Sponsors /> },
       { path: "about", element: <About /> },
+      {
+        path: "create-admin-account",
+        element: <CreateAdminAccount />,
+        loader: createAdminAccountLoader,
+      },
       { path: "*", element: <NotFound /> },
     ],
   },
@@ -55,6 +67,11 @@ const router = createBrowserRouter([
   {
     path: "/admin/login",
     element: <AdminLogin />,
+  },
+  {
+    path: "/admin/reset-password",
+    element: <ForgotPassword />,
+    loader: forgotPasswordLoader,
   },
   {
     path: "/admin",
@@ -67,6 +84,8 @@ const router = createBrowserRouter([
       { path: "sponsors", element: <SponsorsEditor /> },
       { path: "gallery", element: <GalleryEditor /> },
       { path: "faqs", element: <FaqEditor /> },
+      { path: "admin-adder", element: <AdminAdder /> },
+      { path: "admins/:adminEmail", element: <AdminDetails /> },
     ],
   },
 ]);

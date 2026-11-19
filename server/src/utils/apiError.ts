@@ -5,7 +5,9 @@ export type ApiErrorCode =
   | "INTERNAL_ERROR"
   | "NOT_FOUND"
   | "UNAUTHORIZED"
-  | "VALIDATION_ERROR";
+  | "VALIDATION_ERROR"
+  | "CONFLICT"
+  | "TOO_MANY_REQUESTS";
 
 export type ApiErrorResponse = {
   error: {

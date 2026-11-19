@@ -24,6 +24,7 @@
     "jsonwebtoken": "^9.0.3",
     "mongodb": "^7.1.0",
     "mongoose": "^9.3.2",
+    "resend": "^6.19.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {

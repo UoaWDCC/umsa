@@ -1,3 +1,5 @@
+import { useState } from "react";
+import AdminForgotPassword from "../../components/AdminForgotPassword";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -14,6 +16,7 @@ const INPUT =
 const LABEL = "mb-1.5 block text-xs font-semibold tracking-wide text-foreground-secondary uppercase";
 
 export default function AdminLogin() {
+  const [forgotPassword, setForgotPassword] = useState(false);
   const navigate = useNavigate();
   const { data: me } = useMe();
   const login = useLogin();
@@ -80,6 +83,12 @@ export default function AdminLogin() {
         )}
 
       </motion.form>
+      <div className="w-full max-w-sm py-4 text-sm text-accent1-primary">
+        <button type="button" onClick={() => setForgotPassword(!forgotPassword)}>
+          {forgotPassword ? "Back to sign in" : "Forgot password?"}
+        </button>
+        {forgotPassword && <AdminForgotPassword />}
+      </div>
     </div>
   );
 }

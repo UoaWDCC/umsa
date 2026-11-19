@@ -24,6 +24,7 @@ const MENU: { to: string; label: string; Icon: IconType }[] = [
   { to: "/admin/sponsors", label: "Sponsors", Icon: FiTag },
   { to: "/admin/gallery", label: "Gallery", Icon: FiImage },
   { to: "/admin/faqs", label: "FAQs", Icon: FiHelpCircle },
+  { to: "/admin/admin-adder", label: "Admin accounts", Icon: FiUsers },
 ];
 
 export default function AdminLayout() {

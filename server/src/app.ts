@@ -7,6 +7,12 @@ import contentRoutes from "./routes/content.js";
 import contactRoutes from "./routes/contact.js";
 import adminAuthRoutes from "./routes/admin/auth.js";
 import adminContentRoutes from "./routes/admin/content.js";
+import emailRoutes from "./routes/email.js";
+import verifyTokenRoutes from "./routes/admin/verify-token.js";
+import adminCreateRoutes from "./routes/admin/admin-create.js";
+import adminListRoutes from "./routes/admin/admin-list.js";
+import changeAdminDetailRoutes from "./routes/admin/change-details.js";
+import forgotPasswordRoute from "./routes/admin/forgot-password.js";
 import adminUploadRoutes from "./routes/admin/uploads.js";
 import { apiRateLimit } from "./middleware/rateLimit.js";
 import { requireAdmin } from "./middleware/requireAdmin.js";
@@ -44,11 +50,17 @@ app.use("/api/contact", contactRoutes);
 app.use("/api", publicCollections);
 
 app.use("/api/admin/auth", adminAuthRoutes);
+app.use("/api/admin/auth", forgotPasswordRoute);
+app.use("/api/admin/auth", changeAdminDetailRoutes);
+app.use("/api/verify-invite", verifyTokenRoutes);
+app.use("/api/invite", adminCreateRoutes);
 // every /api/admin/* route below requires a logged-in admin account
 app.use("/api/admin", requireAdmin);
 app.use("/api/admin", adminCollections);
 app.use("/api/admin/content", adminContentRoutes);
 app.use("/api/admin/uploads", adminUploadRoutes);
+app.use("/api/admin/settings/admins", adminListRoutes);
+app.use("/api/admin/send-invite", emailRoutes);
 
 // fallbacks
 app.use(notFound);

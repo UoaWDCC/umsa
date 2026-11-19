@@ -5,7 +5,7 @@ import { uploadSignatureSchema } from "../../schemas/upload.js";
 import { cloudinaryConfig, signUpload } from "../../utils/cloudinary.js";
 
 //  create a new router instance
-const router = Router(); 
+const router = Router();
 
 //  create a rule saying if incoming request is a post method and its path matches /signature
 //  first run the validate function with uploadSignatureSchema

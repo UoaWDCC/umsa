@@ -15,7 +15,7 @@ export const useImageUpload = (folder: string) => {
       form.append("timestamp", sig.timestamp);
       form.append("signature", sig.signature);
       form.append("folder", sig.folder);
-      // ^send a request with post method + /admin/uploads/signature path 
+      // ^send a request with post method + /admin/uploads/signature path
       //  include the folder from when useImageUpload was called with folder in param
       //  wait for express to respond with apiKey, timestamp, signature and folder
       //  new formData object and we append file, apiKey, timestamp, signature and folder

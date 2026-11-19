@@ -12,6 +12,19 @@ export interface Me {
   email: string;
 }
 
+export interface forgotPassword {
+  to: string;
+}
+
+export interface message {
+  message: string;
+}
+
+export interface ResetPasswordValues {
+  token: string;
+  newPassword: string;
+}
+
 export function useMe() {
   return useQuery({
     queryKey: ME_KEY,
@@ -46,5 +59,23 @@ export function useLogout() {
     mutationFn: () => api.post("/admin/auth/logout"),
     // Nulling the cache entry makes AdminLayout redirect declaratively
     onSuccess: () => queryClient.setQueryData(ME_KEY, null),
+  });
+}
+
+export function useForgotPassword() {
+  return useMutation({
+    mutationFn: (values: forgotPassword) =>
+      api
+        .post<message>("/admin/auth/forgot-password", values)
+        .then((res) => res.data),
+  });
+}
+
+export function useResetPassword() {
+  return useMutation({
+    mutationFn: (values: ResetPasswordValues) =>
+      api
+        .post<message>("/admin/auth/reset-password", values)
+        .then((res) => res.data),
   });
 }
