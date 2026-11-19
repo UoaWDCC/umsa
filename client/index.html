@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
 
-      #boot {
+      #boot, .page-loading {
         position: fixed;
         inset: 0;
         z-index: 9999;
@@ -21,13 +21,13 @@
       }
       #boot[hidden] { display: none; }
       #boot.is-done { opacity: 0; pointer-events: none; }
-      #boot svg { width: 54px; height: 54px; animation: boot-pulse 1.1s ease-in-out infinite; }
+      #boot svg, .page-loading svg { width: 54px; height: 54px; animation: boot-pulse 1.1s ease-in-out infinite; }
       @keyframes boot-pulse {
         0%, 100% { transform: scale(0.82); opacity: 0.45; }
         50%      { transform: scale(1);    opacity: 1; }
       }
       @media (prefers-reduced-motion: reduce) {
-        #boot svg { animation: none; opacity: 1; }
+        #boot svg, .page-loading svg { animation: none; opacity: 1; }
       }
     </style>
 

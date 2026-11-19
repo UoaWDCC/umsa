@@ -200,12 +200,14 @@ export default function App() {
 
   if (isPending) {
     return (
-      <section
-        className="mx-auto max-w-4xl px-6 py-20 text-center"
-        role="status"
-      >
-        Loading homepage…
-      </section>
+      <div className="page-loading" role="status" aria-label="Loading homepage">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <path
+            d="M50 2c5 30 16 44 48 48-32 4-43 18-48 48-5-30-16-44-48-48 32-4 43-18 48-48z"
+            fill="#2727DC"
+          />
+        </svg>
+      </div>
     );
   }
 
