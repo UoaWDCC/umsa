@@ -16,7 +16,7 @@ import Photo from "./components/ui/Photo";
 import EventCarousel from "./components/EventCarousel";
 import mascotSit from "./assets/icons/umsa_sit.png";
 import mascotCap from "./assets/icons/umsa_cool.png";
-import heroPhoto from "./assets/humans.png";
+import heroPhoto from "./assets/photos/members-stairs.jpg";
 
 const HERO_FOOT =
   "Non-profit Malaysian student-run club affiliated with the University of Auckland, New Zealand.";
@@ -239,9 +239,11 @@ export default function App() {
       <Reveal from="scale">
         <Photo
           src={heroPhoto}
-          alt="UMSA members on the lawn"
+          alt="UMSA members posing on a staircase"
           priority
-          className="h-56 w-full bg-blue-50 object-cover md:h-96"
+          // the banner is much wider than the photo, so bias the crop upward
+          // to keep the faces in frame instead of the stairs
+          className="h-56 w-full bg-blue-50 object-cover object-[50%_35%] md:h-96"
         />
       </Reveal>
 
